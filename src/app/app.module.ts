@@ -4,11 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { FooterComponent } from './blocks/footer/footer.component';
+import { NavbarComponent } from './blocks/navbar/navbar.component';
+import { SlideComponent } from './home/slide/slide.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    NavbarComponent,
+    SlideComponent
   ],
   imports: [
     BrowserModule,
