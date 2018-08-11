@@ -1,8 +1,9 @@
 var express         = require('express'),
     bodyParser      = require("body-parser"),
-    /*methodOverride  = require("method-override"),
-    db              = require('./server/config/db'),
+    methodOverride  = require("method-override"),
+    /*db              = require('./server/config/db'),
     api             = require('./server/routes/index'),*/
+    path = require('path'),
     app             = express();
 
 app.set('port', (process.env.PORT || 5000));/*
@@ -13,14 +14,14 @@ app.set('view engine', 'ejs');*/
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-// app.use(methodOverride());
+app.use(methodOverride());
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/florfresca'));
 // app.use('/api', api);
 
-app.use('/', function (request, response) {
+app.use('/*', function (request, response) {
     response.set('Content-Type', 'text/html');
-    response.render('index');
+    response.sendFile(path.join(__dirname + '/dist/florfresca/index.html'));
 });
 
 app.all('*', function (req, res, next) {
