@@ -7,6 +7,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { FooterComponent } from './blocks/footer/footer.component';
 import { NavbarComponent } from './blocks/navbar/navbar.component';
 import { SlideComponent } from './home/slide/slide.component';
+import {SubscriptionComponent} from './subscription/subscription.component';
 
 @NgModule({
   declarations: [
