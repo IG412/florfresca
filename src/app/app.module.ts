@@ -8,6 +8,10 @@ import { FooterComponent } from './blocks/footer/footer.component';
 import { NavbarComponent } from './blocks/navbar/navbar.component';
 import { SlideComponent } from './home/slide/slide.component';
 import {SubscriptionComponent} from './subscription/subscription.component';
+import { WhyComponent } from './why/why.component';
+import { RseComponent } from './rse/rse.component';
+import { HelpComponent } from './help/help.component';
+import { EmailComponent } from './email/email.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import {SubscriptionComponent} from './subscription/subscription.component';
     HomeComponent,
     FooterComponent,
     NavbarComponent,
-    SlideComponent
+    SlideComponent,
+    WhyComponent,
+    RseComponent,
+    HelpComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,

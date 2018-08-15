@@ -2561,15 +2561,15 @@ nav li.type-4 .dropmenu .fa-chevron-right { display: none; }
 
 .filter-nav a { position: relative; font-size: 12px; line-height: 39px; font-weight: 700; color: #b9b9b9; letter-spacing: 1px; display: inline-block; height: 39px; background: #f8f8f8; padding: 0 31px; text-transform: uppercase; }
 
-.filter-nav a:hover { background: #022c54; color: #fff; }
+.filter-nav a:hover { background: #C33E48; color: #fff; }
 
 .filter-nav a:before { content: ''; display: block; position: absolute; top: 100%; left: 50%; margin-left: -10px; width: 0; height: 0; border-style: solid; border-width: 9px 10px 0 10px; border-color: transparent transparent transparent transparent; }
 
-.filter-nav a:hover:before { border-color: #022c54 transparent transparent transparent; }
+.filter-nav a:hover:before { border-color: #C33E48 transparent transparent transparent; }
 
-.filter-nav li.selected a { background: #022c54; color: #fff; }
+.filter-nav li.selected a { background: #C33E48; color: #fff; }
 
-.filter-nav li.selected a:before { border-color: #022c54 transparent transparent transparent; }
+.filter-nav li.selected a:before { border-color: #C33E48 transparent transparent transparent; }
 
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 12 - GALLERY-DETAIL */
@@ -5652,10 +5652,10 @@ body[data-color="theme-1"] .underline.color-red-3:after {background: #ff6600;}
 body[data-color="theme-1"] .c-button.hv-red-3-o:hover {color: #ff6600;}
 body[data-color="theme-1"] .hover-red-3:hover .hover-it {color: #ff6600;}
 body[data-color="theme-1"] .hover-red-3.underline-block:hover .underline:before {background: #ff6600;}
-body[data-color="theme-1"] .filter-nav li.selected a {background: #ff6600;}
-body[data-color="theme-1"] .filter-nav li.selected a:before {border-color: #ff6600 transparent transparent transparent;}
-body[data-color="theme-1"] .filter-nav a:hover:before {border-color: #ff6600 transparent transparent transparent;}
-body[data-color="theme-1"] .filter-nav a:hover {background: #ff6600;}
+body[data-color="theme-1"] .filter-nav li.selected a {background: #C33E48;}
+body[data-color="theme-1"] .filter-nav li.selected a:before {border-color: #C33E48 transparent transparent transparent;}
+body[data-color="theme-1"] .filter-nav a:hover:before {border-color: #C33E48 transparent transparent transparent;}
+body[data-color="theme-1"] .filter-nav a:hover {background: #C33E48;}
 body[data-color="theme-1"] .gal-item.style-3 a:hover .gal-item-desc {background: #ff6600;}
 body[data-color="theme-1"] header.color-5 nav > ul > li:hover > a {color: #ff6600;}
 body[data-color="theme-1"] .color-dr-blue-2 {color: #ff6600;}
@@ -5862,10 +5862,10 @@ body[data-color="theme-2"] .underline.color-red-3:after {background: #2d3e50;}
 body[data-color="theme-2"] .c-button.hv-red-3-o:hover {color: #2d3e50;}
 body[data-color="theme-2"] .hover-red-3:hover .hover-it {color: #2d3e50;}
 body[data-color="theme-2"] .hover-red-3.underline-block:hover .underline:before {background: #2d3e50;}
-body[data-color="theme-2"] .filter-nav li.selected a {background: #2d3e50;}
-body[data-color="theme-2"] .filter-nav li.selected a:before {border-color: #2d3e50 transparent transparent transparent;}
-body[data-color="theme-2"] .filter-nav a:hover:before {border-color: #2d3e50 transparent transparent transparent;}
-body[data-color="theme-2"] .filter-nav a:hover {background: #2d3e50;}
+body[data-color="theme-2"] .filter-nav li.selected a {background: #C33E48;}
+body[data-color="theme-2"] .filter-nav li.selected a:before {border-color: #C33E48 transparent transparent transparent;}
+body[data-color="theme-2"] .filter-nav a:hover:before {border-color: #C33E48 transparent transparent transparent;}
+body[data-color="theme-2"] .filter-nav a:hover {background: #C33E48;}
 body[data-color="theme-2"] .gal-item.style-3 a:hover .gal-item-desc {background: #2d3e50;}
 body[data-color="theme-2"] header.color-5 nav > ul > li:hover > a {color: #2d3e50;}
 body[data-color="theme-2"] .color-dr-blue-2 {color: #2d3e50;}
@@ -6072,10 +6072,10 @@ body[data-color="theme-3"] .underline.color-red-3:after {background: #23b0e8;}
 body[data-color="theme-3"] .c-button.hv-red-3-o:hover {color: #23b0e8;}
 body[data-color="theme-3"] .hover-red-3:hover .hover-it {color: #23b0e8;}
 body[data-color="theme-3"] .hover-red-3.underline-block:hover .underline:before {background: #23b0e8;}
-body[data-color="theme-3"] .filter-nav li.selected a {background: #23b0e8;}
-body[data-color="theme-3"] .filter-nav li.selected a:before {border-color: #23b0e8 transparent transparent transparent;}
-body[data-color="theme-3"] .filter-nav a:hover:before {border-color: #23b0e8 transparent transparent transparent;}
-body[data-color="theme-3"] .filter-nav a:hover {background: #23b0e8;}
+body[data-color="theme-3"] .filter-nav li.selected a {background: #C33E48;}
+body[data-color="theme-3"] .filter-nav li.selected a:before {border-color: #C33E48 transparent transparent transparent;}
+body[data-color="theme-3"] .filter-nav a:hover:before {border-color: #C33E48 transparent transparent transparent;}
+body[data-color="theme-3"] .filter-nav a:hover {background: #C33E48;}
 body[data-color="theme-3"] .gal-item.style-3 a:hover .gal-item-desc {background: #23b0e8;}
 body[data-color="theme-3"] header.color-5 nav > ul > li:hover > a {color: #23b0e8;}
 body[data-color="theme-3"] .color-dr-blue-2 {color: #23b0e8;}
