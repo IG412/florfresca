@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PlanComponent} from './plan/plan.component';
 import {SubscriptionComponent} from './subscription.component';
+import {SummaryComponent} from './summary/summary.component';
+import {PaymentComponent} from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -10,7 +12,9 @@ const routes: Routes = [
 
     children: [
       { path: '', redirectTo: 'plan' },
-      { path: 'plan', component: PlanComponent }
+      { path: 'plan', component: PlanComponent },
+      { path: 'summary', component: SummaryComponent },
+      { path: 'payment', component: PaymentComponent }
     ]
   }
 ];
