@@ -12,6 +12,7 @@ import { WhyComponent } from './why/why.component';
 import { RseComponent } from './rse/rse.component';
 import { HelpComponent } from './help/help.component';
 import { EmailComponent } from './email/email.component';
+import { LoginComponent } from './account/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EmailComponent } from './email/email.component';
     WhyComponent,
     RseComponent,
     HelpComponent,
-    EmailComponent
+    EmailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

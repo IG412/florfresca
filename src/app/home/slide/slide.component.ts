@@ -39,7 +39,7 @@ export class SlideComponent implements OnInit {
   }
 
   //Función de inicio de Slide con Swiper 
-  initSwiper(){
+  	initSwiper(){
 		var initIterator = 0;
 		$('.swiper-container').each(function(){								  
 			var $t = $(this);								  
