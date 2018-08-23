@@ -1,3 +1,7 @@
+h6{
+	text-transform: none;
+	font-weight: 300;
+}
 footer { position: relative; width: 100%; padding-top: 70px; overflow: hidden;}
 
 .instagram-wiget { position: relative; width: 100%; padding-right: 10px; }
