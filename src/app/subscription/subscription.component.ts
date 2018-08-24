@@ -12,4 +12,8 @@ export class SubscriptionComponent implements OnInit {
   ngOnInit() {
   }
 
+  getPath(){
+  	return location.pathname;
+  }
+
 }

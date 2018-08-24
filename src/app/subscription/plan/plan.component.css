@@ -1,0 +1,9 @@
+.vertical-align{
+	width: 80%;
+}
+.radius-img{
+	margin-top: 10px;
+}
+input[type=checkbox], input[type=radio]{
+	-webkit-appearance:	button;
+}
