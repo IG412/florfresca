@@ -13,6 +13,7 @@ export class SummaryComponent implements OnInit {
   tipo:String;
   constructor(
   	private route: ActivatedRoute,
+  	private router: Router
   	) {
   	this.suscriptor = {nombre:'',ryp:'',cdir:'',dir:'',ciudad:'',tel:'' }
   }
@@ -22,6 +23,10 @@ export class SummaryComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         // Defaults to 0 if no query param provided.
+        if(!params['nombre']){
+        	console.log('netro')
+        	this.router.navigate(['subscription/plan'],{});
+        }
         this.suscriptor['nombre'] = params['nombre'];
         this.suscriptor['ryp'] = params['ryp'];
         this.suscriptor['cdir'] = params['cdir'];
