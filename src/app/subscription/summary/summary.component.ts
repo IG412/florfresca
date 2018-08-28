@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
-  suscriptor:Object;
+  suscriptor:any;
   plan:String;
   tam:String;
   tipo:String;

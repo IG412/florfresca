@@ -13,10 +13,10 @@ export class PlanComponent implements OnInit {
   cat:Array<String>;
   suscriptor:any;
   showForm:boolean;
-  plans:Array<Object>;
-  tamanos:Array<Object>;
-  tipos:Array<Object>;
-  susciption:Object;
+  plans:Array<any>;
+  tamanos:Array<any>;
+  tipos:Array<any>;
+  susciption:any;
   alert:String;
 
   constructor(
