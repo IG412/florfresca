@@ -72,10 +72,17 @@
                             </div>
                           </div>
                         </div>
-
-                        <div class="col-xs-1 col-sm-4">
+                        <div class="col-xs-12 col-sm-12 padd-40">
+                          <div class="input-entry color-7">
+                            <input class="checkbox-form" id="lirios" type="checkbox" name="lirios" value="climat control">
+                            <label class="clearfix" for="lirios" >
+                              <span class="sp-check"><i class="fa fa-check"></i></span>
+                              <p class=" color-dark-2">¿Tienes gatos? Quiero mi bouquet libre de lirios</p>
+                            </label>
+                          </div>
                         </div>
-                        <div class="col-xs-1 col-sm-4">
+                        <div class="col-xs-12 col-sm-4"></div>
+                        <div class="col-xs-1 col-sm-4 ">
                           <button class="c-button bg-florfresca color-white" style="width: 100%;" value="" (click)="addSuscriptor()" >AGREGAR SUSCRIPTOR</button> 
                         </div>
 
@@ -85,7 +92,7 @@
                       </div>
                     </div>
                   </form>
-                  <div class="col-xs-12 col-sm-6 s_news-text color-grey-3">
+                  <div class="col-xs-12 col-sm-6 s_news-text color-dark-2">
                     <div class="text-center">
                       <img src="assets/imgs/icons/icon-alert.png">
                       <p>Importante</p>
@@ -94,7 +101,7 @@
                     (via email) para que nos verifiques la dirección del envío
                     y un teléfono de contacto el receptor de la suscripcion</p>
                   </div>
-                  <div class="col-xs-12 col-sm-6 s_news-text color-grey-3" >
+                  <div class="col-xs-12 col-sm-6 s_news-text color-dark-2" >
                     <div class="text-center">
                       <img src="assets/imgs/icons/icon-pay.png">
                       <p>Pagos</p>
@@ -180,7 +187,7 @@
           <img [src]="plans[2].img" alt="">
         </div>
         <div class="tour-desc bg-white">
-          <h4><a class="tour-title color-dark-2 link-green" href="#">{{plans[2].nombre}}<</a></h4>
+          <h4><a class="tour-title color-dark-2 link-green" href="#">{{plans[2].nombre}}</a></h4>
           <div class="tour-text color-grey-3">{{plans[2].desc}}</div>
         </div>
       </div>
@@ -191,7 +198,7 @@
           <div class="vertical-align text-center" >
             <a class="c-button bg-florfresca hv-transparent" (click)="addPlan(plans[3]._id)"><span class="color-white">QUIERO SUSCRIBIRME</span></a>
           </div>
-          <img [src]="plans[3].img" alt="">
+          <img [src]="plans[3].img" alt="" >
         </div>
         <div class="tour-desc bg-white">
           <h4><a class="tour-title color-dark-2 link-green" href="#">{{plans[3].nombre}}</a></h4>
@@ -214,11 +221,11 @@
   <div class="row" style="margin-bottom: 50px" *ngFor="let t of tamanos" >
     <div class="col-xs-1 col-sm-2"></div>
     <div class="col-xs-1 col-sm-8 bg-white" style="height: 200px;" [ngStyle]="{'border': (t._id == susciption.tamano) ? '3px solid red':'none'}">
-      <div class="col-xs-1 col-sm-4">
-        <img  class="radius-img" [src]="t.icon" alt="">
+      <div class="col-xs-1 col-sm-4 text-center">
+        <img  class="radius-img" [src]="t.icon" alt="" height="150px" width="150px">
       </div>
       <div class="col-xs-1 col-sm-8">
-        <div class="title hotel-middle clearfix cell-view">
+        <div class="title hotel-middle clearfix cell-view padd-50">
           <h3><b>{{t.nombre}}</b></h3>
           <p class="f-14 grid-hidden" [innerHTML]="t.desc" ></p>
           <div class="rate-wrap">
@@ -242,15 +249,15 @@
 
   <div class="row" style="margin-bottom: 25px" *ngFor="let s of tipos">
     <div class="col-xs-1 col-sm-2"></div>
-    <div class="col-xs-1 col-sm-8 bg-white" style="height: 100px;" [ngStyle]="{'border': (s._id == susciption.tipo) ? '3px solid red':'none'}">
+    <div class="col-xs-1 col-sm-8 bg-white" style="height: 120px;" [ngStyle]="{'border': (s._id == susciption.tipo) ? '3px solid red':'none'}">
       <div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view">
-        <img style="width: 80%; " src="assets/img/calendar_icon_grey.png" alt="">
+        <img src="assets/imgs/icons/icon-flores.png" alt="">
       </div>
       <div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view">
-        <img  style="width: 80%;" src="assets/img/calendar_icon_grey.png" alt="">
+        <img src="assets/imgs/icons/icon-flores.png" alt="">
       </div>
       <div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view">
-        <img  style="width: 80%;" src="assets/img/calendar_icon_grey.png" alt="">
+        <img src="assets/imgs/icons/icon-flores.png" alt="">
       </div>
       <div class="col-xs-1 col-sm-6">
         <div class="title hotel-middle clearfix cell-view">
