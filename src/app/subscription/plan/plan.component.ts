@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+// import * as datepicker from "src/assets/js/jquery-ui.min.js";
 
+declare var $: any;
 
 
 @Component({
@@ -48,6 +50,7 @@ export class PlanComponent implements OnInit {
   }
 
   ngOnInit() {
+    $( ".datepicker" ).datepicker({daysOfWeekDisabled: "0,1,3,5,6"});
   }
 
   addSuscriptor(){

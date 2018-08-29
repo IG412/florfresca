@@ -24,10 +24,12 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/bootstrap-datepicker.min.css",
               "src/assets/css/style.css"
             ],
             "scripts": [
-              "src/assets/js/jquery-2.1.4.min.js"
+              "src/assets/js/jquery-2.1.4.min.js",
+              "src/assets/js/bootstrap-datepicker.min.js"
             ]
           },
           "configurations": {

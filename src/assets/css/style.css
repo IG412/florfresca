@@ -1316,7 +1316,7 @@ nav li.type-4 .dropmenu .fa-chevron-right { display: none; }
 
 .tabs-style-1.nav-tabs > li.active > a, .tabs-style-1.nav-tabs > li.active > a:focus, .tabs-style-1.nav-tabs > li.active > a:hover { background: rgba(0, 3, 5, 0.2); border: 1px solid rgba(0, 3, 5, 0); border-bottom: 0px none; color: #fff; }
 
-.tabs-block { position: relative; float: left; width: 100%; color: #fff; border-bottom: 1px solid rgba(255, 255, 255, 0.3); padding-bottom: 12px; }
+.tabs-block { position: relative; float: left; width: 100%; color: #000; border: 3px solid rgba(255, 255, 255, 0.3); padding: 12px; border-radius: 25px;}
 
 .tabs-block h5 { padding-bottom: 40px; }
 
