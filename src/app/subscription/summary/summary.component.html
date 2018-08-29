@@ -4,13 +4,12 @@
   <div class="container">
     <div class="row padd-90" style="margin-bottom: 16px; padding-bottom: 16px;" >
 
-      <div class="col-xs-1 col-sm-2">
-      </div>
+      <div class="col-xs-1 col-sm-2"></div>
       <div class="col-xs-12 col-md-8">
         <div class="detail-content-block">
           <div class="confirm-label bg-dr-blue radius-5">
             <img class="confirm-img" src="assets/img/thx_icon.png" alt="">
-            <div class="confirm-title color-white">¿ ERES USUARIO DE FLOR FRESCA ?</div>
+            <div class="confirm-title color-white">¿ERES USUARIO DE FLOR FRESCA?</div>
             <div class="confirm-text color-white-light">Registrate o accede a tu cuentay recibe promociones especiales.</div>
             <a href="#" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a>
           </div>
@@ -22,27 +21,27 @@
               <tbody>
               <tr>
                 <td class="table-label color-grey">NOMBRE</td>
-                <td class="table-label color-dark-2"><strong>5784-BD245</strong></td>
+                <td class="table-label color-dark-2"><strong>{{suscriptor.nombre}}</strong></td>
               </tr>
               <tr>
                 <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
-                <td class="table-label color-dark-2"><strong>Joanna</strong></td>
+                <td class="table-label color-dark-2"><strong>{{suscriptor.ryp}}</strong></td>
               </tr>
               <tr>
                 <td class="table-label color-grey">CATEGORIZACION DIRECCIÓN:</td>
-                <td class="table-label color-dark-2"><strong>letto</strong></td>
+                <td class="table-label color-dark-2"><strong>{{suscriptor.cdir}}</strong></td>
               </tr>
               <tr>
                 <td class="table-label color-grey">DIRECCIÓN:</td>
-                <td class="table-label color-dark-2"><strong>letto</strong></td>
+                <td class="table-label color-dark-2"><strong>{{suscriptor.dir}}</strong></td>
               </tr>
               <tr>
                 <td class="table-label color-grey">CIUDAD:</td>
-                <td class="table-label color-dark-2"><strong>Joanna@gmail.COM</strong></td>
+                <td class="table-label color-dark-2"><strong>{{suscriptor.ciudad}}</strong></td>
               </tr>
               <tr>
                 <td class="table-label color-grey">TELEFONO:</td>
-                <td class="table-label color-dark-2"><strong>353 THIRD FLOOR AVENUE</strong></td>
+                <td class="table-label color-dark-2"><strong>{{suscriptor.tel}}</strong></td>
               </tr>
 
               </tbody>
@@ -86,8 +85,8 @@
           </div>
         <div class="col-xs-1 col-sm-8">
             <div class="date list-hidden"><strong>Recibirás una suscripción de flores</strong></div>
-            <div class="date grid-hidden"><strong>Tamaño</strong> Tamaño Original</div>
-            <div class="date grid-hidden"><strong>Frecuencia</strong> Mensualmente</div>
+            <div class="date grid-hidden"><strong>Tamaño</strong> {{tam}}</div>
+            <div class="date grid-hidden"><strong>Frecuencia</strong> {{tipo}}</div>
             <div class="date grid-hidden"><strong>Tu primera orden</strong> </div>
             <h4><b>TOTAL: ------</b></h4>
         </div>
