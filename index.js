@@ -1,8 +1,8 @@
 var express         = require('express'),
     bodyParser      = require("body-parser"),
     methodOverride  = require("method-override"),
-    /*db              = require('./server/config/db'),
-    api             = require('./server/routes/index'),*/
+    db              = require('./api-v1/config/db'),
+    api             = require('./api-v1/routes/index'),
     path = require('path'),
     app             = express();
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
 
 app.use(express.static(__dirname + '/dist/florfresca'));
-// app.use('/api', api);
+app.use('/api-v1', api);
 
 app.use('/*', function (request, response) {
     response.set('Content-Type', 'text/html');
