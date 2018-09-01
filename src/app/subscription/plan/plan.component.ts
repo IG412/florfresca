@@ -15,7 +15,7 @@ export class PlanComponent implements OnInit {
   cat:Array<String>;
   suscriptor:any;
   showForm:boolean;
-  plans:Array<any>;
+  plans: Array<any>;
   tamanos:Array<any>;
   tipos:Array<any>;
   susciption:any;
@@ -72,7 +72,7 @@ export class PlanComponent implements OnInit {
   		// {nombre:'',ryp:'',cdir:'',dir:'',ciudad:'',tel:'' }
   		this.router.navigate(['subscription/summary'], { queryParams: { 
   			nombre:  this.suscriptor['nombre'],
-  			ryp: this.suscriptor['nombre'],
+  			ryp: this.suscriptor['ryp'],
   			cdir: this.suscriptor['cdir'],
   			dir: this.suscriptor['dir'],
   			ciudad: this.suscriptor['ciudad'],

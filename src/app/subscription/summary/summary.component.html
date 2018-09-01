@@ -1,96 +1,173 @@
-
 <!-- DETAIL WRAPPER -->
 <div class="detail-wrapper">
-  <div class="container">
-    <div class="row padd-90" style="margin-bottom: 16px; padding-bottom: 16px;" >
+    <div class="container">
+        <div class="row padd-90" style="margin-bottom: 16px; padding-bottom: 16px;">
 
-      <div class="col-xs-1 col-sm-2"></div>
-      <div class="col-xs-12 col-md-8">
-        <div class="detail-content-block">
-          <div class="confirm-label bg-dr-blue radius-5">
-            <img class="confirm-img" src="assets/img/thx_icon.png" alt="">
-            <div class="confirm-title color-white">¿ERES USUARIO DE FLOR FRESCA?</div>
-            <div class="confirm-text color-white-light">Registrate o accede a tu cuentay recibe promociones especiales.</div>
-            <a href="#" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a>
-          </div>
+            <div class="col-xs-1 col-sm-2"></div>
+            <div class="col-xs-12 col-md-8">
+                <div class="detail-content-block">
+                    <div class="confirm-label bg-dr-blue radius-5">
+                        <img class="confirm-img" src="assets/img/thx_icon.png" alt="">
+                        <div class="confirm-title color-white">¿ERES USUARIO DE FLOR FRESCA?</div>
+                        <div class="confirm-text color-white-light">Registrate o accede a tu cuentay recibe promociones especiales.</div>
+                        <a href="#" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a>
+                    </div>
+                </div>
+                <div class="detail-content-block" style="margin-bottom: 26px;">
+                    <h3 class="small-title">RESUMEN DE DATOS</h3>
+                    <div class="table-responsive">
+                        <table class="table style-1 type-2 striped">
+                            <tbody>
+                                <tr>
+                                    <td class="table-label color-grey">NOMBRE</td>
+                                    <td class="table-label color-dark-2">
+                                        <ng-container *ngIf="show; else nombreTemplate">
+                                            <div class="form-block type-2 clearfix">
+                                                <div class="input-style-1 b-0 brd-0 type-2 color-3">
+                                                    <input type="text" value="{{suscriptor.nombre}}" [(ngModel)]="suscriptor.nombre">
+                                                    <!-- <input type="text" [(ngModel)]="suscriptor.nombre" placeholder="" name="nombre"> -->
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-template #nombreTemplate>
+                                            <strong>{{suscriptor.nombre}}</strong>
+                                        </ng-template>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
+                                    <td class="table-label color-dark-2">
+                                        <ng-container *ngIf="show; else rypTemplate">
+                                            <div class="form-block type-2 clearfix">
+                                                <select [(ngModel)]="suscriptor.ryp" class="drop-wrap drop-wrap-s-4 color-4 b-0 brd-0 type-2" name="ryp">
+                              <option *ngFor='let p of parentesco'>{{p}}</option>
+                            </select>
+                                            </div>
+                                        </ng-container>
+                                        <ng-template #rypTemplate>
+                                            <strong>{{suscriptor.ryp}}</strong>
+                                        </ng-template>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-label color-grey">CATEGORIZACION DIRECCIÓN:</td>
+                                    <td class="table-label color-dark-2">
+                                        <ng-container *ngIf="show; else cdirTemplate">
+                                            <div class="form-block type-2 clearfix">
+                                                <select [(ngModel)]="suscriptor.cdir" class="drop-wrap drop-wrap-s-4 color-5" name="cdir">
+                              <option *ngFor='let c of cat'>{{c}}</option>
+                            </select>
+                                            </div>
+                                        </ng-container>
+                                        <ng-template #cdirTemplate>
+                                            <strong>{{suscriptor.cdir}}</strong>
+                                        </ng-template>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-label color-grey">DIRECCIÓN:</td>
+                                    <td class="table-label color-dark-2">
+                                        <ng-container *ngIf="show; else direccionTemplate">
+                                            <div class="form-block type-2 clearfix">
+                                                <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                                    <input type="text" [(ngModel)]="suscriptor.dir" placeholder="" name="dir">
+                                                     </div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-template #direccionTemplate>
+                                            <strong *ngFor="let dir of suscriptor.dir">{{dir}}
+                                              <br>
+                                            </strong>
+                                            <div class="form-block type-2 clearfix" *ngIf="showDir">
+                                                <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                                    <input type="text" [(ngModel)]="newDireccion" placeholder="" name="dir">
+                                                    <button class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" (click)="addDireccion()"> Agregar</button>
+                                               
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-label color-grey">CIUDAD:</td>
+                                    <td class="table-label color-dark-2">
+                                        <ng-container *ngIf="show; else ciudadTemplate">
+                                            <div class="form-block type-2 clearfix"> 
+                                                <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                                    <input type="text" [(ngModel)]="suscriptor.ciudad" placeholder="" name="ciudad">
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-template #ciudadTemplate>
+                                            <strong>{{suscriptor.ciudad}}</strong>
+                                        </ng-template>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-label color-grey">TELEFONO:</td>
+                                    <td class="table-label color-dark-2">
+                                        <ng-container *ngIf="show; else telefonoTemplate">
+                                            <div class="form-block type-2 clearfix">
+                                                <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                                    <input type="text" [(ngModel)]="suscriptor.tel" placeholder="" name="tel">
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-template #telefonoTemplate>
+                                            <strong>{{suscriptor.tel}}</strong>
+                                        </ng-template>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-2">
+            </div>
         </div>
-        <div class="detail-content-block" style="margin-bottom: 26px;">
-          <h3 class="small-title">RESUMEN DE DATOS</h3>
-          <div class="table-responsive">
-            <table class="table style-1 type-2 striped">
-              <tbody>
-              <tr>
-                <td class="table-label color-grey">NOMBRE</td>
-                <td class="table-label color-dark-2"><strong>{{suscriptor.nombre}}</strong></td>
-              </tr>
-              <tr>
-                <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
-                <td class="table-label color-dark-2"><strong>{{suscriptor.ryp}}</strong></td>
-              </tr>
-              <tr>
-                <td class="table-label color-grey">CATEGORIZACION DIRECCIÓN:</td>
-                <td class="table-label color-dark-2"><strong>{{suscriptor.cdir}}</strong></td>
-              </tr>
-              <tr>
-                <td class="table-label color-grey">DIRECCIÓN:</td>
-                <td class="table-label color-dark-2"><strong>{{suscriptor.dir}}</strong></td>
-              </tr>
-              <tr>
-                <td class="table-label color-grey">CIUDAD:</td>
-                <td class="table-label color-dark-2"><strong>{{suscriptor.ciudad}}</strong></td>
-              </tr>
-              <tr>
-                <td class="table-label color-grey">TELEFONO:</td>
-                <td class="table-label color-dark-2"><strong>{{suscriptor.tel}}</strong></td>
-              </tr>
 
-              </tbody>
-            </table>
-          </div>
+        <div class="row" style="margin-bottom: 20px">
+
+            <div class="col-xs-1 col-sm-2">
+            </div>
+            <div class="col-xs-1 col-sm-3" style="height: 50px; ">
+                <button _ngcontent-c4="" class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" (click)='editSuscriptor(suscriptor)'><span _ngcontent-c4="">{{textoBoton}}</span></button>
+            </div>
+
+            <div class="col-xs-1 col-sm-3" style="height: 50px;" (click)="showDireccion()">
+                <button _ngcontent-c4="" class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" href="#">
+                  <span _ngcontent-c4="">AGREGAR NUEVA DIRECCIÓN</span>
+                </button>
+            </div>
+
+            <div class="col-xs-1 col-sm-2">
+            </div>
         </div>
-      </div>
 
-      <div class="col-xs-1 col-sm-2">
-      </div>
+        <div class="row" style="margin-bottom: 25px">
+            <div class="col-xs-1 col-sm-2"></div>
+            <div class="col-xs-1 col-sm-8 bg-white" style="height: 250px;">
+                <div class="title hotel-middle clearfix cell-view">
+                    <div class="col-xs-1 col-sm-12 " style="margin: 10px">RESUMEN PLAN </div>
+                    <div class="col-xs-1 col-sm-4">
+                        <img class="icon-img bg-dr-blue " src="assets/imgs/item-2.jpg" style="width: 100%" alt="">
+                    </div>
+                    <div class="col-xs-1 col-sm-8">
+                        <div class="date list-hidden"><strong>Recibirás una suscripción de flores</strong></div>
+                        <div class="date grid-hidden"><strong>Tamaño</strong> {{tam}}</div>
+                        <div class="date grid-hidden"><strong>Frecuencia</strong> {{tipo}}</div>
+                        <div class="date grid-hidden"><strong>Tu primera orden</strong> </div>
+                        <h4><b>TOTAL: ------</b></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-2"></div>
+            <div class="col-sm-4 col-sm-offset-4 text-center padd-40" style="margin-top: 40px;">
+                <a class="c-button bg-dr-blue hv-white full" routerLink="/subscription/payment"><span>Pagar suscripción</span></a>
+            </div>
+
+        </div>
     </div>
-
-    <div class="row" style="margin-bottom: 20px">
-
-      <div class="col-xs-1 col-sm-2">
-      </div>
-      <div class="col-xs-1 col-sm-3" style="height: 50px; ">
-        <a _ngcontent-c4="" class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" href="#"><span _ngcontent-c4="">EDITAR</span></a>
-      </div>
-
-      <div class="col-xs-1 col-sm-3" style="height: 50px; ">
-        <a _ngcontent-c4="" class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" href="#"><span _ngcontent-c4="">AGREGAR NUEVA DIRECCIÓN</span></a>
-      </div>
-
-      <div class="col-xs-1 col-sm-2">
-      </div>
-    </div>
-
-    <div class="row" style="margin-bottom: 25px">
-      <div class="col-xs-1 col-sm-2"></div>
-      <div class="col-xs-1 col-sm-8 bg-white" style="height: 250px;">
-        <div class="title hotel-middle clearfix cell-view">
-          <div class="col-xs-1 col-sm-12 " style="margin: 10px">RESUMEN PLAN </div>
-          <div class="col-xs-1 col-sm-4">
-            <img class="icon-img bg-dr-blue " src="assets/imgs/item-2.jpg" style="width: 100%" alt="">
-          </div>
-          <div class="col-xs-1 col-sm-8">
-            <div class="date list-hidden"><strong>Recibirás una suscripción de flores</strong></div>
-            <div class="date grid-hidden"><strong>Tamaño</strong> {{tam}}</div>
-            <div class="date grid-hidden"><strong>Frecuencia</strong> {{tipo}}</div>
-            <div class="date grid-hidden"><strong>Tu primera orden</strong> </div>
-            <h4><b>TOTAL: ------</b></h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-1 col-sm-2"></div>
-      <div class="col-sm-4 col-sm-offset-4 text-center padd-40" style="margin-top: 40px;">
-        <a class="c-button bg-dr-blue hv-white full" routerLink="/subscription/payment" ><span>Pagar suscripción</span></a>
-      </div>
-
-  </div>
-</div>

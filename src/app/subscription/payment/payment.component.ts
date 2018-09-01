@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -6,10 +7,97 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  tipoDoc: Array<any>;
+  datosPago: any;
+  emailConfirmacion: string;
+  tarjetas: Array<any>;
+  mensajeError: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.datosPago = {
+      nombre: '',
+      apellidos: '',
+      email: '',
+      telefono: '',
+      celular: '',
+      tipoDocumento: '',
+      numeroDocumento: '',
+      tarjeta: ''
+    };
+    this.tipoDoc = ['Cedula Colombiana', 'Cedula de Extranjeria', 'Pasaporte'];
+    this.tarjetas = [
+      { _id: 1, nombre: 'visa' },
+      { _id: 2, nombre: 'mastercard' },
+      { _id: 3, nombre: 'american' },
+      { _id: 4, nombre: 'colpatria' },
+      { _id: 5, nombre: 'other1' }
+    ];
+    this.emailConfirmacion = '';
+    this.mensajeError = '';
 
-  ngOnInit() {
   }
 
+  ngOnInit() {}
+
+  goToSummary() {
+    if (
+      this.validarString(this.datosPago.nombre) &&
+      this.validarString(this.datosPago.apellidos) &&
+      this.validarEmail(this.datosPago.email, this.emailConfirmacion) &&
+      this.validarNumber(this.datosPago.telefono) &&
+      this.validarNumber(this.datosPago.celular) &&
+      this.validarNumber(this.datosPago.numeroDocumento) &&
+      this.validarString(this.datosPago.tipoDocumento) &&
+      this.validarString(this.datosPago.tarjeta)
+    ) {
+      this.mensajeError = '';
+      // {nombre:'',ryp:'',cdir:'',dir:'',ciudad:'',tel:'' }
+      // this.router.navigate(['----'], {
+      //   queryParams: {
+      //     nombre: this.datosPago['nombre'],
+      //     apellidos: this.datosPago['apellidos'],
+      //     email: this.datosPago['email'],
+      //     telefono: this.datosPago['telefono'],
+      //     celular: this.datosPago['celular'],
+      //     tipoDocumento: this.datosPago['tipoDocumento'],
+      //     numeroDocumento: this.datosPago['numeroDocumento'],
+      //     tarjeta: tarjetas._id =this.datosPago['tarjetaId']
+      //   }
+      // });
+      console.log('Datos Validados Correctamente');
+
+      console.log(this.datosPago);
+    } else {
+      this.mensajeError = 'Debe completar todos los datos';
+    }
+  }
+
+  validarString(texto: string) {
+    console.log(texto);
+    console.log(texto !== '');
+    return texto !== '';
+
+  }
+  validarNumber(numero) {
+    console.log(!isNaN(numero) && numero !== '');
+    // console.log(numero !== '' + ' {{{{{{ ¿ ' + Number.isNaN(numero) );
+    // return numero !== '' && isNaN(numero);
+    return !isNaN(numero) && numero !== '';
+  }
+  validarEmail(email1: string, email2: string) {
+    // console.log(email1 + '¿----¿  ' + email2);
+    console.log('igualdad de emails: ');
+    if (this.validarString(email1) && this.validarString(email2)) {
+      console.log('email no vacios');
+      return email1 === email2;
+    }
+    return false;
+  }
+  addCard(nombreTarjeta: string) {
+    this.datosPago['tarjeta'] = nombreTarjeta;
+    // console.log(nombreTarjeta);
+    // console.log(this.tarjetas[0].nombre);
+    // console.log(this.datosPago.tarjeta);
+    // console.log(this.tarjetas[0].nombre == this.datosPago.tarjeta);
+  }
 }
