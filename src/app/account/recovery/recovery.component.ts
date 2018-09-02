@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-recovery',
+  templateUrl: './recovery.component.html',
+  styleUrls: ['./recovery.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RecoveryComponent implements OnInit {
 
-  usuario: any ;
-
+  usuario: any;
 
   constructor() {
     this.usuario = {
-      email: '',
-      contra: '',
+      email: ''
     };
    }
 
   ngOnInit() {
   }
+
   onSubmit() {
     alert('SUCCESS!!\n\n' + JSON.stringify(this.usuario));
   }
+
 }

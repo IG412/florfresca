@@ -1,0 +1,47 @@
+<div class="main-wraper padd-70-0" style="background-color: #dddddd;">
+    <div class="container">
+        <div class="login-fullpage">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="f-login-content">
+                        <div class="f-login-header">
+                            <div class="f-login-title color-dr-blue-2">Restaurar Contraseña</div>
+
+
+                            <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
+                                    <!-- mensaje error -->
+                                    <div *ngIf="f.submitted &&  contra.invalid "  class="invalid-feedback">
+                                      <div *ngIf="contra.errors.required" class="alert bg-5">
+                                        <span>Constraseña es requerida</span>
+                                      </div>
+                                    </div>
+
+                                    <div *ngIf="resetContra.contra != resetContra.validar_contra"  class="invalid-feedback alert bg-5">
+                                              <span>Constraseña deben ser iguales</span>
+                                    </div>
+                                    <!-- fin mensaje error -->
+
+        
+                                    <div class="form-group">
+                                        <div class="input-style-1 b-50 type-2 color-5">
+                                            <input type="password" class="form-control" name="contra" [(ngModel)]="resetContra.contra" #contra="ngModel" required placeholder="Contraseña">
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <div class="input-style-1 b-50 type-2 color-5">
+                                            <input type="password" class="form-control" name="validar_contra" [(ngModel)]="resetContra.validar_contra" #validar_contra="ngModel" required placeholder="Validar Contraseña">
+                                        </div>
+                                    </div>
+        
+                                    <br>
+        
+                                    <input type="submit" class="login-btn c-button full b-60 bg-dr-blue hv-dr-blue-2-o" value="INICIAR SESIÓN">
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

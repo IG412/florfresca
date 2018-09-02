@@ -13,6 +13,10 @@ import { RseComponent } from './rse/rse.component';
 import { HelpComponent } from './help/help.component';
 import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './account/login/login.component';
+import { RecoveryComponent } from './account/recovery/recovery.component';
+import { RegisterComponent } from './account/register/register.component';
+import { ResetComponent } from './account/reset/reset.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,11 +29,15 @@ import { LoginComponent } from './account/login/login.component';
     RseComponent,
     HelpComponent,
     EmailComponent,
-    LoginComponent
+    LoginComponent,
+    RecoveryComponent,
+    RegisterComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
