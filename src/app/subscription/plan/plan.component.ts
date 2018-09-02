@@ -30,10 +30,10 @@ export class PlanComponent implements OnInit {
   	this.cat = ["Casa", "Oficina", "Otro"];
   	this.showForm=true;
   	this.plans = [
-  	{_id: 1, nombre:"FRESCAS DE CULTIVO", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-4.jpg"},
-  	{_id: 2, nombre:"ROSAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-4.jpg"},
-  	{_id: 3, nombre:"CLÁSICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-4.jpg"},
-  	{_id: 4, nombre:"EXÓTICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-4.jpg"}
+  	{_id: 1, nombre:"FRESCAS DE CULTIVO", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-frescas.jpg"},
+  	{_id: 2, nombre:"ROSAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-rosas.jpg"},
+  	{_id: 3, nombre:"CLÁSICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-clasica.jpg"},
+  	{_id: 4, nombre:"EXÓTICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-exoticas.jpg"}
   	];
   	this.tamanos = [
   	{_id: 1, nombre:"ORIGINAL", desc: "<strong>10 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"},
