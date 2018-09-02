@@ -71,7 +71,7 @@
                                         <ng-container *ngIf="show; else direccionTemplate">
                                             <div class="form-block type-2 clearfix">
                                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                                    <input type="text" [(ngModel)]="suscriptor.dir" placeholder="" name="dir">
+                                                    <input type="text" [(ngModel)]="suscriptor.dir[0]" placeholder="" name="dir">
                                                      </div>
                                             </div>
                                         </ng-container>
@@ -134,7 +134,7 @@
             <div class="col-xs-1 col-sm-2">
             </div>
             <div class="col-xs-1 col-sm-3" style="height: 50px; ">
-                <button _ngcontent-c4="" class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" (click)='editSuscriptor(suscriptor)'><span _ngcontent-c4="">{{textoBoton}}</span></button>
+                <button _ngcontent-c4="" class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" (click)='editSuscriptor()'><span _ngcontent-c4="">{{textoBoton}}</span></button>
             </div>
 
             <div class="col-xs-1 col-sm-3" style="height: 50px;" (click)="showDireccion()">
