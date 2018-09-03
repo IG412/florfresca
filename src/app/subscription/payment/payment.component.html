@@ -3,22 +3,20 @@
     <div class="main-wraper padd-40">
         <div class="container">
             <!-- Primer Cuadro Blanco -->
-            <div class="row" style="margin-bottom: 10px">
-                <div class="col-xs-1 col-sm-8 col-sm-offset-2" style="background-color:#F7F7F7">
-                    <!-- <div class="title hotel-middle clearfix cell-view"> -->
-                    <div class="col-xs-1 col-sm-12 " style="margin: 10px">
-                        <h3> <strong>¡Ya estas muy cerca de disfrutar tu plan de suscripción</strong></h3>
-                        <p>Recuerda que puedes, editar o actualizar tus datos en cualquier momento.</p>
-
-                        <div class="row">
+            <div class="row padd-40">
+                <div class="col-xs-1 col-sm-8 col-sm-offset-2">
+                    <div class="col-xs-1 col-sm-12">
+                        <h4> <strong>¡Ya estas muy cerca de disfrutar tu plan de suscripción</strong></h4>
+                        <h5 class="padd-40">Recuerda que puedes, editar o actualizar tus datos en cualquier momento.</h5>
+                        <div class="row padd-40">
                             <div class="icon-block-entry col-xs-12 col-sm-6 col-md-4 clear-sm-2 clear-md-4">
-                                <div class="icon-block style-5" style="background-color: black"></div>
+                                <img class="radius-img" src="assets/imgs/icons/icon-ramoflores.png" alt="" height="100px" width="100px">
                             </div>
                             <div class="icon-block-entry col-xs-12 col-sm-6 col-md-4 clear-sm-2 clear-md-4">
-                                <div class="icon-block style-5" style="background-color: green"></div>
+                                <img class="radius-img" src="assets/imgs/icons/icon-domicilio.png" alt="" height="100px" width="100px">
                             </div>
                             <div class="icon-block-entry col-xs-12 col-sm-6 col-md-4 clear-sm-2 clear-md-4">
-                                <div class="icon-block style-5" style="background-color: yellow"></div>
+                                <img class="radius-img" src="assets/imgs/icons/icon-ramoflores.png" alt="" height="100px" width="100px">
                             </div>
                         </div>
                     </div>
@@ -26,25 +24,21 @@
                 </div>
             </div>
             <!-- fin primer cuadro blanco -->
-
-
-            <div class="row" style="margin-bottom: 10px">
+            <div class="row">
+                <div class="col-xs-1 col-sm-8 col-sm-offset-2 padd-40"><h2>INFORMACIÓN DEL PLAN</h2></div>
                 <div class="col-xs-1 col-sm-8 col-sm-offset-2" style="background-color:#F7F7F7">
-                    <div class="col-xs-1 col-sm-12 " style="margin:10px">
-                        <h2>INFORMACIÓN DEL PLAN</h2>
-                    </div>
                     <div class="title hotel-middle clearfix cell-view">
 
                         <div class="col-xs-1 col-sm-12 " style="margin: 10px; color:brown">
                             RESUMEN PLAN
                         </div>
                         <div class="col-xs-1 col-sm-4">
-                            <img class="icon-img bg-dr-blue " src="assets/imgs/item-2.jpg" style="width: 100%" alt="">
+                            <img class="icon-img bg-dr-blue " [src]="plan.img" style="width: 100%" alt="">
                         </div>
                         <div class="col-xs-1 col-sm-8">
                             <div class="date list-hidden"><strong>Recibirás una suscripción de flores</strong></div>
-                            <div class="date grid-hidden"><strong>Tamaño</strong> Tamaño Original</div>
-                            <div class="date grid-hidden"><strong>Frecuencia</strong> Mensualmente</div>
+                            <div class="date grid-hidden"><strong>Tamaño</strong> Tamaño {{tamano.nombre}}</div>
+                            <div class="date grid-hidden"><strong>Frecuencia</strong> {{frecuencia.nombre}}</div>
                             <div class="date grid-hidden"><strong>Tu primera orden</strong> </div>
                             <h4><b>TOTAL: ------</b></h4>
                         </div>
@@ -177,14 +171,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
-
-
-
                             <div class="col-xs-12 col-sm-6 s_news-text color-grey-3">
                                 Una vez procesado el pago nos pondremos en contacto contigo (via email) para que nos verifiques la dirección del envío y un teléfono de contacto el receptor de la suscripcion
                             </div>
@@ -193,7 +180,6 @@
                             </div>
                             <div class="col-xs-1 col-sm-4 col-sm-offset-4" style="margin-top:25px">
                                 <a class="c-button bg-dr-blue hv-white full" (click)="goToSummary()" style="color: #FFFFFF; width: 100%;"> <span>COMENZAR SUSCRIPCIÓN</span> </a>
-                                <!-- <input type="submit" class="c-button bg-florfresca hv-transparent col-ms-12" style="color: #FFFFFF; width: 100%;" value="AGREGAR SUSCRIPTOR"> -->
                             </div>
                             <div class="col-sm-4 col-sm-offset-4 text-center " *ngIf="mensajeError != ''">
                                 {{mensajeError}}

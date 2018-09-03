@@ -1,12 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Suscriptor } from '../../models/suscriptor';
+import { Suscripcion } from '../../models/suscripcion';
+import { Plan } from '../../models/plan';
+import { Tamano } from '../../models/Tamano';
+import { Frecuencia } from '../../models/Frecuencia';
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  suscriptor: Suscriptor;
+  plan: Plan;
+  tamano: Tamano;
+  frecuencia: Frecuencia;
+
   tipoDoc: Array<any>;
   datosPago: any;
   emailConfirmacion: string;
@@ -14,6 +25,11 @@ export class PaymentComponent implements OnInit {
   mensajeError: string;
 
   constructor(private route: ActivatedRoute, private router: Router) {
+    this.suscriptor = new Suscriptor();
+    this.plan = new Plan();
+    this.tamano = new Tamano();
+    this.frecuencia = new Frecuencia();
+
     this.datosPago = {
       nombre: '',
       apellidos: '',
@@ -34,6 +50,15 @@ export class PaymentComponent implements OnInit {
     ];
     this.emailConfirmacion = '';
     this.mensajeError = '';
+
+    if(localStorage.getItem('suscriptor') && localStorage.getItem('plan') && localStorage.getItem('tamano') && localStorage.getItem('frecuencia')){
+      this.suscriptor = JSON.parse(localStorage.getItem('suscriptor'));
+      this.plan = JSON.parse(localStorage.getItem('plan'));
+      this.tamano = JSON.parse(localStorage.getItem('tamano'));
+      this.frecuencia = JSON.parse(localStorage.getItem('frecuencia'));
+    }else{
+      this.router.navigate(['subscription/plan'], {});
+    }
 
   }
 

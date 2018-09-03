@@ -1,26 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Suscriptor } from '../../models/suscriptor';
+import { Suscripcion } from '../../models/suscripcion';
+import { Plan } from '../../models/plan';
+import { Tamano } from '../../models/Tamano';
+import { Frecuencia } from '../../models/Frecuencia';
+
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
-  suscriptor: any;
-  plan: String;
-  tam: String;
-  tipo: String;
+  suscriptor: Suscriptor;
+  plan: Plan;
+  tamano: Tamano;
+  frecuencia: Frecuencia;
+
+
   show: boolean;
   textoBoton: string;
-  parentesco: Array<string>;
-  cat: Array<any>;
   newDireccion: string;
   showDir: boolean;
 
+  parentesco: Array<string>;
+  cat: Array<any>;
 
   constructor( private route: ActivatedRoute, private router: Router) {
-    this.suscriptor = {nombre: '', ryp: '', cdir: '', dir: [''], ciudad: '', tel: ''};
+    this.suscriptor = new Suscriptor();
+    this.plan = new Plan();
+    this.tamano = new Tamano();
+    this.frecuencia = new Frecuencia();
+
     this.textoBoton = 'Editar';
     this.show = false;
     this.parentesco = ['Primo', 'Prima',
@@ -34,24 +46,24 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route
-      .queryParams
-      .subscribe(params => {
-        // Defaults to 0 if no query param provided.
-        if (!params['nombre']) {
-            console.log('netro');
-            this.router.navigate(['subscription/plan'], {});
-        }
-        this.suscriptor['nombre'] = params['nombre'];
-        this.suscriptor['ryp'] = params['ryp'];
-        this.suscriptor['cdir'] = params['cdir'];
-        this.suscriptor['dir'][0] = params['dir'];
-        this.suscriptor['ciudad'] = params['ciudad'];
-        this.suscriptor['tel'] = params['tel'];
-        this.plan = 'FRESCAS DE CULTIVO';
-        this.tam = params['tam'];
-        this.tipo = params['tipo'];
-      })
+
+    if(localStorage.getItem('suscriptor') && localStorage.getItem('plan') && localStorage.getItem('tamano') && localStorage.getItem('frecuencia')){
+      this.suscriptor = JSON.parse(localStorage.getItem('suscriptor'));
+      this.plan = JSON.parse(localStorage.getItem('plan'));
+      this.tamano = JSON.parse(localStorage.getItem('tamano'));
+      this.frecuencia = JSON.parse(localStorage.getItem('frecuencia'));
+    }else{
+      this.router.navigate(['subscription/plan'], {});
+    }
+    // this.route
+    //   .queryParams
+    //   .subscribe(params => {
+    //     // Defaults to 0 if no query param provided.
+    //     if (!params['nombre']) {
+    //         console.log('netro');
+    //         
+    //     }
+    //   })
   }
 
   editSuscriptor() {
