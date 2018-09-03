@@ -1,0 +1,149 @@
+<div class="main-wraper padd-70-0" style="background-color: #dddddd;">
+    <div class="container">
+        <div class="login-fullpage">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="f-login-content">
+                        <div class="f-login-header">
+                            <div class="f-login-title color-dr-blue-2">REGISTRO DE USUARIOS</div>
+                            <div class="f-login-desc color-grey">Bienvenido</div>
+                        </div>
+
+                        <!-- Formulario Registro -->
+                        <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
+                            <!-- mensaje error -->
+
+                            <div *ngIf="f.submitted && nombre.invalid" class="invalid-feedback">
+                                <div *ngIf="nombre.errors.required" class="alert bg-5">Nombre es requerido</div>
+                            </div>
+
+                            <div *ngIf="f.submitted && apellido.invalid" class="invalid-feedback">
+
+                                <div *ngIf="apellido.errors.required" class="alert bg-5">Apellido es requerido</div>
+                            </div>
+
+
+                            <div *ngIf="f.submitted && email.invalid"  class="invalid-feedback">
+                                <div class="alert bg-5" *ngIf="email.errors.required">
+                                  <span>Email es requerido</span>
+                                </div>
+                                <div class="alert bg-5" *ngIf="email.errors.email">
+                                  <span>Debe ser un email valido</span>
+                                </div>
+                              </div>
+
+
+                            <div *ngIf="f.submitted && contra.invalid" class="invalid-feedback">
+                                <div class="alert bg-5">Contraseña es requerida</div>
+                            </div>
+
+                            <div *ngIf="f.submitted && celular.invalid" class="invalid-feedback">
+                                <div *ngIf="celular.errors.required" class="alert bg-5">Celular es requerido</div>
+                            </div> 
+
+                            <div *ngIf="checkCelularNumero()" class=" invalid-feedback alert bg-5">
+                                    <span>
+                                        Debe ser un numero celular valido
+                                    </span>
+                            </div> 
+
+                            <div *ngIf="f.submitted"  class="invalid-feedback">
+                                <div class="alert bg-5" *ngIf="usuarioNuevo.contra != usuarioNuevo.validar_contra">
+                                  <span>Contraseñas deben ser iguales</span>
+                                </div>
+                              </div>
+
+
+
+                            <!-- <div *ngIf="f.submitted && ( nombre.invalid || apellido.invalid || correo.invalid || contra.invalid || validar_contra.invalid || celular.invalid) && !checkPasswords " class="invalid-feedback">
+                                <div class="alert bg-5" *ngIf="nombre.errors.required">
+                                    <span>Nombre es requerido</span>
+                                    <i class="fa fa-times-circle-o"></i>
+                                  </div>
+                                  <div class="alert bg-5" *ngIf="apellido.errors.required">
+                                      <span>Apellido es requerido</span>
+                                      <i class="fa fa-times-circle-o"></i>
+                                    </div>
+
+                               <div class="alert bg-5" *ngIf="correo.errors.required">
+                                <span>Correo es requerido</span>
+                                <i class="fa fa-times-circle-o"></i>
+                              </div>
+                              <div class="alert bg-5" *ngIf="!checkPasswords">
+                                <span>Las contraseñas deben ser iguales</span>
+                                <i class="fa fa-times-circle-o"></i>
+                              </div>
+                              <div *ngIf="celular.errors.required" class="alert bg-5">
+                                <span>Celular es requerida</span>
+                                <i class="fa fa-times-circle-o"></i>
+                              </div>
+                            </div> -->
+                            <!-- fin mensaje error -->
+
+                            <!-- Nombre -->
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="text" class="form-control" name="nombre" [(ngModel)]="usuarioNuevo.nombre" #nombre="ngModel" required placeholder="Nombre">
+                                    <!-- <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required /> -->
+
+                                </div>
+                            </div>
+                            <!-- fin nombre -->
+                            <!-- apellido -->
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="text" class="form-control" name="apellido" [(ngModel)]="usuarioNuevo.apellido" #apellido="ngModel" required placeholder="Apellido">
+                                </div>
+                            </div>
+                            <!-- fin apellido -->
+                            <!-- correo -->
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="usuarioNuevo.correo" #email="ngModel" required email placeholder="Email">
+                                  </div>
+                            </div>
+                            <!-- fin correo -->
+                            <!-- contraseñas -->
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="password" class="form-control" name="contra" [(ngModel)]="usuarioNuevo.contra" #contra="ngModel" required placeholder="Contraseña" (ngModelChange)="cambiaLado($event)">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="password" class="form-control" name="validar_contra" [(ngModel)]="usuarioNuevo.validar_contra" #validar_contra="ngModel" required placeholder="Repetir Contraseña">
+                                </div>
+                            </div>
+                            <!-- fin contraseñas -->
+                            <!-- celular -->
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="text" class="form-control" name="celular" [(ngModel)]="usuarioNuevo.celular" #celular="ngModel" required celular placeholder="Celular">
+                                </div>
+                            </div>
+                            <!-- fin celular -->
+                            <!-- 
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email" #email="ngModel" required email placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="password" class="form-control" name="contra" [(ngModel)]="usuario.contra" #contra="ngModel" required placeholder="Contraseña">
+                                </div>
+                            </div> -->
+
+                            <br>
+
+                            <input type="submit" class="login-btn c-button full b-60 bg-dr-blue hv-dr-blue-2-o" value="INICIAR SESIÓN">
+                        </form>
+                        <!-- FIN Formulario Registro -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

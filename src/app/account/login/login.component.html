@@ -1,32 +1,56 @@
-<div class="container">
-  <div class="login-fullpage">                                                                            
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="f-login-content">
-          <div class="f-login-header">
-            <div class="f-login-title color-dr-blue-2">Inicio de sesión</div>
-            <div class="f-login-desc color-grey">Bienvenido</div>
-          </div>
-          <div class="alert bg-5" >
-              <span>a</span>
-          </div>
-          <form class="f-login-form" >
-            <div class="input-style-1 b-50 type-2 color-5">
-              <input type="email" placeholder="Email" required >
+<div class="main-wraper padd-70-0" style="background-color: #dddddd;">
+    <div class="container">
+        <div class="login-fullpage">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="f-login-content">
+                        <div class="f-login-header">
+                            <div class="f-login-title color-dr-blue-2">Inicio de sesión</div>
+                            <div class="f-login-desc color-grey">Bienvenido</div>
+                        </div>
+                        <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
+                            <!-- mensaje error -->
+                            <div *ngIf="f.submitted && email.invalid"  class="invalid-feedback">
+                              <div class="alert bg-5" *ngIf="email.errors.required">
+                                <span>Email es requerido</span> 
+                              </div>
+                              <div class="alert bg-5" *ngIf="email.errors.email">
+                                <span>Debe ser un email valido</span> 
+                              </div>
+                            </div>
+                            <div *ngIf="f.submitted &&  contra.invalid "  class="invalid-feedback">
+                              <div *ngIf="contra.errors.required" class="alert bg-5">
+                                <span>Constraseña es requerida</span> 
+                              </div>
+                            </div>
+                            <!-- fin mensaje error -->
+
+
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email" #email="ngModel" required email placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-style-1 b-50 type-2 color-5">
+                                    <input type="password" class="form-control" name="contra" [(ngModel)]="usuario.contra" #contra="ngModel" required placeholder="Contraseña">
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <input type="submit" class="login-btn c-button full b-60 bg-dr-blue hv-dr-blue-2-o" value="INICIAR SESIÓN">
+                        </form>
+
+                        <div style="text-align: center;">
+                            <a routerLink="/recovery" class="c-button b-40 bg-dr-blue-2 hv-blue-o grid-hidden" A="recovery">olvidé mi contraseña</a>
+                            <br><br>
+                            <a routerLink="/register" class="c-button b-40 bg-dr-blue-2 hv-blue-o grid-hidden" ui-sref="register">Registrarse</a>
+                            <!-- <a routerLink="/subscription/summary"  data-filter=".tours" style="margin-left: 20px">2. Previsualiza</a></li> -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="input-style-1 b-50 type-2 color-5">
-              <input type="password" placeholder="Contraseña" required >
-            </div>
-            <br>
-            <input type="submit" class="login-btn c-button full b-60 bg-dr-blue hv-dr-blue-2-o" value="INICIAR SESIÓN">
-            <div  style="text-align: center;">
-            	<a class="c-button b-40 bg-dr-blue-2 hv-blue-o grid-hidden" A="recovery">olvidé mi contraseña</a>
-              	<br><br>
-              	<a class="c-button b-40 bg-dr-blue-2 hv-blue-o grid-hidden" ui-sref="register">Registrarse</a>
-            </div>
-          </form>
-        </div>        
-      </div>
+        </div>
     </div>
-  </div>
-</div>  
