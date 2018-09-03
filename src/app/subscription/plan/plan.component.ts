@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Suscriptor } from '../../models/suscriptor';
 import { Suscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
-import { Tamano } from '../../models/Tamano';
-import { Frecuencia } from '../../models/Frecuencia';
+import { Tamano } from '../../models/tamano';
+import { Frecuencia } from '../../models/frecuencia';
 
 declare var $: any;
 

@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Suscriptor } from '../../models/suscriptor';
 import { Suscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
-import { Tamano } from '../../models/Tamano';
-import { Frecuencia } from '../../models/Frecuencia';
+import { Tamano } from '../../models/tamano';
+import { Frecuencia } from '../../models/frecuencia';
 
 @Component({
   selector: 'app-payment',

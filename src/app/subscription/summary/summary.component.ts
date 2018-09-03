@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Suscriptor } from '../../models/suscriptor';
 import { Suscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
-import { Tamano } from '../../models/Tamano';
-import { Frecuencia } from '../../models/Frecuencia';
+import { Tamano } from '../../models/tamano';
+import { Frecuencia } from '../../models/frecuencia';
 
 @Component({
   selector: 'app-summary',
@@ -55,19 +55,9 @@ export class SummaryComponent implements OnInit {
     }else{
       this.router.navigate(['subscription/plan'], {});
     }
-    // this.route
-    //   .queryParams
-    //   .subscribe(params => {
-    //     // Defaults to 0 if no query param provided.
-    //     if (!params['nombre']) {
-    //         console.log('netro');
-    //         
-    //     }
-    //   })
   }
 
   editSuscriptor() {
-    // console.log(this.suscriptor);
     this.show = !this.show;
     if ( this.textoBoton === 'Editar') {
       this.textoBoton = 'Guardar';
@@ -82,12 +72,12 @@ export class SummaryComponent implements OnInit {
   }
 
   addDireccion() {
-    console.log(this.suscriptor.dir);
+    /*console.log(this.suscriptor.dir);
     if ( this.newDireccion !== '') {
       console.log(this.suscriptor.dir.push(this.newDireccion));
       this.newDireccion = '';
     }
-    this.showDireccion();
+    this.showDireccion();*/
   }
 
 }
