@@ -83,9 +83,9 @@ $(function() {
 		tpEntryHover();
 		$('.loading').fadeOut(700);
 
-		$('.isotope-container').isotope({itemSelector: '.item', masonry:{gutter:0,columnWidth:'.grid-sizer'}});
+		// $('.isotope-container').isotope({itemSelector: '.item', masonry:{gutter:0,columnWidth:'.grid-sizer'}});
 		var initValue = $('.filter-nav').find('.selected a').attr('data-filter');
-		$container.isotope({itemSelector: '.item', filter: initValue,masonry:{gutter:0,columnWidth:'.grid-sizer'}});
+		// $container.isotope({itemSelector: '.item', filter: initValue,masonry:{gutter:0,columnWidth:'.grid-sizer'}});
 		
 
 

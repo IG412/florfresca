@@ -26,7 +26,7 @@ export class PlanComponent implements OnInit {
   tamanos:Array<Tamano>;
   frecuencia:Array<Frecuencia>;
 
-  select_plan:Plan;
+  select_plan: Plan;
   select_tamano:Tamano;
   select_frecuencia:Frecuencia;
 
@@ -68,7 +68,10 @@ export class PlanComponent implements OnInit {
     this.select_frecuencia = new Frecuencia();
     this.acept_term = false;
     this.acept_entrega = false;
-  	this.alert = "";
+    this.alert = "";
+    // console.log(localStorage.getItem('plan'),
+    // localStorage.getItem('tamano'),
+    // localStorage.getItem('frecuencia'));
   }
 
   ngOnInit() {
@@ -76,7 +79,7 @@ export class PlanComponent implements OnInit {
             nombre: ['', Validators.required],
             rela_paren: ['', Validators.required],
             catego: ['', [Validators.required]],
-            direccion: ['', [Validators.required, Validators.minLength(6)]],
+            direccion: [ [''], [Validators.required, Validators.minLength(6)]],
             ciudad: ['', Validators.required],
             tel: ['', Validators.required],
             gatos:[]
@@ -85,9 +88,9 @@ export class PlanComponent implements OnInit {
     if(localStorage.getItem('suscriptor')){
       this.showForm = false;
     }
-    this.select_plan = (localStorage.getItem('plan')) ? JSON.parse(localStorage.getItem('plan')) : undefined;
-    this.select_tamano = (localStorage.getItem('tamano')) ? JSON.parse(localStorage.getItem('tamano')) : undefined;
-    this.select_frecuencia = (localStorage.getItem('frecuencia')) ? JSON.parse(localStorage.getItem('frecuencia')) : undefined;
+    this.select_plan = (localStorage.getItem('plan')) ? JSON.parse(localStorage.getItem('plan')) : new Plan();
+    this.select_tamano = (localStorage.getItem('tamano')) ? JSON.parse(localStorage.getItem('tamano')) : new Tamano();
+     this.select_frecuencia = (localStorage.getItem('frecuencia')) ? JSON.parse(localStorage.getItem('frecuencia')) : new Frecuencia();
   }
   
   addSuscriptor(){

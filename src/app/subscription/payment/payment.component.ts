@@ -51,7 +51,10 @@ export class PaymentComponent implements OnInit {
     this.emailConfirmacion = '';
     this.mensajeError = '';
 
-    if(localStorage.getItem('suscriptor') && localStorage.getItem('plan') && localStorage.getItem('tamano') && localStorage.getItem('frecuencia')){
+    if (localStorage.getItem('suscriptor') &&
+    localStorage.getItem('plan') &&
+    localStorage.getItem('tamano') &&
+    localStorage.getItem('frecuencia')) {
       this.suscriptor = JSON.parse(localStorage.getItem('suscriptor'));
       this.plan = JSON.parse(localStorage.getItem('plan'));
       this.tamano = JSON.parse(localStorage.getItem('tamano'));

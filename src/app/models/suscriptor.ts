@@ -3,7 +3,7 @@ export class Suscriptor {
 	rela_paren: String;
 	tel: Number;
 	catego: String;
-	ciudad:String;
-	direccion:String;
+	ciudad: String;
+	direccion: Array<any>;
 	gatos: Boolean;
 }

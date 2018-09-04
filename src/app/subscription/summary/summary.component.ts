@@ -74,10 +74,12 @@ export class SummaryComponent implements OnInit {
   addDireccion() {
     /*console.log(this.suscriptor.dir);
     if ( this.newDireccion !== '') {
-      console.log(this.suscriptor.dir.push(this.newDireccion));
+      console.log(this.suscriptor.direccion.push(this.newDireccion));
       this.newDireccion = '';
     }
     this.showDireccion();*/
+    this.suscriptor.direccion.push(this.newDireccion);
+    this.showDireccion();
   }
 
 }
