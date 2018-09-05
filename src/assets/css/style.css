@@ -418,6 +418,7 @@ b, strong { font-weight: 700; }
 .input-style-1.color-4 input:-ms-input-placeholder { color: #b9b9b9; opacity: 1; }
 
 .input-style-1.color-5 input { border-color: #dfdfdf; background: #fff; color: #b9b9b9; opacity: 1; }
+.input-style-1.color-5 select { border-color: #dfdfdf; background: #fff; color: #b9b9b9; opacity: 1; }
 
 .input-style-1.color-5 input::-webkit-input-placeholder { color: #b9b9b9; opacity: 1; }
 

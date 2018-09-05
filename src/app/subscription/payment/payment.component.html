@@ -25,7 +25,9 @@
             </div>
             <!-- fin primer cuadro blanco -->
             <div class="row">
-                <div class="col-xs-1 col-sm-8 col-sm-offset-2 padd-40"><h2>INFORMACIÓN DEL PLAN</h2></div>
+                <div class="col-xs-1 col-sm-8 col-sm-offset-2 padd-40">
+                    <h2>INFORMACIÓN DEL PLAN</h2>
+                </div>
                 <div class="col-xs-1 col-sm-8 col-sm-offset-2" style="background-color:#F7F7F7">
                     <div class="title hotel-middle clearfix cell-view">
 
@@ -135,6 +137,11 @@
                                     </div>
                                 </div>
 
+                                <!-- Informacion de la  tarjeta de credito -->
+                                <div class="col-xs-1 col-sm-12">
+                                    <h2 style="margin:10px">INFORMACIÓN DE TARJETA</h2>
+                                </div>
+
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tarjeta de Crédito <span style='color:red'>*</span> </div>
@@ -171,6 +178,81 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Nombre en la Tarjeta<span style='color:red'>*</span> </div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                            <input type="text" [(ngModel)]="datosPago.nombreTarjeta" name="nombreTarjeta">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Tipo de Documento de Identificación<span style='color:red'>*</span> </div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                            <select [(ngModel)]="datosPago.tipoDocumentoTarjeta" class="drop-wrap drop-wrap-s-4" name="tipoDocumentoTarjeta">
+                                                <option *ngFor='let tipoD of tipoDoc'>{{tipoD}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2"># Documento de Identificación<span style='color:red'>*</span></div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                            <input type="text" [(ngModel)]="datosPago.numeroDocumentoTarjeta" placeholder="" name="numeroDocumentoTarjeta">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Número de la Tarjeta<span style='color:red'>*</span></div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                            <input type="text" [(ngModel)]="datosPago.numeroTarjeta" placeholder="" name="numeroTarjeta">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Código de Seguridad <a style="color: blue">CVV/CVC</a> <span style='color:red'>*</span></div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                            <input type="text" [(ngModel)]="datosPago.codigoSeguridad" placeholder="" name="codigoSeguridad">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Fecha de Vecimiento<span style='color:red'>*</span></div>
+                                        
+                                                <div class="input-style">
+                                                    <img src="assets/img/calendar_icon.png" alt="">
+                                                    <input type="text" placeholder="" [(ngModel)]="datosPago.fechaVencimiento" name="fecha_vencimiento" id="fecha_vencimiento" class="datepicker">
+                                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Numero de Cuotas<span style='color:red'>*</span> </div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                            <select [(ngModel)]="datosPago.cuotas" class="drop-wrap drop-wrap-s-4" name="cuotas">
+                                                <option >1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Célular de la Tarjeta<span style='color:red'>*</span></div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                            <input type="text" [(ngModel)]="datosPago.celularTarjeta" placeholder="" name="celularTarjeta">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- fin Informacion de la tarjeta de credito -->
                             </div>
                             <div class="col-xs-12 col-sm-6 s_news-text color-grey-3">
                                 Una vez procesado el pago nos pondremos en contacto contigo (via email) para que nos verifiques la dirección del envío y un teléfono de contacto el receptor de la suscripcion
