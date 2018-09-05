@@ -3,5 +3,5 @@ export class Tamano {
 	nombre: string;
 	desc: string;
 	icon: string;
-	precio?: string;
+	precio?: number;
 }
