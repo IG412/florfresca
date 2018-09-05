@@ -8,14 +8,6 @@ var crypto      = require('crypto');
     // Email       = require('../model/email'),
     User        = mongoose.model('users');
 
-// var transporter = nodemailer.createTransport({
-//     host: 'smtp.zoho.com',
-//     port: 465,
-//     auth: {
-//       user: 'noreply@lacamarasinalma.com',
-//       pass: 'VideoPlanMx#'
-//     }
-// });
 module.exports  = {
     register : function(req, res) {
         var user    = new User();
@@ -32,41 +24,36 @@ module.exports  = {
 
                 user.save(function (e) {
                     if (e) throw e;
-                    // var mailOptions = {
-                    //     from    : "La Cámara sin Alma <noreply@lacamarasinalma.com>",
-                    //     to      : req.body.email,
-                    //     subject : "Activar cuenta",
-                    //     text    : "Activate",
-                    //     html    : html_message
-                    // };
-                    // transporter.sendMail(mailOptions, function (errormail, info){
-                    //     if (errormail){ console.log(errormail)};
-                    //     res.status(200);
-                    //     res.json({
-                    //         message : 'Registro exitoso. Por favor revisa tu correo para activar tu cuenta.'
-                    //     });
-                    // })
+                    
                 })
             }
         })
     },
   login : function(req, res) {
-    passport.authenticate('local', function (err, user, info){
-      var token;
-      if (err) {
-        res.status(401).json({message:'Error'});
-        return;
-      }
-      if(user){
-        token = tokener.generateJwt(user);
-        res.status(200);
-        res.json({token : token});
-        //Comprobar active user - time
-      } 
-      else {
-        res.status(401).json({message:'Acceso denegado. Revise sus datos'});
-      }
-    })(req, res);
+    User.findOne({email:req.body}, function (error, email){
+            if(email){
+                res.status(401).json({message:'El email '+req.body.email+ ' ya se encuentra registrado.'});
+            }
+            else{
+                token = tokener.generateJwt(user);
+                res.status(200);
+                res.json({token : token});
+            }
+        })
+    // passport.authenticate('local', function (err, user, info){
+    //   var token;
+    //   if (err) {
+    //     res.status(401).json({message:'Error'});
+    //     return;
+    //   }
+    //   if(user){
+        
+    //     //Comprobar active user - time
+    //   } 
+    //   else {
+    //     res.status(401).json({message:'Acceso denegado. Revise sus datos'});
+    //   }
+    // })(req, res);
   },
   admin : function(req, res) {
     User.findOne({$and:[{email:req.query.user}, {role:"admin"}]}, function (error, datos){
