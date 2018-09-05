@@ -1,5 +1,5 @@
 export class Suscriptor {
-	nombre:String;
+	nombre: String;
 	rela_paren: String;
 	tel: Number;
 	catego: String;

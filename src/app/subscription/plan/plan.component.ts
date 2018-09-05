@@ -76,7 +76,7 @@ export class PlanComponent implements OnInit {
             nombre: ['', Validators.required],
             rela_paren: ['', Validators.required],
             catego: ['', [Validators.required]],
-            direccion: [ [''], [Validators.required, Validators.minLength(6)]],
+            direccion: [ '', [Validators.required, Validators.minLength(6)]],
             ciudad: ['', Validators.required],
             tel: ['', Validators.required],
             gatos:[]

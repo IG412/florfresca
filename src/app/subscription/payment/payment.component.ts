@@ -1,3 +1,4 @@
+import { Transaction } from './../../models/transaction';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -23,6 +24,7 @@ export class PaymentComponent implements OnInit {
   emailConfirmacion: string;
   tarjetas: Array<any>;
   mensajeError: string;
+  transaction: Transaction;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.suscriptor = new Suscriptor();
@@ -38,7 +40,15 @@ export class PaymentComponent implements OnInit {
       celular: '',
       tipoDocumento: '',
       numeroDocumento: '',
-      tarjeta: ''
+      tarjeta: '',
+      nombreTarjeta: '',
+      tipoDocumentoTarjeta: '',
+      numeroDocumentoTarjeta: '',
+      numeroTarjeta: '',
+      codigoSeguridad: '',
+      fechaVencimiento: '',
+      cuotas: '',
+      celularTarjeta: '',
     };
     this.tipoDoc = ['Cedula Colombiana', 'Cedula de Extranjeria', 'Pasaporte'];
     this.tarjetas = [
@@ -50,22 +60,30 @@ export class PaymentComponent implements OnInit {
     ];
     this.emailConfirmacion = '';
     this.mensajeError = '';
-
     if (localStorage.getItem('suscriptor') &&
     localStorage.getItem('plan') &&
     localStorage.getItem('tamano') &&
     localStorage.getItem('frecuencia')) {
+      // console.log('Informaciond el local storage');
       this.suscriptor = JSON.parse(localStorage.getItem('suscriptor'));
       this.plan = JSON.parse(localStorage.getItem('plan'));
       this.tamano = JSON.parse(localStorage.getItem('tamano'));
       this.frecuencia = JSON.parse(localStorage.getItem('frecuencia'));
-    }else{
+      this.datosPago.nombre = this.suscriptor.nombre;
+      this.datosPago.telefono = this.suscriptor.tel;
+    } else {
       this.router.navigate(['subscription/plan'], {});
     }
-
+    this.transaction = new Transaction();
+    // this.transaction.order['buyer'].fullName = 'prueba de nombre';
+    // this.transaction.order.buyer.fullName='fa';
+    // console.log('Datos Transaction', this.transaction.order['buyer'].buyer.fullName);
+    console.log('Datos Transaction', JSON.stringify(this.transaction));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   goToSummary() {
     if (
@@ -76,7 +94,15 @@ export class PaymentComponent implements OnInit {
       this.validarNumber(this.datosPago.celular) &&
       this.validarNumber(this.datosPago.numeroDocumento) &&
       this.validarString(this.datosPago.tipoDocumento) &&
-      this.validarString(this.datosPago.tarjeta)
+      this.validarString(this.datosPago.tarjeta) &&
+      this.validarString(this.datosPago.nombreTarjeta) &&
+      this.validarString(this.datosPago.tipoDocumentoTarjeta) &&
+      this.validarString(this.datosPago.numeroDocumentoTarjeta) &&
+      this.validarString(this.datosPago.numeroTarjeta) &&
+      this.validarString(this.datosPago.codigoSeguridad) &&
+      this.validarString(this.datosPago.fechaVencimiento) &&
+      this.validarString(this.datosPago.cuotas) &&
+      this.validarString(this.datosPago.celularTarjeta)
     ) {
       this.mensajeError = '';
       // {nombre:'',ryp:'',cdir:'',dir:'',ciudad:'',tel:'' }
@@ -92,12 +118,57 @@ export class PaymentComponent implements OnInit {
       //     tarjeta: tarjetas._id =this.datosPago['tarjetaId']
       //   }
       // });
-      console.log('Datos Validados Correctamente');
+      // this.transaction.order.buyer.fullName = this.datosPago.nombre + ' ' + this.datosPago.apellidos;
+      // this.llenarJsonTransaction();
+      console.log('Datos Transaction', JSON.stringify(this.transaction));
+      console.log('Datos Validados Correctamente', JSON.stringify(this.datosPago));
 
       console.log(this.datosPago);
     } else {
       this.mensajeError = 'Debe completar todos los datos';
     }
+  }
+  llenarJsonTransaction() {
+    // this.transaction.order.buyer.merchantBuyerId = '';
+    // this.transaction.order.buyer.fullName = '';
+    // this.transaction.order.buyer.emailAddress = '';
+    // this.transaction.order.buyer.contactPhone = '';
+    // this.transaction.order.buyer.dniNumber = '';
+    // this.transaction.order.buyer.shippingAddress.street1 = '';
+    // this.transaction.order.buyer.shippingAddress.street2 = '';
+    // this.transaction.order.buyer.shippingAddress.city = '';
+    // this.transaction.order.buyer.shippingAddress.state = '';
+    // this.transaction.order.buyer.shippingAddress.country = '';
+    // this.transaction.order.buyer.shippingAddress.postalCode = '';
+    // this.transaction.order.shippingAddress.phone = '';
+    // this.transaction.order.shippingAddress.street1 = '';
+    // this.transaction.order.shippingAddress.street2 = '';
+    // this.transaction.order.shippingAddress.city = '';
+    // this.transaction.order.shippingAddress.state = '';
+    // this.transaction.order.shippingAddress.country = '';
+    // this.transaction.order.shippingAddress.postalCode = '';
+    // this.transaction.order.shippingAddress.phone = '';
+    // this.transaction.payer.merchantPayerId = '';
+    // this.transaction.payer.fullName = '';
+    // this.transaction.payer.emailAddress = '';
+    // this.transaction.payer.contactPhone = '';
+    // this.transaction.payer.dniNumber = '';
+    // this.transaction.payer.billingAddress.street1 = '';
+    // this.transaction.payer.billingAddress.street2 = '';
+    // this.transaction.payer.billingAddress.city = '';
+    // this.transaction.payer.billingAddress.state = '';
+    // this.transaction.payer.billingAddress.country = '';
+    // this.transaction.payer.billingAddress.postalCode = '';
+    // this.transaction.payer.billingAddress.phone = '';
+    // this.transaction.creditCard.number = '';
+    // this.transaction.creditCard.securityCode = '';
+    // this.transaction.creditCard.expirationDate = '';
+    // this.transaction.creditCard.name = '';
+    // this.transaction.paymentMethod = '';
+    // this.transaction.paymentCountry = '';
+    // this.transaction.cookie = '';
+    // this.transaction.userAgent = '';
+
   }
 
   validarString(texto: string) {

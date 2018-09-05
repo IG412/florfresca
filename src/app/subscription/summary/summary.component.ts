@@ -46,7 +46,10 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
 
-    if(localStorage.getItem('suscriptor') && localStorage.getItem('plan') && localStorage.getItem('tamano') && localStorage.getItem('frecuencia')){
+    if(localStorage.getItem('suscriptor') &&
+    localStorage.getItem('plan') &&
+    localStorage.getItem('tamano') &&
+    localStorage.getItem('frecuencia')) {
       this.suscriptor = JSON.parse(localStorage.getItem('suscriptor'));
       this.plan = JSON.parse(localStorage.getItem('plan'));
       this.tamano = JSON.parse(localStorage.getItem('tamano'));
@@ -167,6 +170,7 @@ export class SummaryComponent implements OnInit {
         break; 
       } 
     } 
+
 
   }
 

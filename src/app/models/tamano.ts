@@ -1,7 +1,7 @@
 export class Tamano {
-	_id:String;
-	nombre:String;
-	desc:String;
-	icon:String;
-	precio?:Number;
+	_id: string;
+	nombre: string;
+	desc: string;
+	icon: string;
+	precio?: number;
 }
