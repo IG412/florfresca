@@ -7,9 +7,9 @@ var express 	= require('express'),
 	// autho 		= jwt({secret: token.TOKEN_SECRET, userProperty:'payload'}),
 	router 		= express.Router();
 
-// router.route('/autho').get(auth.admin);
+// router.route('/auth/tokens').get(auth.login);
 
-router.route('/slides').get(slides.all).post(slides.post);
-router.route('/slides/:id').get(slides.get).put(slides.put).delete(slides.delete);
+// router.route('/slides').get(slides.all).post(slides.post);
+// router.route('/slides/:id').get(slides.get).put(slides.put).delete(slides.delete);
 
 module.exports 	= router;

@@ -3,5 +3,4 @@ export class Frecuencia {
 	nombre:String;
 	desc:String;
 	icon:String;
-	precio:Number;
 }
