@@ -42,8 +42,8 @@ export class PlanComponent implements OnInit {
     ) { 
     this.submitted = false;
   	this.suscriptor = new Suscriptor();
-  	this.parentesco = ["Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
-  	this.cat = ["Casa", "Oficina", "Otro"];
+  	this.parentesco = ["Seleccione","Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
+  	this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
   	this.showForm=true;
   	this.plans = [
   	{_id: "1", numero:1,  nombre:"FRESCAS DE CULTIVO", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-frescas.jpg"},
@@ -69,9 +69,6 @@ export class PlanComponent implements OnInit {
     this.acept_term = false;
     this.acept_entrega = false;
     this.alert = "";
-    // console.log(localStorage.getItem('plan'),
-    // localStorage.getItem('tamano'),
-    // localStorage.getItem('frecuencia'));
   }
 
   ngOnInit() {
@@ -90,7 +87,8 @@ export class PlanComponent implements OnInit {
     }
     this.select_plan = (localStorage.getItem('plan')) ? JSON.parse(localStorage.getItem('plan')) : new Plan();
     this.select_tamano = (localStorage.getItem('tamano')) ? JSON.parse(localStorage.getItem('tamano')) : new Tamano();
-     this.select_frecuencia = (localStorage.getItem('frecuencia')) ? JSON.parse(localStorage.getItem('frecuencia')) : new Frecuencia();
+    this.select_frecuencia = (localStorage.getItem('frecuencia')) ? JSON.parse(localStorage.getItem('frecuencia')) : new Frecuencia();
+    this.suscriptor.ciudad = "Bogotá";
   }
   
   addSuscriptor(){

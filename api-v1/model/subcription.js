@@ -19,7 +19,7 @@ var Suscriptor = new mongoose.Schema({
   gatos: { type:String, default: "no" }
 })
 
-var subcriptionsSchema 	= new mongoose.Schema({
+var Suscripciones 	= new mongoose.Schema({
   cliente: String,
   plan: Plan,
   estado: {type:Boolean, default:false},
@@ -30,4 +30,4 @@ var subcriptionsSchema 	= new mongoose.Schema({
 });
 
 
-mongoose.model('subcriptions', userSchema);
+mongoose.model('subscriptions', Suscripciones);

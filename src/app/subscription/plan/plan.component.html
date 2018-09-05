@@ -32,7 +32,7 @@
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2" >Relación y/o parentesco</div>
-                                        <select [(ngModel)]="suscriptor.rela_paren" formControlName="rela_paren" class="drop-wrap drop-wrap-s-4 color-5" name="rela_paren" [ngStyle]="{ 'border': (submitted && registerForm.controls.rela_paren.errors ) ? '1px solid red' : 'none' }">
+                                        <select [(ngModel)]="suscriptor.rela_paren" formControlName="rela_paren" class="drop-wrap drop-wrap-s-4 color-5" name="rela_paren" [ngStyle]="{ 'border': (submitted && registerForm.controls.rela_paren.errors ) ? '1px solid red' : 'none' }" style="padding-left: 20px;">
                                             <option *ngFor='let p of parentesco'>{{p}}</option>
                                         </select>
                                     </div>
@@ -40,8 +40,8 @@
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Categorización dirección</div>
-                                        <select [(ngModel)]="suscriptor.catego" formControlName="catego"  class="drop-wrap drop-wrap-s-4 color-5" name="cdir" [ngStyle]="{ 'border': (submitted && registerForm.controls.catego.errors ) ? '1px solid red' : 'none' }">
-                                          <option *ngFor='let c of cat'>{{c}}</option>
+                                        <select [(ngModel)]="suscriptor.catego" formControlName="catego"  class="drop-wrap drop-wrap-s-4 color-5" name="cdir" [ngStyle]="{ 'border': (submitted && registerForm.controls.catego.errors ) ? '1px solid red' : 'none' }" style="padding-left: 20px;">
+                                          <option *ngFor='let c of cat' [disabled]="c == 'Seleccione'">{{c}}</option>
                                         </select>
 
                                     </div>
@@ -58,7 +58,7 @@
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Ciudad</div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                            <input type="text" [(ngModel)]="suscriptor.ciudad" formControlName="ciudad" placeholder="" name="ciudad" [ngStyle]="{ 'border': (submitted && registerForm.controls.ciudad.errors ) ? '1px solid red' : 'none' }">
+                                            <input type="text" [(ngModel)]="suscriptor.ciudad" formControlName="ciudad" name="ciudad"  disabled>
                                         </div>
                                     </div>
                                 </div>
