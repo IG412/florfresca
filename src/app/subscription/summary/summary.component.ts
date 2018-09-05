@@ -47,12 +47,15 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
 
-    if(localStorage.getItem('suscriptor') && localStorage.getItem('plan') && localStorage.getItem('tamano') && localStorage.getItem('frecuencia')){
+    if(localStorage.getItem('suscriptor') &&
+    localStorage.getItem('plan') &&
+    localStorage.getItem('tamano') &&
+    localStorage.getItem('frecuencia')) {
       this.suscriptor = JSON.parse(localStorage.getItem('suscriptor'));
       this.plan = JSON.parse(localStorage.getItem('plan'));
       this.tamano = JSON.parse(localStorage.getItem('tamano'));
       this.frecuencia = JSON.parse(localStorage.getItem('frecuencia'));
-    }else{
+    } else {
       this.router.navigate(['subscription/plan'], {});
     }
   }
@@ -78,8 +81,6 @@ export class SummaryComponent implements OnInit {
       this.newDireccion = '';
     }
     this.showDireccion();*/
-    this.suscriptor.direccion.push(this.newDireccion);
-    this.showDireccion();
   }
 
 }

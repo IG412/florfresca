@@ -46,22 +46,22 @@ export class PlanComponent implements OnInit {
   	this.cat = ["Casa", "Oficina", "Otro"];
   	this.showForm=true;
   	this.plans = [
-  	{_id: "1", numero:1, precio: 1000, nombre:"FRESCAS DE CULTIVO", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-frescas.jpg"},
-  	{_id: "2", numero:2, precio: 1000, nombre:"ROSAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-rosas.jpg"},
-  	{_id: "3", numero:3, precio: 1000, nombre:"CLÁSICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-clasica.jpg"},
-  	{_id: "4", numero:4, precio: 1000, nombre:"EXÓTICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-exoticas.jpg"}
+  	{_id: "1", numero:1,  nombre:"FRESCAS DE CULTIVO", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-frescas.jpg"},
+  	{_id: "2", numero:2,  nombre:"ROSAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-rosas.jpg"},
+  	{_id: "3", numero:3,  nombre:"CLÁSICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-clasica.jpg"},
+  	{_id: "4", numero:4,  nombre:"EXÓTICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-exoticas.jpg"}
   	];
 
   	this.tamanos = [
-  	{_id: "1",  nombre:"ORIGINAL", desc: "<strong>10 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"},
-  	{_id: "2",  nombre:"DELUXE", desc: "<strong>18 a 14 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-delux.png"},
-  	{_id: "3",  nombre:"GRANDE", desc: "<strong>36 a 48 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"}
+  	{_id: "1",  precio:1000, nombre:"ORIGINAL", desc: "<strong>10 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"},
+  	{_id: "2", precio:1000,  nombre:"DELUXE", desc: "<strong>18 a 14 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-delux.png"},
+  	{_id: "3",  precio:1000, nombre:"GRANDE", desc: "<strong>36 a 48 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"}
   	];
 
   	this.frecuencia = [
-  	{_id: "1", precio:1000,nombre:"SEMANAL", desc: "<strong>12 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
-  	{_id: "2", precio:1000,nombre:"QUINCENAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
-  	{_id: "3", precio:1000,nombre:"MENSUAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"}
+  	{_id: "1", nombre:"SEMANAL", desc: "<strong>12 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
+  	{_id: "2", nombre:"QUINCENAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
+  	{_id: "3", nombre:"MENSUAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"}
   	];
     this.select_plan = new Plan();
     this.select_tamano = new Tamano();
@@ -79,7 +79,7 @@ export class PlanComponent implements OnInit {
             nombre: ['', Validators.required],
             rela_paren: ['', Validators.required],
             catego: ['', [Validators.required]],
-            direccion: [ [''], [Validators.required, Validators.minLength(6)]],
+            direccion: [ '', [Validators.required, Validators.minLength(6)]],
             ciudad: ['', Validators.required],
             tel: ['', Validators.required],
             gatos:[]

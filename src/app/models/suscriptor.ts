@@ -1,9 +1,9 @@
 export class Suscriptor {
-	nombre:String;
+	nombre: String;
 	rela_paren: String;
 	tel: Number;
 	catego: String;
 	ciudad: String;
-	direccion: Array<any>;
+	direccion: string;
 	gatos: Boolean;
 }

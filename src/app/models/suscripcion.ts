@@ -1,10 +1,17 @@
 import { Suscriptor } from './suscriptor';
-import { Plan } from './plan';
-// import { Suscriptor } from './suscriptor';
+// import { Plan } from './plan';
+
+class Plan  {
+	nombre:String;
+	img:String;
+	tamano:String;
+	frecuencia:String;
+	precio?:String;
+}
 
 export class Suscripcion {
-	estado:String;
-	precio:Number;
+	estado?:String;
 	suscriptor: Suscriptor;
-	plan:Plan;
+	plan?:Plan;
+	cliente?:String;
 }
