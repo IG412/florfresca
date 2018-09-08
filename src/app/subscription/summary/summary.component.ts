@@ -79,20 +79,20 @@ export class SummaryComponent implements OnInit {
       case "1": { 
         switch (this.tamano.nombre) {
           case "ORIGINAL":
-            this.precio =+ (this.frecuencia.nombre === "SEMANAL")? (35000*4) : this.precio;
-            this.precio =+ (this.frecuencia.nombre === "QUINCENAL")? (35000*2) : this.precio;
-            this.precio =+ (this.frecuencia.nombre === "MENSUAL")? (35000*1) : this.precio;
+            this.precio =+ (this.frecuencia.nombre === "SEMANAL")? (30000*4) : this.precio;
+            this.precio =+ (this.frecuencia.nombre === "QUINCENAL")? (30000*2) : this.precio;
+            this.precio =+ (this.frecuencia.nombre === "MENSUAL")? (30000*1) : this.precio;
             console.log(this.frecuencia.nombre,this.precio);
             break;
           case "DELUXE":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (45000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (45000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (45000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (40000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (40000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (40000*1) : this.precio;
             break;
           case "GRANDE":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (55000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (55000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (55000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (50000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (50000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (50000*1) : this.precio;
             break;
           default:
             break;
@@ -102,19 +102,19 @@ export class SummaryComponent implements OnInit {
       case "2": { 
         switch (this.tamano.nombre) {
           case "ORIGINAL":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (25000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (25000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (25000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (40000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (40000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (40000*1) : this.precio;
             break;
           case "DELUXE":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (35000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (35000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (35000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (50000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (50000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (50000*1) : this.precio;
             break;
           case "GRANDE":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (45000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (45000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (45000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (60000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (60000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (60000*1) : this.precio;
             break;
           default:
             break;
@@ -124,19 +124,19 @@ export class SummaryComponent implements OnInit {
       case "3": { 
         switch (this.tamano.nombre) {
           case "ORIGINAL":
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (35000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (35000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (35000*1) : this.precio;
+            break;
+          case "DELUXE":
             this.precio = (this.frecuencia.nombre == 'SEMANAL')? (45000*4) : this.precio;
             this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (45000*2) : this.precio;
             this.precio = (this.frecuencia.nombre == 'MENSUAL')? (45000*1) : this.precio;
             break;
-          case "DELUXE":
+          case "GRANDE":
             this.precio = (this.frecuencia.nombre == 'SEMANAL')? (55000*4) : this.precio;
             this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (55000*2) : this.precio;
             this.precio = (this.frecuencia.nombre == 'MENSUAL')? (55000*1) : this.precio;
-            break;
-          case "GRANDE":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (65000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (65000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (65000*1) : this.precio;
             break;
           default:
             break;
@@ -146,19 +146,19 @@ export class SummaryComponent implements OnInit {
       case "4": { 
         switch (this.tamano.nombre) {
           case "ORIGINAL":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (65000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (65000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (65000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (80000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (80000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (80000*1) : this.precio;
             break;
           case "DELUXE":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (75000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (75000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (75000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (140000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (140000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (140000*1) : this.precio;
             break;
           case "GRANDE":
-            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (85000*4) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (85000*2) : this.precio;
-            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (85000*1) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'SEMANAL')? (180000*4) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'QUINCENAL')? (180000*2) : this.precio;
+            this.precio = (this.frecuencia.nombre == 'MENSUAL')? (180000*1) : this.precio;
             break;
           default:
             break;
