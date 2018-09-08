@@ -55,6 +55,7 @@ export class SummaryComponent implements OnInit {
       this.tamano = JSON.parse(localStorage.getItem('tamano'));
       this.frecuencia = JSON.parse(localStorage.getItem('frecuencia'));
       this.getPrice();
+      console.log(this.suscriptor);
     }else{
       this.router.navigate(['subscription/plan'], {});
     }

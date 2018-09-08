@@ -72,6 +72,11 @@ button { background: none; border: 0px none; }
 
 :-ms-input-placeholder { color: #fff; opacity: 0.6; }
 
+::placeholder {
+  color: #000;
+  /*font-size: 1.5em;*/
+}
+
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 03 - LOADING */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
@@ -1317,7 +1322,7 @@ nav li.type-4 .dropmenu .fa-chevron-right { display: none; }
 
 .tabs-style-1.nav-tabs > li.active > a, .tabs-style-1.nav-tabs > li.active > a:focus, .tabs-style-1.nav-tabs > li.active > a:hover { background: rgba(0, 3, 5, 0.2); border: 1px solid rgba(0, 3, 5, 0); border-bottom: 0px none; color: #fff; }
 
-.tabs-block { position: relative; float: left; width: 100%; color: #000; border: 3px solid rgba(255, 255, 255, 0.3); padding: 12px; border-radius: 25px;}
+.tabs-block { position: relative; float: left; width: 100%; color: #000; border: 3px solid rgba(255, 255, 255); padding: 12px; border-radius: 25px;}
 
 .tabs-block h5 { padding-bottom: 40px; }
 

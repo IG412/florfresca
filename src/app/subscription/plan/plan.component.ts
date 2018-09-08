@@ -92,6 +92,7 @@ export class PlanComponent implements OnInit {
   }
   
   addSuscriptor(){
+    // console.log(this.suscriptor);
     this.submitted = true;
     if(!this.registerForm.invalid){
       localStorage.setItem('suscriptor', JSON.stringify(this.suscriptor));
