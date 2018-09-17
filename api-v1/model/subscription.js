@@ -20,14 +20,13 @@ var Suscriptor = new mongoose.Schema({
 })
 
 var Suscripciones 	= new mongoose.Schema({
-  cliente: String,
+  cliente: { type: mongoose.Schema.ObjectId, ref: "users" },
   plan: Plan,
   estado: {type:Boolean, default:false},
-  suscriptor: Suscriptor
+  suscriptor: Suscriptor,
   f_creacion:  { type:Date, default: Date.now },
   f_entrega: Date,
-  f_upd: Date,
+  f_upd: Date
 });
 
-
-mongoose.model('subscriptions', Suscripciones);
+module.exports =  mongoose.model('subscriptions', Suscripciones);

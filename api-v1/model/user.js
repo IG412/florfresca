@@ -12,7 +12,7 @@ var Tarjeta = new mongoose.Schema({
 var Usuario 	= new mongoose.Schema({
   nombre: String,
   apellido: String,
-  email: {
+  correo: {
     type: String,
     unique: true,
     required: true
@@ -22,7 +22,7 @@ var Usuario 	= new mongoose.Schema({
   tipo_doc: String,
   documento:  String,
   hash: String,
-  contra: String,
+  salt: String,
   reset: String,
   expires: String,
   activo: {type:Boolean, default:false},
@@ -30,13 +30,13 @@ var Usuario 	= new mongoose.Schema({
   tarjeta:[Tarjeta]
 });
 
-Usuario.methods.setPassword = function(password){
+Usuario.methods.setPass = function(password){
   this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64,"sha512").toString('hex');
 };
 
-Usuario.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+Usuario.methods.validPass = function(password) {
+  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64,"sha512").toString('hex');
   return this.hash === hash;
 };
 

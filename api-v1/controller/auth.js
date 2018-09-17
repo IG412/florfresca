@@ -1,92 +1,74 @@
 require('../model/user');
-require('../service/passport');
-var crypto      = require('crypto');
-    passport    = require('passport'),
-    mongoose    = require('mongoose'),
-    // nodemailer  = require('nodemailer'),
+require('../model/admin');
+
+var mongoose    = require('mongoose'),
+    crypto      = require('crypto'),
     tokener     = require('../service/tokener'),
+    User        = mongoose.model('users'),
+    Admin       = mongoose.model('admins');
+    // nodemailer  = require('nodemailer'),
     // Email       = require('../model/email'),
-    User        = mongoose.model('users');
 
 module.exports  = {
-    register : function(req, res) {
+  register : function(req, res) {
         var user    = new User();
-        user.email  = req.body.email;
-        User.findOne(req.body, function (error, email){
-            if(email){
-                res.status(401).json({message:'El email '+req.body.email+ ' ya se encuentra registrado.'});
-            }
-            else{
-                user.reset   = crypto.randomBytes(25).toString('hex');
-                user.expires = Date.now() + 3600000;
-                var data = {email: req.body.email,link : 'http://' + req.headers.host + '/activate/' + user.reset + '\n\n'+''};            
-                var html_message = Email.get("server/views/auth.ejs",data);
-
-                user.save(function (e) {
-                    if (e) throw e;
-                    
+        user.correo  = req.body.correo;
+        user.email  = req.body.correo;
+        User.findOne({email:req.body.correo}, function (e, d){
+          if(!e){
+            if(d){
+              res.status(401).json({message:'El email '+req.body.correo+ ' ya se encuentra registrado.'});
+            }else{
+                // var html_message = Email.get("server/views/auth.ejs",data);
+                user.setPass(req.body.pass);
+                user.save(function (e,d) {
+                    if(e){
+                      res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
+                    }else{
+                      res.status(401).json({message:'El email '+req.body.correo+ ' se ha registrado.'});
+                    }
                 })
             }
+          }else{
+            res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
+          }
         })
     },
   login : function(req, res) {
-    User.findOne({email:req.body}, function (error, email){
-            if(email){
-                res.status(401).json({message:'El email '+req.body.email+ ' ya se encuentra registrado.'});
-            }
-            else{
-                token = tokener.generateJwt(user);
-                res.status(200);
-                res.json({token : token});
-            }
-        })
-    // passport.authenticate('local', function (err, user, info){
-    //   var token;
-    //   if (err) {
-    //     res.status(401).json({message:'Error'});
-    //     return;
-    //   }
-    //   if(user){
-        
-    //     //Comprobar active user - time
-    //   } 
-    //   else {
-    //     res.status(401).json({message:'Acceso denegado. Revise sus datos'});
-    //   }
-    // })(req, res);
+    User.findOne({email:req.body.correo}, function (e, d){
+      if(!e){
+        if(d){
+          if (!d.validPass(req.body.pass)) {
+            res.status(401).json({message:'Los sentimos, Correo o contraseña son incorrectos'});
+          }else{
+            token = tokener.generateJwt(d);
+            res.status(200).json({token : token});
+          }
+        }else{
+          res.status(404).json({message:'Lo sentimos, Correo o contraseña son incorrectos'});
+        }
+      }else{
+        res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
+      }
+    })
   },
   admin : function(req, res) {
-    User.findOne({$and:[{email:req.query.user}, {role:"admin"}]}, function (error, datos){
-        if(datos != null){
-              if (!datos.validPassword(req.query.pass)) {
-                res.json(null);
-              }else{
-                token = tokener.generateJwt(datos);
-                res.status(200);
-                res.json({token : token});
-              }
+    Admin.findOne({email:req.body.correo}, function (e, d){
+      if(!e){
+        if(d){
+          if (!d.validPass(req.body.pass)) {
+            res.status(401).json({message:'Los sentimos, Correo o contraseña son incorrectos'});
           }else{
-               res.json(null);
+            token = tokener.generateJwt(d);
+            res.status(200).json({token : token});
           }
+        }else{
+          res.status(404).json({message:'Lo sentimos, Correo o contraseña son incorrectos'});
+        }
+      }else{
+        res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
+      }
     });
-    // passport.authenticate('local', function(err, user, info){
-    //   var token;
-    //   if (err) {
-    //     res.status(404).json(err);
-    //     return;
-    //   }
-    //   console.log(user,info);
-    //   if(user.role && user.role === 'admin'){
-    //     token = tokener.generateJwt(user);
-    //     res.status(200);
-    //     // console.log(token);
-    //     res.json({
-    //       token : token
-    //     });
-    //   } else {
-    //     res.status(401).json(info);
-    //   }
-    // })(req, res);
   },
   recovery : function(req,res){ 
     User.findOne(req.body).exec(function (error,user){
@@ -122,21 +104,21 @@ module.exports  = {
   reset : function(req,res){
     User.findOne({reset:req.params.token, expires: {$gt:Date.now()}}).exec(function (error,user){
       if(!user){
-        res.status(401).json({message:'Link inválido'});
+        res.status(401).json({message:'Lo sentimos el link no es válido'});
       }
       else{
-        res.json({message:'Nueva contraseña'});  
+        res.stats(200).json({message:'se ha actualizado la nueva contraseña'});  
       }
     })
   },
-   reboot : function(req,res){
+  reboot : function(req,res){
     User.findOne({reset:req.params.token, expires: {$gt:Date.now()}}).exec(function (error,user){
       if(!user){
-        res.status(401).json({message:'El link no es válido o há expirado'});
+        res.status(404).json({message:'Lo sentimos, el link no es válido o há expirado'});
       }
       else{
-        var salt = crypto.randomBytes(16).toString('hex');
-        var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
+        // var salt = crypto.randomBytes(16).toString('hex');
+        // var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
         var query = {salt:salt,hash:hash,reset:null,expires:null,active:true};
         user.update(query, function (error, data){
           res.status(200).json({message : 'Contraseña ingresada correctamente. Ahora puede iniciar sesión normalmente.'});

@@ -1,9 +1,9 @@
 var mongoose = require('mongoose'),
-    // mongodbUri = 'mongodb://movelife:#m0v3@ds111549.mlab.com:11549/heroku_1z5nwt40',
-    mongodbUri = "mongodb://camera:silens@ds161018.mlab.com:61018/heroku_0sd7f0px",
+    mongodbUri = 'mongodb://fresca:Flor12345*.@ds243212.mlab.com:43212/florfresca',
     gracefulShutdownm;
 if (process.env.NODE_ENV === 'production') {dbURI = process.env.MONGOLAB_URI;}
-mongoose.connect(mongodbUri);
+mongoose.set('useCreateIndex', true)
+mongoose.connect(mongodbUri,{ useNewUrlParser: true });
 mongoose.connection.on('connected', function() {
   console.log('Connected to Database');
 });
