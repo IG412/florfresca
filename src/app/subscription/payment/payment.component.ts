@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Suscriptor } from '../../models/suscriptor';
-import { Suscripcion } from '../../models/suscripcion';
+import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
 import { Tamano } from '../../models/tamano';
 import { Frecuencia } from '../../models/frecuencia';

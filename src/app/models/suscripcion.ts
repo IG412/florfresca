@@ -6,10 +6,10 @@ class Plan  {
 	img:String;
 	tamano:String;
 	frecuencia:String;
-	precio?:String;
+	precio?:Number;
 }
 
-export class Suscripcion {
+export class Subscripcion {
 	estado?:String;
 	suscriptor: Suscriptor;
 	plan?:Plan;

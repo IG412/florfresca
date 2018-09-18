@@ -7,10 +7,9 @@
                         <div class="f-login-header">
                             <div class="f-login-title color-dr-blue-2">RECUPERAR CONTRASEÑA</div>
                         </div>
-                        <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
+                        <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm" *ngIf="!boton">
                             <!-- mensaje error -->
                             <div *ngIf="f.submitted && email.invalid  "  class="invalid-feedback">
-
                               <div class="alert bg-5" *ngIf="email.errors.required">
                                 <span>Email es requerido</span> 
                               </div>
@@ -19,11 +18,9 @@
                               </div>
                             </div>
                             <!-- fin mensaje error -->
-
-
                             <div class="form-group">
                                 <div class="input-style-1 b-50 type-2 color-5">
-                                    <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email" #email="ngModel" required email placeholder="Email">
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="correo" #email="ngModel" required email placeholder="Email">
                                 </div>
                             </div>
                             <br>

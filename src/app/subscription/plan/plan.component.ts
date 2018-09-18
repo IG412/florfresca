@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Suscriptor } from '../../models/suscriptor';
-import { Suscripcion } from '../../models/suscripcion';
+import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
 import { Tamano } from '../../models/tamano';
 import { Frecuencia } from '../../models/frecuencia';
@@ -25,6 +25,7 @@ export class PlanComponent implements OnInit {
   plans: Array<Plan>;
   tamanos:Array<Tamano>;
   frecuencia:Array<Frecuencia>;
+  subscription: Subscripcion;
 
   select_plan: Plan;
   select_tamano:Tamano;
@@ -45,6 +46,8 @@ export class PlanComponent implements OnInit {
   	this.parentesco = ["Seleccione","Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
   	this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
   	this.showForm=true;
+    this.subscription = new Subscripcion();
+
   	this.plans = [
   	{_id: "1", numero:1,  nombre:"FRESCAS DE CULTIVO", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-frescas.jpg"},
   	{_id: "2", numero:2,  nombre:"ROSAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-rosas.jpg"},
@@ -92,17 +95,19 @@ export class PlanComponent implements OnInit {
   }
   
   addSuscriptor(){
-    // console.log(this.suscriptor);
-    this.submitted = true;
-    if(!this.registerForm.invalid){
-      localStorage.setItem('suscriptor', JSON.stringify(this.suscriptor));
-      this.showForm = false;
-    }else{
-      console.log('error')
-    }
+    console.log(this.subscription);
+    // this.submitted = true;
+    // if(!this.registerForm.invalid){
+    //   localStorage.setItem('suscriptor', JSON.stringify(this.suscriptor));
+    //   this.showForm = false;
+    // }else{
+    //   console.log('error')
+    // }
   }
   addPlan(plan:Plan){
-  	this.select_plan = plan;
+  	this.subscription.plan.nombre = plan.nombre;
+    this.subscription.plan.img = plan.img;
+    this.subscription.plan.precio = 0;
   }
   addTamano(tamano:Tamano){
   	this.select_tamano = tamano;

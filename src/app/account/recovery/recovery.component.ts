@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FlorfrescaService } from '../../services/florfresca.service';
 
 @Component({
   selector: 'app-recovery',
@@ -7,19 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecoveryComponent implements OnInit {
 
-  usuario: any;
+  correo: string;
+  boton:boolean;
 
-  constructor() {
-    this.usuario = {
-      email: ''
-    };
+  constructor(
+    private service:FlorfrescaService
+  ) {
+    this.correo = '';
+    this.boton = false;
    }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    alert('SUCCESS!!\n\n' + JSON.stringify(this.usuario));
+    this.service.create_user({correo: this.correo}).subscribe(
+        d=>{
+          // this.router.navigateByUrl("/login");   
+        },
+        e=>{
+          console.log(e);
+        }
+      );
   }
 
 }
