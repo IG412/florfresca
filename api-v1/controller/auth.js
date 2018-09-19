@@ -15,6 +15,7 @@ module.exports  = {
         user.correo  = req.body.correo;
         user.email  = req.body.correo;
         User.findOne({email:req.body.correo}, function (e, d){
+          console.log(e)
           if(!e){
             if(d){
               res.status(401).json({message:'El email '+req.body.correo+ ' ya se encuentra registrado.'});
@@ -25,7 +26,8 @@ module.exports  = {
                     if(e){
                       res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
                     }else{
-                      res.status(401).json({message:'El email '+req.body.correo+ ' se ha registrado.'});
+                      // res.status(201).json({message:'El usuario '+req.body.correo+ ' se ha registrado, exitosamente. Se envio un correo para confirmación'});
+                      res.status(201).json({message:'El usuario '+req.body.correo+ ' se ha registrado, exitosamente.'});
                     }
                 })
             }
@@ -42,7 +44,7 @@ module.exports  = {
             res.status(401).json({message:'Los sentimos, Correo o contraseña son incorrectos'});
           }else{
             token = tokener.generateJwt(d);
-            res.status(200).json({token : token});
+            res.status(200).json({token : token, id: d._id});
           }
         }else{
           res.status(404).json({message:'Lo sentimos, Correo o contraseña son incorrectos'});

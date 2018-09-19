@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.service.Auth0(this.usuario).subscribe(
       d=>{
-        // localStorage.setItem('id', d.id);
-        // this.router.navigateByUrl("/exam");   
+        let msg:any = d;
+        localStorage.setItem('token', msg.token);
+        localStorage.setItem('id', msg.id);
       },
       e=>{
         console.log(e);

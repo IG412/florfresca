@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router }  from "@angular/router";
 import { FlorfrescaService } from '../../services/florfresca.service';
 import { Usuario } from '../../models/usuario';
+import { Message } from '../../models/message';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent implements OnInit {
   usuarioNuevo: any;
   checkPasswords: boolean;
   passConfi: string;
+  messages:Message;
 
   constructor(
     private service:FlorfrescaService,
@@ -22,22 +24,29 @@ export class RegisterComponent implements OnInit {
     this.usuario = new Usuario();
     this.checkPasswords = false;
     this.passConfi = "";
+    this.messages = new Message();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
-    this.checkPasswords = this.compararContra(this.usuario.contra, this.passConfi);
-    if ( !this.checkPasswords ) {
+    this.checkPasswords = this.compararContra(this.usuario.pass, this.passConfi);
+    if (!this.checkPasswords) {
       this.service.create_user(this.usuario).subscribe(
         d=>{
+          this.messages = d;
+          this.messages.class = "bg-success";
+          this.messages.status = true;
           // this.router.navigateByUrl("/login");   
         },
         e=>{
-          console.log(e);
+          this.messages = e;
+          this.messages.class = "bg-danger";
+          this.messages.status = true;
         }
       );
+    }else{
+      console.log("contra no son iguales")
     }
 
   }
@@ -47,7 +56,7 @@ export class RegisterComponent implements OnInit {
   }
 
   cambiaLado($event) {
-    this.checkPasswords = this.compararContra(this.usuario.contra, this.passConfi);
+    this.checkPasswords = this.compararContra(this.usuario.pass, this.passConfi);
   }
 
 }

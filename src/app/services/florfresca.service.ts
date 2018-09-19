@@ -9,7 +9,7 @@ import { Plan } from '../models/plan';
   providedIn: 'root'
 })
 export class FlorfrescaService {
-	private Url = 'api-v1'; 
+	private Url = 'http://localhost:5000/api'; 
   private  headers:HttpHeaders;
   	constructor(
   		private http: HttpClient
@@ -17,11 +17,11 @@ export class FlorfrescaService {
 
   Auth0 (query: any): Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
-    return this.http.post<any>(this.Url+"/", query, {headers: this.headers});
+    return this.http.post<any>(this.Url+"/auth/tokens", query, {headers: this.headers});
   }
   create_user(query: any):Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
-    return this.http.post<any>(this.Url+"/", query, {headers: this.headers});
+    return this.http.post<any>(this.Url+"/auth/register", query, {headers: this.headers});
   }
   recovery(query):Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })

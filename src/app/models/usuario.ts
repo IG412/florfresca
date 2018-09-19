@@ -7,7 +7,7 @@ export class Usuario {
     celular?: number;
     tipo_doc?: string;
     documento?:  string;
-    contra?: string;
+    pass?: string;
     activo?: boolean;
     tarjeta?: [
          {
