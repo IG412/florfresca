@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router }  from "@angular/router";
+import { FlorfrescaService } from '../../services/florfresca.service';
+import { Usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-register',
@@ -7,33 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
+  usuario: Usuario;
   usuarioNuevo: any;
   checkPasswords: boolean;
-  checkCelular: boolean;
-  constructor() {
-    this.usuarioNuevo = {
-      nombre: '',
-      apellido: '',
-      correo: '',
-      contra: '',
-      validar_contra: '',
-      celular: '',
-    };
+  passConfi: string;
+
+  constructor(
+    private service:FlorfrescaService,
+    private router:Router
+  ) {
+    this.usuario = new Usuario();
     this.checkPasswords = false;
-    this.checkCelular = true;
+    this.passConfi = "";
   }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.checkPasswords = this.compararContra(this.usuarioNuevo.contra, this.usuarioNuevo.validar_contra);
-    this.checkCelular = isNaN(this.usuarioNuevo.celular);
-    console.log(this.checkCelular);
-    if ( !this.checkPasswords || this.checkCelular ) {
-      return;
+    this.checkPasswords = this.compararContra(this.usuario.contra, this.passConfi);
+    if ( !this.checkPasswords ) {
+      this.service.create_user(this.usuario).subscribe(
+        d=>{
+          // this.router.navigateByUrl("/login");   
+        },
+        e=>{
+          console.log(e);
+        }
+      );
     }
-    alert('SUCCESS!!\n\n' + JSON.stringify(this.usuarioNuevo));
 
   }
 
@@ -42,10 +47,7 @@ export class RegisterComponent implements OnInit {
   }
 
   cambiaLado($event) {
-    this.checkPasswords = this.compararContra(this.usuarioNuevo.contra, this.usuarioNuevo.validar_contra);
+    this.checkPasswords = this.compararContra(this.usuario.contra, this.passConfi);
   }
 
-  checkCelularNumero() {
-   return isNaN(this.usuarioNuevo.celular);
-  }
 }

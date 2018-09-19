@@ -1,17 +1,15 @@
 export class Usuario {
-    nombre: string;
-    apellido: string;
-    email: string;
-    telefono: string;
-    celular: number;
-    tipo_doc: string;
-    documento:  string;
-    salt: string;
-    contra: string;
-    reset: string;
-    expires: string;
-    activo: boolean;
-    tarjeta: [
+    _id?:string;
+    nombre?: string;
+    apellido?: string;
+    correo: string;
+    telefono?: string;
+    celular?: number;
+    tipo_doc?: string;
+    documento?:  string;
+    contra?: string;
+    activo?: boolean;
+    tarjeta?: [
          {
             nombre: string,
             numero: string,

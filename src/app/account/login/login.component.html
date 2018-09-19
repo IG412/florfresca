@@ -9,45 +9,36 @@
                             <div class="f-login-desc color-grey">Bienvenido</div>
                         </div>
                         <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
-                            <!-- mensaje error -->
-                            <div *ngIf="f.submitted && email.invalid"  class="invalid-feedback">
-                              <div class="alert bg-5" *ngIf="email.errors.required">
-                                <span>Email es requerido</span> 
-                              </div>
-                              <div class="alert bg-5" *ngIf="email.errors.email">
-                                <span>Debe ser un email valido</span> 
-                              </div>
-                            </div>
-                            <div *ngIf="f.submitted &&  contra.invalid "  class="invalid-feedback">
-                              <div *ngIf="contra.errors.required" class="alert bg-5">
-                                <span>Constraseña es requerida</span> 
-                              </div>
-                            </div>
-                            <!-- fin mensaje error -->
-
-
                             <div class="form-group">
                                 <div class="input-style-1 b-50 type-2 color-5">
-                                    <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email" #email="ngModel" required email placeholder="Email">
+                                    <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email" #email="ngModel" required email placeholder="Email" [ngStyle]="{'border':(f.submitted &&  email.invalid) ?  '1px solid red' : ''}">
                                 </div>
+                                <div *ngIf="f.submitted && email.invalid"  class="invalid-feedback">
+                                  <div class="alert bg-5" *ngIf="email.errors.required">
+                                    <span>Email es requerido</span> 
+                                  </div>
+                                  <div class="alert bg-5" *ngIf="email.errors.email">
+                                    <span>Debe ser un email válido</span> 
+                                  </div>
+                                </div>   
                             </div>
-
                             <div class="form-group">
                                 <div class="input-style-1 b-50 type-2 color-5">
-                                    <input type="password" class="form-control" name="contra" [(ngModel)]="usuario.contra" #contra="ngModel" required placeholder="Contraseña">
+                                    <input type="password" class="form-control" name="contra" [(ngModel)]="usuario.pass" #contra="ngModel" required placeholder="Contraseña" [ngStyle]="{'border':(f.submitted &&  contra.invalid) ?  '1px solid red' : ''}">
+                                </div>
+                                <div *ngIf="f.submitted &&  contra.invalid "  class="invalid-feedback">
+                                  <div *ngIf="contra.errors.required" class="alert bg-5">
+                                    <span>Constraseña es requerida</span> 
+                                  </div>
                                 </div>
                             </div>
-
                             <br>
-
                             <input type="submit" class="login-btn c-button full b-60 bg-dr-blue hv-dr-blue-2-o" value="INICIAR SESIÓN">
                         </form>
-
-                        <div style="text-align: center;">
+                        <div class="text-center">
                             <a routerLink="/recovery" class="c-button b-40 bg-dr-blue-2 hv-blue-o grid-hidden" A="recovery">olvidé mi contraseña</a>
                             <br><br>
                             <a routerLink="/register" class="c-button b-40 bg-dr-blue-2 hv-blue-o grid-hidden" ui-sref="register">Registrarse</a>
-                            <!-- <a routerLink="/subscription/summary"  data-filter=".tours" style="margin-left: 20px">2. Previsualiza</a></li> -->
                         </div>
                     </div>
                 </div>

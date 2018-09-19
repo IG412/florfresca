@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute  }  from "@angular/router";
+import { FlorfrescaService } from '../../services/florfresca.service';
 
 @Component({
   selector: 'app-login',
@@ -8,18 +10,39 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   usuario: any ;
+  from:string;
 
-
-  constructor() {
+  constructor(
+    private service: FlorfrescaService,
+    private router:Router,
+    private active: ActivatedRoute
+  ) {
     this.usuario = {
       email: '',
-      contra: '',
+      pass: '',
     };
    }
 
   ngOnInit() {
+    this.from = this.active.snapshot.paramMap.get('from');
   }
   onSubmit() {
-    alert('SUCCESS!!\n\n' + JSON.stringify(this.usuario));
+    this.service.Auth0(this.usuario).subscribe(
+      d=>{
+        // localStorage.setItem('id', d.id);
+        // this.router.navigateByUrl("/exam");   
+      },
+      e=>{
+        console.log(e);
+      }
+    );
+  }
+
+  goBack():void{
+    if(this.from){
+      this.router.navigateByUrl("/subscription/"+this.from);  
+    }else{
+      this.router.navigateByUrl("/account");  
+    }
   }
 }
