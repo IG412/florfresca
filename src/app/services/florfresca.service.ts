@@ -31,15 +31,16 @@ export class FlorfrescaService {
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
     return this.http.post<any>(this.Url+"/", query, {headers: this.headers});
   }
-  // Gets (): Observable<Hero[]> {
-  // this.headers = new HttpHeaders({'Content-Type': 'application/json'});
-  // return this.http.post<any>(this.apiUrl+"autho/user", query, {headers:this.headers});
-  //   return this.http.get<Hero[]>(this.heroesUrl)
-  //     .pipe(
-  //       tap(heroes => this.log('fetched heroes')),
-  //       catchError(this.handleError('getHeroes', []))
-  //     );
-  // }
+
+  plans(): Observable<Plan[]> {
+    this.headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get<any>(this.Url+"/plans", {headers:this.headers});
+   /* return this.http.get<Plan[]>(this.heroesUrl)
+      .pipe(
+        tap(heroes => this.log('fetched heroes')),
+        catchError(this.handleError('getHeroes', []))
+      );*/
+  }
 
   // Gets (): Observable<Hero[]> {
   // this.headers = new HttpHeaders({'Content-Type': 'application/json'});

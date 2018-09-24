@@ -131,7 +131,7 @@
             <div class="blog-grid row">
                 <div class="col-xs-1 col-sm-2"></div>
                 <div class="col-mob-12 col-xs-12 col-sm-4 col-md-4 clear-xs-2 clear-md-3" style="margin-bottom: 30px;">
-                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[0]._id === select_plan._id) ? '3px solid red':'none'}" >
+                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[0] === select_plan) ? '3px solid red':'none'}" >
                         <div class="radius-top">
                             <div class="vertical-align">
                                 <div class="col-xs-1 col-sm-4">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div class="col-mob-12 col-xs-12 col-sm-4 col-md-4 clear-xs-2 clear-md-3" style="margin-bottom: 30px;">
-                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[1]._id == select_plan._id) ? '3px solid red':'none'}">
+                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[1] == select_plan) ? '3px solid red':'none'}">
                         <div class="radius-top">
                             <div class="vertical-align">
                                 <div class="col-xs-1 col-sm-4">
@@ -168,7 +168,7 @@
             <div class="blog-grid row">
                 <div class="col-xs-1 col-sm-2"></div>
                 <div class="col-mob-12 col-xs-12 col-sm-4 col-md-4 clear-xs-2 clear-md-3" style="margin-bottom: 30px;">
-                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[2]._id == select_plan._id) ? '3px solid red':'none'}">
+                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[2]._id == select_plan) ? '3px solid red':'none'}">
                         <div class="radius-top">
                             <div class="vertical-align">
                                 <div class="col-xs-1 col-sm-4">
@@ -184,7 +184,7 @@
                     </div>
                 </div>
                 <div class="col-mob-12 col-xs-12 col-sm-4 col-md-4 clear-xs-2 clear-md-3" style="margin-bottom: 30px;">
-                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[3]._id == select_plan._id) ? '3px solid red':'none'}">
+                    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[3]._id == select_plan) ? '3px solid red':'none'}">
                         <div class="radius-top">
                             <div class="vertical-align text-center">
                                 <a class="c-button bg-florfresca hv-transparent" (click)="addPlan(plans[3])"><span class="color-white">QUIERO SUSCRIBIRME</span></a>
@@ -211,7 +211,7 @@
             </div>
             <div class="row" style="margin-bottom: 50px" *ngFor="let t of tamanos">
                 <div class="col-xs-1 col-sm-2"></div>
-                <div class="col-xs-1 col-sm-8 bg-white" style="height: 200px;" [ngStyle]="{'border': (t._id == select_tamano._id) ? '3px solid red':'none'}">
+                <div class="col-xs-1 col-sm-8 bg-white" style="height: 200px;" [ngStyle]="{'border': (t._id == select_tamano) ? '3px solid red':'none'}">
                     <div class="col-xs-1 col-sm-4 text-center">
                         <img class="radius-img" [src]="t.icon" alt="" height="150px" width="150px">
                     </div>
@@ -240,7 +240,7 @@
 
             <div class="row" style="margin-bottom: 25px" *ngFor="let s of frecuencia">
                 <div class="col-xs-1 col-sm-2"></div>
-                <div class="col-xs-1 col-sm-8 bg-white" style="height: 120px;" [ngStyle]="{'border': (s._id == select_frecuencia._id) ? '3px solid red':'none'}">
+                <div class="col-xs-1 col-sm-8 bg-white" style="height: 120px;" [ngStyle]="{'border': (s._id == select_frecuencia) ? '3px solid red':'none'}">
                     <div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view">
                         <img src="assets/imgs/icons/icon-flores.png" alt="">
                     </div>

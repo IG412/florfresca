@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { FlorfrescaService } from '../../services/florfresca.service';
+
+import { Message } from '../../models/message';
 import { Suscriptor } from '../../models/suscriptor';
 import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
@@ -9,6 +12,13 @@ import { Tamano } from '../../models/tamano';
 import { Frecuencia } from '../../models/frecuencia';
 
 declare var $: any;
+declare class Plans  {
+  nombre:String;
+  img:String;
+  tamano:String;
+  frecuencia:String;
+  precio?:Number;
+}
 
 @Component({
   selector: 'app-plan',
@@ -26,10 +36,11 @@ export class PlanComponent implements OnInit {
   tamanos:Array<Tamano>;
   frecuencia:Array<Frecuencia>;
   subscription: Subscripcion;
+  message: Message;
 
-  select_plan: Plan;
-  select_tamano:Tamano;
-  select_frecuencia:Frecuencia;
+  select_plan: String;
+  select_tamano:string;
+  select_frecuencia:String;
 
   fecha_entrega:String;
   acept_term:Boolean;
@@ -39,21 +50,18 @@ export class PlanComponent implements OnInit {
   constructor(
   	private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private service: FlorfrescaService
     ) { 
+    this.plans = new Array(4);
+    this.plans[0] = new Plan();
+    this.message = new Message();
     this.submitted = false;
   	this.suscriptor = new Suscriptor();
   	this.parentesco = ["Seleccione","Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
   	this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
   	this.showForm=true;
     this.subscription = new Subscripcion();
-
-  	this.plans = [
-  	{_id: "1", numero:1,  nombre:"FRESCAS DE CULTIVO", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-frescas.jpg"},
-  	{_id: "2", numero:2,  nombre:"ROSAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-rosas.jpg"},
-  	{_id: "3", numero:3,  nombre:"CLÁSICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-clasica.jpg"},
-  	{_id: "4", numero:4,  nombre:"EXÓTICAS", desc: "La más cuidadosa selección de tallos de rosas frescas de nuestro cultivo", img:"assets/imgs/item-exoticas.jpg"}
-  	];
 
   	this.tamanos = [
   	{_id: "1",  precio:1000, nombre:"ORIGINAL", desc: "<strong>10 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"},
@@ -66,15 +74,21 @@ export class PlanComponent implements OnInit {
   	{_id: "2", nombre:"QUINCENAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
   	{_id: "3", nombre:"MENSUAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"}
   	];
-    this.select_plan = new Plan();
-    this.select_tamano = new Tamano();
-    this.select_frecuencia = new Frecuencia();
+    
     this.acept_term = false;
     this.acept_entrega = false;
     this.alert = "";
   }
 
   ngOnInit() {
+    this.service.plans().subscribe(d=>{
+      console.log(d)
+      this.plans = d;
+    },e=>{
+      this.message = e;
+      this.message.status = true;
+      this.message.class = "bg-danger";
+    });
     this.registerForm = this.formBuilder.group({
             nombre: ['', Validators.required],
             rela_paren: ['', Validators.required],
@@ -85,35 +99,36 @@ export class PlanComponent implements OnInit {
             gatos:[]
         });
     $( ".datepicker" ).datepicker({daysOfWeekDisabled: "0,1,3,5,6"});
-    if(localStorage.getItem('suscriptor')){
+    if(localStorage.getItem('subscription')){
       this.showForm = false;
     }
-    this.select_plan = (localStorage.getItem('plan')) ? JSON.parse(localStorage.getItem('plan')) : new Plan();
-    this.select_tamano = (localStorage.getItem('tamano')) ? JSON.parse(localStorage.getItem('tamano')) : new Tamano();
-    this.select_frecuencia = (localStorage.getItem('frecuencia')) ? JSON.parse(localStorage.getItem('frecuencia')) : new Frecuencia();
+    // this.select_plan = (localStorage.getItem('plan')) ? JSON.parse(localStorage.getItem('plan')) : new Plan();
+    // this.select_tamano = (localStorage.getItem('tamano')) ? JSON.parse(localStorage.getItem('tamano')) : new Tamano();
+    // this.select_frecuencia = (localStorage.getItem('frecuencia')) ? JSON.parse(localStorage.getItem('frecuencia')) : new Frecuencia();
     this.suscriptor.ciudad = "Bogotá";
   }
   
   addSuscriptor(){
-    console.log(this.subscription);
-    // this.submitted = true;
-    // if(!this.registerForm.invalid){
-    //   localStorage.setItem('suscriptor', JSON.stringify(this.suscriptor));
-    //   this.showForm = false;
-    // }else{
-    //   console.log('error')
-    // }
+    this.submitted = true;
+    if(!this.registerForm.invalid){
+      this.subscription.suscriptor = this.suscriptor;
+      localStorage.setItem('subscription', JSON.stringify(this.subscription));
+      this.showForm = false;
+    }else{
+      console.log('error')
+    }
   }
   addPlan(plan:Plan){
-  	this.subscription.plan.nombre = plan.nombre;
-    this.subscription.plan.img = plan.img;
-    this.subscription.plan.precio = 0;
+    this.subscription.plan = {nombre:plan.nombre,img:plan.img}
+    this.select_plan = plan._id;
   }
   addTamano(tamano:Tamano){
-  	this.select_tamano = tamano;
+    this.subscription.plan.tamano = tamano.nombre;
+  	this.select_tamano = tamano._id;
   }
   addTipo(frecuencia:Frecuencia){
-  	this.select_frecuencia = frecuencia;
+    this.subscription.plan.frecuencia = frecuencia.nombre;
+  	this.select_frecuencia = frecuencia._id;
   }
 
   goToSummary(){
@@ -122,12 +137,9 @@ export class PlanComponent implements OnInit {
     }else{
       console.log($("#fecha_entrega").val());
       if($("#fecha_entrega").val() != ''){
-        if(!this.showForm && this.select_frecuencia._id != undefined && this.select_tamano._id != undefined && this.select_plan._id != undefined){
+        if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_plan != undefined){
           this.alert = "";
-          localStorage.setItem('tamano', JSON.stringify(this.select_tamano));
-          localStorage.setItem('plan', JSON.stringify(this.select_plan));
-          localStorage.setItem('frecuencia', JSON.stringify(this.select_frecuencia));
-
+          localStorage.setItem('subscription', JSON.stringify(this.subscription));
           this.router.navigate(['subscription/summary']);
         }else{
           this.alert = "Debe completar todos los datos";

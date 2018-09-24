@@ -4,14 +4,14 @@ import { Suscriptor } from './suscriptor';
 class Plan  {
 	nombre:String;
 	img:String;
-	tamano:String;
-	frecuencia:String;
+	tamano?:String;
+	frecuencia?:String;
 	precio?:Number;
 }
 
 export class Subscripcion {
-	estado?:String;
+	estado:String;
 	suscriptor: Suscriptor;
-	plan?:Plan;
-	cliente?:String;
+	plan:Plan;
+	cliente:String;
 }
