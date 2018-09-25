@@ -2,6 +2,7 @@ import { Suscriptor } from './suscriptor';
 // import { Plan } from './plan';
 
 class Plan  {
+	_id:String;
 	nombre:String;
 	img:String;
 	tamano?:String;

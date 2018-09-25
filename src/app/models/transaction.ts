@@ -52,7 +52,6 @@ export class Transaction {
   paymentCountry: string;
   cookie: string;
   userAgent: string;
-
   constructor() {}
 }
 

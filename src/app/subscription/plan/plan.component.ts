@@ -39,7 +39,7 @@ export class PlanComponent implements OnInit {
   message: Message;
 
   select_plan: String;
-  select_tamano:string;
+  select_tamano:String;
   select_frecuencia:String;
 
   fecha_entrega:String;
@@ -53,8 +53,7 @@ export class PlanComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: FlorfrescaService
     ) { 
-    this.plans = new Array(4);
-    this.plans[0] = new Plan();
+    this.plans = new Array();
     this.message = new Message();
     this.submitted = false;
   	this.suscriptor = new Suscriptor();
@@ -62,12 +61,7 @@ export class PlanComponent implements OnInit {
   	this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
   	this.showForm=true;
     this.subscription = new Subscripcion();
-
-  	this.tamanos = [
-  	{_id: "1",  precio:1000, nombre:"ORIGINAL", desc: "<strong>10 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"},
-  	{_id: "2", precio:1000,  nombre:"DELUXE", desc: "<strong>18 a 14 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-delux.png"},
-  	{_id: "3",  precio:1000, nombre:"GRANDE", desc: "<strong>36 a 48 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/plans/size-original.png"}
-  	];
+  	this.tamanos = new Array();
 
   	this.frecuencia = [
   	{_id: "1", nombre:"SEMANAL", desc: "<strong>12 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
@@ -82,7 +76,6 @@ export class PlanComponent implements OnInit {
 
   ngOnInit() {
     this.service.plans().subscribe(d=>{
-      console.log(d)
       this.plans = d;
     },e=>{
       this.message = e;
@@ -100,11 +93,12 @@ export class PlanComponent implements OnInit {
         });
     $( ".datepicker" ).datepicker({daysOfWeekDisabled: "0,1,3,5,6"});
     if(localStorage.getItem('subscription')){
+      this.subscription = JSON.parse(localStorage.getItem('subscription'));
+      this.select_plan = (this.subscription.plan._id)? this.subscription.plan._id : '';
+      this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
+      this.select_frecuencia = (this.subscription.plan.frecuencia)? this.subscription.plan.frecuencia : '';
       this.showForm = false;
     }
-    // this.select_plan = (localStorage.getItem('plan')) ? JSON.parse(localStorage.getItem('plan')) : new Plan();
-    // this.select_tamano = (localStorage.getItem('tamano')) ? JSON.parse(localStorage.getItem('tamano')) : new Tamano();
-    // this.select_frecuencia = (localStorage.getItem('frecuencia')) ? JSON.parse(localStorage.getItem('frecuencia')) : new Frecuencia();
     this.suscriptor.ciudad = "Bogotá";
   }
   
@@ -119,34 +113,54 @@ export class PlanComponent implements OnInit {
     }
   }
   addPlan(plan:Plan){
-    this.subscription.plan = {nombre:plan.nombre,img:plan.img}
+    this.subscription.plan = {_id:plan._id,nombre:plan.nombre,img:plan.img}
     this.select_plan = plan._id;
+    this.tamanos = plan.tamano;
   }
   addTamano(tamano:Tamano){
     this.subscription.plan.tamano = tamano.nombre;
-  	this.select_tamano = tamano._id;
+    this.subscription.plan.precio = tamano.precio;
+  	this.select_tamano = tamano.nombre;
   }
   addTipo(frecuencia:Frecuencia){
     this.subscription.plan.frecuencia = frecuencia.nombre;
-  	this.select_frecuencia = frecuencia._id;
+  	this.select_frecuencia = frecuencia.nombre;
   }
 
   goToSummary(){
     if(!this.acept_entrega && !this.acept_term){
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";
     }else{
-      console.log($("#fecha_entrega").val());
       if($("#fecha_entrega").val() != ''){
         if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_plan != undefined){
           this.alert = "";
           localStorage.setItem('subscription', JSON.stringify(this.subscription));
           this.router.navigate(['subscription/summary']);
         }else{
-          this.alert = "Debe completar todos los datos";
+          this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
         }
       }else{
         this.alert = "Debe Ingresar el día que desea la entrega";
       } 
     }
+  }
+
+  private getPrice(val: String, price:any):Number{
+    let valor:Number = 0;
+    switch (val) {
+      case "SEMANAL":
+        valor= price*4;
+        break;
+      case "QUINCENAL":
+        valor= price*2;
+        break;
+      case "MENSUAL":
+        valor= price*1;
+        break;
+      default:
+        valor= price;
+        break;
+    }
+    return valor;
   }
 }

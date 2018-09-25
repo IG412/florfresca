@@ -14,10 +14,7 @@ import { Frecuencia } from '../../models/frecuencia';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  suscriptor: Suscriptor;
-  plan: Plan;
-  tamano: Tamano;
-  frecuencia: Frecuencia;
+  subscripcion: Subscripcion;
 
   tipoDoc: Array<any>;
   datosPago: any;
@@ -27,10 +24,7 @@ export class PaymentComponent implements OnInit {
   transaction: Transaction;
 
   constructor(private route: ActivatedRoute, private router: Router) {
-    this.suscriptor = new Suscriptor();
-    this.plan = new Plan();
-    this.tamano = new Tamano();
-    this.frecuencia = new Frecuencia();
+    this.subscripcion = new Subscripcion();
 
     this.datosPago = {
       nombre: '',
@@ -60,20 +54,6 @@ export class PaymentComponent implements OnInit {
     ];
     this.emailConfirmacion = '';
     this.mensajeError = '';
-    if (localStorage.getItem('suscriptor') &&
-    localStorage.getItem('plan') &&
-    localStorage.getItem('tamano') &&
-    localStorage.getItem('frecuencia')) {
-      // console.log('Informaciond el local storage');
-      this.suscriptor = JSON.parse(localStorage.getItem('suscriptor'));
-      this.plan = JSON.parse(localStorage.getItem('plan'));
-      this.tamano = JSON.parse(localStorage.getItem('tamano'));
-      this.frecuencia = JSON.parse(localStorage.getItem('frecuencia'));
-      this.datosPago.nombre = this.suscriptor.nombre;
-      this.datosPago.telefono = this.suscriptor.tel;
-    } else {
-      this.router.navigate(['subscription/plan'], {});
-    }
     this.transaction = new Transaction();
     // this.transaction.order['buyer'].fullName = 'prueba de nombre';
     // this.transaction.order.buyer.fullName='fa';
@@ -82,7 +62,11 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    if (localStorage.getItem('subscription')) {
+      this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
+    } else {
+      this.router.navigate(['subscription/plan'], {});
+    }
   }
 
   goToSummary() {
@@ -198,5 +182,24 @@ export class PaymentComponent implements OnInit {
     // console.log(this.tarjetas[0].nombre);
     // console.log(this.datosPago.tarjeta);
     // console.log(this.tarjetas[0].nombre == this.datosPago.tarjeta);
+  }
+  private getPrice(val: String, price:any):Number{
+    console.log(val,price)
+    let valor:Number = 0;
+    switch (val) {
+      case "SEMANAL":
+        valor= price*4;
+        break;
+      case "QUINCENAL":
+        valor= price*2;
+        break;
+      case "MENSUAL":
+        valor= price*1;
+        break;
+      default:
+        valor= price;
+        break;
+    }
+    return valor;
   }
 }
