@@ -1,114 +1,61 @@
-export class Transaction {
-  order: [{
-    buyer: {
-      merchantBuyerId: string,
-      fullName: string,
-      emailAddress: string,
-      contactPhone: string,
-      dniNumber: string,
-      shippingAddress: {
-        street1: string,
-        street2: string,
-        city: string,
-        state: string,
-        country: string,
-        postalCode: string,
-        phone: string,
-      }
-    }}, {
-    shippingAddress: {
-      street1: string,
-      street2: string,
-      city: string,
-      state: string,
-      country: string,
-      postalCode: string,
-      phone: string
-    }
-  }];
-  payer: {
-    merchantPayerId: string,
-    fullName: string,
-    emailAddress: string,
-    contactPhone: string,
-    dniNumber: string,
-    billingAddress: {
-      street1: string,
-      street2: string,
-      city: string,
-      state: string,
-      country: string,
-      postalCode: string,
-      phone: string
-    }
-  };
-  creditCard: {
-    number: string,
-    securityCode: string,
-    expirationDate: string,
-    name: string,
-  };
-  paymentMethod: string;
-  paymentCountry: string;
-  cookie: string;
-  userAgent: string;
-  constructor() {}
+import { Customer } from './customer';
+
+class Plan {
+  planCode: string;
+  description: string;
+  accountId: number;
+  intervalCount: number;
+  interval: string;
+  maxPaymentsAllowed: number;
+  maxPaymentAttempts: number;
+  paymentAttemptsDelay: number;
+  maxPendingPayments: number;
+  trialDays: number;
+  customer: Customer;
+  additionalValues: [
+     {
+        name: string;
+        value: number;
+        currency: string;
+     }
+  ]
+  constructor(){
+    this.intervalCount = 1;
+    this.interval = "MONTH";
+    this.maxPaymentsAllowed = 12;
+    this.maxPaymentAttempts = 3;
+    this.paymentAttemptsDelay = 1;
+    this.maxPendingPayments = 1;
+    this.trialDays = 30;
+  }
 }
 
-// {
-//        "transaction": {
-//           "order": {
-//              "buyer": {
-//                 "merchantBuyerId": "1",
-//                 "fullName": "First name and second buyer  name",
-//                 "emailAddress": "buyer_test@test.com",
-//                 "contactPhone": "7563126",
-//                 "dniNumber": "5415668464654",
-//                 "shippingAddress": {
-//                    "street1": "Viamonte",
-//                    "street2": "1366",
-//                    "city": "Buenos Aires",
-//                    "state": "Buenos Aires",
-//                    "country": "AR",
-//                    "postalCode": "000000",
-//                    "phone": "7563126"
-//                 }
-//              },
-//              "shippingAddress": {
-//                 "street1": "Viamonte",
-//                 "street2": "1366",
-//                 "city": "Buenos Aires",
-//                 "state": "Buenos Aires",
-//                 "country": "AR",
-//                 "postalCode": "0000000",
-//                 "phone": "7563126"
-//              }
-//           },
-//           "payer": {
-//              "merchantPayerId": "1",
-//              "fullName": "First name and second payer name",
-//              "emailAddress": "payer_test@test.com",
-//              "contactPhone": "7563126",
-//              "dniNumber": "5415668464654",
-//              "billingAddress": {
-//                 "street1": "Avenida entre rios",
-//                 "street2": "452",
-//                 "city": "Plata",
-//                 "state": "Buenos Aires",
-//                 "country": "AR",
-//                 "postalCode": "64000",
-//                 "phone": "7563126"
-//              }
-//           },
-//           "creditCard": {
-//              "number": "4850110000000000",
-//              "securityCode": "321",
-//              "expirationDate": "2014/12",
-//              "name": "REJECTED"
-//           },
-//           "paymentMethod": "VISA",
-//           "paymentCountry": "AR",
-//           "cookie": "pt1t38347bs6jc9ruv2ecpv7o2",
-//           "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0"
-//        }
-// }
+export class Transaction {
+   quantity: string;
+   installments: number;
+   trialDays: number;
+   immediatePayment: boolean;
+   extra1: string;
+   extra2: string;
+   customer: Customer;
+   plan: Plan ;
+   deliveryAddress: {
+      line1: string;
+      line2: string;
+      line3: string;
+      postalCode: number;
+      city: string;
+      state:string;
+      country: string;
+      phone: number;
+      }
+   notifyUrl: string;
+   constructor(){
+     this.notifyUrl = "";
+     this.extra1 = "Extra 1";
+     this.extra2 = "Extra 2";
+     this.immediatePayment = true;
+     this.trialDays = 15;
+     this.installments = 1;
+   }
+}

@@ -81,4 +81,8 @@ export class SummaryComponent implements OnInit {
     return valor;
   }
 
+  isLogin():boolean{
+    return (localStorage.getItem('id'))? true:false;
+  }
+
 }

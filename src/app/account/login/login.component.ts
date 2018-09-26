@@ -24,14 +24,19 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.from = this.active.snapshot.paramMap.get('from');
+    this.from = this.active.snapshot.queryParamMap.get("from");
+    if(localStorage.getItem('token') && localStorage.getItem('id') ){
+       this.router.navigateByUrl("/"); 
+    }
   }
   onSubmit() {
+    console.log('entro');
     this.service.Auth0(this.usuario).subscribe(
       d=>{
         let msg:any = d;
         localStorage.setItem('token', msg.token);
         localStorage.setItem('id', msg.id);
+        this.goBack();
       },
       e=>{
         console.log(e);
@@ -43,7 +48,8 @@ export class LoginComponent implements OnInit {
     if(this.from){
       this.router.navigateByUrl("/subscription/"+this.from);  
     }else{
-      this.router.navigateByUrl("/account");  
+      // this.router.navigateByUrl("/account");  
+      console.log(this.from);
     }
   }
 }

@@ -4,12 +4,12 @@
         <div class="row " >
             <div class="col-xs-1 col-sm-2"></div>
             <div class="col-xs-12 col-md-8">
-                <div class="detail-content-block">
+                <div class="detail-content-block" [hidden]="isLogin()">
                     <div class="confirm-label bg-dr-blue radius-5">
                         <img class="confirm-img" src="assets/img/thx_icon.png" alt="">
                         <div class="confirm-title color-white">¿ERES USUARIO DE FLOR FRESCA?</div>
                         <div class="confirm-text color-white-light">Registrate o accede a tu cuenta y recibe promociones especiales.</div>
-                        <a href="/login" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a>
+                        <a href="/login?from=summary" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a>
                     </div>
                 </div>
                 <div class="detail-content-block bg-white" style="padding: 30px;">

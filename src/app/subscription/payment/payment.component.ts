@@ -1,12 +1,11 @@
-import { Transaction } from './../../models/transaction';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Suscriptor } from '../../models/suscriptor';
 import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
-import { Tamano } from '../../models/tamano';
-import { Frecuencia } from '../../models/frecuencia';
+import { Customer } from '../../models/customer';
+import { Transaction } from './../../models/transaction';
 
 @Component({
   selector: 'app-payment',
@@ -15,7 +14,6 @@ import { Frecuencia } from '../../models/frecuencia';
 })
 export class PaymentComponent implements OnInit {
   subscripcion: Subscripcion;
-
   tipoDoc: Array<any>;
   datosPago: any;
   emailConfirmacion: string;
@@ -44,13 +42,21 @@ export class PaymentComponent implements OnInit {
       cuotas: '',
       celularTarjeta: '',
     };
-    this.tipoDoc = ['Cedula Colombiana', 'Cedula de Extranjeria', 'Pasaporte'];
+    this.tipoDoc = [
+    {iso:"CC", desc:"Cédula de ciudadanía"},
+    {iso:"CE", desc:"Cédula de extranjería"},
+    {iso:"NIT", desc:"Número de Identificación Tributario."},
+    {iso:"TI", desc:"Cédula de ciudadanía"},
+    {iso:"PP", desc:"Pasaporte"},
+    {iso:"RC", desc:"Registro civil de nacimiento"},
+    {iso:"DE", desc:"Documento de identificación extranjero"}
+    ];
+    
     this.tarjetas = [
-      { _id: 1, nombre: 'visa' },
-      { _id: 2, nombre: 'mastercard' },
-      { _id: 3, nombre: 'american' },
-      { _id: 4, nombre: 'colpatria' },
-      { _id: 5, nombre: 'other1' }
+      { _id: 1, nombre: 'Visa' },
+      { _id: 2, nombre: 'Mastercard' },
+      { _id: 3, nombre: 'Amex' },
+      { _id: 4, nombre: 'Diners' }
     ];
     this.emailConfirmacion = '';
     this.mensajeError = '';
@@ -58,7 +64,7 @@ export class PaymentComponent implements OnInit {
     // this.transaction.order['buyer'].fullName = 'prueba de nombre';
     // this.transaction.order.buyer.fullName='fa';
     // console.log('Datos Transaction', this.transaction.order['buyer'].buyer.fullName);
-    console.log('Datos Transaction', JSON.stringify(this.transaction));
+    console.log('Datos Transaction',this.transaction);
   }
 
   ngOnInit() {
@@ -184,7 +190,6 @@ export class PaymentComponent implements OnInit {
     // console.log(this.tarjetas[0].nombre == this.datosPago.tarjeta);
   }
   private getPrice(val: String, price:any):Number{
-    console.log(val,price)
     let valor:Number = 0;
     switch (val) {
       case "SEMANAL":

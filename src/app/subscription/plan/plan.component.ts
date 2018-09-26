@@ -77,6 +77,14 @@ export class PlanComponent implements OnInit {
   ngOnInit() {
     this.service.plans().subscribe(d=>{
       this.plans = d;
+      if(localStorage.getItem('subscription')){
+        this.subscription = JSON.parse(localStorage.getItem('subscription'));
+        this.select_plan = (this.subscription.plan._id)? this.subscription.plan._id : '';
+        this.find(this.subscription.plan._id);
+        this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
+        this.select_frecuencia = (this.subscription.plan.frecuencia)? this.subscription.plan.frecuencia : '';
+        this.showForm = false;
+      }
     },e=>{
       this.message = e;
       this.message.status = true;
@@ -92,13 +100,6 @@ export class PlanComponent implements OnInit {
             gatos:[]
         });
     $( ".datepicker" ).datepicker({daysOfWeekDisabled: "0,1,3,5,6"});
-    if(localStorage.getItem('subscription')){
-      this.subscription = JSON.parse(localStorage.getItem('subscription'));
-      this.select_plan = (this.subscription.plan._id)? this.subscription.plan._id : '';
-      this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
-      this.select_frecuencia = (this.subscription.plan.frecuencia)? this.subscription.plan.frecuencia : '';
-      this.showForm = false;
-    }
     this.suscriptor.ciudad = "Bogotá";
   }
   
@@ -162,5 +163,14 @@ export class PlanComponent implements OnInit {
         break;
     }
     return valor;
+  }
+
+  private find(id:String):void{
+    this.plans.forEach((value)=>{
+      let plan:Plan = value;
+      if(plan._id == id){
+        this.tamanos = plan.tamano;
+      } 
+    });
   }
 }
