@@ -51,7 +51,6 @@ export class PaymentComponent implements OnInit {
     // console.log('Datos Transaction', this.transaction.order['buyer'].buyer.fullName);
 
   }
-
   ngOnInit() {
     if (localStorage.getItem('subscription')) {
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
