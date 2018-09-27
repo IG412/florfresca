@@ -5,7 +5,7 @@ export class CreditCards{
             expMonth: number;
             expYear: number;
             type: string;
-            address: {
+            address?: {
                line1: string;
                line2: string;
                line3: string;

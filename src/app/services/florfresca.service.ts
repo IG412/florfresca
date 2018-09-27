@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Plan } from '../models/plan';
+import { Usuario } from '../models/usuario';
 
 
 @Injectable({
@@ -31,15 +32,14 @@ export class FlorfrescaService {
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
     return this.http.post<any>(this.Url+"/", query, {headers: this.headers});
   }
-
   plans(): Observable<Plan[]> {
     this.headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get<any>(this.Url+"/plans", {headers:this.headers});
-   /* return this.http.get<Plan[]>(this.heroesUrl)
-      .pipe(
-        tap(heroes => this.log('fetched heroes')),
-        catchError(this.handleError('getHeroes', []))
-      );*/
+  }
+  user(id:string): Observable<Usuario>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return this.http.get<Usuario>(this.Url+"/user/"+id,{headers:this.headers});
   }
 
   // Gets (): Observable<Hero[]> {

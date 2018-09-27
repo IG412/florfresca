@@ -63,9 +63,9 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Tu nombre <span style='color:red'>*</span> </div>
+                                        <div class="form-label color-dark-2">Tu nombre<span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.nombre" placeholder="" name="nombre">
+                                            <input type="text" [(ngModel)]="usuario.nombre" name="nombre">
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tus apellidos<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.apellidos" placeholder="" name="apellidos">
+                                            <input type="text" [(ngModel)]="usuario.apellido" name="apellidos">
                                         </div>
                                     </div>
                                 </div>
@@ -81,23 +81,23 @@
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tu Email <span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.email" placeholder="" name="email">
+                                            <input type="text" [(ngModel)]="usuario.correo" name="email">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Confirma tu Email<span style='color:red'>*</span></div>
+                                        <div class="form-label color-dark-2">Dirección<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="emailConfirmacion" placeholder="" name="emailConfirmacion">
+                                            <input type="text" [(ngModel)]="usuario.dir" name="direccion">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Tu Teléfono <span style='color:red'>*</span> </div>
+                                        <div class="form-label color-dark-2">Tu Teléfono<span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.telefono" placeholder="" name="telefono">
+                                            <input type="text" [(ngModel)]="usuario.telefono" name="telefono">
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
 
                                         <div class="form-label color-dark-2">Tus Celular<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.celular" placeholder="" name="celular">
+                                            <input type="text" [(ngModel)]="usuario.celular" name="celular">
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tipo de Documento <span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <select [(ngModel)]="datosPago.tipoDocumento" class="drop-wrap drop-wrap-s-4" name="tipoDoc">
+                                            <select [(ngModel)]="usuario.tipo_doc" class="drop-wrap drop-wrap-s-4" name="tipoDoc">
                                               <option *ngFor='let tipoD of tipoDoc'>{{tipoD}}</option>
                                             </select>
                                         </div>
@@ -122,10 +122,9 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-
                                         <div class="form-label color-dark-2"># Documento<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.numeroDocumento" placeholder="" name="numeroDocumento">
+                                            <input type="text" [(ngModel)]="usuario.documento" name="numeroDocumento">
                                         </div>
                                     </div>
                                 </div>
@@ -138,31 +137,20 @@
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tarjeta de Crédito <span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-
                                             <a (click)="addCard(tarjetas[0].nombre)">
-
-                                                <div class="col-sm-2" style="background: purple; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[0].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
+                                                <div class="col-sm-2" style="background: purple; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[0].nombre == card.type) ? '3px solid red':'none'}">
                                                 </div>
                                             </a>
                                             <a (click)="addCard(tarjetas[1].nombre)">
-                                                <div class="col-sm-2" style="background: blue; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[1].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
+                                                <div class="col-sm-2" style="background: blue; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[1].nombre == card.type) ? '3px solid red':'none'}">
                                                 </div>
                                             </a>
                                             <a (click)="addCard(tarjetas[2].nombre)">
-                                                <div class="col-sm-2" style="background: yellow; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[2].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-
-
+                                                <div class="col-sm-2" style="background: yellow; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[2].nombre == card.type) ? '3px solid red':'none'}">
                                                 </div>
                                             </a>
                                             <a (click)="addCard(tarjetas[3].nombre)">
-                                                <div class="col-sm-2" style="background: green; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[3].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-
-
-                                                </div>
-                                            </a>
-                                            <a (click)="addCard(tarjetas[4].nombre)">
-                                                <div class="col-sm-2" style="background: black; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[4].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-
+                                                <div class="col-sm-2" style="background: green; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[3].nombre == card.type) ? '3px solid red':'none'}">
                                                 </div>
                                             </a>
                                         </div>
@@ -172,17 +160,7 @@
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Nombre en la Tarjeta<span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.nombreTarjeta" name="nombreTarjeta">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Tipo de Documento de Identificación<span style='color:red'>*</span> </div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <select [(ngModel)]="datosPago.tipoDocumentoTarjeta" class="drop-wrap drop-wrap-s-4" name="tipoDocumentoTarjeta">
-                                                <option *ngFor='let tipoD of tipoDoc'>{{tipoD}}</option>
-                                            </select>
+                                            <input type="text" [(ngModel)]="card.name" name="nombreTarjeta">
                                         </div>
                                     </div>
                                 </div>
@@ -190,32 +168,43 @@
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Número de la Tarjeta<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.numeroTarjeta" placeholder="" name="numeroTarjeta">
+                                            <input type="text" [(ngModel)]="card.number" name="numeroTarjeta">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Código de Seguridad <a style="color: blue">CVV/CVC</a> <span style='color:red'>*</span></div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.codigoSeguridad" placeholder="" name="codigoSeguridad">
+                                        <div class="form-label color-dark-2">
+                                            Fecha de Vecimiento<span style='color:red'>*</span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Fecha de Vecimiento<span style='color:red'>*</span></div>
-                                                <div class="input-style">
-                                                    <img src="assets/img/calendar_icon.png" alt="">
-                                                    <input type="text" placeholder="" [(ngModel)]="datosPago.fechaVencimiento" name="fecha_vencimiento" id="fecha_vencimiento" class="datepicker">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <!-- <div class="input-style-1 b-50 brd-0 type-2 color-5"> -->
+                                                    <select [(ngModel)]="card.expMonth" class="drop-wrap drop-wrap-s-4 color-5" name="cuotas">
+                                                        <option *ngFor="let m of months" value="{{m.number}}">{{m.name}}</option>
+                                                    </select>
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                                    <select [(ngModel)]="card.expMonth" class="drop-wrap drop-wrap-s-4" name="cuotas">
+                                                        <option *ngFor="let y of year">{{y}}</option>
+                                                    </select>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                              <!--   <div class="input-style">
+                                                    <img src="assets/img/calendar_icon.png" alt="">
+                                                    <input type="text" [(ngModel)]="card.fechaVencimiento" name="fecha_vencimiento" id="fecha_vencimiento" class="datepicker">
+                                                </div> -->
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Numero de Cuotas<span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <select [(ngModel)]="datosPago.cuotas" class="drop-wrap drop-wrap-s-4" name="cuotas">
+                                            <select [(ngModel)]="card.cuotas" class="drop-wrap drop-wrap-s-4" name="cuotas">
                                                 <option >1</option>
                                             </select>
                                         </div>

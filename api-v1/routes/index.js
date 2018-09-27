@@ -5,6 +5,7 @@ var express 	= require('express'),
 	slides		= require('../controller/slides'),
 	subs		= require('../controller/subscriptions'),
 	plan		= require('../controller/plans'),
+	user		= require('../controller/users'),
 	// upload 		= require('../controller/upload'),
 	// autho 		= jwt({secret: token.TOKEN_SECRET, userProperty:'payload'}),
 	router 		= express.Router();
@@ -16,6 +17,7 @@ router.route('/auth/register').post(auth.register);
 router.route('/subscriptions').get(subs.all).post(subs.post);
 router.route('/plans').get(plan.all).post(plan.post);
 
+router.route('/user/:id').get(user.get).put(user.put);
 // router.route('/slides').get(slides.all).post(slides.post);
 // router.route('/slides/:id').get(slides.get).put(slides.put).delete(slides.delete);
 
