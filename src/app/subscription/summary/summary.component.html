@@ -4,12 +4,12 @@
         <div class="row " >
             <div class="col-xs-1 col-sm-2"></div>
             <div class="col-xs-12 col-md-8">
-                <div class="detail-content-block">
+                <div class="detail-content-block" [hidden]="isLogin()">
                     <div class="confirm-label bg-dr-blue radius-5">
                         <img class="confirm-img" src="assets/img/thx_icon.png" alt="">
                         <div class="confirm-title color-white">¿ERES USUARIO DE FLOR FRESCA?</div>
                         <div class="confirm-text color-white-light">Registrate o accede a tu cuenta y recibe promociones especiales.</div>
-                        <a href="/login" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a>
+                        <a href="/login?from=summary" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a>
                     </div>
                 </div>
                 <div class="detail-content-block bg-white" style="padding: 30px;">
@@ -23,12 +23,12 @@
                                         <ng-container *ngIf="show; else nombreTemplate">
                                             <div class="form-block type-2">
                                                 <div class="input-style-1 b-0 brd-0 type-2 color-3">
-                                                    <input type="text" value="{{suscriptor.nombre}}" [(ngModel)]="suscriptor.nombre">
+                                                    <input type="text" value="{{subscripcion.suscriptor.nombre}}" [(ngModel)]="subscripcion.suscriptor.nombre">
                                                 </div>
                                             </div>
                                         </ng-container>
                                         <ng-template #nombreTemplate>
-                                            <strong>{{suscriptor.nombre}}</strong>
+                                            <strong>{{subscripcion.suscriptor.nombre}}</strong>
                                         </ng-template>
                                     </td>
                                 </tr>
@@ -37,13 +37,13 @@
                                     <td class="table-label color-dark-2">
                                         <ng-container *ngIf="show; else rela_parenTemplate">
                                             <div class="form-block type-2">
-                                                <select [(ngModel)]="suscriptor.rela_paren" class="drop-wrap drop-wrap-s-4 color-4 b-0 brd-0 type-2" name="rela_paren"  style="padding-left: 20px;">
+                                                <select [(ngModel)]="subscripcion.suscriptor.rela_paren" class="drop-wrap drop-wrap-s-4 color-4 b-0 brd-0 type-2" name="rela_paren"  style="padding-left: 20px;">
                                                   <option *ngFor='let p of parentesco'>{{p}}</option>
                                                 </select>
                                             </div>
                                         </ng-container>
                                         <ng-template #rela_parenTemplate>
-                                            <strong>{{suscriptor.rela_paren}}</strong>
+                                            <strong>{{subscripcion.suscriptor.rela_paren}}</strong>
                                         </ng-template>
 
                                     </td>
@@ -53,13 +53,13 @@
                                     <td class="table-label color-dark-2">
                                         <ng-container *ngIf="show; else categoTemplate">
                                             <div class="form-block type-2">
-                                                <select [(ngModel)]="suscriptor.catego" class="drop-wrap drop-wrap-s-4 color-5" name="catego"  style="padding-left: 20px;">
+                                                <select [(ngModel)]="subscripcion.suscriptor.catego" class="drop-wrap drop-wrap-s-4 color-5" name="catego"  style="padding-left: 20px;">
                                                   <option *ngFor='let c of cat'>{{c}}</option>
                                                 </select>
                                             </div>
                                         </ng-container>
                                         <ng-template #categoTemplate>
-                                            <strong>{{suscriptor.catego}}</strong>
+                                            <strong>{{subscripcion.suscriptor.catego}}</strong>
                                         </ng-template>
                                     </td>
                                 </tr>
@@ -69,12 +69,12 @@
                                         <ng-container *ngIf="show; else direccionTemplate">
                                             <div class="form-block type-2">
                                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                                    <input type="text" [(ngModel)]="suscriptor.direccion" placeholder="" name="direccion">
+                                                    <input type="text" [(ngModel)]="subscripcion.suscriptor.direccion" placeholder="" name="direccion">
                                                 </div>
                                             </div>
                                         </ng-container>
                                         <ng-template #direccionTemplate>
-                                                <strong>{{suscriptor.direccion}}</strong>
+                                                <strong>{{subscripcion.suscriptor.direccion}}</strong>
                                         </ng-template>
                                     </td>
                                 </tr>
@@ -89,7 +89,7 @@
                                             </div>
                                         </ng-container>
                                         <ng-template #ciudadTemplate>
-                                            <strong>{{suscriptor.ciudad}}</strong>
+                                            <strong>{{subscripcion.suscriptor.ciudad}}</strong>
                                         </ng-template>
                                     </td>
                                 </tr>
@@ -99,12 +99,12 @@
                                         <ng-container *ngIf="show; else telefonoTemplate">
                                             <div class="form-block type-2">
                                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                                    <input type="text" [(ngModel)]="suscriptor.tel" placeholder="" name="tel">
+                                                    <input type="text" [(ngModel)]="subscripcion.suscriptor.tel" placeholder="" name="tel">
                                                 </div>
                                             </div>
                                         </ng-container>
                                         <ng-template #telefonoTemplate>
-                                            <strong>{{suscriptor.tel}}</strong>
+                                            <strong>{{subscripcion.suscriptor.tel}}</strong>
                                         </ng-template>
                                     </td>
                                 </tr>
@@ -127,14 +127,14 @@
                 <div class="title hotel-middle clearfix cell-view">
                     <div class="col-xs-1 col-sm-12 " style="margin: 10px">RESUMEN PLAN</div>
                     <div class="col-xs-1 col-sm-4">
-                        <img class="icon-img bg-dr-blue " [src]="plan.img" style="width: 100%" alt="">
+                        <img class="icon-img bg-dr-blue " [src]="subscripcion.plan.img" style="width: 100%" alt="">
                     </div>
                     <div class="col-xs-1 col-sm-8">
                         <div class="date list-hidden"><strong>Recibirás una suscripción de flores</strong></div>
-                        <div class="date grid-hidden"><strong>Tamaño:</strong> {{'Tamaño '+tamano.nombre}}</div>
-                        <div class="date grid-hidden"><strong>Frecuencia:</strong> {{frecuencia.nombre}}</div>
+                        <div class="date grid-hidden"><strong>Tamaño:</strong> {{'Tamaño '+subscripcion.plan.tamano}}</div>
+                        <div class="date grid-hidden"><strong>Frecuencia:</strong> {{subscripcion.plan.frecuencia}}</div>
                         <div class="date grid-hidden"><strong>Tu primera orden</strong></div>
-                        <h4><b>TOTAL: </b>{{precio}}</h4>
+                        <h4><b>TOTAL: </b>{{getPrice(subscripcion.plan.frecuencia,subscripcion.plan.precio)}}</h4>
                     </div>
                 </div>
             </div>

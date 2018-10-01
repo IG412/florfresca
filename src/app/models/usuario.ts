@@ -1,3 +1,5 @@
+import { CreditCards } from './creditcards';
+
 export class Usuario {
     _id?:string;
     nombre?: string;
@@ -6,17 +8,12 @@ export class Usuario {
     telefono?: string;
     celular?: number;
     tipo_doc?: string;
-    documento?:  string;
-    contra?: string;
-    activo?: boolean;
-    tarjeta?: [
-         {
-            nombre: string,
-            numero: string,
-            fecha_ven: string,
-            codigo_s: string,
-            hash: string
-        }
-    ];
+    documento?:  number;
+    pass?:string;
+    dir?:string;
+    tarjeta: Array<CreditCards>;
+    constructor(){
+        this.tarjeta = new Array();
+    }
 
 }

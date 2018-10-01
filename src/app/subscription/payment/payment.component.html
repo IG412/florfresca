@@ -35,14 +35,14 @@
                             RESUMEN PLAN
                         </div>
                         <div class="col-xs-1 col-sm-4">
-                            <img class="icon-img bg-dr-blue " [src]="plan.img" style="width: 100%" alt="">
+                            <img class="icon-img bg-dr-blue " [src]="subscripcion.plan.img" style="width: 100%" alt="">
                         </div>
                         <div class="col-xs-1 col-sm-8">
                             <div class="date list-hidden"><strong>Recibirás una suscripción de flores</strong></div>
-                            <div class="date grid-hidden"><strong>Tamaño</strong> Tamaño {{tamano.nombre}}</div>
-                            <div class="date grid-hidden"><strong>Frecuencia</strong> {{frecuencia.nombre}}</div>
+                            <div class="date grid-hidden"><strong>Tamaño</strong> Tamaño {{subscripcion.plan.tamano}}</div>
+                            <div class="date grid-hidden"><strong>Frecuencia</strong> {{subscripcion.plan.frecuencia}}</div>
                             <div class="date grid-hidden"><strong>Tu primera orden</strong> </div>
-                            <h4><b>TOTAL: ------</b></h4>
+                            <h4><b>TOTAL: {{getPrice(subscripcion.plan.frecuencia,subscripcion.plan.precio)}}</b></h4>
                         </div>
                     </div>
                 </div>
@@ -58,50 +58,46 @@
                         <h2 style="margin:10px">INFORMACIÓN DE PAGO</h2>
                     </div>
 
-                    <form class="simple-from">
+                    <form class="simple-from"  #f="ngForm">
                         <div class="simple-group">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Tu nombre <span style='color:red'>*</span> </div>
+                                        <div class="form-label color-dark-2">Tu nombre<span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.nombre" placeholder="" name="nombre">
+                                            <input type="text" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel"  required [ngStyle]="{'border':(submitted &&  nombre.invalid) ?  '1px solid red' : ''}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-
                                         <div class="form-label color-dark-2">Tus apellidos<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.apellidos" placeholder="" name="apellidos">
+                                            <input type="text" [(ngModel)]="usuario.apellido" #apellidos="ngModel" name="apellidos" required [ngStyle]="{'border':(submitted &&  apellidos.invalid) ?  '1px solid red' : ''}">
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tu Email <span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.email" placeholder="" name="email">
+                                            <input type="text" [(ngModel)]="usuario.correo" #correo="ngModel" name="email" required [ngStyle]="{'border':(submitted &&  correo.invalid) ?  '1px solid red' : ''}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-
-                                        <div class="form-label color-dark-2">Confirma tu Email<span style='color:red'>*</span></div>
+                                        <div class="form-label color-dark-2">Dirección<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="emailConfirmacion" placeholder="" name="emailConfirmacion">
+                                            <input type="text" [(ngModel)]="usuario.dir" #direccion="ngModel" name="direccion" required [ngStyle]="{'border':(submitted &&  direccion.invalid) ?  '1px solid red' : ''}">
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Tu Teléfono <span style='color:red'>*</span> </div>
+                                        <div class="form-label color-dark-2">Tu Teléfono<span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.telefono" placeholder="" name="telefono">
+                                            <input type="text" [(ngModel)]="usuario.telefono" #telefono="ngModel" name="telefono" required [ngStyle]="{'border':(submitted &&!validarNumber(usuario.telefono))?'1px solid red':''}">
                                         </div>
                                     </div>
                                 </div>
@@ -110,135 +106,114 @@
 
                                         <div class="form-label color-dark-2">Tus Celular<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.celular" placeholder="" name="celular">
+                                            <input type="text" [(ngModel)]="usuario.celular" #celular="ngModel" name="celular" required [ngStyle]="{'border':(submitted&&!validarNumber(usuario.celular))?'1px solid red':''}">
                                         </div>
-
                                     </div>
                                 </div>
-
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tipo de Documento <span style='color:red'>*</span> </div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <select [(ngModel)]="datosPago.tipoDocumento" class="drop-wrap drop-wrap-s-4" name="tipoDoc">
-                                              <option *ngFor='let tipoD of tipoDoc'>{{tipoD}}</option>
-                                            </select>
+                                        <div class="drop-wrap drop-wrap-s-4 color-5" [ngStyle]="{'border':(submitted&&(usuario.tipo_doc == undefined ))?'1px solid red':''}">
+                                          <div class="drop"  >
+                                             <b>-Tipo-</b>
+                                                <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
+                                                <span style="display: none;">
+                                                    <a href="#" *ngFor='let d of tipoDoc' (click)="setTipo(d.iso)">{{d.desc}}</a>
+                                                </span>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-
                                         <div class="form-label color-dark-2"># Documento<span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.numeroDocumento" placeholder="" name="numeroDocumento">
+                                            <input type="text" [(ngModel)]="usuario.documento" name="documento" #documento="ngModel"required [ngStyle]="{'border':(submitted&&!validarNumber(usuario.documento))?'1px solid red':''}">
                                         </div>
-
                                     </div>
                                 </div>
-
                                 <!-- Informacion de la  tarjeta de credito -->
                                 <div class="col-xs-1 col-sm-12">
                                     <h2 style="margin:10px">INFORMACIÓN DE TARJETA</h2>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-12">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Tarjeta de Crédito <span style='color:red'>*</span> </div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-
-                                            <a (click)="addCard(tarjetas[0].nombre)">
-
-                                                <div class="col-sm-2" style="background: purple; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[0].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-                                                </div>
-                                            </a>
-                                            <a (click)="addCard(tarjetas[1].nombre)">
-                                                <div class="col-sm-2" style="background: blue; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[1].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-
-
-                                                </div>
-                                            </a>
-                                            <a (click)="addCard(tarjetas[2].nombre)">
-                                                <div class="col-sm-2" style="background: yellow; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[2].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-
-
-                                                </div>
-                                            </a>
-                                            <a (click)="addCard(tarjetas[3].nombre)">
-                                                <div class="col-sm-2" style="background: green; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[3].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-
-
-                                                </div>
-                                            </a>
-                                            <a (click)="addCard(tarjetas[4].nombre)">
-                                                <div class="col-sm-2" style="background: black; height: 25px; margin: 2px" [ngStyle]="{'border': (tarjetas[4].nombre == datosPago.tarjeta) ? '3px solid red':'none'}">
-
-                                                </div>
-                                            </a>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-center" (click)="addCard(tarjetas[0].nombre)"  [ngStyle]="{'border': (tarjetas[0].nombre == card.type) ? '1px solid red':'none'}">
+                                                <img  src="assets/imgs/payment/visa100x50.png" >
+                                            </div>
+                                            <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[1].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[1].nombre)">
+                                                <img  src="assets/imgs/payment/masterCard100x50.png" >
+                                            </div>
+                                             <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[2].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[2].nombre)">
+                                                <img  src="assets/imgs/payment/dinersClub100x50.png" >
+                                            </div>
+                                            <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[3].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[3].nombre)">
+                                                <img  src="assets/imgs/payment/americanExpress100x50.png" >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-12">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Nombre en la Tarjeta<span style='color:red'>*</span> </div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.nombreTarjeta" name="nombreTarjeta">
+                                            <input type="text" [(ngModel)]="card.name" #nombreTarjeta="ngModel" name="nombreTarjeta" required [ngStyle]="{'border':(submitted &&  nombreTarjeta.invalid) ?  '1px solid red' : ''}">
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-12">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Tipo de Documento de Identificación<span style='color:red'>*</span> </div>
+                                        <div class="form-label color-dark-2">Número de la Tarjeta <span style='color:red'>*</span></div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <select [(ngModel)]="datosPago.tipoDocumentoTarjeta" class="drop-wrap drop-wrap-s-4" name="tipoDocumentoTarjeta">
-                                                <option *ngFor='let tipoD of tipoDoc'>{{tipoD}}</option>
-                                            </select>
+                                            <input type="text" [(ngModel)]="card.number"  #nombreTarjeta="ngModel" name="numeroTarjeta" required [ngStyle]="{'border':(submitted &&!validarNumber(card.number))?'1px solid red':''}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2"># Documento de Identificación<span style='color:red'>*</span></div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.numeroDocumentoTarjeta" placeholder="" name="numeroDocumentoTarjeta">
+                                        <div class="form-label color-dark-2">
+                                            Fecha de Vecimiento<span style='color:red'>*</span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Número de la Tarjeta<span style='color:red'>*</span></div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.numeroTarjeta" placeholder="" name="numeroTarjeta">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Código de Seguridad <a style="color: blue">CVV/CVC</a> <span style='color:red'>*</span></div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <input type="text" [(ngModel)]="datosPago.codigoSeguridad" placeholder="" name="codigoSeguridad">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Fecha de Vecimiento<span style='color:red'>*</span></div>
-                                        
-                                                <div class="input-style">
-                                                    <img src="assets/img/calendar_icon.png" alt="">
-                                                    <input type="text" placeholder="" [(ngModel)]="datosPago.fechaVencimiento" name="fecha_vencimiento" id="fecha_vencimiento" class="datepicker">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="drop-wrap drop-wrap-s-4 color-4 list-sort" [ngStyle]="{'border':(submitted &&  (month == '-Mes-' )) ?  '1px solid red' : ''}" >
+                                                    <div class="drop">
+                                                     <b>{{month}}</b>
+                                                        <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
+                                                        <span style="display: none;">
+                                                            <a *ngFor="let m of months" (click)="setMonth(m.number)">{{m.name}}</a>
+                                                        </span>
+                                                    </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="drop-wrap drop-wrap-s-4 color-4 list-sort" [ngStyle]="{'border':(submitted &&  (year == '-Año-' )) ?  '1px solid red' : ''}">
+                                                    <div class="drop">
+                                                     <b>{{year}}</b>
+                                                        <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
+                                                        <span style="display: none;">
+                                                            <a *ngFor="let y of years" (click)="setYear(y)">{{y}}</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
-                                        <div class="form-label color-dark-2">Numero de Cuotas<span style='color:red'>*</span> </div>
-                                        <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                            <select [(ngModel)]="datosPago.cuotas" class="drop-wrap drop-wrap-s-4" name="cuotas">
-                                                <option >1</option>
-                                            </select>
+                                        <div class="form-label color-dark-2">Numero de Cuotas <span style='color:red'>*</span> </div>
+                                        <div class="drop-wrap drop-wrap-s-4 color-4 list-sort"  [ngStyle]="{'border':(submitted &&  (transaction.installments == undefined )) ?  '1px solid red' : ''}">
+                                            <div class="drop">
+                                             <b>Cuotas</b>
+                                                <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
+                                                <span style="display: none;">
+                                                    <a *ngFor="let c of cuotas" (click)="setCuotas(c)">{{c}}</a>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +226,7 @@
                                 Recibiras cobro de cada mes directamente en la tarjeta que tú nos facilites, ¡Recuerda que si caduca la tarjeta deberas actualizarla en Paylatam para seguir recibiendo ordenes!
                             </div>
                             <div class="col-xs-1 col-sm-4 col-sm-offset-4" style="margin-top:25px">
-                                <a class="c-button bg-dr-blue hv-white full" (click)="goToSummary()" style="color: #FFFFFF; width: 100%;"> <span>COMENZAR SUSCRIPCIÓN</span> </a>
+                                <a class="c-button bg-dr-blue hv-white full" (click)="goToSummary(f.form.valid)" style="color: #FFFFFF; width: 100%;"> <span>COMENZAR SUSCRIPCIÓN</span> </a>
                             </div>
                             <div class="col-sm-4 col-sm-offset-4 text-center " *ngIf="mensajeError != ''">
                                 {{mensajeError}}
@@ -272,22 +247,3 @@
     </div>
 
 </div>
-
-
-
-<!-- <div class="col-mob-12 col-xs-12 col-sm-4 col-md-4 clear-xs-2 clear-md-3" style="margin-bottom: 30px;">
-    <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (plans[1]._id == susciption.plan) ? '3px solid red':'none'}">
-        <div class="radius-top">
-            <div class="vertical-align">
-                <div class="col-xs-1 col-sm-4">
-                </div>
-                <a class="c-button bg-florfresca hv-transparent" (click)="addPlan(plans[1]._id)"><span class="color-white">QUIERO SUSCRIBIRME</span></a>
-            </div>
-            <img [src]="plans[1].img" alt="">
-        </div>
-        <div class="tour-desc bg-white">
-            <h4><a class="tour-title color-dark-2 link-green" href="#">{{plans[1].nombre}}</a></h4>
-            <div class="tour-text color-grey-3">{{plans[1].desc}}</div>
-        </div>
-    </div>
-</div> -->

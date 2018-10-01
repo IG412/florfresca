@@ -16,7 +16,7 @@
                                 <div class="alert bg-5" *ngIf="email.errors.email">
                                   <span>Debe ser un email valido</span>
                                 </div>
-                                <div class="alert bg-5" *ngIf="usuario.contra != passConfi">
+                                <div class="alert bg-5" *ngIf="usuario.pass != passConfi">
                                   <span>Contraseñas deben ser iguales</span>
                                 </div>
                             </div>
@@ -42,13 +42,17 @@
                             <!-- contraseñas -->
                             <div class="form-group">
                                 <div class="input-style-1 b-50 type-2 color-5">
-                                    <input type="password" class="form-control" name="contra" [(ngModel)]="usuario.contra" #contra="ngModel" required placeholder="Contraseña" (ngModelChange)="cambiaLado($event)" [ngStyle]="{'border':(f.submitted &&  contra.invalid) ?  '1px solid red' : ''}">
+                                    <input type="password" class="form-control" name="contra" [(ngModel)]="usuario.pass" #contra="ngModel" required placeholder="Contraseña" (ngModelChange)="cambiaLado($event)" [ngStyle]="{'border':(f.submitted &&  contra.invalid) ?  '1px solid red' : ''}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-style-1 b-50 type-2 color-5">
                                     <input type="password" class="form-control" name="validar_contra" [(ngModel)]="passConfi" #validar_contra="ngModel" required placeholder="Repetir Contraseña" [ngStyle]="{'border':(f.submitted &&  validar_contra.invalid) ?  '1px solid red' : ''}">
                                 </div>
+                            </div>
+                            <br>
+                            <div class="text-center padd-15 m-bottom-15" [hidden]="!messages.status" [ngClass]="messages.class">
+                                {{messages.message}}
                             </div>
                             <br>
                             <input type="submit" class="login-btn c-button full b-60 bg-dr-blue hv-dr-blue-2-o" value="INICIAR SESIÓN">
