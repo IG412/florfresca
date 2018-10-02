@@ -81,7 +81,7 @@ $(function() {
 		initSwiper();
 		videoRezise();
 		tpEntryHover();
-		$('.loading').fadeOut(700);
+		// $('.loading').fadeOut(700);
 
 		// $('.isotope-container').isotope({itemSelector: '.item', masonry:{gutter:0,columnWidth:'.grid-sizer'}});
 		var initValue = $('.filter-nav').find('.selected a').attr('data-filter');

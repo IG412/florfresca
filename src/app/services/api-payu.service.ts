@@ -15,7 +15,6 @@ export class ApiPayuService {
   constructor(private http: HttpClient) { 
   	this.base64 = btoa("8ueeDs2mkY69uda:RWP6RItc4J0lr4e2rUr2R783WQ");
     // this.base64 = btoa("0123ABCDEF:A1B2C3D4E5");
-    console.log(this.base64 );
   }
 
   putPlan (query: any): Observable<any>{
@@ -32,9 +31,8 @@ export class ApiPayuService {
       "Accept": "application/json",
       "Accept-language": "es",
       "Content-Length": "length",
-      "Authorization":"Basic MDEyM0FCQ0RFRjpBMUIyQzNENEU1"
+      "Authorization":"Basic "+this.base64
     })
-    console.log(this.headers);
     return this.http.post<any>(this.Url+"rest/v4.9/subscriptions/", T, {headers: this.headers});
   }
 }
