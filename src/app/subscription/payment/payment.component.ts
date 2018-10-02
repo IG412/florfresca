@@ -23,6 +23,7 @@ declare interface Month { name:string; number:number; };
 })
 export class PaymentComponent implements OnInit {
 
+  loading:boolean;
   submitted:boolean;
   subscripcion: Subscripcion;
   tipoDoc: Array<any>;
@@ -65,6 +66,7 @@ export class PaymentComponent implements OnInit {
     this.month = "-Mes-";
     this.year = "-Año-";
     this.address = new Address();
+    this.loading = false;
 
   }
   ngOnInit() {
@@ -94,8 +96,12 @@ export class PaymentComponent implements OnInit {
         this.validarNumber(this.usuario.documento) &&
         this.validarNumber(this.card.number)
         ){
-        this.mensajeError = '';
-        this.sendPayment();
+        if(this.card.type){
+          this.mensajeError = '';
+          this.sendPayment();
+        }else{
+          this.mensajeError = 'Debe seleccionar el tipo de tarjeta de crédito';
+        }
       }else{
         this.mensajeError = 'Algunos datos no son válidos';
       }
@@ -214,6 +220,7 @@ export class PaymentComponent implements OnInit {
     return !isNaN(numero) && numero !== '';
   }
   sendPayment(){
+    this.loading = true;
     this.loadAddres();
     this.loadCard();
     this.usuario.tarjeta.push(this.card);
@@ -225,9 +232,6 @@ export class PaymentComponent implements OnInit {
     this.transaction.deliveryAddress = this.address;
     this.transaction.customer = this.custumer;
     this.subscripcion.cliente = this.usuario._id;
-    // console.log(this.usuario);
-    // console.log(this.subscripcion);
-    // console.log(this.transaction);
     this.Api.susbcriptions(this.transaction).subscribe(d=>{
       console.log(d);
     },e=>{
