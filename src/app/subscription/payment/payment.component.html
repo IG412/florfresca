@@ -1,3 +1,8 @@
+<div class="treasure-overlay-spinner-content treasure-overlay-spinner-active" [hidden]="!load">
+  <div class="treasure-overlay-spinner-container">
+    <div class="treasure-overlay-spinner"></div>
+  </div>
+</div>
 <div class="detail-wrapper">
     <!-- CONTACT-FORM -->
     <div class="main-wraper padd-40">
@@ -224,6 +229,9 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 s_news-text color-grey-3">
                                 Recibiras cobro de cada mes directamente en la tarjeta que tú nos facilites, ¡Recuerda que si caduca la tarjeta deberas actualizarla en Paylatam para seguir recibiendo ordenes!
+                            </div>
+                            <div class="col-md-12 col-xs-12" *ngIf="alert.status" [ngClass]="alert.class">
+                                {{alert.message}}
                             </div>
                             <div class="col-xs-1 col-sm-4 col-sm-offset-4" style="margin-top:25px">
                                 <a class="c-button bg-dr-blue hv-white full" (click)="goToSummary(f.form.valid)" style="color: #FFFFFF; width: 100%;"> <span>COMENZAR SUSCRIPCIÓN</span> </a>

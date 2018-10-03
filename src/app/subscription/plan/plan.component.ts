@@ -26,6 +26,7 @@ declare class Plans  {
   styleUrls: ['./plan.component.css']
 })
 export class PlanComponent implements OnInit {
+  load:boolean;
   submitted:Boolean;
   registerForm: FormGroup;
   parentesco: Array<String>;
@@ -62,7 +63,7 @@ export class PlanComponent implements OnInit {
   	this.showForm=true;
     this.subscription = new Subscripcion();
   	this.tamanos = new Array();
-
+    this.load = false;
   	this.frecuencia = [
   	{_id: "1", nombre:"SEMANAL", desc: "<strong>12 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
   	{_id: "2", nombre:"QUINCENAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
@@ -79,13 +80,16 @@ export class PlanComponent implements OnInit {
       this.plans = d;
       if(localStorage.getItem('subscription')){
         this.subscription = JSON.parse(localStorage.getItem('subscription'));
+        this.suscriptor = (this.subscription.suscriptor)?this.subscription.suscriptor:null;
         this.select_plan = (this.subscription.plan._id)? this.subscription.plan._id : '';
         this.find(this.subscription.plan._id);
         this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
         this.select_frecuencia = (this.subscription.plan.frecuencia)? this.subscription.plan.frecuencia : '';
         this.showForm = false;
+        this.load = false;
       }
     },e=>{
+      this.load = false;
       this.message = e;
       this.message.status = true;
       this.message.class = "bg-danger";
