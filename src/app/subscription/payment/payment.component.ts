@@ -94,8 +94,12 @@ export class PaymentComponent implements OnInit {
         this.validarNumber(this.usuario.documento) &&
         this.validarNumber(this.card.number)
         ){
-        this.mensajeError = '';
-        this.sendPayment();
+        if(this.card.type){
+          this.mensajeError = '';
+          this.sendPayment();
+        }else{
+          this.mensajeError = 'Algunos datos no son válidos';
+        }
       }else{
         this.mensajeError = 'Algunos datos no son válidos';
       }
