@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { Plan } from '../models/plan';
 import { Usuario } from '../models/usuario';
+import { Subscripcion } from '../models/suscripcion';
 
 
 @Injectable({
@@ -41,7 +42,11 @@ export class FlorfrescaService {
     this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
     return this.http.get<Usuario>(this.Url+"/user/"+id,{headers:this.headers});
   }
-
+  susbcriptions(s:Subscripcion):Observable<any>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return  this.http.post<any>(this.Url+"/subscriptions/",{headers:this.headers});
+  }
   // Gets (): Observable<Hero[]> {
   // this.headers = new HttpHeaders({'Content-Type': 'application/json'});
   // return this.http.post<any>(this.apiUrl+"autho/user", query, {headers:this.headers});

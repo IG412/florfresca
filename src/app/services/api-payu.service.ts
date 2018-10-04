@@ -14,6 +14,7 @@ export class ApiPayuService {
 
   constructor(private http: HttpClient) { 
   	this.base64 = btoa("0zFBX55RdT5r972:ZCm8H3S6Udx4190hEMu6ACR17Z");
+    console.log(this.base64);
     // this.base64 = btoa("0123ABCDEF:A1B2C3D4E5");
   }
 
@@ -30,7 +31,6 @@ export class ApiPayuService {
       'Content-Type': 'application/json; charset=utf-8',
       "Accept": "application/json",
       "Accept-language": "es",
-      "Content-Length": "length",
       "Authorization":"Basic "+this.base64
     })
     return this.http.post<any>(this.Url+"rest/v4.9/subscriptions/", T, {headers: this.headers});

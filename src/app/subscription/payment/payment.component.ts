@@ -15,15 +15,15 @@ import { Transaction } from './../../models/transaction';
 
 declare var $: any;
 declare interface Month { name:string; number:number; };
-
+declare interface Alert{message: String;status: Boolean;code?: String;class?: String;}
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
   loading:boolean;
+  load:boolean;
   submitted:boolean;
   subscripcion: Subscripcion;
   tipoDoc: Array<any>;
@@ -41,6 +41,7 @@ export class PaymentComponent implements OnInit {
   month:string;
   year:string;
   cuotas:Array<number>;
+  alert:Alert;
 
   constructor(
     private service: FlorfrescaService,
@@ -48,7 +49,7 @@ export class PaymentComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router
   ) {
-
+    this.load = false;
     this.submitted = false;
     this.subscripcion = new Subscripcion();
     this.custumer = new Customer();
@@ -67,7 +68,7 @@ export class PaymentComponent implements OnInit {
     this.year = "-Año-";
     this.address = new Address();
     this.loading = false;
-
+    this.alert = {status :false , message:'', class:''};
   }
   ngOnInit() {
     this.drop();
@@ -233,10 +234,18 @@ export class PaymentComponent implements OnInit {
     this.transaction.deliveryAddress = this.address;
     this.transaction.customer = this.custumer;
     this.subscripcion.cliente = this.usuario._id;
+    this.load = true;
     this.Api.susbcriptions(this.transaction).subscribe(d=>{
-      console.log(d);
+      this.load = false;
+      this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
+      this.service.susbcriptions(this.subscripcion).subscribe(d=>{
+
+      },e=>{
+
+      });
     },e=>{
-      console.log(e);
+      this.load = false;
+      this.alert = {status :false , message:e, class:'alert alert-warning'};
     });
   }
   loadAddres(){
