@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RecoveryComponent,
     RegisterComponent,
-    ResetComponent
+    ResetComponent,
   ],
   imports: [
     BrowserModule,

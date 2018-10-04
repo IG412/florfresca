@@ -25,7 +25,8 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/bootstrap-datepicker.min.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css",
+              "src/assets/css/spinner.css"
             ],
             "scripts": [
               "src/assets/js/jquery-2.1.4.min.js",

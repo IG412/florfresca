@@ -14,6 +14,8 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
 
+app.use(express.static(__dirname + '/dist/florfresca'));
+
 app.all('/api/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -24,11 +26,11 @@ app.all('/api/*', function (req, res, next) {
 
 
 app.use('/api', api);
-
-app.use('/*', function (request, response) {
-    response.set('Content-Type', 'text/html');
-    response.sendFile(path.join(__dirname + '/dist/florfresca/index.html'));
-});
+app.use('/*',express.static(__dirname + '/dist/florfresca'));
+// app.use('/*', function (request, response) {
+//     response.set('Content-Type', 'text/html');
+//     response.sendFile(path.join(__dirname + '/dist/florfresca'));
+// });
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
