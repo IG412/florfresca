@@ -42,10 +42,15 @@ export class FlorfrescaService {
     this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
     return this.http.get<Usuario>(this.Url+"/user/"+id,{headers:this.headers});
   }
+  // putUser(u:Usuario):Observable<any>{
+  //   let token=(localStorage.getItem('token'));
+  //   this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+  //   return this.http.put<Usuario>(this.Url+"/user/"+u._id,u,{headers:this.headers});
+  // }
   susbcriptions(s:Subscripcion):Observable<any>{
     let token=(localStorage.getItem('token'));
     this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
-    return  this.http.post<any>(this.Url+"/subscriptions/",{headers:this.headers});
+    return  this.http.post<any>(this.Url+"/subscriptions",s,{headers:this.headers});
   }
   // Gets (): Observable<Hero[]> {
   // this.headers = new HttpHeaders({'Content-Type': 'application/json'});

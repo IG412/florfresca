@@ -14,10 +14,9 @@ export class ApiPayuService {
 
   constructor(private http: HttpClient) { 
   	this.base64 = btoa("0zFBX55RdT5r972:ZCm8H3S6Udx4190hEMu6ACR17Z");
-    console.log(this.base64);
-    // this.base64 = btoa("0123ABCDEF:A1B2C3D4E5");
+    // this.base64 = btoa("pRRXKOl8ikMmt9u:4Vj8eK4rloUd272L48hsrarnUA");
+    // console.log(this.base64);
   }
-
   putPlan (query: any): Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json', "Authorization":this.base64 })
     return this.http.post<any>(this.Url+"/auth/tokens", query, {headers: this.headers});

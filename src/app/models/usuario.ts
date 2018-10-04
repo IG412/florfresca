@@ -11,6 +11,7 @@ export class Usuario {
     documento?:  number;
     pass?:string;
     dir?:string;
+    payuId?:string;
     tarjeta: Array<CreditCards>;
     constructor(){
         this.tarjeta = new Array();

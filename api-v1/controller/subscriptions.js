@@ -1,4 +1,5 @@
 var mongoose    = require('mongoose'),
+    User        = mongoose.model('users');
     Subscription      = require('../model/subscription');
 
 module.exports  = {
@@ -21,12 +22,14 @@ module.exports  = {
     	});
   	},
   	post: function(req,res){
+      var queryUsuario = User.update({ _id: req.body.cliente._id }, req.body.cliente);
       Subscription.create(req.body,function (e,d){
         if(e){
-          console.log(e);
-          res.status(400).json({message:'Los sentimos,Error 500 interno del servidor contactar al equipo de soporte'});
+          queryUsuario.exec(function (err, docs) {console.log(docs)});
+          res.status(400).json({message:'Los sentimos, Error 500 interno del servidor contactar al equipo de soporte'});
         }else{
           res.status(201).json(d);
+          queryUsuario.exec(function (err, docs) { console.log(docs) });
         }
       });
   	},
@@ -53,3 +56,7 @@ module.exports  = {
       });
   	}
 };
+
+function putUser(argument) {
+  // body...
+}

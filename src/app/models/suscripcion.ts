@@ -1,4 +1,5 @@
 import { Suscriptor } from './suscriptor';
+import { Usuario } from './usuario';	
 // import { Plan } from './plan';
 
 class Plan  {
@@ -8,11 +9,13 @@ class Plan  {
 	tamano?:String;
 	frecuencia?:String;
 	precio?:Number;
+	payuId?:string;
 }
 
 export class Subscripcion {
 	estado:String;
 	suscriptor: Suscriptor;
 	plan:Plan;
-	cliente:String;
+	cliente:Usuario;
+	payuId:string;
 }

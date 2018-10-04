@@ -233,20 +233,22 @@ export class PaymentComponent implements OnInit {
     this.transaction.plan = this.planT;
     this.transaction.deliveryAddress = this.address;
     this.transaction.customer = this.custumer;
-    this.subscripcion.cliente = this.usuario._id;
+    this.subscripcion.cliente = this.usuario;
     this.load = true;
-    this.Api.susbcriptions(this.transaction).subscribe(d=>{
-      this.load = false;
-      this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
+    // this.Api.susbcriptions(this.transaction).subscribe(d=>{
+    //   this.load = false;
+    //   this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
       this.service.susbcriptions(this.subscripcion).subscribe(d=>{
-
+        this.load = false;
+        this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
       },e=>{
-
+        this.load = false;
+        this.alert = {status :false , message:e, class:'alert alert-warning'};
       });
-    },e=>{
-      this.load = false;
-      this.alert = {status :false , message:e, class:'alert alert-warning'};
-    });
+    // },e=>{
+    //   this.load = false;
+    //   this.alert = {status :false , message:e, class:'alert alert-warning'};
+    // });
   }
   loadAddres(){
     this.address.line1 = this.usuario.dir;

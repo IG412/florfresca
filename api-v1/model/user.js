@@ -2,6 +2,7 @@ var mongoose 	= require( 'mongoose' ),
   crypto     	= require('crypto');
 
 var Tarjeta = new mongoose.Schema({
+  toke:String,
   name:String,
   document:String,
   number:String,
@@ -39,10 +40,7 @@ var Usuario 	= new mongoose.Schema({
   activo: {type:Boolean, default:false},
   creado:  { type:Date, default: Date.now },
   tarjeta:[Tarjeta],
-  payu: {
-      fullName: String,
-      email: String,
-   },
+  payuId: String,
 });
 
 Usuario.methods.setPass = function(password){

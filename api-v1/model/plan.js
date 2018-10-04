@@ -12,6 +12,7 @@ var Plans 	= new mongoose.Schema({
     desc: String,
     img: String,
     numero: Number,
+    payuId:String,
     tamano: [Tamano],
     f_creacion:  { type:Date, default: Date.now },
     f_upd: Date,
