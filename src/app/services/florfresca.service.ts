@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Plan } from '../models/plan';
+import { Flower } from '../models/flower';
+import { Size } from '../models/size';
 import { Usuario } from '../models/usuario';
 import { Subscripcion } from '../models/suscripcion';
 
@@ -33,9 +35,17 @@ export class FlorfrescaService {
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
     return this.http.post<any>(this.Url+"/", query, {headers: this.headers});
   }
-  plans(): Observable<Plan[]> {
+  plans(query:any): Observable<Plan[]> {
     this.headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<any>(this.Url+"/plans", {headers:this.headers});
+    return this.http.get<any>(this.Url+"/plans", {headers:this.headers,params:query});
+  }
+  flowers():Observable<Flower[]>{
+    this.headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get<Flower[]>(this.Url+"/flowers", {headers:this.headers});
+  }
+  sizes():Observable<Size[]>{
+    this.headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get<Size[]>(this.Url+"/sizes", {headers:this.headers});
   }
   user(id:string): Observable<Usuario>{
     let token=(localStorage.getItem('token'));

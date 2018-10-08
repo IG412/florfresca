@@ -3,13 +3,13 @@ import { Usuario } from './usuario';
 // import { Plan } from './plan';
 
 class Plan  {
-	_id:String;
-	nombre:String;
-	img:String;
-	tamano?:String;
-	frecuencia?:String;
-	precio?:Number;
-	payuId?:string;
+	_id:string;
+	flor:string;
+	img_flor:string;
+	tamano:string;
+	periodo:string;
+	precio:number;
+	payuId:string;
 }
 
 export class Subscripcion {
@@ -18,4 +18,9 @@ export class Subscripcion {
 	plan:Plan;
 	cliente:Usuario;
 	payuId:string;
+	constructor(){
+		this.plan = new Plan();
+		this.cliente = new Usuario();
+		this.suscriptor = new Suscriptor();
+	}
 }

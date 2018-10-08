@@ -8,17 +8,18 @@ import { Message } from '../../models/message';
 import { Suscriptor } from '../../models/suscriptor';
 import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
-import { Tamano } from '../../models/tamano';
-import { Frecuencia } from '../../models/frecuencia';
+import { Flower } from '../../models/flower';
+import { Size } from '../../models/size';
+import { Period } from '../../models/period';
 
 declare var $: any;
-declare class Plans  {
-  nombre:String;
-  img:String;
-  tamano:String;
-  frecuencia:String;
-  precio?:Number;
-}
+// declare class Plans  {
+//   nombre:String;
+//   img:String;
+//   tamano:String;
+//   frecuencia:String;
+//   precio?:Number;
+// }
 
 @Component({
   selector: 'app-plan',
@@ -33,13 +34,13 @@ export class PlanComponent implements OnInit {
   cat:Array<String>;
   suscriptor:Suscriptor;
   showForm:boolean;
-  plans: Array<Plan>;
-  tamanos:Array<Tamano>;
-  frecuencia:Array<Frecuencia>;
+  Flowers: Array<Flower>;
+  Sizes:Array<Size>;
+  period:Array<Period>;
   subscription: Subscripcion;
   message: Message;
 
-  select_plan: String;
+  select_flower: String;
   select_tamano:String;
   select_frecuencia:String;
 
@@ -54,7 +55,7 @@ export class PlanComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: FlorfrescaService
     ) { 
-    this.plans = new Array();
+    this.Flowers = new Array();
     this.message = new Message();
     this.submitted = false;
   	this.suscriptor = new Suscriptor();
@@ -62,12 +63,12 @@ export class PlanComponent implements OnInit {
   	this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
   	this.showForm=true;
     this.subscription = new Subscripcion();
-  	this.tamanos = new Array();
+  	this.Sizes = new Array();
     this.load = false;
-  	this.frecuencia = [
-  	{_id: "1", nombre:"SEMANAL", desc: "<strong>12 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
-  	{_id: "2", nombre:"QUINCENAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
-  	{_id: "3", nombre:"MENSUAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"}
+  	this.period = [
+  	{ nombre:"SEMANAL", desc: "<strong>12 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
+  	{ nombre:"QUINCENAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
+  	{ nombre:"MENSUAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"}
   	];
     
     this.acept_term = false;
@@ -76,15 +77,17 @@ export class PlanComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.plans().subscribe(d=>{
-      this.plans = d;
+    this.service.flowers().subscribe(d=>{
+      this.Flowers = d;
+      this.service.sizes().subscribe(s=>{this.Sizes=s;},e=>{});
+      localStorage.clear();
       if(localStorage.getItem('subscription')){
         this.subscription = JSON.parse(localStorage.getItem('subscription'));
         this.suscriptor = (this.subscription.suscriptor)?this.subscription.suscriptor:null;
-        this.select_plan = (this.subscription.plan._id)? this.subscription.plan._id : '';
-        this.find(this.subscription.plan._id);
-        this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
-        this.select_frecuencia = (this.subscription.plan.frecuencia)? this.subscription.plan.frecuencia : '';
+        // this.select_flower = (this.subscription.plan._id)? this.subscription.plan._id : '';
+        // this.find(this.subscription.plan._id);
+        // this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
+        // this.select_frecuencia = (this.subscription.plan.frecuencia)? this.subscription.plan.frecuencia : '';
         this.showForm = false;
         this.load = false;
       }
@@ -117,19 +120,20 @@ export class PlanComponent implements OnInit {
       console.log('error')
     }
   }
-  addPlan(plan:Plan){
-    this.subscription.plan = {_id:plan._id,nombre:plan.nombre,img:plan.img}
-    this.select_plan = plan._id;
-    this.tamanos = plan.tamano;
+  addPlan(f:Flower){
+    // this.subscription.plan = {_id:plan._id,nombre:plan.nombre,img:plan.img}
+    this.subscription.plan.flor = f.nombre;
+    this.subscription.plan.img_flor = f.img;
+    this.select_flower = f._id;
+    // this.tamanos = plan.tamano;
   }
-  addTamano(tamano:Tamano){
-    this.subscription.plan.tamano = tamano.nombre;
-    this.subscription.plan.precio = tamano.precio;
-  	this.select_tamano = tamano.nombre;
+  addTamano(t:Size){
+    this.subscription.plan.tamano = t.nombre;
+  	this.select_tamano = t._id;
   }
-  addTipo(frecuencia:Frecuencia){
-    this.subscription.plan.frecuencia = frecuencia.nombre;
-  	this.select_frecuencia = frecuencia.nombre;
+  addTipo(f:Period){
+    this.subscription.plan.periodo = f.nombre;
+  	this.select_frecuencia = f.nombre;
   }
 
   goToSummary(){
@@ -137,10 +141,9 @@ export class PlanComponent implements OnInit {
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";
     }else{
       if($("#fecha_entrega").val() != ''){
-        if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_plan != undefined){
+        if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
           this.alert = "";
-          localStorage.setItem('subscription', JSON.stringify(this.subscription));
-          this.router.navigate(['subscription/summary']);
+          this.find({flower:this.select_flower,size:this.select_tamano,period:this.select_frecuencia});
         }else{
           this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
         }
@@ -150,31 +153,17 @@ export class PlanComponent implements OnInit {
     }
   }
 
-  getPrice(val: String, price:any):Number{
-    let valor:Number = 0;
-    switch (val) {
-      case "SEMANAL":
-        valor= price*4;
-        break;
-      case "QUINCENAL":
-        valor= price*2;
-        break;
-      case "MENSUAL":
-        valor= price*1;
-        break;
-      default:
-        valor= price;
-        break;
-    }
-    return valor;
-  }
-
-  find(id:String):void{
-    this.plans.forEach((value)=>{
-      let plan:Plan = value;
-      if(plan._id == id){
-        this.tamanos = plan.tamano;
-      } 
-    });
+  find(query:any):void{
+    this.service.plans(query).subscribe(d=>{
+      let p:Plan[] = d;
+      if(p.length > 0){
+        this.subscription.plan._id = p[0]._id;
+        this.subscription.plan.precio = p[0].values;
+        localStorage.setItem('subscription', JSON.stringify(this.subscription));
+         this.router.navigate(['subscription/summary']);
+      }else{
+        alert("No hay plan");
+      }
+    },e=>{console.log(e)});
   }
 }

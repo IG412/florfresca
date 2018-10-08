@@ -7,13 +7,14 @@ var express         = require('express'),
     app             = express();
 
 app.set('port', (process.env.PORT || 5000));
-/*app.set('views', __dirname + '/client/views');
-app.set('view engine', 'ejs');*/
+// app.set('views', __dirname + '/client/views');
+// app.set('view engine', 'ejs');
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
 
+app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/dist/florfresca'));
 
 app.all('/api/*', function (req, res, next) {
@@ -26,11 +27,27 @@ app.all('/api/*', function (req, res, next) {
 
 
 app.use('/api', api);
+// app.use('/adminpro', function(req, res) {
+//     res.sendFile(path.join(__dirname + '/views/adminpro/'));
+// });
 app.use('/*',express.static(__dirname + '/dist/florfresca'));
+
+// app.set('/admin/*', function (request, response) {
+//     response.set('Content-Type', 'text/html');
+//     response.sendFile(path.join(__dirname + '/adminpro'));
+// });
+// app.use('/', function (request, response) {
+//     response.set('Content-Type', 'text/html');
+//     response.render('index');
+// });
 // app.use('/*', function (request, response) {
 //     response.set('Content-Type', 'text/html');
 //     response.sendFile(path.join(__dirname + '/dist/florfresca'));
 // });
+
+
+
+
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

@@ -5,6 +5,8 @@ var express 	= require('express'),
 	slides		= require('../controller/slides'),
 	subs		= require('../controller/subscriptions'),
 	plan		= require('../controller/plans'),
+	flowers		= require('../controller/flowers'),
+	sizes		= require('../controller/sizes'),
 	user		= require('../controller/users'),
 	// upload 		= require('../controller/upload'),
 	// autho 		= jwt({secret: token.TOKEN_SECRET, userProperty:'payload'}),
@@ -15,6 +17,8 @@ router.route('/auth/admin/tokens').post(auth.admin);
 router.route('/auth/register').post(auth.register);
 
 router.route('/subscriptions').get(subs.all).post(subs.post);
+router.route('/flowers').get(flowers.all).post(flowers.post);
+router.route('/sizes').get(sizes.all).post(sizes.post);
 router.route('/plans').get(plan.all).post(plan.post);
 
 router.route('/user/:id').get(user.get).put(user.put);

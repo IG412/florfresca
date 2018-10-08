@@ -115,24 +115,6 @@ export class PaymentComponent implements OnInit {
   addCard(tarjeta:string) {
     this.card.type = tarjeta;
   }
-  getPrice(val: String, price:any):Number{
-    let valor:Number = 0;
-    switch (val) {
-      case "SEMANAL":
-        valor= price*4;
-        break;
-      case "QUINCENAL":
-        valor= price*2;
-        break;
-      case "MENSUAL":
-        valor= price*1;
-        break;
-      default:
-        valor= price;
-        break;
-    }
-    return valor;
-  }
   getYear():void{
     this.years = new Array();
     let date = new Date();
@@ -238,13 +220,14 @@ export class PaymentComponent implements OnInit {
     // this.Api.susbcriptions(this.transaction).subscribe(d=>{
     //   this.load = false;
     //   this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
-      this.service.susbcriptions(this.subscripcion).subscribe(d=>{
-        this.load = false;
-        this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
-      },e=>{
-        this.load = false;
-        this.alert = {status :false , message:e, class:'alert alert-warning'};
-      });
+    console.log(this.transaction);
+      // this.service.susbcriptions(this.subscripcion).subscribe(d=>{
+      //   this.load = false;
+      //   this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
+      // },e=>{
+      //   this.load = false;
+      //   this.alert = {status :false , message:e, class:'alert alert-warning'};
+      // });
     // },e=>{
     //   this.load = false;
     //   this.alert = {status :false , message:e, class:'alert alert-warning'};
@@ -264,7 +247,7 @@ export class PaymentComponent implements OnInit {
   }
   loadPlanT(){
     this.planT.planCode = this.subscripcion.plan._id;
-    this.planT.description = this.subscripcion.plan.nombre;
+    // this.planT.description = this.subscripcion.plan;
     this.planT.customer = this.custumer;
     this.planT.additionalValues = [
       {name:"PLAN_VALUE",value:this.subscripcion.plan.precio,currency:"COP"},
