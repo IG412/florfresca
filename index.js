@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
 
 app.use(express.static(__dirname + '/dist/florfresca'));
+app.use(express.static(__dirname + '/admin'));
 
 app.all('/api/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -27,6 +28,7 @@ app.all('/api/*', function (req, res, next) {
 
 app.use('/api', api);
 app.use('/*',express.static(__dirname + '/dist/florfresca'));
+app.use('/adminpro/*',express.static(__dirname + '/admin'));
 // app.use('/*', function (request, response) {
 //     response.set('Content-Type', 'text/html');
 //     response.sendFile(path.join(__dirname + '/dist/florfresca'));
