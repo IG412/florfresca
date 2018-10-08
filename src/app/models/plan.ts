@@ -1,11 +1,11 @@
-import { Tamano } from './tamano';
+// import { Tamano } from './tamano';
 
 export class Plan {
-	_id:String;
-	nombre:String;
-	desc:String;
-	img:String;
-	numero:Number;
-	tamano?:[Tamano];
-	size?:[String];
+	_id:string;
+	flower:string;
+	size:string;
+	period:string;
+	payuId:string;
+	values:number;
+	iva:number;
 }

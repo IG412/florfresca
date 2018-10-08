@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Suscriptor } from '../../models/suscriptor';
 import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
-import { Tamano } from '../../models/tamano';
-import { Frecuencia } from '../../models/frecuencia';
+import { Size } from '../../models/size';
+import { Period } from '../../models/period';
 
 @Component({
   selector: 'app-summary',
@@ -15,8 +15,8 @@ import { Frecuencia } from '../../models/frecuencia';
 export class SummaryComponent implements OnInit {
   subscripcion: Subscripcion;
   plan: Plan;
-  tamano: Tamano;
-  frecuencia: Frecuencia;
+  tamano: Size;
+  frecuencia: Period;
 
   show: boolean;
   textoBoton: string;
@@ -62,24 +62,6 @@ export class SummaryComponent implements OnInit {
     this.showDir = !this.showDir;
   }
 
-  getPrice(val: String, price:any):Number{
-    let valor:Number = 0;
-    switch (val) {
-      case "SEMANAL":
-        valor= price*4;
-        break;
-      case "QUINCENAL":
-        valor= price*2;
-        break;
-      case "MENSUAL":
-        valor= price*1;
-        break;
-      default:
-        valor= price;
-        break;
-    }
-    return valor;
-  }
 
   isLogin():boolean{
     return (localStorage.getItem('id'))? true:false;

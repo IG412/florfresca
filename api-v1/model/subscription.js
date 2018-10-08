@@ -2,10 +2,11 @@ var mongoose 	= require( 'mongoose' ),
   crypto     	= require('crypto');
 
 var Plan = new mongoose.Schema({
-  nombre:String,
-  img:String,
+  _id:String,
+  flor:String,
+  img_flor:String,
   tamano:String,
-  frecuencia:String,
+  periodo:String,
   precio:String,
   payuId:String
 

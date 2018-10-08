@@ -127,14 +127,14 @@
                 <div class="title hotel-middle clearfix cell-view">
                     <div class="col-xs-1 col-sm-12 " style="margin: 10px">RESUMEN PLAN</div>
                     <div class="col-xs-1 col-sm-4">
-                        <img class="icon-img bg-dr-blue " [src]="subscripcion.plan.img" style="width: 100%" alt="">
+                        <img class="icon-img bg-dr-blue " [src]="subscripcion.plan.img_flor" style="width: 100%" alt="">
                     </div>
                     <div class="col-xs-1 col-sm-8">
                         <div class="date list-hidden"><strong>Recibirás una suscripción de flores</strong></div>
                         <div class="date grid-hidden"><strong>Tamaño:</strong> {{'Tamaño '+subscripcion.plan.tamano}}</div>
-                        <div class="date grid-hidden"><strong>Frecuencia:</strong> {{subscripcion.plan.frecuencia}}</div>
+                        <div class="date grid-hidden"><strong>Frecuencia:</strong> {{subscripcion.plan.periodo}}</div>
                         <div class="date grid-hidden"><strong>Tu primera orden</strong></div>
-                        <h4><b>TOTAL: </b>{{getPrice(subscripcion.plan.frecuencia,subscripcion.plan.precio)}}</h4>
+                        <h4><b>TOTAL: </b>{{subscripcion.plan.precio}}</h4>
                     </div>
                 </div>
             </div>

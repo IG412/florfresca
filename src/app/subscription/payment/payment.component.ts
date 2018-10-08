@@ -10,12 +10,12 @@ import { PlanT } from '../../models/planT';
 import { Customer } from '../../models/customer';
 import { CreditCards } from '../../models/creditcards';
 import { Address } from '../../models/address';
-
 import { Transaction } from './../../models/transaction';
+import { Alert } from '../../models/alert';
 
 declare var $: any;
 declare interface Month { name:string; number:number; };
-declare interface Alert{message: String;status: Boolean;code?: String;class?: String;}
+// declare interface Alert{message: String;status: Boolean;code?: String;class?: String;}
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -42,6 +42,7 @@ export class PaymentComponent implements OnInit {
   year:string;
   cuotas:Array<number>;
   alert:Alert;
+  pay:boolean
 
   constructor(
     private service: FlorfrescaService,
@@ -50,6 +51,7 @@ export class PaymentComponent implements OnInit {
     private router: Router
   ) {
     this.load = false;
+    this.pay = false;
     this.submitted = false;
     this.subscripcion = new Subscripcion();
     this.custumer = new Customer();
@@ -71,12 +73,12 @@ export class PaymentComponent implements OnInit {
     this.alert = {status :false , message:'', class:''};
   }
   ngOnInit() {
-    this.drop();
     if (localStorage.getItem('subscription')) {
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
       if(localStorage.getItem('id')){
         this.service.user(localStorage.getItem('id')).subscribe(d=>{
           this.usuario = d;
+          this.drop();
         },e=>{
           console.log(e);
         });
@@ -98,40 +100,21 @@ export class PaymentComponent implements OnInit {
         this.validarNumber(this.card.number)
         ){
         if(this.card.type){
-          this.mensajeError = '';
+          this.alert = {status :false , message:'', class:''};
           this.sendPayment();
         }else{
-          this.mensajeError = 'Debe seleccionar el tipo de tarjeta de crédito';
-
+          this.alert = {status :true , message:'Debe seleccionar el tipo de tarjeta de crédito', class:'alert alert-warning'};
         }
       }else{
-        this.mensajeError = 'Algunos datos no son válidos';
+        this.alert = {status :true , message:'Algunos datos no son válidos', class:'alert alert-warning'};
       }
     } else {
-      this.mensajeError = 'Debe completar todos los datos';
+      this.alert = {status :true , message:'Debe completar todos los datos', class:'alert alert-warning'};
     }
   }
   
   addCard(tarjeta:string) {
     this.card.type = tarjeta;
-  }
-  getPrice(val: String, price:any):Number{
-    let valor:Number = 0;
-    switch (val) {
-      case "SEMANAL":
-        valor= price*4;
-        break;
-      case "QUINCENAL":
-        valor= price*2;
-        break;
-      case "MENSUAL":
-        valor= price*1;
-        break;
-      default:
-        valor= price;
-        break;
-    }
-    return valor;
   }
   getYear():void{
     this.years = new Array();
@@ -226,29 +209,44 @@ export class PaymentComponent implements OnInit {
     this.loadAddres();
     this.loadCard();
     this.usuario.tarjeta.push(this.card);
-    this.custumer.fullName = this.usuario.nombre+' '+this.usuario.apellido;
-    this.custumer.email = this.usuario.correo;
-    this.custumer.creditCards = [this.card];
+    this.loadUser();
     this.loadPlanT();
     this.transaction.plan = this.planT;
     this.transaction.deliveryAddress = this.address;
     this.transaction.customer = this.custumer;
     this.subscripcion.cliente = this.usuario;
     this.load = true;
-    // this.Api.susbcriptions(this.transaction).subscribe(d=>{
-    //   this.load = false;
-    //   this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
+    this.Api.susbcriptions(this.transaction).subscribe(d=>{
+      let t:any = d 
+      this.load = false;
+      this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
+      this.subscripcion.payuId = t.id;
+      this.subscripcion.plan.payuId = (this.subscripcion.plan.payuId == null)? t.plan.id: this.subscripcion.plan.payuId;
+      this.subscripcion.cliente.payuId = (this.subscripcion.cliente.payuId == null)? t.customer.id :this.subscripcion.cliente.payuId;
       this.service.susbcriptions(this.subscripcion).subscribe(d=>{
         this.load = false;
         this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
       },e=>{
+        console.log(e);
         this.load = false;
-        this.alert = {status :false , message:e, class:'alert alert-warning'};
+        this.alert = {status :true , message:e, class:'alert alert-warning'};
       });
-    // },e=>{
-    //   this.load = false;
-    //   this.alert = {status :false , message:e, class:'alert alert-warning'};
-    // });
+    },e=>{
+      let er:any = e
+      this.load = false;
+      console.log(er);
+      this.alert = {status :true , message:er.error, class:'alert alert-danger'};
+    });
+  }
+
+  loadUser(){
+    if(this.usuario.payuId == null){
+      this.custumer.fullName = this.usuario.nombre+' '+this.usuario.apellido;
+      this.custumer.email = this.usuario.correo;
+    }else{
+      this.custumer.id = this.usuario.payuId;
+    }
+    this.custumer.creditCards = [this.card];
   }
   loadAddres(){
     this.address.line1 = this.usuario.dir;
@@ -264,12 +262,17 @@ export class PaymentComponent implements OnInit {
   }
   loadPlanT(){
     this.planT.planCode = this.subscripcion.plan._id;
-    this.planT.description = this.subscripcion.plan.nombre;
-    this.planT.customer = this.custumer;
-    this.planT.additionalValues = [
-      {name:"PLAN_VALUE",value:this.subscripcion.plan.precio,currency:"COP"},
-      {name:"PLAN_TAX_RETURN_BASE",value:0,currency:"COP"},
-      {name:"PLAN_TAX_VALUE",value:0,currency:"COP"}
-    ]
+    if(this.subscripcion.plan.payuId == null){
+      this.planT.description = this.subscripcion.plan.flor+"-"+this.subscripcion.plan.tamano+"-"+this.subscripcion.plan.periodo ;
+      this.planT.additionalValues = [
+        {name:"PLAN_VALUE",value:this.subscripcion.plan.precio,currency:"COP"},
+        {name:"PLAN_TAX_RETURN_BASE",value:0,currency:"COP"},
+        {name:"PLAN_TAX",value:0,currency:"COP"}
+      ]
+    }
   }
+
+  // addTokenCard(){
+  //   this.subscripcion.cliente.tarjeta.length
+  // }
 }

@@ -1,15 +1,18 @@
 var mongoose    = require('mongoose'),
-    Plans      = require('../model/plan');
+    Plans      = require('../model/plan'),
+    Flowers      = require('../model/flower'),
+    Sizes      = require('../model/size');
 
 module.exports  = {
   	all : function(req,res){
-    	Plans.find(req.query , function (e,d){
+    	Plans.find(req.query).exec( function (e,d){
         if(e){
+          console.log(e);
           res.status(501).json({error:'501',msg:'Error interno del servidor'});
         }else{
           res.status(200).json(d);
         }
-    	}).sort(req.query);
+      });
   	},
   	get: function(req,res){
   		Plans.findById(req.params.id,{ position:1}, function (e,d){
