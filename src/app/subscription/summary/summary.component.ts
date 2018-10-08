@@ -62,24 +62,6 @@ export class SummaryComponent implements OnInit {
     this.showDir = !this.showDir;
   }
 
-  getPrice(val: String, price:any):Number{
-    let valor:Number = 0;
-    switch (val) {
-      case "SEMANAL":
-        valor= price*4;
-        break;
-      case "QUINCENAL":
-        valor= price*2;
-        break;
-      case "MENSUAL":
-        valor= price*1;
-        break;
-      default:
-        valor= price;
-        break;
-    }
-    return valor;
-  }
 
   isLogin():boolean{
     return (localStorage.getItem('id'))? true:false;
