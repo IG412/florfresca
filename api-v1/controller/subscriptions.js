@@ -4,13 +4,15 @@ var mongoose    = require('mongoose'),
 
 module.exports  = {
   	all : function(req,res){
-    	Subscription.find(req.query , function (e,d){
+    	Subscription.find(req.query).exec(function (e,d){
         if(e){
-          res.status(501).json({message:'loError interno del servidor'});
+          res.status(501).json({message:'Los sentimos, Error interno del servidor'});
         }else{
-          res.status(200).json(d);
+          User.populate(d, {path:"cliente", select:"nombre apellido"},function(er, u){
+            res.status(200).json(u);
+          })
         }
-    	}).sort(req.query);
+      });
   	},
   	get: function(req,res){
   		Subscription.findById(req.params.id, function (e,d){

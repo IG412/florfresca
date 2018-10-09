@@ -225,6 +225,7 @@ export class PaymentComponent implements OnInit {
       this.subscripcion.cliente.payuId = (this.subscripcion.cliente.payuId == null)? t.customer.id :this.subscripcion.cliente.payuId;
       this.service.susbcriptions(this.subscripcion).subscribe(d=>{
         this.load = false;
+        this.pay = true;
         this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
       },e=>{
         console.log(e);
