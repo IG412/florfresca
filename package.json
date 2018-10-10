@@ -7,7 +7,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node index.js",
-    "postinstall":"ng build --prod --aot",
+    "postinstall": "ng build --prod --aot",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,7 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@sendgrid/mail": "^6.3.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^3.3.4",
     "core-js": "^2.5.4",

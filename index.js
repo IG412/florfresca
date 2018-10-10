@@ -27,10 +27,12 @@ app.all('/api/*', function (req, res, next) {
 
 
 app.use('/api', api);
-// app.use('/adminpro', function(req, res) {
-//     res.sendFile(path.join(__dirname + '/views/adminpro/'));
-// });
+app.use('/adminpro/*', function (request, response) {
+    response.set('Content-Type', 'text/html');
+    response.sendFile(path.join(__dirname + '/public/adminpro/index.html'));
+});
 app.use('/*',express.static(__dirname + '/dist/florfresca'));
+
 
 // app.set('/admin/*', function (request, response) {
 //     response.set('Content-Type', 'text/html');
@@ -44,10 +46,6 @@ app.use('/*',express.static(__dirname + '/dist/florfresca'));
 //     response.set('Content-Type', 'text/html');
 //     response.sendFile(path.join(__dirname + '/dist/florfresca'));
 // });
-
-
-
-
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

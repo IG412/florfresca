@@ -1,16 +1,21 @@
 var mongoose    = require('mongoose'),
     User        = mongoose.model('users');
     Subscription      = require('../model/subscription');
+    const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey("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");
 
 module.exports  = {
   	all : function(req,res){
-    	Subscription.find(req.query , function (e,d){
+    	Subscription.find(req.query).exec(function (e,d){
         if(e){
-          res.status(501).json({message:'loError interno del servidor'});
+          res.status(501).json({message:'Los sentimos, Error interno del servidor'});
         }else{
-          res.status(200).json(d);
+          User.populate(d, {path:"cliente", select:"nombre apellido"},function(er, u){
+            res.status(200).json(u);
+          })
         }
-    	}).sort(req.query);
+      });
   	},
   	get: function(req,res){
   		Subscription.findById(req.params.id, function (e,d){
@@ -28,6 +33,14 @@ module.exports  = {
           queryUsuario.exec(function (err, docs) {console.log(docs)});
           res.status(400).json({message:'Los sentimos, Error 500 interno del servidor contactar al equipo de soporte'});
         }else{
+          const msg = {
+            to: (req.body.cliente.correo)?req.body.cliente.correo: 'jmora@if-cs.com' ,
+            from: 'raman@florfresca.com.co',
+            subject: 'Subscription in Florfresca',
+            text: '',
+            html: '',
+          };
+          sgMail.send(msg);
           res.status(201).json(d);
           queryUsuario.exec(function (err, docs) { console.log(docs) });
         }
@@ -57,6 +70,230 @@ module.exports  = {
   	}
 };
 
-function putUser(argument) {
-  // body...
+function html(arg) {
+  var h = '<div border="1" cellpadding="0" padding-top:20px; cellspacing="0" height="100%" width="100%" bgcolor="#F7F7F7" style="margin:0;border-color:green;">'+
+'  <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" bgcolor="#F7F7F7">'+
+ '  <tbody>'+
+'      <tr>'+
+'        <td>'+
+'          <table align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#fafafa" style="width:599px;max-width:599px">'+
+'            <tbody>'+
+'              <tr>'+
+'                <td>'+
+'                  <table align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#bd1550" style="width:599px;max-width:599px">'+
+'                    <tbody>'+
+'                      <tr>'+
+'                        <td width="100%" valign="middle" style="text-align:center; padding:11px 0;">'+
+'                          <a href="http://lacamarasinalma.com" target="_blank" >'+
+                            '<img src="http://flrofresca.herokuapp.com/assets/imgs/logo.png" style="" border="0" alt="Flor Fresca" >'+
+                          '</a>'+
+                        '</td>'+
+                        '<td width="66%" valign="middle" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;text-align:right;padding-top:12px;vertical-align:middle">'+
+                        '</td>'+
+                      '</tr>'+
+                    '</tbody>'+
+                  '</table>'+
+                '</td>'+
+              '</tr>'+
+              '<tr>'+
+                '<td colspan="2" style="background:#fff;border-radius:8px">'+
+                  '<table border="0" cellpadding="0" cellspacing="0" width="100%">'+
+                    '<tbody>'+
+                      '<tr>'+
+                        '<td style="font-family:Helvetica neue,Helvetica,Arial,sans-serif;padding:32px 40px;border-radius:6px 6px 0 0" align="">'+  
+                          '<h1 style="color:#404040;font-weight:300;margin:0 0 12px 0;font-size:24px;line-height:30px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                            '¡Su suscripción se ha realizado con éxito!'+
+                          '</h1>'+  
+                        '</td>'+
+                      '</tr>'+
+                      '<tr>'+
+                        '<td style="padding:0 40px">'+        
+                          '<table cellspacing="0" cellpadding="0" width="100%" style="width:100%;min-width:100%">'+
+                            '<tbody>'+
+                              '<tr>'+
+                                '<td style="background-color:#dedede;width:100%;min-width:100%;font-size:1px;height:1px;line-height:1px">&nbsp;'+
+                                '</td>'+
+                              '</tr>'+
+                            '</tbody>'+
+                          '</table>'+
+                        '</td>'+
+                      '</tr>'+
+                      '<tr>'+
+                        '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif;padding:32px 40px;border-radius:6px 6px 0 0" align="">'+
+                          '<h2 style="color:#404040;font-weight:300;margin:0 0 12px 0;font-size:24px;line-height:30px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                            'Estimado Cliente <strong style"color:black;"><%= client[0].name %></strong>, El resumen de la transacción'+
+                          '</h2>'+
+                        '</td>'+
+                      '</tr>'+
+                      '<!-- tabla de datos -->'+
+                      '<tr>'+
+                        '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif;padding:32px 40px;background-color:#ededed">'+
+                          '<!--Inicio ticket-->'+
+                          '<table cellpadding="0" cellspacing="0" border="0" style="width:100%;margin-bottom:12px">'+
+                            '<tbody>'+
+                              '<tr>'+
+                                '<td style="border-bottom:1px dashed #d3d3d3">'+
+                                  '<h2 style="color:#404040;font-weight:300;margin:0 0 12px 0;font-size:24px;line-height:30px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                    Resumen
+                                  '</h2>'+
+                                '</td>'+
+                                '<td colspan="2" style="text-align:right;border-bottom:1px dashed #d3d3d3">'+
+                                  '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                  '</div>'+
+                                '</td>'+
+                              '</tr>'+
+                              '<tr>'+
+                                '<td colspan="3">'+                   
+                                  '<p style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif;margin-bottom:18px">'+
+                                    '&nbsp;'+
+                                  '</p>'+
+                                  '<table cellpadding="0" cellspacing="0" border="0" style="width:100%">'+
+                                    '<tbody>'+
+                                      '<tr>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                            'PLAN     '+
+                                          '</div>'+
+                                        '</td>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+                                    
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
+                                            'sdadas asdasdas asdasd'+                             
+                                          '</div>'+
+                                        '</td>'+                                
+                                      '</tr>'+
+                                      '<tr>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                            'CODIGO PLAN:   '+   
+                                          '</div>'+
+                                        '</td>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+                                    
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
+                                            '<%= client[0].phone %>'+                                
+                                          '</div>'+
+                                        '</td>'+                                
+                                      '</tr>'+
+                                      '<tr>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                            'TRANSACCIÓN '+     
+                                          '</div>'+
+                                        '</td>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+                                    
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
+                                            '<%= client[0].phone %>'+                                
+                                          '</div>'+
+                                        '</td>'+                                
+                                      '</tr>'+
+                                      '<tr>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                            'PRECIO'+      
+                                          '</div>'+
+                                        '</td>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+                                    
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
+                                            '<%= client[0].phone %>'+                                
+                                          '</div>'+
+                                        '</td>'+                                
+                                      '</tr>'+
+                                      '<tr>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                            'FECHA '+     
+                                          '</div>'+
+                                        '</td>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+                                    
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
+                                            '<%= client[0].phone %>'+                                
+                                          '</div>'+
+                                        '</td>'+                                
+                                      '</tr>'+
+                                      '<tr>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                            'SUSCRIPTOR '+     
+                                          '</div>'+
+                                        '</td>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+                                    
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
+                                            '<%= client[0].phone %>'+                                
+                                          '</div>'+
+                                        '</td>'+                                
+                                      '</tr>'+
+                                      '<tr>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
+                                            'CLIENTE+'      
+                                          '</div>'+
+                                        '</td>'+
+                                        '<td style="padding:12px 0;padding-right:3px">'+                                    
+                                          '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
+                                            '<%= client[0].phone %>'+                                
+                                          '</div>'+
+                                        '</td>'+                                
+                                      '</tr>'+
+                                    '</tbody>'+
+                                  '</table>'+
+                                '</td>'+
+                              '</tr>'+
+                            '</tbody>'+
+                          '</table>'+
+                        '</td>'+
+                      '</tr>'+
+                    '</tbody>'+
+                  '</table>'+
+                '</td>'+
+              '</tr>'+
+                  '<!-- Final tabla de datos -->'+
+              '<tr>'+
+                  '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;padding:32px 40px;background-color:#e4e5e6">'+
+                      '<!--Politicas de privacidad-->'+
+                      '<p style="text-align:center;color:#999;margin-bottom:0; font-size:10px;">'+
+                         'Este mensaje está sujeto a los <a href="http:/flrofresca.herokuapp.com/legal/terms" style="text-decoration:none;color:#0f90ba" target="_blank" >términos de servicio</a> y la <a href="http:/flrofresca.herokuapp.com/legal/privacy" style="text-decoration:none;color:#0f90ba" target="_blank" >política de privacidad</a> de Flor Fresca '+
+                     ' </p>'+
+                  '</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;padding:32px 40px;border-radius:0 0 6px 6px;" >'+
+                      '<div style="color:#666666;font-weight:400;font-size:11px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif; text-align:center">'+
+                          '*** NO RESPONDER - Este Mensaje Es Generado Automáticamente ***'+
+                      '</div>'+  
+                  '</td>'+
+              '</tr>'+
+            '</tbody>'+
+          '</table>'+
+          '<table align="center" cellpadding="0" cellspacing="0" border="0" style="width:599px;max-width:599px;font-family:Helvetica,Arial,sans-serif">'+
+              '<tbody>'+
+                '<tr>'+
+                    '<td style="padding-top:24px">'+
+                    '</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;padding:12px 20px" >'+
+                    '</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;padding:24px 0;text-align:center" >'+
+                        '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300;padding-bottom:6px">'+
+                            '<a style="text-decoration:none;color:#0f90ba;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif" href="http:/flrofresca.herokuapp.com/" target="_blank" >Flor Fresca</a>'+
+                        '</div>'+
+                        '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300;padding-bottom:6px;">        '+
+                            '<span>'+
+                                'Este mensaje de correo electrónico se envió desde: '+
+                                '<a style="text-decoration:none;color:#0f90ba;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif" >admin@florfresca.com.co</a>'+
+                            '</span>'
+                        '</div>'
+                        '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300">'
+                          'Copyright © 2018 | Flor Fresca. Todos los derechos reservados.'+
+                        '</div>'
+                    '</td>'
+                '</tr>'
+              '</tbody>'
+          '</table>'
+        '</td>'
+      '</tr>'
+    '</tbody>'
+  '</table>'
+'</div>'
 }

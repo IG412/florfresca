@@ -14,6 +14,7 @@ class Plan  {
 
 export class Subscripcion {
 	estado:String;
+	f_entrega:string;
 	suscriptor: Suscriptor;
 	plan:Plan;
 	cliente:Usuario;

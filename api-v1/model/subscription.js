@@ -1,6 +1,6 @@
 var mongoose 	= require( 'mongoose' ),
   crypto     	= require('crypto');
-
+var users = mongoose.model('users');
 var Plan = new mongoose.Schema({
   _id:String,
   flor:String,
@@ -25,7 +25,7 @@ var Suscriptor = new mongoose.Schema({
 var Suscripciones 	= new mongoose.Schema({
   cliente: { type: mongoose.Schema.ObjectId, ref: "users" },
   plan: Plan,
-  estado: {type:Boolean, default:false},
+  estado: {type:String, default:"Pendiente"},
   suscriptor: Suscriptor,
   f_creacion:  { type:Date, default: Date.now },
   f_entrega: Date,

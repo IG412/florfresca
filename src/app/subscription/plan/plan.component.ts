@@ -80,7 +80,6 @@ export class PlanComponent implements OnInit {
     this.service.flowers().subscribe(d=>{
       this.Flowers = d;
       this.service.sizes().subscribe(s=>{this.Sizes=s;},e=>{});
-      localStorage.clear();
       if(localStorage.getItem('subscription')){
         this.subscription = JSON.parse(localStorage.getItem('subscription'));
         this.suscriptor = (this.subscription.suscriptor)?this.subscription.suscriptor:null;
@@ -124,12 +123,12 @@ export class PlanComponent implements OnInit {
     // this.subscription.plan = {_id:plan._id,nombre:plan.nombre,img:plan.img}
     this.subscription.plan.flor = f.nombre;
     this.subscription.plan.img_flor = f.img;
-    this.select_flower = f._id;
+    this.select_flower = f.nombre;
     // this.tamanos = plan.tamano;
   }
   addTamano(t:Size){
     this.subscription.plan.tamano = t.nombre;
-  	this.select_tamano = t._id;
+  	this.select_tamano = t.nombre;
   }
   addTipo(f:Period){
     this.subscription.plan.periodo = f.nombre;
@@ -141,9 +140,10 @@ export class PlanComponent implements OnInit {
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";
     }else{
       if($("#fecha_entrega").val() != ''){
+        this.subscription.f_entrega = $("#fecha_entrega").val();
         if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
           this.alert = "";
-          this.find({flower:this.select_flower,size:this.select_tamano,period:this.select_frecuencia});
+          this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
         }else{
           this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
         }
@@ -159,6 +159,7 @@ export class PlanComponent implements OnInit {
       if(p.length > 0){
         this.subscription.plan._id = p[0]._id;
         this.subscription.plan.precio = p[0].values;
+        this.subscription.plan.payuId = (p[0].payuId)? p[0].payuId: null;
         localStorage.setItem('subscription', JSON.stringify(this.subscription));
          this.router.navigate(['subscription/summary']);
       }else{

@@ -1,6 +1,7 @@
 import { CreditCards } from './creditcards';
 
 export class Customer {
+	  id?:string;
       fullName: string;
       email: string;
       creditCards: Array<CreditCards>

@@ -139,7 +139,7 @@
                 <div class="col-sm-8 col-md-8">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6" [ngStyle]="{'margin-bottom':(i == 0)?'':'30px'}" *ngFor="let p of Flowers;index as i" >
-                            <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (p._id === select_flower) ? '1px solid red':'none'}" >
+                            <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (p.nombre === select_flower) ? '1px solid red':'none'}" >
                                 <div class="radius-top">
                                     <div class="vertical-align">
                                         <div class="col-xs-1 col-sm-4">
@@ -167,7 +167,7 @@
             </div>
             <div class="row" style="margin-bottom: 50px" *ngFor="let t of Sizes" >
                 <div class="col-xs-1 col-sm-2"></div>
-                <div class="col-xs-1 col-sm-8 bg-white" style="height: 200px;" [ngStyle]="{'border': (t._id == select_tamano) ? '3px solid red':'none'}">
+                <div class="col-xs-1 col-sm-8 bg-white" style="height: 200px;" [ngStyle]="{'border': (t.nombre == select_tamano) ? '3px solid red':'none'}">
                     <div class="col-xs-1 col-sm-4 text-center">
                         <img class="radius-img" [src]="t.icon" alt="" height="150px" width="150px">
                     </div>
