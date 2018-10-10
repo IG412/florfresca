@@ -13,13 +13,6 @@ import { Size } from '../../models/size';
 import { Period } from '../../models/period';
 
 declare var $: any;
-// declare class Plans  {
-//   nombre:String;
-//   img:String;
-//   tamano:String;
-//   frecuencia:String;
-//   precio?:Number;
-// }
 
 @Component({
   selector: 'app-plan',
@@ -77,6 +70,7 @@ export class PlanComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0,0);
     this.service.flowers().subscribe(d=>{
       this.Flowers = d;
       this.service.sizes().subscribe(s=>{this.Sizes=s;},e=>{});

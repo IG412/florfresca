@@ -15,7 +15,7 @@ module.exports  = {
     	}).sort(req.query);
   	},
   	get: function(req,res){
-      var filter = {correo:1,nombre:1,apellido:1,telefono:1,celular:1,tipo_doc:1,documento:1,tarjeta:1}
+      var filter = {correo:1,payuId:1,nombre:1,apellido:1,telefono:1,celular:1,tipo_doc:1,documento:1,tarjeta:1}
   		User.findById(req.params.id, filter, function (e,d){
         if(e){
           res.status(400).json({message:'Error interno del servidor'});

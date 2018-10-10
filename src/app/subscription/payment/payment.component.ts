@@ -73,6 +73,7 @@ export class PaymentComponent implements OnInit {
     this.alert = {status :false , message:'', class:''};
   }
   ngOnInit() {
+    window.scrollTo(0,0);
     if (localStorage.getItem('subscription')) {
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
       if(localStorage.getItem('id')){
@@ -211,7 +212,7 @@ export class PaymentComponent implements OnInit {
     this.usuario.tarjeta.push(this.card);
     this.loadUser();
     this.loadPlanT();
-    this.transaction.plan = this.planT;
+    this.transaction.plan =  this.planT;
     this.transaction.deliveryAddress = this.address;
     this.transaction.customer = this.custumer;
     this.subscripcion.cliente = this.usuario;
@@ -224,9 +225,12 @@ export class PaymentComponent implements OnInit {
       this.subscripcion.payuId = t.id;
       this.subscripcion.plan.payuId = (this.subscripcion.plan.payuId == null)? t.plan.id: this.subscripcion.plan.payuId;
       this.subscripcion.cliente.payuId = (this.subscripcion.cliente.payuId == null)? t.customer.id :this.subscripcion.cliente.payuId;
+      console.log(this.transaction);
       this.service.susbcriptions(this.subscripcion).subscribe(d=>{
         this.load = false;
         this.pay = true;
+        localStorage.removeItem('subscription');
+        window.scrollTo(0,0);
         this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
       },e=>{
         console.log(e);
@@ -242,10 +246,10 @@ export class PaymentComponent implements OnInit {
   }
 
   loadUser(){
-    if(this.usuario.payuId == null){
+    if(this.usuario.payuId == null ){
       this.custumer.fullName = this.usuario.nombre+' '+this.usuario.apellido;
       this.custumer.email = this.usuario.correo;
-    }else{
+    }else{     
       this.custumer.id = this.usuario.payuId;
     }
     this.custumer.creditCards = [this.card];
@@ -274,7 +278,4 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  // addTokenCard(){
-  //   this.subscripcion.cliente.tarjeta.length
-  // }
 }

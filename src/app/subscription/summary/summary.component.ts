@@ -41,6 +41,7 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0,0);
     if(localStorage.getItem('subscription')) {
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
     }else{

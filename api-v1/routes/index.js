@@ -17,6 +17,7 @@ router.route('/auth/admin/tokens').post(auth.admin);
 router.route('/auth/register').post(auth.register);
 
 router.route('/subscriptions').get(subs.all).post(subs.post);
+router.route('/subscription/:id').get(subs.get).put(subs.put);
 router.route('/flowers').get(flowers.all).post(flowers.post);
 router.route('/sizes').get(sizes.all).post(sizes.post);
 router.route('/plans').get(plan.all).post(plan.post);

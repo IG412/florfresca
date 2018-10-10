@@ -33,6 +33,7 @@ var Usuario 	= new mongoose.Schema({
   celular: Number,
   tipo_doc: String,
   documento:  String,
+  dir:String,
   hash: String,
   salt: String,
   reset: String,

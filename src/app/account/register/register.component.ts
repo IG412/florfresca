@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.checkPasswords = this.compararContra(this.usuario.pass, this.passConfi);
-    if (!this.checkPasswords) {
+    if (this.checkPasswords) {
       this.service.create_user(this.usuario).subscribe(
         d=>{
           this.messages = d;
