@@ -1,0 +1,182 @@
+<treasure-overlay-spinner active='spinner.active'>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Editar Album</h1>
+</div>
+
+<div class="wrapper-md">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form name="entryForm" class="form-horizontal" class="form-validation" novalidate>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Mes</label>
+          <div class="col-sm-3">
+            <select class="form-control" ng-model="Albums.month" required>
+              <option value="">Seleccione Mes</option>
+              <option ng-repeat="month in months" value="{{month}}" ng-selected="month == Albums.month" >{{month}}</option>
+            </select>
+          </div>
+          <label class="col-sm-2 control-label">Año</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" ng-model="Albums.year" placeholder="2017" required>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Album</label>
+          <div class="col-sm-2  ">
+            <input type="text" class="form-control" ng-model="Albums.album" required>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+      
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Descripción</label>
+          <div class="col-sm-8">
+
+            <div class="row" >
+              <div class="col-md-6">
+                <label class="control-label">Español</label>
+                <textarea class="form-control" placeholder="Descripción" ng-model="Albums.body" rows="4" required></textarea>
+              </div>
+              <div class="col-md-6">
+                <label class="control-label">English</label>
+                <textarea class="form-control" placeholder="Descripción" ng-model="Albums.body_en" rows="4"  required></textarea>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Lugar</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" ng-model="Albums.location" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Video</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" ng-model="Albums.video" >
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Cover</label>
+          <div class="col-sm-8">
+          <p>Tamaño recomendado 800x1200</p>
+            <img style="width: 100%;"  ng-show="!cover" ng-src="{{loadFiles(Albums.cover)}} "  ng-if="Albums.cover != '' && !cover "/>
+            <img style="width: 100%;" ng-show="!!cover" ngf-thumbnail="cover || 'img/Promons/img-cart.jpg'" ng-if="slide.img == '' || cover"/>
+            <input 
+                type="file" 
+                ngf-select 
+                ng-model="cover" 
+                name="file" 
+                ngf-pattern="'image/*'"
+                accept="image/*" 
+                ngf-max-size="3MB" 
+                />
+            <br>
+            <i ng-show="entryForm.file.$error.maxSize">Archivo demasiado pesado 
+            {{cover.size / 1000000|number:1}}MB: max 3M</i>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Imagenes</label>
+          <div class="col-sm-10">
+            <button class="btn btn-default" ng-click="addFieldsimage()">
+              <i class="fa fa-user"></i>
+              Agregar
+            </button>
+            <br><br>
+            <div class="row" ng-repeat="image in Images track by $index">
+              <div class="col-sm-8">
+              <p>Tamaño recomendado 1280x720</p>
+              <img style="width: 100%;" ng-show="Albums.images[$index].img && !file[$index]" ng-src="{{loadFiles(Albums.images[$index].img)}}" ng-if="Albums.images[$index].img != '' && !file[$index]"/>
+               <img style="width: 100%;" ng-show="!!file[$index]" ngf-thumbnail="file[$index] || 'img/Promons/img-cart.jpg'" ng-if="file[$index]"/>
+              <br>
+              <br>
+                  <input 
+                      type="file" 
+                      ngf-select 
+                      ng-model="file[$index]" 
+                      name="file" 
+                      ngf-pattern="'image/*'"
+                      accept="image/*" 
+                      ngf-max-size="3MB" 
+                       />
+                  <i ng-show="entryForm.file.$error.maxSize">Archivo demasiado pesado  
+                  {{file[$index].size / 1000000|number:1}}MB: max 20M</i>
+              &nbsp;
+              </div>
+              <label class="col-sm-2 control-label">Posición</label>
+              <div class="col-sm-1">
+                <input type="text" class="form-control" ng-model="Albums.images[$index].position" required>
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-sm btn-icon btn-danger" ng-click="removeFieldsimage($index,image.img)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div> 
+            </div>
+          </div>
+        </div>
+         <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Audio</label>
+          <div class="col-sm-8">
+
+            <div class="row" >
+              <div class="col-md-6">
+                <label class="control-label">Español</label>
+                <p>Peso máximo: 7MB</p>
+                <audio controls ngf-src="audio" ng-if="audio" ></audio>
+                <audio controls  ngf-src="Audio" ng-if="!audio && Albums.audio != '' "></audio>
+                <input 
+                    type="file" 
+                    ngf-select 
+                    ng-model="audio" 
+                    name="audio"
+                    accept="audio/*"
+                    ngf-max-size="7MB" 
+                    />
+                <br>
+                <i ng-show="entryForm.file.$error.maxSize">Archivo demasiado pesado 
+                {{audio.size / 1000000|number:1}}MB: max 10M</i>
+              </div>
+              <div class="col-md-6">
+                <label class="control-label">English</label>
+                <p>Peso máximo: 7MB</p>
+                <audio controls ngf-src="audio2" ng-if="audio2" ></audio>
+                <audio controls  ngf-src="Audio2" ng-if="!audio2 && Albums.audio_en != '' "></audio>
+                <input 
+                    type="file" 
+                    ngf-select 
+                    ng-model="audio2" 
+                    name="audio2"
+                    accept="audio/*"
+                    ngf-max-size="7MB" 
+                    />
+                <br>
+                <i ng-show="entryForm.file.$error.maxSize">Archivo demasiado pesado 
+                {{audio.size / 1000000|number:1}}MB: max 10M</i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" class="btn btn-dark" ng-click="create(Albums,file,cover,audio,audio2)" ng-disabled="entryForm.$invalid">Enviar</button>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+</div>
+</treasure-overlay-spinner>

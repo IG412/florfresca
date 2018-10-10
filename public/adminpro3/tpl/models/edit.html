@@ -1,0 +1,70 @@
+<treasure-overlay-spinner active='spinner.active'>
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Modelo # {{Model._id}}</h1>
+</div>
+
+<div class="wrapper-md">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form name="entryForm" class="form-horizontal" class="form-validation" novalidate>
+        
+         <div class="form-group">
+          <label class="col-sm-2 control-label">Fecha</label>
+          <div class="col-sm-8">
+            <b>{{Model.created | date:'shortDate'}}</b>
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+      
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Nombre</label>
+          <div class="col-sm-8">
+            <b>{{Model.name}}</b>
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Correo</label>
+          <div class="col-sm-3">
+            <b>{{Model.email}}</b>
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Teléfono</label>
+          <div class="col-sm-3">
+            <b>{{Model.phone}}</b>
+          </div>
+        </div>
+
+         <div class="line line-dashed b-b line-lg pull-in"></div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Porque..</label>
+          <div class="col-sm-3">
+            <b>{{Model.why}}</b>
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+        <div class="form-group">
+          <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" class="btn btn-dark" ui-sref="app.models">Regresar</button>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+</div>
+</treasure-overlay-spinner>
+
+

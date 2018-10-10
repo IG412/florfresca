@@ -1,0 +1,74 @@
+<treasure-overlay-spinner active='spinner.active'>
+<div class="bg-light lter b-b wrapper-md">
+  <button class="btn m-b-xs w-xs btn-success pull-right" ui-sref="app.addSlide">
+    <i class="icon-magic-wand"></i>
+    Agregar
+  </button> 
+  <h1 class="m-n font-thin h3">Home</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+      <table class="table m-b-none" ui-jq="footable" data-filter="#filter">
+        <thead>
+          <tr>
+            <th data-toggle="true">Imagen</th>
+            <th>Título</th>
+            <th>Subtítulo</th>
+            <th>Posición</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="slide in slides ">
+            <td>
+              <img  ng-src="img/slides/img-cart.jpg " ng-if="slide.img == '' " />
+              <img width="120px" ng-src="{{loadFiles(slide.img)}}" ng-if="slide.img !== '' " />
+            </td>
+            <td>{{slide.title}}</td>
+            <td>{{slide.subtitle}}</td>
+            <td>{{slide.position}}</td>
+            <td>
+              <button class="btn m-b-xs w-xs btn-info" ui-sref="app.slide({id: slide._id})">
+                <i class="icon-pencil" title="Editar"></i>
+              </button>
+              <button class="btn m-b-xs w-xs btn-danger" ng-click="delete(slide._id,slide.img)">
+                <i class="icon-trash" title="Borrar"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Video Intro</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+      <table class="table m-b-none" ui-jq="footable" data-filter="#filter">
+        <thead>
+          <tr>
+            <th data-toggle="true">Video</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="video in videos ">
+            <td>
+              
+              <iframe width="120px" height="120px" src="{{loadVideos(video.url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+            </td>
+            <td>{{video.url}}</td>
+            <td>
+              <button class="btn m-b-xs w-xs btn-info" ui-sref="app.video({id: video._id})">
+                <i class="icon-pencil" title="Editar"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</treasure-overlay-spinner>

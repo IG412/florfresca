@@ -1,0 +1,96 @@
+<treasure-overlay-spinner active='spinner.active'>
+<div class="bg-light lter b-b wrapper-md" style="background-image:url(../img/products/ex4.png);">
+  <h1 class="font-thin h3 pull-right">
+    Fecha : {{Report.date | date:'MM/dd/yyyy'}}
+  </h1> 
+  <h1 class="m-n font-thin h3">Reporte del pedido Nº {{Report._id}}</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default">
+      <div class="panel-heading font-bold">Datos del Comprador</div>
+      <div class="panel-body">
+      <div name="entryForm" class="form-horizontal" class="form-validation" >
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Transacción</label>
+          <div class="col-sm-6 ">
+           {{Report.transaction}}
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Nombres</label>
+          <div class="col-sm-6">
+            <p>{{Client.name}}</p>
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+         <div class="form-group">
+          <label class="col-sm-2 control-label">Dirección</label>
+          <div class="col-sm-2">
+            <p>{{Client.address}}</p>
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Ciudad</label>
+          <div class="col-sm-2">
+            <p>{{Client.city}}</p>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Teléfono</label>
+          <div class="col-sm-4">
+            <p>{{Client.phone}}</p>
+          </div>
+         </div>
+         <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Correo</label>
+            <div class="col-sm-4">
+              <p>{{Client.email}}</p>
+            </div>
+           </div>
+        
+      </div>
+      
+    </div>
+      <div class="panel-heading font-bold">Datos de Productos</div>
+      <table class="table m-b-none" data-filter="#filter">
+        <thead>
+          <tr>
+            <th data-toggle="true">Id</th>
+            <th data-toggle="true">Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="products in Report.cart track by $index">
+            <td>{{products._id}}</td>
+            <td>{{products._name}}</td>
+            <td>{{filter(products._price)}}</td>
+            <td>{{products._quantity}}</td>
+            <td>{{filter(products._quantity*products._price)}}</td>
+          </tr>
+          <tr>
+             <th colspan="4" style="text-align: right;">Envio</th>
+             <td>{{filter(Report.shipping)}}</td>
+          </tr>
+          <tr>
+             <th colspan="4" style="text-align: right;">Total</th>
+             <td>{{filter(Report.price)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</treasure-overlay-spinner>

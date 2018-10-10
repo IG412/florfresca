@@ -1,0 +1,28 @@
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{background-color: #777; border-color: #777; color: #fff}
+.pagination > li > a, .pagination > li > span, .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{color: #999; background-color: #fbfbfb; border-color: #ccc;}
+.pagination > li:first-child > a, .pagination > li:first-child > span{border-top-left-radius:0; border-bottom-left-radius:0;}
+.pagination > li:last-child > a, .pagination > li:last-child > span{border-top-right-radius: 0; border-bottom-right-radius: 0;}
+.pagination > li > a:hover,.pagination > li > span:hover,.pagination > li > a:focus,.pagination > li > span:focus {color: #111;}
+.panel-heading{padding: 22px 15px}
+.treasure-overlay-spinner{position: fixed; top: 50%; left: calc(50% + 100px)}
+.table > tbody > tr > td img, .table > tfoot > tr > td img{border:1px solid gray;}
+
+.w-mdmnn {
+  width: 240px;
+  display: block;
+  width: 50%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+}
+
+
+@media (max-width: 767px){
+	.treasure-overlay-spinner{left: 50%}
+}
