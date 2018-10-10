@@ -21,6 +21,7 @@ router.route('/subscription/:id').get(subs.get).put(subs.put);
 router.route('/flowers').get(flowers.all).post(flowers.post);
 router.route('/sizes').get(sizes.all).post(sizes.post);
 router.route('/plans').get(plan.all).post(plan.post);
+router.route('/plan/:id').get(plan.get).put(plan.put);
 
 router.route('/user/:id').get(user.get).put(user.put);
 // router.route('/slides').get(slides.all).post(slides.post);

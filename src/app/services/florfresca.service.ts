@@ -40,6 +40,10 @@ export class FlorfrescaService {
     this.headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get<any>(this.Url+"/plans", {headers:this.headers,params:query});
   }
+  plan(query:any): Observable<any> {
+    this.headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.put<any>(this.Url+"/plans"+query._id,query, {headers:this.headers,params:query});
+  }
   flowers():Observable<Flower[]>{
     this.headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get<Flower[]>(this.Url+"/flowers", {headers:this.headers});

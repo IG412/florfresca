@@ -19,8 +19,8 @@ export class PlanT {
   trialDays: number;
   additionalValues: Array<value>;
   constructor(){
-    // this.accountId = 744488;
-    this.accountId = 512321;
+    this.accountId = 744488;
+    // this.accountId = 512321;
     this.intervalCount = 1;
     this.interval = "MONTH";
     this.maxPaymentsAllowed = 12;

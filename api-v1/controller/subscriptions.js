@@ -21,16 +21,17 @@ module.exports  = {
         if(e){
           res.status(400).json({message:'Error interno del servidor'});
         }else{
-          User.populate(d, {path:"cliente", select:"nombre apellido"},function(er, u){
-            const msg = {
-                to: 'leider@if-cs.com',
-                from: 'leider@if-cs.com',
-                subject: 'Sending with SendGrid is Fun',
-                text: 'and easy to do anywhere, even with Node.js',
-                html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-              };
-              sgMail.send(msg);
+          User.populate(d, {path:"cliente", select:"nombre apellido correo telefono celular documento tipo_doc"},function(er, u){
             res.status(200).json(u);
+            // var htmlText = html(u); 
+            // const msg = {
+            //   to: (u.cliente.correo)?u.cliente.correo: 'jmora@if-cs.com' ,
+            //   from: 'raman@florfresca.com.co',
+            //   subject: 'Tienes una subscription en Florfresca',
+            //   text: 'Tienes una subscription',
+            //   html: htmlText,
+            // }
+            // sgMail.send(msg);
           });          
         }
     	});
@@ -52,7 +53,7 @@ module.exports  = {
               text: 'Tienes una subscription',
               html: htmlText,
           };
-            sgMail.send(msg);
+          sgMail.send(msg);
         }
       });
   	},
@@ -90,12 +91,12 @@ function html(arg) {
 '            <tbody>'+
 '              <tr>'+
 '                <td>'+
-'                  <table align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#bd1550" style="width:599px;max-width:599px">'+
+'                  <table align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#00778c" style="width:599px;max-width:599px">'+
 '                    <tbody>'+
 '                      <tr>'+
 '                        <td width="100%" valign="middle" style="text-align:center; padding:11px 0;">'+
 '                          <a href="http://lacamarasinalma.com" target="_blank" >'+
-                            '<img src="http://flrofresca.herokuapp.com/assets/imgs/logo.png" style="" border="0" alt="Flor Fresca" >'+
+                            '<img src="http://florfresca.herokuapp.com/assets/imgs/logo.png" style="" border="0" alt="Flor Fresca" >'+
                           '</a>'+
                         '</td>'+
                         '<td width="66%" valign="middle" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;text-align:right;padding-top:12px;vertical-align:middle">'+
@@ -167,7 +168,7 @@ function html(arg) {
                                         '</td>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+                                    
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
-                                            +arg.plan.nombre+' - '+arg.plan.tamano+' - '+arg.plan.periodo                             
+                                            ' '+arg.plan.flor+' - '+arg.plan.tamano+' - '+arg.plan.periodo+                        
                                           '</div>'+
                                         '</td>'+                                
                                       '</tr>'+
@@ -179,7 +180,7 @@ function html(arg) {
                                         '</td>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+                                    
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
-                                            +arg.plan._id+                                
+                                           ' '+arg.plan._id+                                
                                           '</div>'+
                                         '</td>'+                                
                                       '</tr>'+
@@ -191,7 +192,7 @@ function html(arg) {
                                         '</td>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+                                    
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
-                                            +arg.payuId+                                
+                                            ' '+arg.payuId+                                
                                           '</div>'+
                                         '</td>'+                                
                                       '</tr>'+
@@ -203,7 +204,7 @@ function html(arg) {
                                         '</td>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+                                    
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
-                                            +arg.plan.precio+                                
+                                            ' '+arg.plan.precio+                                
                                           '</div>'+
                                         '</td>'+                                
                                       '</tr>'+
@@ -215,7 +216,7 @@ function html(arg) {
                                         '</td>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+                                    
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
-                                            +arg.f_entrega+                                
+                                            ' '+arg.f_entrega+                                
                                           '</div>'+
                                         '</td>'+                                
                                       '</tr>'+
@@ -227,19 +228,19 @@ function html(arg) {
                                         '</td>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+                                    
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
-                                            +arg.suscriptor.nombre+                                
+                                            ' '+arg.suscriptor.nombre+                                
                                           '</div>'+
                                         '</td>'+                                
                                       '</tr>'+
                                       '<tr>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
-                                            'CLIENTE+'      
+                                            'CLIENTE'+      
                                           '</div>'+
                                         '</td>'+
                                         '<td style="padding:12px 0;padding-right:3px">'+                                    
                                           '<div style="color:#666666;font-weight:400;font-size:15px;line-height:21px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+    
-                                            +arg.cliente.nombre+                                
+                                            ' '+arg.cliente.nombre+                                
                                           '</div>'+
                                         '</td>'+                                
                                       '</tr>'+
@@ -255,7 +256,7 @@ function html(arg) {
                   '</table>'+
                 '</td>'+
               '</tr>'+
-                  '<!-- Final tabla de datos -->'+
+              '<!-- Final tabla de datos -->'+
               '<tr>'+
                   '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;padding:32px 40px;background-color:#e4e5e6">'+
                       '<!--Politicas de privacidad-->'+
@@ -276,8 +277,7 @@ function html(arg) {
           '<table align="center" cellpadding="0" cellspacing="0" border="0" style="width:599px;max-width:599px;font-family:Helvetica,Arial,sans-serif">'+
               '<tbody>'+
                 '<tr>'+
-                    '<td style="padding-top:24px">'+
-                    '</td>'+
+                    '<td style="padding-top:24px"></td>'+
                 '</tr>'+
                 '<tr>'+
                     '<td style="font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;padding:12px 20px" >'+
@@ -288,23 +288,23 @@ function html(arg) {
                         '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300;padding-bottom:6px">'+
                             '<a style="text-decoration:none;color:#0f90ba;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif" href="http:/flrofresca.herokuapp.com/" target="_blank" >Flor Fresca</a>'+
                         '</div>'+
-                        '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300;padding-bottom:6px;">        '+
+                        '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300;padding-bottom:6px;">'+
                             '<span>'+
                                 'Este mensaje de correo electrónico se envió desde: '+
                                 '<a style="text-decoration:none;color:#0f90ba;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif" >admin@florfresca.com.co</a>'+
-                            '</span>'
-                        '</div>'
-                        '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300">'
+                            '</span>'+
+                        '</div>'+
+                        '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-weight:300">'+
                           'Copyright © 2018 | Flor Fresca. Todos los derechos reservados.'+
-                        '</div>'
-                    '</td>'
-                '</tr>'
-              '</tbody>'
-          '</table>'
-        '</td>'
-      '</tr>'
-    '</tbody>'
-  '</table>'
+                        '</div>'+
+                    '</td>'+
+                '</tr>'+
+              '</tbody>'+
+          '</table>'+
+        '</td>'+
+      '</tr>'+
+    '</tbody>'+
+  '</table>'+
 '</div>';
 return h;
 }
