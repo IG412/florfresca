@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
+    this.messages = new Message();
     this.checkPasswords = this.compararContra(this.usuario.pass, this.passConfi);
     if (this.checkPasswords) {
       this.service.create_user(this.usuario).subscribe(
@@ -37,16 +38,20 @@ export class RegisterComponent implements OnInit {
           this.messages = d;
           this.messages.class = "bg-success";
           this.messages.status = true;
+          this.usuario = new Usuario();
           // this.router.navigateByUrl("/login");   
         },
         e=>{
-          this.messages = e;
+          let er:any = e
+          this.messages.message = er.error.message;
           this.messages.class = "bg-danger";
           this.messages.status = true;
         }
       );
     }else{
-      console.log("contra no son iguales")
+      this.messages.message = "lo sentimos, las contraseñas no son iguales";
+      this.messages.class = "bg-danger";
+      this.messages.status = true;
     }
 
   }

@@ -14,30 +14,35 @@ module.exports  = {
         var user    = new User();
         user.correo  = req.body.correo;
         user.email  = req.body.correo;
-        User.findOne({email:req.body.correo}, function (e, d){
-          console.log(e)
-          if(!e){
-            if(d){
-              res.status(401).json({message:'El email '+req.body.correo+ ' ya se encuentra registrado.'});
+        if(req.body.correo && req.body.pass){
+          User.findOne({correo:req.body.correo}, function (e, d){
+            if(!e){
+              if(d){
+                console.log("Ya existe")
+                res.status(401).json({message:'El email '+req.body.correo+ ' ya se encuentra registrado.'});
+              }else{
+                  console.log("log")
+                  // var html_message = Email.get("server/views/auth.ejs",data);
+                  user.setPass(req.body.pass);
+                  user.save(function (e,d) {
+                      if(e){
+                        res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
+                      }else{
+                        // res.status(201).json({message:'El usuario '+req.body.correo+ ' se ha registrado, exitosamente. Se envio un correo para confirmación'});
+                        res.status(201).json({message:'El usuario '+req.body.correo+ ' se ha registrado, exitosamente.'});
+                      }
+                  })
+              }
             }else{
-                // var html_message = Email.get("server/views/auth.ejs",data);
-                user.setPass(req.body.pass);
-                user.save(function (e,d) {
-                    if(e){
-                      res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
-                    }else{
-                      // res.status(201).json({message:'El usuario '+req.body.correo+ ' se ha registrado, exitosamente. Se envio un correo para confirmación'});
-                      res.status(201).json({message:'El usuario '+req.body.correo+ ' se ha registrado, exitosamente.'});
-                    }
-                })
+              res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
             }
-          }else{
-            res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
-          }
-        })
+          })
+        }else{
+            res.status(400).json({message:'Error, 400 Bad Request. contactar con el grupo de soporte'}); 
+        }
     },
   login : function(req, res) {
-    User.findOne({email:req.body.correo}, function (e, d){
+    User.findOne({correo:req.body.correo}, function (e, d){
       if(!e){
         if(d){
           if (!d.validPass(req.body.pass)) {

@@ -17,10 +17,20 @@
 							</a>
 						</div>
 						<div class="top-header-block fl card">
-					  		<a class="card-link color-white" routerLink="/login">Ingresar</a>
+							<div *ngIf="isLogin(); else eIn">
+								<a class="card-link color-white" routerLink="/login">Ingresar</a>
+							</div>
+							<ng-template #eIn>
+								<a class="card-link color-white" routerLink="/account">Mi cuenta</a>
+							</ng-template>
 						</div>
 						<div class="top-header-block fl search">
-							<a class="card-link color-white" routerLink="/register">Registrarse</a>
+							<div *ngIf="isLogin(); else eRe">
+								<a class="card-link color-white" routerLink="/register">Registrarse</a>
+							</div>
+							<ng-template #eRe>
+								<a class="card-link color-white" (click)="logout()">Salir</a>
+							</ng-template>
 						</div>
  	   	    		</div>
   	   	  		</div>

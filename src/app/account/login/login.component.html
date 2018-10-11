@@ -33,6 +33,10 @@
                                 </div>
                             </div>
                             <br>
+                            <div class="text-center padd-15 m-bottom-15" [hidden]="!messages.status" [ngClass]="messages.class">
+                                {{messages.message}}
+                            </div>
+                            <br>
                             <input type="submit" class="login-btn c-button full b-60 bg-dr-blue hv-dr-blue-2-o" value="INICIAR SESIÓN">
                         </form>
                         <div class="text-center">

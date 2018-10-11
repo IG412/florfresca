@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute  }  from "@angular/router";
 import { FlorfrescaService } from '../../services/florfresca.service';
+import { Message } from '../../models/message';
+
 
 @Component({
   selector: 'app-login',
@@ -9,18 +11,17 @@ import { FlorfrescaService } from '../../services/florfresca.service';
 })
 export class LoginComponent implements OnInit {
 
-  usuario: any ;
+  usuario:any;
   from:string;
+  messages:Message;
 
   constructor(
     private service: FlorfrescaService,
     private router:Router,
     private active: ActivatedRoute
   ) {
-    this.usuario = {
-      email: '',
-      pass: '',
-    };
+    this.messages = new Message();
+    this.usuario = {email: '',pass: ''};
    }
 
   ngOnInit() {
@@ -30,16 +31,24 @@ export class LoginComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.log('entro');
+    this.messages = new Message();
     this.service.Auth0(this.usuario).subscribe(
       d=>{
+        this.messages = d;
+        this.messages.class = "bg-success";
+        this.messages.status = true;
         let msg:any = d;
         localStorage.setItem('token', msg.token);
         localStorage.setItem('id', msg.id);
+        this.usuario = { email: '',pass: ''};
         this.goBack();
       },
       e=>{
-        console.log(e);
+          let er:any = e
+          console.log(e);
+          this.messages.message = er.error.message;
+          this.messages.class = "bg-danger";
+          this.messages.status = true;
       }
     );
   }
