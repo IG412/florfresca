@@ -1,5 +1,6 @@
 var mongoose    = require('mongoose'),
     User        = mongoose.model('users');
+    Plan        = require('../model/plan'),
     Subscription      = require('../model/subscription');
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey("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");
@@ -38,13 +39,14 @@ module.exports  = {
   	},
   	post: function(req,res){
       var queryUsuario = User.update({ _id: req.body.cliente._id }, req.body.cliente);
+      var queryPlan = Plan.update({ _id: req.body.plan._id }, req.body.plan);
       Subscription.create(req.body,function (e,d){
         if(e){
           queryUsuario.exec(function (err, docs) {console.log(docs)});
           res.status(400).json({message:'Los sentimos, Error 500 interno del servidor contactar al equipo de soporte'});
         }else{
-          res.status(201).json(d);
-          queryUsuario.exec(function (err, docs) { });
+          queryUsuario.exec(function (err, docs) {console.log('actualizado usuario')});
+          queryPlan.exec(function (err, docs) { console.log('actualizado plan')});
           var htmlText = html(req.body); 
           const msg = {
               to: (req.body.cliente.correo)?req.body.cliente.correo: 'jmora@if-cs.com' ,
@@ -54,6 +56,7 @@ module.exports  = {
               html: htmlText,
           };
           sgMail.send(msg);
+          res.status(201).json(d);
         }
       });
   	},
