@@ -13,8 +13,10 @@ class Plan  {
 }
 
 export class Subscripcion {
+	_id:string;
 	estado:String;
 	f_entrega:string;
+	f_creacion:string;
 	suscriptor: Suscriptor;
 	plan:Plan;
 	cliente:Usuario;
