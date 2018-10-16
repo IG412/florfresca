@@ -30,6 +30,7 @@
             ],
             "scripts": [
               "src/assets/js/jquery-2.1.4.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/bootstrap-datepicker.min.js"
             ]
           },

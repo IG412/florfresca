@@ -6,8 +6,10 @@
                     <div class="f-login-content">
                         <div class="f-login-header">
                             <div class="f-login-title color-dr-blue-2">Restaurar Contraseña</div>
-
-
+                            <div class="text-center padd-15 m-bottom-15" [hidden]="!message.status" [ngClass]="message.class">
+                                {{message.message}}
+                            </div>
+                            <br>
                             <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
                                     <!-- mensaje error -->
                                     <div *ngIf="f.submitted &&  contra.invalid "  class="invalid-feedback">
@@ -20,8 +22,6 @@
                                               <span>Constraseña deben ser iguales</span>
                                     </div>
                                     <!-- fin mensaje error -->
-
-        
                                     <div class="form-group">
                                         <div class="input-style-1 b-50 type-2 color-5">
                                             <input type="password" class="form-control" name="contra" [(ngModel)]="resetContra.contra" #contra="ngModel" required placeholder="Contraseña">

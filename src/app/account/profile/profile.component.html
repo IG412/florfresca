@@ -1,0 +1,44 @@
+<div class="list-wrapper bg-grey-2 profiler ">
+  <div class="container">   
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="sidebar bg-white clearfix padd-70-0">
+          <div class="sidebar-block text-center">
+              <h4 class="sidebar-title color-dark-2">Mi cuenta</h4>
+              <b >PrUeba</b>
+            <!-- <ul class="sidebar-category color-2 bt-orange">
+              <li class="active">
+                <a  >Compra actual<span class="fr">*</span></a>
+              </li>        
+            </ul> -->
+          </div>
+          <div class="sidebar-block">
+            <ul class="sidebar-category color-2 citycolor">
+              <li class="menuUser" routerLinkActive="active" routerLink="/account/profile"   >
+                   <a class="cat-drop" >Perfil</a>
+              </li>
+              <li class="menuUser" routerLinkActive="active"  routerLink="/account/subs"  >
+                 <a class="cat-drop" >Suscripciones</a>
+              </li>
+              <!-- <li class="menuUser" routerLinkActive="active" routerLink="/account/cards"   >
+                 <a class="cat-drop" >Tarjestas</a>
+              </li> -->
+              <li>
+                <a class="cat-drop" >Cerrar sesión</a>
+              </li>             
+            </ul>
+          </div>
+          <div class="sidebar-block circle-wrapper padd-40" >
+            <div class="circle-entry clearfix">
+              <div class="circle" data-startdegree="0" data-dimension="170" data-text="77%" data-info="Descuento" data-width="5" data-fontsize="32" data-percent="77" data-fgcolor="#ff6600" data-bgcolor="#022c54"></div>
+              <p class="color-grey">Flor Fresca</p>
+            </div>          
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-9">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

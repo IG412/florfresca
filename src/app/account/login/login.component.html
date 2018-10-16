@@ -11,14 +11,14 @@
                         <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
                             <div class="form-group">
                                 <div class="input-style-1 b-50 type-2 color-5">
-                                    <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email" #email="ngModel" required email placeholder="Email" [ngStyle]="{'border':(f.submitted &&  email.invalid) ?  '1px solid red' : ''}">
+                                    <input type="text" class="form-control" name="correo" [(ngModel)]="usuario.correo" #correo="ngModel" required placeholder="correo" [ngStyle]="{'border':(f.submitted &&  correo.invalid) ?  '1px solid red' : ''}">
                                 </div>
-                                <div *ngIf="f.submitted && email.invalid"  class="invalid-feedback">
-                                  <div class="alert bg-5" *ngIf="email.errors.required">
-                                    <span>Email es requerido</span> 
+                                <div *ngIf="f.submitted && correo.invalid"  class="invalid-feedback">
+                                  <div class="alert bg-5" *ngIf="correo.errors.required">
+                                    <span>correo es requerido</span> 
                                   </div>
-                                  <div class="alert bg-5" *ngIf="email.errors.email">
-                                    <span>Debe ser un email válido</span> 
+                                  <div class="alert bg-5" *ngIf="correo.errors.correo">
+                                    <span>Debe ser un correo válido</span> 
                                   </div>
                                 </div>   
                             </div>

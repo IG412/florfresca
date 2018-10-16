@@ -34,4 +34,22 @@ export class ApiPayuService {
     })
     return this.http.post<any>(this.Url+"rest/v4.9/subscriptions/", T, {headers: this.headers});
   }
+  delSubscription(id:string):Observable<any>{
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      "Accept": "application/json",
+      "Accept-language": "es",
+      "Authorization":"Basic "+this.base64
+    })
+    return this.http.delete<any>(this.Url+"rest/v4.9/subscriptions/"+id, {headers: this.headers});
+  }
+  delCards(id:string,token:string){
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      "Accept": "application/json",
+      "Accept-language": "es",
+      "Authorization":"Basic "+this.base64
+    })
+    return this.http.delete<any>(this.Url+"rest/v4.9/customers/"+id+"/creditCards/"+token, {headers: this.headers});
+  }
 }

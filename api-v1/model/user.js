@@ -3,23 +3,12 @@ var mongoose 	= require( 'mongoose' ),
 
 var Tarjeta = new mongoose.Schema({
   toke:String,
-  name:String,
-  document:String,
-  number:String,
-  expMonth:String,
-  expYear:String,
-  type:String,
-  address: {
-               line1: String,
-               line2: String,
-               line3: String,
-               postalCode: String,
-               city: String,
-               state: String,
-               country:{type:String, default:"CO"},
-               phone: String
-            }
-})
+  customerId: String,
+  number: Number,
+  type: String,
+  name: String,
+  document: Number
+});
 
 var Usuario 	= new mongoose.Schema({
   nombre: String,

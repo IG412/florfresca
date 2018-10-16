@@ -13,12 +13,15 @@ import { Subscripcion } from '../models/suscripcion';
   providedIn: 'root'
 })
 export class FlorfrescaService {
-	private Url = 'http://localhost:5000/api';
-  // private Url = '/api' 
+	private Url:string;
+  
   private  headers:HttpHeaders;
   	constructor(
   		private http: HttpClient
-  	) { }
+  	) {
+      this.Url = window.location.origin+'/api';
+      // this.Url = "http://localhost:5000/api";
+    }
 
   Auth0 (query: any): Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,7 +33,11 @@ export class FlorfrescaService {
   }
   recovery(query):Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
-    return this.http.post<any>(this.Url+"/", query, {headers: this.headers});
+    return this.http.post<any>(this.Url+"/auth/recovery", query, {headers: this.headers});
+  }
+  reboot(query):Observable<any>{
+    this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
+    return this.http.post<any>(this.Url+"/auth/reboot", query, {headers: this.headers});
   }
   reset(query):Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -57,23 +64,34 @@ export class FlorfrescaService {
     this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
     return this.http.get<Usuario>(this.Url+"/user/"+id,{headers:this.headers});
   }
-  // putUser(u:Usuario):Observable<any>{
-  //   let token=(localStorage.getItem('token'));
-  //   this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
-  //   return this.http.put<Usuario>(this.Url+"/user/"+u._id,u,{headers:this.headers});
-  // }
+  userSubs(oid:string):Observable<Subscripcion[]>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return this.http.get<Subscripcion[]>(this.Url+"/user/"+oid+"/subscriptions",{headers:this.headers});
+  }
+  userCards(oid:string):Observable<any[]>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return this.http.get<any[]>(this.Url+"/user/"+oid+"/creditCards",{headers:this.headers});
+  }
+  userEdit(u:Usuario):Observable<any>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return this.http.put<any>(this.Url+"/user/"+u._id,u,{headers:this.headers});
+  }
   susbcriptions(s:Subscripcion):Observable<any>{
     let token=(localStorage.getItem('token'));
     this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
     return  this.http.post<any>(this.Url+"/subscriptions",s,{headers:this.headers});
   }
-  // Gets (): Observable<Hero[]> {
-  // this.headers = new HttpHeaders({'Content-Type': 'application/json'});
-  // return this.http.post<any>(this.apiUrl+"autho/user", query, {headers:this.headers});
-  //   return this.http.get<Hero[]>(this.heroesUrl)
-  //     .pipe(
-  //       tap(heroes => this.log('fetched heroes')),
-  //       catchError(this.handleError('getHeroes', []))
-  //     );
-  // }
+  subs(id:string):Observable<Subscripcion>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return  this.http.get<Subscripcion>(this.Url+"/subscription/"+id,{headers:this.headers});
+  }
+  subsEdit(id:string):Observable<any>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return  this.http.put<any>(this.Url+"/subscription/"+id,{estado:"cancelado"},{headers:this.headers});
+  }
 }

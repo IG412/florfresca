@@ -3547,7 +3547,8 @@ ul.dot-blue-2 li:before { color: #022c54; }
 
 .detail-top { margin-bottom: 63px; }
 
-.detail-content-block { margin-bottom: 66px; }
+/*.detail-content-block { margin-bottom: 66px; }*/
+.detail-content-block {margin-bottom: 25px;padding: 22px;background: white;}
 
 .detail-content-block > p:last-child { margin-bottom: 0px; }
 

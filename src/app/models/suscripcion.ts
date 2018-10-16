@@ -19,6 +19,8 @@ export class Subscripcion {
 	plan:Plan;
 	cliente:Usuario;
 	payuId:string;
+	creditCardToken:string;
+	cuotas:number;
 	constructor(){
 		this.plan = new Plan();
 		this.cliente = new Usuario();

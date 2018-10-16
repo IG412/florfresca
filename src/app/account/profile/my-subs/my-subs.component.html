@@ -1,0 +1,78 @@
+<div class="treasure-overlay-spinner-content treasure-overlay-spinner-active" [hidden]="!load">
+  <div class="treasure-overlay-spinner-container">
+    <div class="treasure-overlay-spinner"></div>
+  </div>
+</div>
+<div class="detail-content-block">
+  <div class="table-responsive">
+    <div class="list-header clearfix">
+      <div class="list-sort">
+        <h4 class="small-title"><b>Detalles de las suscripciones</b></h4>
+        <!-- <img ng-src="img/ui/icon/user/.png"> -->
+      </div>
+      <!-- <div class="list-view-change">
+        <a class="c-button b-50 bg-dr-blue-2 hv-dr-blue-2-o" >
+          <span>Editar</span>
+        </a>
+      </div>  -->
+    </div>
+    <div class="text-center padd-15 m-bottom-15" [hidden]="!messages.status" [ngClass]="messages.class">
+        {{messages.message}}
+    </div>
+    <br>
+    <table class="table style-1 type-2 condensed">
+      <thead>
+        <tr>
+          <td>ID Plan</td>
+          <td>Nombre</td>
+          <td>Tamaño</td>
+          <td>Periodicidad</td>
+          <td>Valor</td>
+          <td>Opciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of subscriptions" >
+          <td class="table-label color-grey">{{s.plan._id}}</td>
+          <td class="table-label color-dark-2"><strong>{{s.plan.flor}}</strong></td>
+          <td class="table-label color-dark-2"><strong>{{s.plan.tamano}}</strong></td>
+          <td class="table-label color-dark-2"><strong>{{s.plan.periodo}}</strong></td>
+          <td class="table-label color-dark-2"><strong>{{s.plan.precio}}</strong></td>
+          <td class="table-label color-dark-2">
+            <a data-toggle="modal" data-target="#myModal" class="button-s-2 bg-8 m-right" (click)="addEliminar(s._id)">
+              <i class="fa fa-trash"></i>
+            </a>
+            <a routerLink="/account/subs/{{s._id}}" class="button-s-2 bg-4 m-left">
+              <i class="fa fa-pencil"  ></i>
+            </a>
+          </td>
+        </tr>                                                                                                                                          
+      </tbody>
+    </table>
+  </div>  
+</div>
+<div class="detail-content-block">
+  <div class="simple-text">
+    <h4 class="small-title">Flor Fresca</h4>
+    <p class="color-grey">Pellentesque ac turpis egestas, varius justo et, condimentum augue. Praesent aliquam, nisl feugiat vehicula condimentum, justo tellus scelerisque metus. Pellentesque ac turpis egestas, varius justo et, condimentum augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+      </div>
+      <div class="modal-body">
+        ¿Desea cancelar la suscripción?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+        <button type="button" class="btn btn-primary" (click)="cancelar()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

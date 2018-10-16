@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './account/login/login.component';
 import {PlanComponent} from './subscription/plan/plan.component';
 import { RecoveryComponent } from './account/recovery/recovery.component';
+import { ProfileComponent } from './account/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'recovery', component: RecoveryComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'reset', component: ResetComponent },
+  { path: 'reset/:id', component: ResetComponent },
   { path: 'subscription', loadChildren: './subscription/subscription.module#SubscriptionModule'},
+  { path: 'account', loadChildren: './account/profile/profile.module#ProfileModule'}
 ];
 
 @NgModule({

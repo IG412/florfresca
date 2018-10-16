@@ -209,39 +209,13 @@ export class PaymentComponent implements OnInit {
     this.loading = true;
     this.loadAddres();
     this.loadCard();
-    this.usuario.tarjeta.push(this.card);
+    //inicio de Usuario
     this.loadUser();
+    //inicio de planT
     this.loadPlanT();
-    this.transaction.plan =  this.planT;
-    this.transaction.deliveryAddress = this.address;
-    this.transaction.customer = this.custumer;
-    this.subscripcion.cliente = this.usuario;
-    this.load = true;
-    console.log(this.transaction);
-    this.Api.susbcriptions(this.transaction).subscribe(d=>{
-      let t:any = d 
-      this.load = false;
-      this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
-      this.subscripcion.payuId = t.id;
-      this.subscripcion.plan.payuId = (this.subscripcion.plan.payuId == null)? t.plan.id: this.subscripcion.plan.payuId;
-      this.subscripcion.cliente.payuId = (this.subscripcion.cliente.payuId == null)? t.customer.id :this.subscripcion.cliente.payuId;
-      this.service.susbcriptions(this.subscripcion).subscribe(d=>{
-        this.load = false;
-        this.pay = true;
-        localStorage.removeItem('subscription');
-        window.scrollTo(0,0);
-        this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
-      },e=>{
-        console.log(e);
-        this.load = false;
-        this.alert = {status :true , message:e, class:'alert alert-warning'};
-      });
-    },e=>{
-      let er:any = e
-      this.load = false;
-      console.log(er);
-      this.alert = {status :true , message:er.error, class:'alert alert-danger'};
-    });
+    //inicio de transaccion
+    this.sendTransaction();
+  
   }
 
   loadUser(){
@@ -275,6 +249,54 @@ export class PaymentComponent implements OnInit {
         {name:"PLAN_TAX",value:0,currency:"COP"}
       ]
     }
+  }
+
+  sendTransaction(){
+    /*Carga de los datos de transaccion*/
+    this.transaction.plan =  this.planT;
+    this.transaction.deliveryAddress = this.address;
+    this.transaction.customer = this.custumer;
+    this.load = true;
+    //Servicico Conexceion API PAYU
+    this.Api.susbcriptions(this.transaction).subscribe(d=>{
+      let t:any = d; 
+      console.log(d);
+      this.load = false;
+      this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
+      //inicio de envio de datos a la DB
+      this.sendSubscription(d);
+    },e=>{
+      let er:any = e
+      this.load = false;
+      console.log(er);
+      this.alert = {status :true , message:er.error, class:'alert alert-danger'};
+    });
+  }
+  sendSubscription(d:any){
+    //suscripcion
+    this.subscripcion.payuId = d.id;
+    this.subscripcion.creditCardToken = d.customer.creditCards[0].token;
+    this.subscripcion.cuotas = d.installments;
+    // suscripción Plan
+    this.subscripcion.plan.payuId = (this.subscripcion.plan.payuId == null)? d.plan.id: this.subscripcion.plan.payuId;
+    //carga de usuario
+    this.card.token = d.customer.creditCards[0].token;
+    this.usuario.tarjeta.push(this.card);
+    // suscripción cliente
+    this.subscripcion.cliente = this.usuario;
+    this.subscripcion.cliente.payuId = (this.subscripcion.cliente.payuId == null)? d.customer.id :this.subscripcion.cliente.payuId;
+    //servicio de envio
+    this.service.susbcriptions(this.subscripcion).subscribe(d=>{
+        this.load = false;
+        this.pay = true;
+        localStorage.removeItem('subscription');
+        window.scrollTo(0,0);
+        this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
+      },e=>{
+        console.log(e);
+        this.load = false;
+        this.alert = {status :true , message:e, class:'alert alert-warning'};
+      });
   }
 
 }

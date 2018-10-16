@@ -1,0 +1,113 @@
+<div class="treasure-overlay-spinner-content treasure-overlay-spinner-active" [hidden]="!load">
+  <div class="treasure-overlay-spinner-container">
+    <div class="treasure-overlay-spinner"></div>
+  </div>
+</div>
+<div class="detail-content-block">
+  <div class="table-responsive">
+    <div class="list-header clearfix">
+      <div class="list-sort">
+        <h4 class="small-title"><b>Detalles de las suscripciones</b></h4>
+      </div>
+      <div class="list-view-change">
+        <a class="c-button b-50 bg-8" (click)="cancelar()">
+          <span class="color-white">Cancelar suscripción</span>
+        </a>
+      </div>
+    </div>
+    <div class="text-center padd-15 m-bottom-15" [hidden]="!messages.status" [ngClass]="messages.class">
+        {{messages.message}}
+    </div>
+    <br>
+    <div class="panel panel-default">
+	  <div class="panel-heading">
+	    Información
+	  </div>
+	  <div class="panel-body">
+	    <h4 class="subtitle" ><b>Código: </b><small> {{subscription._id}}</small></h4>
+      <h4 class="subtitle" ><b>Estado: </b><small> {{subscription.estado}}</small></h4>
+      <h4 class="subtitle" ><b>Fecha de suscripción: </b><small> {{subscription.f_creacion | date:'medium'}}</small></h4>
+      <h4 class="subtitle" ><b>Fecha de entrega: </b><small> Día {{subscription.f_entrega | date:'d'}} de cada mes</small></h4>
+      <h4 class="subtitle" ><b>Código PayU latam: </b><small> {{subscription.payuId}}</small></h4>
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	    <div class="row">
+        <div class="col-md-3">
+          <img src="assets/imgs/user.png" alt="Entrega" class="img-thumbnail">
+        </div>
+        <div class="col-md-8 padd-15">
+          <h4 class="subtitle" ><b>Nombre: </b><small> {{subscription.cliente.nombre+' '+subscription.cliente.apellido}}</small></h4>
+          <h4 class="subtitle" ><b>Correo: </b><small> {{subscription.cliente.correo}}</small></h4>
+          <hr>
+          <h4 class="subtitle" ><b>Tarjeta de crédito: </b><small> 123123123123</small></h4>
+          <h4 class="subtitle" ><b>Nombre: </b><small> Prueb T Prueba</small></h4>
+          <h4 class="subtitle" ><b>Tipo: </b><small> VISA</small></h4>
+          <h4 class="subtitle" ><b>Cuota: </b><small>1</small></h4>
+        </div>
+      </div>
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3">
+          <img src="assets/imgs/entrega.png" alt="Entrega" class="img-thumbnail">
+        </div>
+        <div class="col-md-8 padd-15">
+          <h4 class="subtitle" ><b>Nombre: </b><small> {{subscription.suscriptor.nombre}}</small></h4>
+          <h4 class="subtitle" ><b>Relación o parentesco: </b><small> {{subscription.suscriptor.rela_paren}}</small></h4>
+          <h4 class="subtitle" ><b>Ciudad: </b><small> {{subscription.suscriptor.ciudad}}</small></h4>
+          <h4 class="subtitle" ><b>Dirección: </b><small> Día {{subscription.suscriptor.direccion}} de cada mes</small></h4>
+          <h4 class="subtitle" ><b>Categorización: </b><small> Día {{subscription.suscriptor.catego}} de cada mes</small></h4>
+          <h4 class="subtitle" ><b>Teléfono: </b><small> {{subscription.suscriptor.tel}}</small></h4>
+          <h4 class="subtitle" ><b>gatos: </b><small> {{subscription.suscriptor.gatos}}</small></h4>
+        </div>
+      </div>
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3">
+          <img [src]="subscription.plan.img_flor" alt="{{subscription.plan.flor}}" class="img-thumbnail">
+          <h4 class="subtitle text-center" ><b>{{subscription.plan.flor}}</b></h4>
+        </div>
+        <div class="col-md-8 padd-15">
+          <h4 class="subtitle" ><b>Plan: </b><small> {{subscription.plan._id}}</small></h4>
+          <h4 class="subtitle" ><b>Flor: </b><small> {{subscription.plan.flor}}</small></h4>
+          <h4 class="subtitle" ><b>Tamaño: </b><small> {{subscription.plan.tamano}}</small></h4>
+          <h4 class="subtitle" ><b>Periodicidad: </b><small> {{subscription.plan.periodo }}</small></h4>
+          <h4 class="subtitle" ><b>Valor: </b><small> $ {{subscription.plan.precio |  currency}}</small></h4>
+        </div>
+      </div>
+	  </div>
+	</div>
+  </div>  
+</div>
+<div class="detail-content-block">
+  <div class="simple-text">
+    <h4 class="small-title">Flor Fresca</h4>
+    <p class="color-grey">Pellentesque ac turpis egestas, varius justo et, condimentum augue. Praesent aliquam, nisl feugiat vehicula condimentum, justo tellus scelerisque metus. Pellentesque ac turpis egestas, varius justo et, condimentum augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+      </div>
+      <div class="modal-body">
+        ¿Desea cancelar la suscripción?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+        <button type="button" class="btn btn-primary" (click)="confirm(subscription._id)">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

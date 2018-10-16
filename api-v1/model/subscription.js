@@ -9,7 +9,6 @@ var Plan = new mongoose.Schema({
   periodo:String,
   precio:String,
   payuId:String
-
 })
 
 var Suscriptor = new mongoose.Schema({
@@ -31,6 +30,8 @@ var Suscripciones 	= new mongoose.Schema({
   f_entrega: Date,
   f_upd: { type:Date, default: Date.now },
   payuId:String,
+  creditCardToken:String,
+  cuotas:Number
 });
 
 module.exports =  mongoose.model('subscriptions', Suscripciones);

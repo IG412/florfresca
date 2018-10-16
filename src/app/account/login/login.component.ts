@@ -21,13 +21,13 @@ export class LoginComponent implements OnInit {
     private active: ActivatedRoute
   ) {
     this.messages = new Message();
-    this.usuario = {email: '',pass: ''};
+    this.usuario = {correo: '',pass: ''};
    }
 
   ngOnInit() {
     this.from = this.active.snapshot.queryParamMap.get("from");
     if(localStorage.getItem('token') && localStorage.getItem('id') ){
-       this.router.navigateByUrl("/"); 
+       this.router.navigateByUrl("/account/profile"); 
     }
   }
   onSubmit() {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         let msg:any = d;
         localStorage.setItem('token', msg.token);
         localStorage.setItem('id', msg.id);
-        this.usuario = { email: '',pass: ''};
+        // this.usuario = { correo: '',pass: ''};
         this.goBack();
       },
       e=>{
@@ -57,8 +57,10 @@ export class LoginComponent implements OnInit {
     if(this.from){
       this.router.navigateByUrl("/subscription/"+this.from);  
     }else{
-      // this.router.navigateByUrl("/account");  
-      console.log(this.from);
+      setTimeout(() => {
+        console.log('Success!!')
+        this.router.navigateByUrl("/account/profile"); 
+      }, 1000);  
     }
   }
 }

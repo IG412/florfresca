@@ -15,6 +15,8 @@ var express 	= require('express'),
 router.route('/auth/tokens').post(auth.login);
 router.route('/auth/admin/tokens').post(auth.admin);
 router.route('/auth/register').post(auth.register);
+router.route('/auth/recovery').post(auth.recovery);
+router.route('/auth/reboot').post(auth.reboot);
 
 router.route('/subscriptions').get(subs.all).post(subs.post);
 router.route('/subscription/:id').get(subs.get).put(subs.put);
@@ -24,7 +26,10 @@ router.route('/plans').get(plan.all).post(plan.post);
 router.route('/plan/:id').get(plan.get).put(plan.put);
 
 router.route('/user/:id').get(user.get).put(user.put);
-// router.route('/slides').get(slides.all).post(slides.post);
+router.route('/user/:id/creditCards').get(user.cards);
+router.route('/user/:id/subscriptions').get(user.subscriptions);
+// router.route('/user/:id/subscription/:oid').get(user.subscription).delete(user.deleteSubscription);
+// router.route('/slides').get(slides.all).post(slides.post);/rest/v4.9/customers/{customerID}/creditCards
 // router.route('/slides/:id').get(slides.get).put(slides.put).delete(slides.delete);
 
 module.exports 	= router;

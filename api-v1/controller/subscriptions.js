@@ -61,12 +61,12 @@ module.exports  = {
       });
   	},
   	put: function(req,res){
-      Subscription.update({ _id: req.params }, req.body , function (e, d){
-              if(e){
-                res.status(400).json({message:'Error interno del servidor'});
-              }else{
-                res.status(200).json(d);
-              }
+      Subscription.findByIdAndUpdate(req.params.id, req.body , function (e, d){
+        if(e){
+          res.status(400).json({message:'Error interno del servidor'});
+        }else{
+          res.status(200).json(d);
+        }
       });
   	},
   	// delete: function(req,res){
