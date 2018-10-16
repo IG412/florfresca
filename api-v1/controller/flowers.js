@@ -9,7 +9,7 @@ module.exports  = {
         }else{
           res.status(200).json(d);
         }
-    	}).sort('-number');
+    	}).sort('numero');
   	},
   	get: function(req,res){
   		Flowers.findById(req.params.id,{ position:1}, function (e,d){

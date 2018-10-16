@@ -38,8 +38,11 @@ export class RegisterComponent implements OnInit {
           this.messages = d;
           this.messages.class = "bg-success";
           this.messages.status = true;
-          this.usuario = new Usuario();
-          // this.router.navigateByUrl("/login");   
+          setTimeout(() => {
+            console.log('Success!!');
+            this.usuario = new Usuario();
+            this.router.navigateByUrl("/login"); 
+          }, 1000); 
         },
         e=>{
           let er:any = e

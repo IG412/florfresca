@@ -30,7 +30,7 @@ var Usuario 	= new mongoose.Schema({
   activo: {type:Boolean, default:false},
   creado:  { type:Date, default: Date.now },
   tarjeta:[Tarjeta],
-  payuId: String,
+  payuId: { type:String, default: null },
 });
 
 Usuario.methods.setPass = function(password){

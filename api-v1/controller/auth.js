@@ -12,6 +12,7 @@ var mongoose    = require('mongoose'),
 module.exports  = {
   register : function(req, res) {
         var user    = new User();
+        console.log(req.body);
         user.correo  = req.body.correo;
         user.email  = req.body.correo;
         if(req.body.correo && req.body.pass){
