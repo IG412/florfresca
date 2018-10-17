@@ -21,10 +21,13 @@ router.route('/auth/reboot').post(auth.reboot);
 router.route('/subscriptions').get(subs.all).post(subs.post);
 router.route('/subscription/:id').get(subs.get).put(subs.put);
 router.route('/flowers').get(flowers.all).post(flowers.post);
+router.route('/flower/:id').get(flowers.get).put(flowers.put);
 router.route('/sizes').get(sizes.all).post(sizes.post);
+router.route('/size/:id').get(sizes.get).put(sizes.put);
 router.route('/plans').get(plan.all).post(plan.post);
 router.route('/plan/:id').get(plan.get).put(plan.put);
 
+router.route('/users').get(user.all).post(user.post);
 router.route('/user/:id').get(user.get).put(user.put);
 router.route('/user/:id/creditCards').get(user.cards);
 router.route('/user/:id/subscriptions').get(user.subscriptions);

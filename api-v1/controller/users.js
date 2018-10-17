@@ -6,16 +6,16 @@ var mongoose   = require('mongoose'),
 
 module.exports  = {
   	all : function(req,res){
-    	User.find(req.query , function (e,d){
+    	User.find({}, function (e,d){
         if(e){
-          res.status(501).json({message:'loError interno del servidor'});
+          res.status(501).json({message:'Lo sentimos; Error 500 interno del servidor'});
         }else{
           res.status(200).json(d);
         }
-    	}).sort(req.query);
+    	});
   	},
   	get: function(req,res){
-      var filter = {correo:1,payuId:1,nombre:1,apellido:1,telefono:1,celular:1,tipo_doc:1,documento:1,tarjeta:1}
+      var filter = {activo:1,creado:1,correo:1,payuId:1,nombre:1,apellido:1,telefono:1,celular:1,tipo_doc:1,documento:1,tarjeta:1}
   		User.findById(req.params.id, filter, function (e,d){
         if(e){
           res.status(400).json({message:'Error interno del servidor'});
