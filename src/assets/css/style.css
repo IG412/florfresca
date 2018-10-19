@@ -4001,7 +4001,7 @@ ul.dot-blue-2 li:before { color: #022c54; }
 
 .back-counter { text-align: center; margin-bottom: 85px; }
 
-.back-counter .part-counter { position: relative; display: inline-block; width: 115px; height: 80px; background: #022c54; color: #fff; text-align: right; margin-right: 30px; border-radius: 5px;}
+.back-counter .part-counter { position: relative; display: inline-block; width: 115px; height: 80px; background: #CA4752; color: #fff; text-align: right; margin-right: 30px; border-radius: 5px;}
 
 .back-counter .part-counter:last-child { margin-right: 0px; }
 
