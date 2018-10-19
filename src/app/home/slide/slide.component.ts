@@ -70,7 +70,7 @@ export class SlideComponent implements OnInit {
 				pagination: '.pagination-'+index,
 				loop: loopVar,
 				paginationClickable: true,
-				// autoplay: autoPlayVar,
+				autoplay: autoPlayVar,
 				slidesPerView: slidesPerViewVar,
 				slidesPerGroup: slidesPerGroup,
 				keyboardControl: true,
