@@ -2248,13 +2248,13 @@ nav li.type-4 .dropmenu .fa-chevron-right { display: none; }
 
 .tour-item.style-2 .tour-weather { font-size: 12px; line-height: 34px; text-transform: uppercase; letter-spacing: 1px; }
 
-.tour-item.style-2 .tour-desc { padding-left: 20px; text-align: left; }
+.tour-item.style-2 .tour-desc { padding-left: 20px; text-align: center; }
 
 .tour-item.style-2 .c-button { float: right; }
 
 .tour-item.style-2 .tour-title { max-width: 58%; text-align: left; }
 
-.tour-item.style-2 .tour-text { max-width: 58%; }
+.tour-item.style-2 .tour-text { max-width: 95%; }
 
 .tour-item.style-2 .c-button { margin-right: 20px; }
 

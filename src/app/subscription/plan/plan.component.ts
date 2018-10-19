@@ -52,7 +52,7 @@ export class PlanComponent implements OnInit {
     this.message = new Message();
     this.submitted = false;
   	this.suscriptor = new Suscriptor();
-  	this.parentesco = ["Seleccione","Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
+  	this.parentesco = ["Seleccione","Para mi","Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
   	this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
   	this.showForm=true;
     this.subscription = new Subscripcion();
