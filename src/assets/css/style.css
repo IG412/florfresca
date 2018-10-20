@@ -202,7 +202,7 @@ h6 { font-size: 13px; /*line-height: 16px;*/ font-weight: 700; text-transform: u
 p { font-size: 14px; /*line-height: 26px;*/ font-weight: 400;}
 ul li { font-size: 16px; line-height: 32px; font-weight: 300; }
 ol li { font-size: 16px; line-height: 32px; font-weight: 300; list-style-position: outside; }
-b, strong { font-weight: 700; }
+b, strong { font-weight: 700; color: black;}
 .thin { font-weight: 300; }
 .normal { font-weight: 400; }
 .medium { font-weight: 600; }
@@ -3997,7 +3997,7 @@ ul.dot-blue-2 li:before { color: #022c54; }
 
 .soon-logo { position: absolute; top: 0px; left: 0px; bottom: 0px; right: 58.33333333%; }
 
-.f-soon-content { padding: 78px 10px 78px 10px; }
+.f-soon-content { padding: 40px 10px 78px 10px; }
 
 .back-counter { text-align: center; margin-bottom: 85px; }
 
@@ -5000,7 +5000,7 @@ footer.bg-white .form-input input {color: #222;}
 .result {padding: 200px 0px 90px; position: relative; width: 100%; overflow: hidden;}
 .result .baner-bar.cars-bar {position: relative; width: 100%; bottom: auto; transform: translateY(0); -webkit-transform: translateY(0);-moz-transform: translateY(0);-ms-transform: translateY(0); padding: 30px 0px; box-shadow: none;}
 .cars-item {margin-bottom: 30px;}
-.title {padding: 30px 0px;}
+.title {padding: 20px 0px;}
 .tour-item.no-padd {padding-left: 0px; padding-right: 0px;}
 
 

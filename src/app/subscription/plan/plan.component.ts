@@ -59,9 +59,9 @@ export class PlanComponent implements OnInit {
   	this.Sizes = new Array();
     this.load = false;
   	this.period = [
-  	{ nombre:"SEMANAL", desc: "<strong>12 a 15 tallos</strong>  cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
-  	{ nombre:"QUINCENAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"},
-  	{ nombre:"MENSUAL", desc: "<strong>De 12 a 15 tallos</strong> cuidadosamente seleccionados", icon:"assets/imgs/icons/icon-flores.png"}
+  	{ nombre:"SEMANAL", desc: "4 entregas de flores al mes (segun plan)*", icon:"assets/imgs/icons/icon-flores.png", number:4,class:'<div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view" ><img src="assets/imgs/icons/icon-flores.png" alt=""></div><div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view"><img src="assets/imgs/icons/icon-flores.png" alt=""></div><div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view"><img src="assets/imgs/icons/icon-flores.png" alt=""></div><div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view"><img src="assets/imgs/icons/icon-flores.png" alt="">'},
+  	{ nombre:"QUINCENAL", desc: "2 entregas de flores al mes (segun plan)*", icon:"assets/imgs/icons/icon-flores.png", number:2,class:'<div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view"></div><div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view"><img src="assets/imgs/icons/icon-flores.png" alt=""></div><div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view"><img src="assets/imgs/icons/icon-flores.png" alt=""></div><div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view"></div>'},
+  	{ nombre:"MENSUAL", desc: "1 entregas de flores al mes (segun plan)*", icon:"assets/imgs/icons/icon-flores.png", number:1, class:'<div class="col-xs-1 col-sm-4 title hotel-middle clearfix cell-view text-center"><img src="assets/imgs/icons/icon-flores.png" alt=""></div>'}
   	];
     
     this.acept_term = false;
@@ -99,10 +99,13 @@ export class PlanComponent implements OnInit {
             tel: ['', Validators.required],
             gatos:[]
         });
-    $( ".datepicker" ).datepicker({daysOfWeekDisabled: "0,1,3,5,6"});
+    let d = new Date();
+    $( ".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6"});
     this.suscriptor.ciudad = "Bogotá";
   }
-  
+  ficon(n:number){
+    return new Array(n);
+  }
   addSuscriptor(){
     this.submitted = true;
     if(!this.registerForm.invalid){

@@ -172,7 +172,7 @@
                         <img class="radius-img" [src]="t.icon" alt="" height="150px" width="150px">
                     </div>
                     <div class="col-xs-1 col-sm-8">
-                        <div class="title hotel-middle clearfix cell-view padd-50">
+                        <div class="title hotel-middle clearfix cell-view ">
                             <h3><b>{{t.nombre}}</b></h3>
                             <p class="f-14 grid-hidden" [innerHTML]="t.desc"></p>
                             <div class="rate-wrap">
@@ -197,16 +197,10 @@
             <div class="row" style="margin-bottom: 25px" *ngFor="let s of period" >
                 <div class="col-xs-1 col-sm-2"></div>
                 <div class="col-xs-1 col-sm-8 bg-white" style="height: 120px;" [ngStyle]="{'border': (s.nombre == select_frecuencia) ? '3px solid red':'none'}">
-                    <div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view">
-                        <img src="assets/imgs/icons/icon-flores.png" alt="">
+
+                    <div [innerHTML]="s.class" >
                     </div>
-                    <div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view">
-                        <img src="assets/imgs/icons/icon-flores.png" alt="">
-                    </div>
-                    <div class="col-xs-1 col-sm-1 title hotel-middle clearfix cell-view">
-                        <img src="assets/imgs/icons/icon-flores.png" alt="">
-                    </div>
-                    <div class="col-xs-1 col-sm-6">
+                    <div class="col-xs-1 col-sm-5">
                         <div class="title hotel-middle clearfix cell-view">
                             <h3><b>{{s.nombre}}</b></h3>
                             <p class="f-14 grid-hidden" [innerHTML]="s.desc"></p>
