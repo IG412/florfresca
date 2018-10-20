@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
         },
         e=>{
           let er:any = e
-          this.messages.message = er.error.message;
+          this.messages.message = (er.error.message)? er.error.message: "Lo sentimos error 500 interno del servidor, contactar con Soporte de Flor fresca";
           this.messages.class = "bg-danger";
           this.messages.status = true;
         }

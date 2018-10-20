@@ -8,6 +8,9 @@ import { LoginComponent } from './account/login/login.component';
 import {PlanComponent} from './subscription/plan/plan.component';
 import { RecoveryComponent } from './account/recovery/recovery.component';
 import { ProfileComponent } from './account/profile/profile.component';
+import { FaqComponent } from './page/faq/faq.component';
+import { WhyComponent } from './page/why/why.component';
+import { CareComponent } from './page/care/care.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +19,10 @@ const routes: Routes = [
   { path: 'recovery', component: RecoveryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset/:id', component: ResetComponent },
+  { path: 'activate/:id', component: ResetComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'Por_que_flor_fresca', component: WhyComponent },
+  { path: 'cuidados', component: CareComponent },
   { path: 'subscription', loadChildren: './subscription/subscription.module#SubscriptionModule'},
   { path: 'account', loadChildren: './account/profile/profile.module#ProfileModule'}
 ];

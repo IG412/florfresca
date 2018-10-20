@@ -15,6 +15,9 @@ import { RecoveryComponent } from './account/recovery/recovery.component';
 import { RegisterComponent } from './account/register/register.component';
 import { ResetComponent } from './account/reset/reset.component';
 import { FormsModule } from '@angular/forms';
+import { FaqComponent } from './page/faq/faq.component';
+import { WhyComponent } from './page/why/why.component';
+import { CareComponent } from './page/care/care.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { FormsModule } from '@angular/forms';
     RecoveryComponent,
     RegisterComponent,
     ResetComponent,
+    FaqComponent,
+    WhyComponent,
+    CareComponent,
   ],
   imports: [
     BrowserModule,
