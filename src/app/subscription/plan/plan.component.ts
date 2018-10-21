@@ -77,10 +77,10 @@ export class PlanComponent implements OnInit {
       if(localStorage.getItem('subscription')){
         this.subscription = JSON.parse(localStorage.getItem('subscription'));
         this.suscriptor = (this.subscription.suscriptor)?this.subscription.suscriptor:null;
-        // this.select_flower = (this.subscription.plan._id)? this.subscription.plan._id : '';
-        // this.find(this.subscription.plan._id);
-        // this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
-        // this.select_frecuencia = (this.subscription.plan.frecuencia)? this.subscription.plan.frecuencia : '';
+        this.select_flower = (this.subscription.plan.flor)? this.subscription.plan.flor : '';
+        this.fecha_entrega = this.subscription.f_entrega;
+        this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
+        this.select_frecuencia = (this.subscription.plan.periodo)? this.subscription.plan.periodo : '';
         this.showForm = false;
         this.load = false;
       }

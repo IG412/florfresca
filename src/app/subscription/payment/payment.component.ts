@@ -75,7 +75,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0,0);
     if (localStorage.getItem('subscription')) {
-      this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
+      this.subscripcion = JSON.parse(localStorage.getItem('subscription'));  
       if(localStorage.getItem('id')){
         this.service.user(localStorage.getItem('id')).subscribe(d=>{
           this.usuario = d;
