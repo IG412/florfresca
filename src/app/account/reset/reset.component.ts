@@ -37,7 +37,7 @@ export class ResetComponent implements OnInit {
         this.resetContra = {contra: '',validar_contra: ''};
       },e=>{
         let er:any = e
-        this.message.message = er.error.message;
+        this.message.message = (er.error.message)?er.error.message:"Lo sentimos ocurrió un error, no se pudo conectar con el servidor";
         this.message.class = "bg-danger";
         this.message.status = true;
       });

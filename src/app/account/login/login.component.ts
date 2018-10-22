@@ -45,8 +45,7 @@ export class LoginComponent implements OnInit {
       },
       e=>{
           let er:any = e
-          console.log(e);
-          this.messages.message = er.error.message;
+          this.messages.message = (er.error.message)?er.error.message:"Lo sentimos ocurrió un error, no se pudo conectar con el servidor";
           this.messages.class = "bg-danger";
           this.messages.status = true;
       }

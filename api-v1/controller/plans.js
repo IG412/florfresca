@@ -15,7 +15,7 @@ module.exports  = {
       });
   	},
   	get: function(req,res){
-  		Plans.findById(req.params.id,{ position:1}, function (e,d){
+  		Plans.findById(req.params.id, function (e,d){
         if(e){
           res.status(400).json({error:'400',msg:'Error interno del servidor'});
         }else{
