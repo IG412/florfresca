@@ -6,47 +6,102 @@
         <!-- <img ng-src="img/ui/icon/user/.png"> -->
       </div>
       <div class="list-view-change">
-        <a class="c-button b-50 bg-dr-blue-2 hv-dr-blue-2-o" >
+        <a class="c-button b-50 bg-dr-blue-2 hv-dr-blue-2-o" (click)="editar()" *ngIf="!show">
           <span>Editar</span>
         </a>
       </div> 
     </div>
-    <table class="table style-1 type-2 striped">
-      <tbody>
-        <tr>
-          <td class="table-label color-grey">Nombre</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.nombre}}</strong></td>
-        </tr>
-        <tr>
-          <td class="table-label color-grey">Apellido:</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.nombre}}</strong></td>
-        </tr>
-        <tr >
-          <td class="table-label color-grey">Correo:</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.correo}}</strong></td>
-        </tr>
-         <tr>
-          <td class="table-label color-grey">Teléfono:</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.telefono}}</strong></td>
-        </tr>
-        <tr >
-          <td class="table-label color-grey">Celular:</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.celular}}</strong></td>
-        </tr>
-        <tr >
-          <td class="table-label color-grey">Tipo de documento:</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.tipo_doc}}</strong></td>
-        </tr>
-        <tr >
-          <td class="table-label color-grey">Documento:</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.documento}}</strong></td>
-        </tr>
-        <tr >
-          <td class="table-label color-grey">Dirección:</td>
-          <td class="table-label color-dark-2"><strong>{{usuario.dir}}</strong></td>
-        </tr>                                                                                                                                           
-      </tbody>
-    </table>
+    <div class="text-center padd-15 m-bottom-15" [hidden]="!messages.status" [ngClass]="messages.class">
+        {{messages.message}}
+    </div>
+    <br>
+    <form class="f-login-form" (ngSubmit)=" f.form.valid &&  onSubmit()" #f="ngForm">
+      <table class="table style-1 type-2 striped">
+        <tbody>
+          <tr>
+              <td class="table-label color-grey">Nombre</td>
+              <td class="table-label color-dark-2" >
+                <strong *ngIf="!show;else nombre">{{usuario.nombre}}</strong>
+                <ng-template #nombre>
+                  <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" required  [ngStyle]="{'border':(f.submitted &&  nombre.invalid) ?  '1px solid red' : ''}">
+                </ng-template>
+              </td>
+          </tr>
+          <tr>
+            <td class="table-label color-grey">Apellido:</td>
+            <td class="table-label color-dark-2">
+              <strong *ngIf="!show;else apellido">{{usuario.apellido}}</strong>
+              <ng-template #apellido>
+                <input type="text" class="form-control" name="apellido" [(ngModel)]="usuario.apellido" required  [ngStyle]="{'border':(f.submitted &&  apellido.invalid) ?  '1px solid red' : ''}">
+              </ng-template>
+            </td>
+          </tr>
+          <tr >
+            <td class="table-label color-grey">Correo:</td>
+            <td class="table-label color-dark-2">
+              <strong >{{usuario.correo}}</strong>
+            </td>
+          </tr>
+           <tr>
+            <td class="table-label color-grey">Teléfono:</td>
+            <td class="table-label color-dark-2">
+              <strong *ngIf="!show;else telefono">{{usuario.telefono}}</strong>
+              <ng-template #telefono>
+                <input type="text" class="form-control" name="telefono" [(ngModel)]="usuario.telefono" required  [ngStyle]="{'border':(f.submitted &&  telefono.invalid) ?  '1px solid red' : ''}">
+              </ng-template>
+            </td>
+          </tr>
+          <tr >
+            <td class="table-label color-grey">Celular:</td>
+            <td class="table-label color-dark-2">
+              <strong *ngIf="!show;else celular">{{usuario.celular}}</strong>
+              <ng-template #celular>
+                <input type="text" class="form-control" name="celular" [(ngModel)]="usuario.celular" required  [ngStyle]="{'border':(f.submitted &&  celular.invalid) ?  '1px solid red' : ''}">
+              </ng-template>
+            </td>
+          </tr>
+          <tr >
+            <td class="table-label color-grey">Tipo de documento:</td>
+            <td class="table-label color-dark-2">
+              <strong *ngIf="!show;else tipo_doc">{{usuario.tipo_doc}}</strong>
+              <ng-template #tipo_doc>
+                <input type="text" class="form-control" name="tipo_doc" [(ngModel)]="usuario.tipo_doc" required  [ngStyle]="{'border':(f.submitted &&  tipo_doc.invalid) ?  '1px solid red' : ''}">
+              </ng-template>
+            </td>
+          </tr>
+          <tr >
+            <td class="table-label color-grey">Documento:</td>
+            <td class="table-label color-dark-2">
+              <strong *ngIf="!show;else documento">{{usuario.documento}}</strong>
+              <ng-template #documento>
+                <input type="text" class="form-control" name="documento" [(ngModel)]="usuario.documento" required  [ngStyle]="{'border':(f.submitted &&  documento.invalid) ?  '1px solid red' : ''}">
+              </ng-template>
+            </td>
+          </tr>
+          <tr >
+            <td class="table-label color-grey">Dirección:</td>
+            <td class="table-label color-dark-2">
+              <strong *ngIf="!show;else dir">{{usuario.dir}}</strong>
+              <ng-template #dir>
+                <input type="text" class="form-control" name="dir" [(ngModel)]="usuario.dir" required  [ngStyle]="{'border':(f.submitted &&  dir.invalid) ?  '1px solid red' : ''}">
+              </ng-template>
+            </td>
+          </tr>  
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <a class="c-button b-50 bg-red hv-dr-blue-2-o" (click)="enviar()" *ngIf="show">
+        <span>Enviar</span>
+      </a>
+    </div>
+    <div class="col-md-6 text-right">
+      <a class="c-button b-50 bg-dr-blue-2 hv-dr-blue-2-o text-rigth" (click)="cancelar()" *ngIf="show">
+        <span>Cancelar</span>
+      </a>
+    </div>
   </div>  
 </div>
 <div class="detail-content-block">

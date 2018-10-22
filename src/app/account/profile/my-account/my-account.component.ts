@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from '../../../models/usuario';
 import {FlorfrescaService} from '../../../services/florfresca.service';
+import { Message } from '../../../models/message';
 
 @Component({
   selector: 'app-my-account',
@@ -9,10 +10,13 @@ import {FlorfrescaService} from '../../../services/florfresca.service';
 })
 export class MyAccountComponent implements OnInit {
 	usuario : Usuario;
+  show:boolean;
+  messages:Message;
   constructor(
   	private service: FlorfrescaService
   	) {
-
+    this.show = false;
+    this.messages = new Message();
   	this.usuario = new Usuario();
   }
 
@@ -22,6 +26,25 @@ export class MyAccountComponent implements OnInit {
   	},e=>{
   		console.log(e);
   	});
+  }
+  editar(){
+    this.show = true;
+  }
+  enviar(){
+    this.service.userEdit(this.usuario).subscribe(u=>{
+      this.messages.message = "Se ha actualizado el usuario con éxito";
+      this.messages.class = "bg-success";
+      this.messages.status = true;
+      this.show = false;
+    },e=>{
+      let er:any = e
+      this.messages.message = (er.error.message)?er.error.message:"Lo sentimos ocurrió un error, no se pudo conectar con el servidor";
+      this.messages.class = "bg-danger";
+      this.messages.status = true;
+    });
+  }
+  cancelar(){
+    this.show = false;
   }
 
 }

@@ -260,7 +260,6 @@ export class PaymentComponent implements OnInit {
     //Servicico Conexceion API PAYU
     this.Api.susbcriptions(this.transaction).subscribe(d=>{
       let t:any = d; 
-      console.log(d);
       this.load = false;
       this.alert = {status :false , message:'La transacción se ha realizado con exito', class:'alert alert-success'};
       //inicio de envio de datos a la DB
@@ -269,7 +268,7 @@ export class PaymentComponent implements OnInit {
       let er:any = e
       this.load = false;
       console.log(er);
-      this.alert = {status :true , message:er.error, class:'alert alert-danger'};
+      this.alert = {status :true , message:JSON.stringify(er.error), class:'alert alert-danger'};
     });
   }
   sendSubscription(d:any){
