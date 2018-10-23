@@ -14,6 +14,9 @@ module.exports  = {
         var user    = new User();
         user.correo  = req.body.correo;
         user.email  = req.body.correo;
+        user.nombre = req.body.nombre;
+        user.apellido= req.body.apellido;
+        
         if(req.body.correo && req.body.pass){
           User.findOne({correo:req.body.correo}, function (e, d){
             if(!e){
@@ -21,7 +24,6 @@ module.exports  = {
                 console.log("Ya existe")
                 res.status(401).json({message:'El email '+req.body.correo+ ' ya se encuentra registrado.'});
               }else{
-                  
                   user.setPass(req.body.pass);
                   user.save(function (e,d) {
                       if(e){
