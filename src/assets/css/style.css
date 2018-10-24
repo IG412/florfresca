@@ -3993,7 +3993,7 @@ ul.dot-blue-2 li:before { color: #022c54; }
 
 .login-fullpage { position: relative; margin-top: 116px; margin-bottom: 116px; background: #fff; }
 
-.f-soon-title { font-size: 60px; line-height: 60px; font-weight: 700; text-transform: uppercase; text-align: center; letter-spacing: 10.5px; margin-bottom: 40px; }
+.f-soon-title { font-size: 40px; line-height: 60px; font-weight: 700; text-transform: uppercase; text-align: center; letter-spacing: 10.5px; margin-bottom: 40px; }
 
 .soon-logo { position: absolute; top: 0px; left: 0px; bottom: 0px; right: 58.33333333%; }
 
@@ -4002,6 +4002,9 @@ ul.dot-blue-2 li:before { color: #022c54; }
 .back-counter { text-align: center; margin-bottom: 85px; }
 
 .back-counter .part-counter { position: relative; display: inline-block; width: 115px; height: 80px; background: #CA4752; color: #fff; text-align: right; margin-right: 30px; border-radius: 5px;}
+
+.back-counter .part-counter2 {position: relative; display: inline-block; width: 55px; height: 80px; background: #CA4752; color: #fff; text-align: right; margin-right: 5px;  } 
+.back-counter .part-counter3 {position: relative; display: inline-block; width: 55px; height: 80px; background: #CA4752; color: #fff; text-align: right; margin-right: 30px;  } 
 
 .back-counter .part-counter:last-child { margin-right: 0px; }
 
