@@ -34,10 +34,11 @@ module.exports  = {
       // });
   	},
   	put: function(req,res){
-      Plans.update({ _id: req.params }, req.body , function (e, d){
+      Plans.findByIdAndUpdate(req.params.id, req.body , function (e, d){
               if(e){
                 res.status(400).json({error:'501',msg:'Error interno del servidor'});
               }else{
+                console.log(d);
                 res.status(200).json(d);
               }
       });

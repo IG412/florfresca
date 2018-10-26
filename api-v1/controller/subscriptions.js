@@ -7,7 +7,7 @@ var mongoose    = require('mongoose'),
 
 module.exports  = {
   	all : function(req,res){
-    	Subscription.find(req.query).exec(function (e,d){
+    	Subscription.find(req.query, function (e,d){
         if(e){
           res.status(501).json({message:'Los sentimos, Error interno del servidor'});
         }else{
@@ -15,7 +15,7 @@ module.exports  = {
             res.status(200).json(u);
           })
         }
-      });
+      }).sort("-f_creacion");
   	},
   	get: function(req,res){
   		Subscription.findById(req.params.id, function (e,d){

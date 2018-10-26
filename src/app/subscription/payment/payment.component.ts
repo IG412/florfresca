@@ -257,7 +257,7 @@ export class PaymentComponent implements OnInit {
     this.transaction.deliveryAddress = this.address;
     this.transaction.customer = this.custumer;
     this.load = true;
-    //Servicico Conexceion API PAYU
+    // Servicico Conexceion API PAYU
     this.Api.susbcriptions(this.transaction).subscribe(d=>{
       let t:any = d; 
       this.load = false;

@@ -2,12 +2,7 @@ var mongoose 	= require( 'mongoose' ),
   crypto     	= require('crypto');
 
 var Tarjeta = new mongoose.Schema({
-  toke:String,
-  customerId: String,
-  number: Number,
-  type: String,
-  name: String,
-  document: Number
+  token:String
 });
 
 var Usuario 	= new mongoose.Schema({
