@@ -27,7 +27,7 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.initSwiper();
+  	// this.initSwiper();
   }
   //Función de inicio de Slide con Swiper 
   	initSwiper(){		
