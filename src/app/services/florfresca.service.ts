@@ -19,8 +19,8 @@ export class FlorfrescaService {
   	constructor(
   		private http: HttpClient
   	) {
-      this.Url = window.location.origin+'/api';
-      // this.Url = "http://localhost:5000/api";
+      // this.Url = window.location.origin+'/api';
+      this.Url = "http://localhost:5000/api";
     }
 
   Auth0 (query: any): Observable<any>{

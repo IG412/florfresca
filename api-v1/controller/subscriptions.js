@@ -94,7 +94,7 @@ function html(arg) {
 '            <tbody>'+
 '              <tr>'+
 '                <td>'+
-'                  <table align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#00778c" style="width:599px;max-width:599px">'+
+'                  <table align="left" cellpadding="0" cellspacing="0" border="0" style="width:599px;max-width:599px">'+
 '                    <tbody>'+
 '                      <tr>'+
 '                        <td width="100%" valign="middle" style="text-align:center; padding:11px 0;">'+
@@ -150,6 +150,7 @@ function html(arg) {
                                   '<h2 style="color:#404040;font-weight:300;margin:0 0 12px 0;font-size:24px;line-height:30px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+
                                     'Resumen'+
                                   '</h2>'+
+                                  '<p>ESTE ES EL MONTO QUE SE DEBITARA DE TU TARJETA DE CREDITO MENSUALMENTE*</p>'+
                                 '</td>'+
                                 '<td colspan="2" style="text-align:right;border-bottom:1px dashed #d3d3d3">'+
                                   '<div style="color:#666666;font-weight:400;font-size:13px;line-height:18px;font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica neue,Helvetica,Tahoma,Arial,sans-serif">'+

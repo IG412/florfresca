@@ -24,7 +24,7 @@ var Suscriptor = new mongoose.Schema({
 var Suscripciones 	= new mongoose.Schema({
   cliente: { type: mongoose.Schema.ObjectId, ref: "users" },
   plan: Plan,
-  estado: {type:String, default:"Pendiente"},
+  estado: {type:String, default:"pendiente"},
   suscriptor: Suscriptor,
   f_creacion:  { type:Date, default: Date.now },
   f_entrega: Date,
