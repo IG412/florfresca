@@ -28,7 +28,7 @@ module.exports  = {
             // var htmlText = html(u); 
             // const msg = {
             //   to: (u.cliente.correo)?u.cliente.correo: 'jmora@if-cs.com' ,
-            //   from: 'raman@florfresca.com.co',
+            //   from: 'info@florfresca.com',
             //   subject: 'Tienes una subscription en Florfresca',
             //   text: 'Tienes una subscription',
             //   html: htmlText,
@@ -51,7 +51,7 @@ module.exports  = {
           var htmlText = html(req.body); 
           const msg = {
               to: (req.body.cliente.correo)?req.body.cliente.correo: 'jmora@if-cs.com' ,
-              from: 'raman@florfresca.com.co',
+              from: 'info@florfresca.com',
               subject: 'Tienes una subscription en Florfresca',
               text: 'Tienes una subscription',
               html: htmlText,

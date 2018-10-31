@@ -34,7 +34,7 @@ module.exports  = {
                         var link_ = 'http://' + req.headers.host + '/activate/' + t +'';
                         const msg = {
                             to: req.body.correo,
-                            from: 'raman@florfresca.com.co',
+                            from: 'info@florfresca.com',
                             subject: 'Bienvenido a  Florfresca',
                             text: 'Bienvenida',
                             html: html_welcome(link_)
@@ -104,7 +104,7 @@ module.exports  = {
           console.log(req.body.correo)
           const msg = {
               to: req.body.correo,
-              from: 'raman@florfresca.com.co',
+              from: 'info@florfresca.com',
               subject: 'Recuperar contraseña en Florfresca',
               text: 'Password',
               html: html_recovery(data2)
