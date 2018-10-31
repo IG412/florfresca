@@ -52,4 +52,13 @@ export class ApiPayuService {
     })
     return this.http.delete<any>(this.Url+"rest/v4.9/customers/"+id+"/creditCards/"+token, {headers: this.headers});
   }
+  card(token:string){
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      "Accept": "application/json",
+      "Accept-language": "es",
+      "Authorization":"Basic "+this.base64
+    })
+    return this.http.delete<any>(this.Url+"rest/v4.9/creditCards/"+token, {headers: this.headers});
+  }
 }

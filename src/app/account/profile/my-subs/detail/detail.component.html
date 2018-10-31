@@ -27,7 +27,7 @@
 	    <h4 class="subtitle" ><b>Código: </b><small> {{subscription._id}}</small></h4>
       <h4 class="subtitle" ><b>Estado: </b><small> {{subscription.estado}}</small></h4>
       <h4 class="subtitle" ><b>Fecha de suscripción: </b><small> {{subscription.f_creacion | date:'medium'}}</small></h4>
-      <h4 class="subtitle" ><b>Fecha de entrega: </b><small> Día {{subscription.f_entrega | date:'d'}} de cada mes</small></h4>
+      <h4 class="subtitle" ><b>Fecha de entrega: </b><small> Día {{subscription.f_entrega | date:'MMM d':'+05'}}</small></h4>
       <h4 class="subtitle" ><b>Código PayU latam: </b><small> {{subscription.payuId}}</small></h4>
 	  </div>
 	</div>
@@ -41,10 +41,10 @@
           <h4 class="subtitle" ><b>Nombre: </b><small> {{subscription.cliente.nombre+' '+subscription.cliente.apellido}}</small></h4>
           <h4 class="subtitle" ><b>Correo: </b><small> {{subscription.cliente.correo}}</small></h4>
           <hr>
-          <h4 class="subtitle" ><b>Tarjeta de crédito: </b><small> 123123123123</small></h4>
-          <h4 class="subtitle" ><b>Nombre: </b><small> Prueb T Prueba</small></h4>
-          <h4 class="subtitle" ><b>Tipo: </b><small> VISA</small></h4>
-          <h4 class="subtitle" ><b>Cuota: </b><small>1</small></h4>
+          <h4 class="subtitle" ><b>Tarjeta de crédito: </b><small> {{card.number}}</small></h4>
+          <h4 class="subtitle" ><b>Nombre: </b><small> {{card.name}}</small></h4>
+          <h4 class="subtitle" ><b>Tipo: </b><small> {{card.type}}</small></h4>
+          <h4 class="subtitle" ><b>Cuota: </b><small>{{subscription.cuotas}}</small></h4>
         </div>
       </div>
 	  </div>
@@ -59,10 +59,10 @@
           <h4 class="subtitle" ><b>Nombre: </b><small> {{subscription.suscriptor.nombre}}</small></h4>
           <h4 class="subtitle" ><b>Relación o parentesco: </b><small> {{subscription.suscriptor.rela_paren}}</small></h4>
           <h4 class="subtitle" ><b>Ciudad: </b><small> {{subscription.suscriptor.ciudad}}</small></h4>
-          <h4 class="subtitle" ><b>Dirección: </b><small> Día {{subscription.suscriptor.direccion}} de cada mes</small></h4>
-          <h4 class="subtitle" ><b>Categorización: </b><small> Día {{subscription.suscriptor.catego}} de cada mes</small></h4>
+          <h4 class="subtitle" ><b>Dirección: </b><small> Día {{subscription.suscriptor.direccion}}</small></h4>
+          <h4 class="subtitle" ><b>Categorización: </b><small> Día {{subscription.suscriptor.catego}}</small></h4>
           <h4 class="subtitle" ><b>Teléfono: </b><small> {{subscription.suscriptor.tel}}</small></h4>
-          <h4 class="subtitle" ><b>gatos: </b><small> {{subscription.suscriptor.gatos}}</small></h4>
+          <h4 class="subtitle" ><b>gatos: </b><small> {{(subscription.suscriptor.gatos)?'si':'no'}}</small></h4>
         </div>
       </div>
 	  </div>

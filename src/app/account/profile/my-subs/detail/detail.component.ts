@@ -4,6 +4,7 @@ import {Subscripcion} from '../../../../models/suscripcion';
 import {FlorfrescaService} from '../../../../services/florfresca.service';
 import {ApiPayuService} from '../../../../services/api-payu.service';
 import { Message } from '../../../../models/message';
+import { CreditCards } from '../../../../models/creditcards';
 
 declare var $: any;
 
@@ -17,7 +18,7 @@ export class DetailComponent implements OnInit {
   eliminar:string;
   messages:Message;
   load:boolean;
-
+  card:CreditCards;
   constructor(
   	 private route: ActivatedRoute,
   	private service: FlorfrescaService,
@@ -31,6 +32,13 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
   	this.service.subs(this.route.snapshot.paramMap.get('id')).subscribe(u=>{
   		this.subscription = u;
+      this.apiPayuService.card(this.subscription.creditCardToken).subscribe(t=>{
+        this.card = t;
+      },e=>{
+        this.messages.message = 'Lo sentimos, No se pudo cargar los datos de la tarjeta, Contactar a soporte';
+        this.messages.class = "bg-warning";
+        this.messages.status = true;
+      })
   	},e=>{
   		console.log(e);
       this.messages.message = 'Lo sentimos, No se pudo conectar con la base de datos, Contactar a soporte';

@@ -7,6 +7,7 @@ var mongoose    = require('mongoose'),
 
 module.exports  = {
   	all : function(req,res){
+      req.query = {estado:{$ne:'eliminado'}};
     	Subscription.find(req.query, function (e,d){
         if(e){
           res.status(501).json({message:'Los sentimos, Error interno del servidor'});

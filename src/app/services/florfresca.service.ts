@@ -19,8 +19,8 @@ export class FlorfrescaService {
   	constructor(
   		private http: HttpClient
   	) {
-      // this.Url = window.location.origin+'/api';
-      this.Url = "http://localhost:5000/api";
+      this.Url = window.location.origin+'/api';
+      // this.Url = "http://localhost:5000/api";
     }
 
   Auth0 (query: any): Observable<any>{
@@ -92,6 +92,6 @@ export class FlorfrescaService {
   subsEdit(id:string):Observable<any>{
     let token=(localStorage.getItem('token'));
     this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
-    return  this.http.put<any>(this.Url+"/subscription/"+id,{estado:"cancelado"},{headers:this.headers});
+    return  this.http.put<any>(this.Url+"/subscription/"+id,{estado:"eliminado"},{headers:this.headers});
   }
 }
