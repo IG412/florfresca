@@ -55,14 +55,52 @@
         <div class="col-md-3">
           <img src="assets/imgs/entrega.png" alt="Entrega" class="img-thumbnail">
         </div>
-        <div class="col-md-8 padd-15">
-          <h4 class="subtitle" ><b>Nombre: </b><small> {{subscription.suscriptor.nombre}}</small></h4>
-          <h4 class="subtitle" ><b>Relación o parentesco: </b><small> {{subscription.suscriptor.rela_paren}}</small></h4>
-          <h4 class="subtitle" ><b>Ciudad: </b><small> {{subscription.suscriptor.ciudad}}</small></h4>
-          <h4 class="subtitle" ><b>Dirección: </b><small> Día {{subscription.suscriptor.direccion}}</small></h4>
-          <h4 class="subtitle" ><b>Categorización: </b><small> Día {{subscription.suscriptor.catego}}</small></h4>
-          <h4 class="subtitle" ><b>Teléfono: </b><small> {{subscription.suscriptor.tel}}</small></h4>
-          <h4 class="subtitle" ><b>gatos: </b><small> {{(subscription.suscriptor.gatos)?'si':'no'}}</small></h4>
+        <div class="col-md-7 padd-15">
+          <h4 class="subtitle" ><b>Nombre: </b>
+            <small *ngIf="!show;else nombre"> {{subscription.suscriptor.nombre}}</small>
+            <ng-template #nombre>
+              <input type="text" class="form-control" name="nombre" [(ngModel)]="subscription.suscriptor.nombre" required >
+            </ng-template>
+          </h4>
+          <h4 class="subtitle" ><b>Relación o parentesco: </b>
+            <small *ngIf="!show;else rela_paren"> {{subscription.suscriptor.rela_paren}}</small>
+            <ng-template #rela_paren>
+              <input type="text" class="form-control" name="rela_paren" [(ngModel)]="subscription.suscriptor.rela_paren" required >
+            </ng-template>
+          </h4>
+          <h4 class="subtitle" ><b>Ciudad: </b>
+            <small > {{subscription.suscriptor.ciudad}}</small>
+          </h4>
+          <h4 class="subtitle" ><b>Dirección: </b>
+            <small *ngIf="!show;else direccion">{{subscription.suscriptor.direccion}}</small>
+            <ng-template #direccion>
+              <input type="text" class="form-control" name="direccion" [(ngModel)]="subscription.suscriptor.direccion" required >
+            </ng-template>
+          </h4>
+          <h4 class="subtitle" ><b>Categorización: </b>
+            <small *ngIf="!show;else catego">{{subscription.suscriptor.catego}}</small>
+            <ng-template #catego>
+              <input type="text" class="form-control" name="catego" [(ngModel)]="subscription.suscriptor.catego" required >
+            </ng-template>
+          </h4>
+          <h4 class="subtitle" ><b>Teléfono: </b>
+            <small *ngIf="!show;else tel"> {{subscription.suscriptor.tel}}</small>
+            <ng-template #tel>
+              <input type="text" class="form-control" name="tel" [(ngModel)]="subscription.suscriptor.tel" required >
+            </ng-template>
+          </h4>
+          <h4 class="subtitle" ><b>gatos: </b>
+            <small *ngIf="!show;else gato"> {{(subscription.suscriptor.gatos)?'si':'no'}}</small>
+            <ng-template #gato>
+              <input type="checkbox" >
+              <input [(ngModel)]="subscription.suscriptor.gatos" type="checkbox" name="gatos" >
+            </ng-template>
+          </h4>
+        </div>
+        <div class="col-md-2">
+          <a class="button-s-2 bg-4 m-right" (click)="editar()">
+            <span class="color-white">editar</span>
+          </a>
         </div>
       </div>
 	  </div>

@@ -19,6 +19,7 @@ export class DetailComponent implements OnInit {
   messages:Message;
   load:boolean;
   card:CreditCards;
+  show:boolean;
   constructor(
   	 private route: ActivatedRoute,
   	private service: FlorfrescaService,
@@ -27,6 +28,8 @@ export class DetailComponent implements OnInit {
   	this.subscription = new Subscripcion();
     this.load = false;
     this.messages = new Message();
+    this.card = new CreditCards();
+    this.show = false;
   }
 
   ngOnInit() {
@@ -46,7 +49,9 @@ export class DetailComponent implements OnInit {
       this.messages.status = true;
   	});
   }
-
+  editar(){
+    this.show = true;
+  }
   cancelar(){
     $('#myModal').modal('show')
   }

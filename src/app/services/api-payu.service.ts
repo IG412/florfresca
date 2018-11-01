@@ -59,6 +59,6 @@ export class ApiPayuService {
       "Accept-language": "es",
       "Authorization":"Basic "+this.base64
     })
-    return this.http.delete<any>(this.Url+"rest/v4.9/creditCards/"+token, {headers: this.headers});
+    return this.http.get<any>(this.Url+"rest/v4.9/creditCards/"+token, {headers: this.headers});
   }
 }
