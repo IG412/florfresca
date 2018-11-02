@@ -116,20 +116,20 @@
             <div class="col-xs-1 col-sm-2"></div>
         </div>
         <div class="row padd-40" >
-            <div class="col-xs-1 col-sm-2"></div>
-            <div class="col-xs-1 col-sm-3" >
+            <div class="col-xs-2 col-sm-2"></div>
+            <div class="col-xs-3 col-sm-3" >
                 <button class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" (click)='editSuscriptor()'><span >{{textoBoton}}</span></button>
             </div>
         </div>
         <div class="row padd-40" >
-            <div class="col-xs-1 col-sm-2"></div>
-            <div class="col-xs-1 col-sm-8 bg-white" style="height: 250px;">
+            <div class="col-sm-2"></div>
+            <div class="col-xs-12 col-sm-8 bg-white" style="height: 250px;">
                 <div class="title hotel-middle clearfix cell-view">
-                    <div class="col-xs-1 col-sm-12 " style="margin: 10px">RESUMEN PLAN</div>
-                    <div class="col-xs-1 col-sm-4">
+                    <div class="col-xs-12 col-sm-12 " style="margin: 10px">RESUMEN PLAN</div>
+                    <div class="col-xs-4 col-sm-4">
                         <img class="icon-img bg-dr-blue " [src]="subscripcion.plan.img_flor" style="width: 100%" alt="">
                     </div>
-                    <div class="col-xs-1 col-sm-8">
+                    <div class="col-xs-8 col-sm-8">
                         <div class="date list-hidden"><strong>Recibirás una suscripción de flores {{subscripcion.plan.flor}}</strong></div>
                         <div class="date grid-hidden"><strong>Tamaño:</strong> {{'Tamaño '+subscripcion.plan.tamano}}</div>
                         <div class="date grid-hidden"><strong>Frecuencia:</strong> {{subscripcion.plan.periodo}}</div>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-1 col-sm-2"></div>
+            <div class="col-sm-2"></div>
             <div class="col-sm-4 col-sm-offset-4 text-center padd-40" style="margin-top: 40px;">
                 <a class="c-button bg-dr-blue hv-white full" routerLink="/subscription/payment"><span>Pagar suscripción</span></a>
             </div>

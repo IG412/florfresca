@@ -73,7 +73,7 @@ module.exports  = {
         }else{
             res.status(200).json(s);        
         }
-      });
+      }).sort('-f_creacion');
     },
     deleteSubscription: function(req,res){
       var filter = {correo:1,payuId:1,nombre:1,apellido:1,telefono:1,celular:1,tipo_doc:1,documento:1,tarjeta:1}

@@ -65,7 +65,9 @@
           <h4 class="subtitle" ><b>Relación o parentesco: </b>
             <small *ngIf="!show;else rela_paren"> {{subscription.suscriptor.rela_paren}}</small>
             <ng-template #rela_paren>
-              <input type="text" class="form-control" name="rela_paren" [(ngModel)]="subscription.suscriptor.rela_paren" required >
+              <select [(ngModel)]="subscription.suscriptor.rela_paren"  class="form-control" name="rela_paren" >
+                  <option *ngFor='let p of parentesco'>{{p}}</option>
+              </select>
             </ng-template>
           </h4>
           <h4 class="subtitle" ><b>Ciudad: </b>
@@ -80,7 +82,9 @@
           <h4 class="subtitle" ><b>Categorización: </b>
             <small *ngIf="!show;else catego">{{subscription.suscriptor.catego}}</small>
             <ng-template #catego>
-              <input type="text" class="form-control" name="catego" [(ngModel)]="subscription.suscriptor.catego" required >
+              <select [(ngModel)]="subscription.suscriptor.catego"  class="form-control" name="catego" >
+                  <option *ngFor='let c of cat'>{{c}}</option>
+              </select>
             </ng-template>
           </h4>
           <h4 class="subtitle" ><b>Teléfono: </b>
@@ -92,14 +96,19 @@
           <h4 class="subtitle" ><b>gatos: </b>
             <small *ngIf="!show;else gato"> {{(subscription.suscriptor.gatos)?'si':'no'}}</small>
             <ng-template #gato>
-              <input type="checkbox" >
-              <input [(ngModel)]="subscription.suscriptor.gatos" type="checkbox" name="gatos" >
+              <select [(ngModel)]="subscription.suscriptor.gatos"  class="form-control" name="gato" >
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+              </select>
             </ng-template>
           </h4>
         </div>
         <div class="col-md-2">
-          <a class="button-s-2 bg-4 m-right" (click)="editar()">
+          <a class="button-s-2 bg-4 m-right" (click)="editShow()" *ngIf="!show">
             <span class="color-white">editar</span>
+          </a>
+          <a class="button-s-2 bg-5 m-right" (click)="edit()" *ngIf="show">
+            <span class="color-white">Actualizar</span>
           </a>
         </div>
       </div>

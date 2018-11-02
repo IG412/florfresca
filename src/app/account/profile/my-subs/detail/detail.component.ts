@@ -20,6 +20,9 @@ export class DetailComponent implements OnInit {
   load:boolean;
   card:CreditCards;
   show:boolean;
+  parentesco :Array<string>;
+  cat:Array<string>;
+
   constructor(
   	 private route: ActivatedRoute,
   	private service: FlorfrescaService,
@@ -30,6 +33,8 @@ export class DetailComponent implements OnInit {
     this.messages = new Message();
     this.card = new CreditCards();
     this.show = false;
+    this.parentesco = ["Seleccione","Para mi","Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
+    this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
   }
 
   ngOnInit() {
@@ -43,19 +48,29 @@ export class DetailComponent implements OnInit {
         this.messages.status = true;
       })
   	},e=>{
-  		console.log(e);
       this.messages.message = 'Lo sentimos, No se pudo conectar con la base de datos, Contactar a soporte';
       this.messages.class = "bg-danger";
       this.messages.status = true;
   	});
   }
-  editar(){
+  editShow(){
     this.show = true;
   }
   cancelar(){
     $('#myModal').modal('show')
   }
-
+  edit(){
+    this.service.subsEditSusc(this.subscription).subscribe(s=>{
+      this.show = false;
+      this.messages.message = 'Se ha actualizado el suscriptor con éxito';
+      this.messages.class = "bg-success";
+      this.messages.status = true;
+    },e=>{
+      this.messages.message = 'Lo sentimos, No se pudo Editar los datos, contactar a soporte';
+      this.messages.class = "bg-danger";
+      this.messages.status = true;
+    });
+  }
   confirm(id:string){
     this.load = true;
     this.service.subsEdit(id).subscribe(s=>{

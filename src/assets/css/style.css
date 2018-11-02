@@ -4455,7 +4455,9 @@ ul.dot-blue-2 li:before { color: #022c54; }
   .filter-nav a:before { display: none; }
   .widget-gallery a { width: 25%; }
   .ClassyCountdown-wrapper > div { margin-left: 30px; margin-right: 30px; }
-  .ClassyCountdown-wrapper > div:nth-child(3) { margin-left: 0px; } }
+  .ClassyCountdown-wrapper > div:nth-child(3) { margin-left: 0px; } 
+  .back-counter .part-counter3{margin-right: 15px;width: 30px;height: 40px;}
+  .back-counter .part-counter2{width: 30px;height: 40px;}}
 
 @media screen and (max-width: 480px) { .main-slider .swiper-slide { min-height: 1000px; }
   .main-slider-3 { height: 520px; }

@@ -20,6 +20,7 @@ export class FlorfrescaService {
   		private http: HttpClient
   	) {
       // this.Url = window.location.origin+'/api';
+      // this.Url = "http://localhost:5000/api";
       this.Url = "https://florfresca.herokuapp.com/api";
     }
 
@@ -93,5 +94,10 @@ export class FlorfrescaService {
     let token=(localStorage.getItem('token'));
     this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
     return  this.http.put<any>(this.Url+"/subscription/"+id,{estado:"eliminado"},{headers:this.headers});
+  }
+  subsEditSusc(query:Subscripcion):Observable<any>{
+    let token=(localStorage.getItem('token'));
+    this.headers = new HttpHeaders({'Content-Type': 'application/json','access-token':token});
+    return  this.http.put<any>(this.Url+"/subscription/"+query._id,query,{headers:this.headers});
   }
 }

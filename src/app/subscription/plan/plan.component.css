@@ -3,6 +3,8 @@
 }
 .radius-img{
 	margin-top: 25px;
+	width: 150px;
+	height: 150px;
 }
 input[type=checkbox], input[type=radio]{
 	-webkit-appearance:	button;
@@ -10,7 +12,16 @@ input[type=checkbox], input[type=radio]{
 .rate-wrap{
 	padding: 0;
 }
-
 .padd-50{
 	padding: 50px 0;
+}
+@media screen and (max-width: 600px){
+	.radius-img {
+		width: 100px;
+		height: 100px;
+	}
+	.period{
+		width: 40px !important;
+		height: 40px !important;
+	}
 }
