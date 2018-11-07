@@ -2,3 +2,8 @@
 	width: 50%;
 	margin: 100px auto;
 }
+@media screen and (max-width: 767px){
+	.login-fullpage{
+		width: 100%;
+	}
+}

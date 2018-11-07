@@ -1,5 +1,5 @@
 <header class="type-4 hovered menu-3">
-   <div class="top-header-bar bg-dr-blue">	 
+  	<!-- <div class="top-header-bar bg-dr-blue">	 
   	 	<div class="container">
   	   		<div class="row">
   	   	  		<div class="col-md-12">
@@ -7,7 +7,6 @@
 				  		<a class="color-white" href="tel:573043359542">Llámanos +57 3043359542</a>
 					</div>
 					<div class="top-header-block fl phone">
-					<!-- <img src="assets/img/mail_icon_blue.png" alt=""> -->
 				  		<a class="color-white" href="mailto:soporte@florfresca.com">Escríbenos soporte@florfresca.com</a>
 					</div>
 					<div class="fr">
@@ -36,12 +35,12 @@
   	   	  		</div>
   	   		</div>
   	 	</div>
-   	</div>
+   	</div> -->
    <div class="container">
    	  <div class="row">
    	  	 <div class="col-md-12">
   	  	    <div class="nav"> 
-   	  	    <a href="index.html" class="logo">
+   	  	    <a routerLink="/home" class="logo">
    	  	    	<img src="assets/imgs/logo.png" alt="Flor florfresca" height="70px">
    	  	    </a>
    	  	    <div class="nav-menu-icon">
@@ -50,22 +49,46 @@
    	  	 	<nav class="menu">
 			  	<ul>
 					<li class="type-1">
-						<a href="home">Inicio</a>
+						<a routerLink="/home">Inicio</a>
 					</li>
 					<li class="type-1">
-						<a href="subscription">Suscríbete</a>
+						<a routerLink="subscription">Suscríbete</a>
 					</li>
 					<li class="type-1">
-						<a href="Por_que_flor_fresca">¿Por qué flor Fresca?</a>
+						<a routerLink="/Por_que_flor_fresca">¿Por qué flor Fresca?</a>
 					</li>
-					<!-- <li class="type-1">
-						<a href="cuidados">RSE</a>
-					</li> -->
-					<!-- <li class="type-1">
-						<a href="#">Contácto</a>
-					</li> -->
 					<li class="type-1">
-						<a href="faq">Centro de ayuda</a>
+						<a routerLink="/faq">Centro de ayuda</a>
+					</li>
+					<li class="type-1" style="padding-top: 20px;padding-bottom: 0;padding-bottom: 0;">
+						<a  href="mailto:soporte@florfresca.com" style="padding: 0" >
+							<img src="assets/imgs/icons/icon-email.png" alt="Flor florfresca" height="40px"  width="40px">
+						</a>
+					</li>
+					<li class="type-1" style="padding-top: 20px;padding-bottom: 0;">
+						<a  href="https://wa.me/573043359542" style="padding: 0" >
+							<img src="assets/imgs/icons/icon-whatsapp.png" alt="Flor florfresca" height="40px" width="40px">
+						</a>
+					</li>
+					<li class="type-1" style="padding-top: 20px;padding-bottom: 0;">
+						<a style="padding: 0" routerLink="/login" *ngIf="isLogin()">
+							<img src="assets/imgs/icons/icon-user.png" alt="Flor florfresca" height="40px" width="40px">
+						</a>
+						<a style="padding: 0" routerLink="/account" *ngIf="!isLogin()">
+							<img src="assets/imgs/icons/icon-user.png" alt="Flor florfresca" height="40px" width="40px">
+						</a>
+					</li>
+					<li class="type-1" style="padding-top: 20px;padding-bottom: 0;">
+						<div *ngIf="isLogin(); else eRe" >
+							<a routerLink="/register" style="padding: 0">
+								<img src="assets/imgs/icons/icon-plus.png" alt="Flor florfresca" height="40px" width="40px">
+							</a>
+						</div>
+						<ng-template #eRe>
+							<a (click)="logout()" style="padding: 0">
+								<img src="assets/imgs/icons/icon-less.png" alt="Flor florfresca" height="40px" width="40px">
+							</a>
+						</ng-template>
 					</li>
 			  	</ul>
 		   </nav>
