@@ -137,6 +137,7 @@ button { background: none; border: 0px none; }
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 04 - GLOBAL SETTINGS */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
+.dolar{font-size: 48px;}
 .bg { position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; }
 
 .bg img { position: absolute; top: 0px; width: 100%; height: 100%; }
@@ -655,7 +656,7 @@ a:focus, a:hover {color: inherit;}
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 07 - HEADER */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-header { position: fixed; left: 0px; top: 0px; z-index: 100; width: 100%; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+header { position: relative; left: 0px; top: 0px; z-index: 100; width: 100%; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 .logo {-webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out;}
 .nav {-webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out;}
 .top-header-bar { position: relative; width: 100%; padding: 30px 0px 0px; -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
@@ -1425,7 +1426,7 @@ nav li.type-4 .dropmenu .fa-chevron-right { display: none; }
 
 .main-wraper.color-2 .second-title h2 { color: #fff; }
 
-.second-title { position: relative; text-align: center; padding-top: 110px; padding-bottom: 65px; }
+.second-title { position: relative; text-align: center; /*padding-top: 110px;*/ padding-bottom: 65px; }
 
 .second-title h2 { padding-bottom: 24px; letter-spacing: 6px; }
 
@@ -2250,13 +2251,13 @@ nav li.type-4 .dropmenu .fa-chevron-right { display: none; }
 
 .tour-item.style-2 .tour-desc { padding-left: 20px; text-align: center; }
 
-.tour-item.style-2 .c-button { float: right; }
+/*.tour-item.style-2 .c-button { float: right; }*/
 
 .tour-item.style-2 .tour-title { max-width: 58%; text-align: left; }
 
 .tour-item.style-2 .tour-text { max-width: 95%; }
 
-.tour-item.style-2 .c-button { margin-right: 20px; }
+/*.tour-item.style-2 .c-button { margin-right: 20px; }*/
 
 .tour-item.style-3 { padding: 0; }
 
@@ -3517,7 +3518,7 @@ ul.dot-blue-2 li:before { color: #022c54; }
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 13 - DETAIL */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-.detail-wrapper { padding-top: 61px; }
+/*.detail-wrapper { padding-top: 61px; }*/
 
 .detail-category { font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 22px; font-weight: 400; margin-bottom: 11px; }
 
@@ -4327,6 +4328,9 @@ ul.dot-blue-2 li:before { color: #022c54; }
 }
 
 @media screen and (max-width: 767px) { header.type-2 .nav-menu-icon { border-left: none; }
+  footer {text-align: center;padding-top: 30px !important;}
+  .bg-dark.type-2 .f_text {padding-bottom: 0 !important;}
+  .c-v{display: block;padding-top: 0 !important;}
   header.type-2 .inner-header { display: none; }
   header.type-2 .card { border-left: none; }
   header.type-2 .search { border-left: none; }
@@ -4399,7 +4403,8 @@ ul.dot-blue-2 li:before { color: #022c54; }
   .fullpage .section { height: 700px; }
   .fullpage .full-height { height: 700px; }
   .footer.section { height: auto; }
-  .tour-item.style-2 .c-button { display: block; float: none; margin-bottom: 15px; }
+  .tour-item.style-2{margin-bottom: 8px;}
+  /*.tour-item.style-2 .c-button { display: block; float: none; margin-bottom: 15px; }*/
   .tour-item.style-2 .tour-text { max-width: 100%; }
   .tour-item-grid .tour-item.style-4 { max-width: 500px; margin-left: auto; margin-right: auto; }
   .tour-item.style-5 .c-button { display: block; width: 100%; }
@@ -4445,8 +4450,8 @@ ul.dot-blue-2 li:before { color: #022c54; }
   .footer-block { margin-bottom: 40px; }
   .footer-link ul { width: 100%; text-align: center; }
   .footer-link ul li { width: 100%; padding-bottom: 8px; margin-right: 0px; }
-  .copyright { text-align: center; width: 100%; padding-top: 15px; }
-  footer.type-2 .footer-link { text-align: center; } }
+  .copyright { text-align: center; width: 100%;}
+  footer.type-2 .footer-link { text-align: center; padding: 0 !important; } }
 
 @media screen and (max-width: 600px) { .cp_content { position: relative; left: 0%; -webkit-transform: translateX(0%); -moz-transform: translateX(0%); -ms-transform: translateX(0%); -o-transform: translateX(0%); transform: translateX(0%); text-align: center; }
   .c_pagination .c-button { display: none; }
@@ -4460,6 +4465,11 @@ ul.dot-blue-2 li:before { color: #022c54; }
   .back-counter .part-counter2{width: 30px;height: 40px;}}
 
 @media screen and (max-width: 480px) { .main-slider .swiper-slide { min-height: 1000px; }
+  .detail-content-block{ padding: 0 !important; }
+  .profiler{margin-top: 0 !important;}
+  .f-soon-title{font-size: 35px !important;}
+  .soon-contact h3{ font-size: 18px !important; }
+  .dolar{font-size: 18px;}
   .main-slider-3 { height: 520px; }
   .main-slider-3 .main-title button[type="submit"] span { display: none; }
   .detail-content .thumbnails { display: none; }
@@ -4472,7 +4482,7 @@ ul.dot-blue-2 li:before { color: #022c54; }
   .main-title .main-date { margin-bottom: 5px; }
   .main-title .main-date.underline:after { margin: 10px 0 0px; }
   .sw-arrow { display: none; }
-  .main-slider .pagination-hidden.pagination { display: block; bottom: 420px; }
+  .main-slider .pagination-hidden.pagination { display: block; bottom: 20px; }
   .item-block p { padding: 0px 15px 15px; }
   .item-block h3 { font-size: 22px; }
   .item-block p { line-height: 20px; }
@@ -4532,7 +4542,7 @@ ul.dot-blue-2 li:before { color: #022c54; }
   .not-found-number h2 { font-size: 126px; line-height: 126px; letter-spacing: 11px; }
   .not-found-number h3 { font-size: 36px; line-height: 36px; top: 42px; }
   .not-found.style-2 .not-found-message { font-size: 14px; line-height: 17px; margin-bottom: 27px; }
-  .login-fullpage { margin-top: 50px; margin-bottom: 50px; }
+  .login-fullpage { margin-top: 0 !important; margin-bottom: 50px; }
   .login-fullpage .full-copy { bottom: 20px; }
   .back-counter .part-counter:nth-child(1), .back-counter .part-counter:nth-child(2) { margin-bottom: 45px; }
   .back-counter .part-counter:nth-child(2), .back-counter .part-counter:nth-child(4) { margin-right: 0px; }
@@ -5320,7 +5330,7 @@ button.mfp-arrow:hover {background: rgba(255,255,255,0.5);}
 	.gallery-detail .pagination-hidden.pagination {display: block; bottom: 20px;}
 	.gallery-detail {margin-bottom: 80px;}
 	.sport-block img {max-width: 100%;}
-	.vert-title {margin-top: -420px;}
+	/*.vert-title {margin-top: -420px;}*/
 	.style-1 .c-button.bg-blue-3 {float: none; margin-bottom: 15px;}
 	.style-1 .c-button.bg-tr-1 {float: none;}
 	.baner-tabs.style-2 .tab-pane .c-button {margin-top: 10px;}

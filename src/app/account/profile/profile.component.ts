@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from '../../models/usuario';
+import { Router  }  from "@angular/router";
 import {FlorfrescaService} from '../../services/florfresca.service';
 
 @Component({
@@ -10,7 +11,8 @@ import {FlorfrescaService} from '../../services/florfresca.service';
 export class ProfileComponent implements OnInit {
 	usuario : Usuario;
   constructor(
-  	private service: FlorfrescaService
+  	private service: FlorfrescaService,
+    private router:Router
   	) {
   	this.usuario = new Usuario();
   }
@@ -21,6 +23,15 @@ export class ProfileComponent implements OnInit {
   	},e=>{
   		console.log(e);
   	});
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    setTimeout(() => {
+        console.log('Success!!')
+        this.router.navigateByUrl("/login"); 
+      }, 1000);  
   }
 
 }

@@ -1,9 +1,14 @@
-.main-title2 {padding-top: 17%;position: relative;width: 100%;text-align: right;color: #fff;}
+.main-title2 {
+	padding-top: 15%;
+	position: relative;
+	width: 90%;
+	text-align: right;
+	color: #fff;
+}
 .vertical-align{ -webkit-transform: translateY(200%);transform: translateY(200%); }
 .m-200 .swiper-arrow-right{margin-top:0;}
 .m-200 .swiper-arrow-left{margin-top:0;}
 .main-slider .swiper-slide { min-height: 662px; }
-
 .main-slider-3 { height: 100vh; }
 .main-slider-3 .vertical-bottom {bottom: 40px;}
 
@@ -71,3 +76,28 @@
 
 .slider-wth-thumbs.style-2 .thumbnails .swiper-slide:hover:before {opacity: 1;}
 .slider-wth-thumbs.style-2 .thumbnails .swiper-slide.current:before {opacity: 1;}
+@media screen and (max-width: 1199px) {
+	.main-title2 {
+		padding-top: 18%;
+	}
+}
+@media screen and (min-width: 992px) {
+/*	.main-title2 {
+		padding-top: 40%;
+	}*/
+}
+@media screen and (max-width: 767px) {
+	.main-title2 {
+		padding-top: 25%;
+	}
+}
+@media screen and (max-width: 600px) {
+	.main-title2 {
+		padding-top: 35%;
+	}
+}
+@media screen and (max-width: 480px) {
+	.main-title2 {
+		padding-top: 50%;
+	}
+}
