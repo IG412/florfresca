@@ -3,7 +3,7 @@ var mongoose    = require('mongoose'),
     Plan        = require('../model/plan'),
     Subscription      = require('../model/subscription');
     const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey("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");
+    sgMail.setApiKey("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");
 
 module.exports  = {
   	all : function(req,res){

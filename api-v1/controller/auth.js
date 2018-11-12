@@ -7,7 +7,8 @@ var mongoose    = require('mongoose'),
     User        = mongoose.model('users'),
     Admin       = mongoose.model('admins');
     const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey("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");
+    //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
+    sgMail.setApiKey("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");
 
 module.exports  = {
   register : function(req, res) {
