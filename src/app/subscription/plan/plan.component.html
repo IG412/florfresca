@@ -142,7 +142,7 @@
                             <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (p.nombre === select_flower) ? '3px solid red':'none'}" >
                                 <div class="radius-top">
                                     <div class="vertical-align text-center">
-                                        <a class="c-button bg-florfresca hv-transparent" (click)="addPlan(p)"><span class="color-white">QUIERO SUSCRIBIRME</span></a>
+                                        <a class="c-button bg-florfresca hv-transparent" (click)="addPlan(p, size)"><span class="color-white">QUIERO SUSCRIBIRME</span></a>
                                     </div>
                                     <img [src]="p.img" alt="">
                                 </div>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 50px" *ngFor="let t of Sizes" >
+            <div class="row" style="margin-bottom: 50px" *ngFor="let t of Sizes" id="size">
                 <div class="col-sm-2"></div>
                 <div class="col-xs-12 col-sm-8 bg-white" [ngStyle]="{'border': (t.nombre == select_tamano) ? '3px solid red':'none'}">
                     <div class="col-xs-4 col-sm-4 text-center">
@@ -191,7 +191,7 @@
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 25px" *ngFor="let s of period" >
+            <div class="row" style="margin-bottom: 25px" *ngFor="let s of period" id="periodo">
                 <div class="col-sm-2"></div>
                 <div class="col-xs-12 col-sm-8 bg-white" [ngStyle]="{'border': (s.nombre == select_frecuencia) ? '3px solid red':'none'}">
                     <div [innerHTML]="s.class"></div>

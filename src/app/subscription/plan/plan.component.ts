@@ -117,19 +117,24 @@ export class PlanComponent implements OnInit {
     }
   }
   addPlan(f:Flower){
-    // this.subscription.plan = {_id:plan._id,nombre:plan.nombre,img:plan.img}
+     let el = document.getElementById("size");
     this.subscription.plan.flor = f.nombre;
     this.subscription.plan.img_flor = f.img;
     this.select_flower = f.nombre;
+    el.scrollIntoView();
     // this.tamanos = plan.tamano;
   }
   addTamano(t:Size){
+    let el = document.getElementById("periodo");
     this.subscription.plan.tamano = t.nombre;
   	this.select_tamano = t.nombre;
+    el.scrollIntoView();
   }
   addTipo(f:Period){
+    
     this.subscription.plan.periodo = f.nombre;
   	this.select_frecuencia = f.nombre;
+    
   }
 
   goToSummary(){

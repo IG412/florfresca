@@ -37,7 +37,9 @@ export class SlideComponent implements OnInit {
 		this.swipers['swiper-'+$(this).closest('.arrows').find('.swiper-container').attr('id')].swipeNext();
 	});
   }
-
+  prueba(){
+  	console.log("prueba");
+  }
   //Función de inicio de Slide con Swiper 
   	initSwiper(){
 		var initIterator = 0;
@@ -69,7 +71,7 @@ export class SlideComponent implements OnInit {
 				speed: speedVar,
 				pagination: '.pagination-'+index,
 				loop: loopVar,
-				paginationClickable: true,
+				// paginationClickable: true,
 				autoplay: autoPlayVar,
 				slidesPerView: slidesPerViewVar,
 				slidesPerGroup: slidesPerGroup,
