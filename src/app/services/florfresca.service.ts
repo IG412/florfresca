@@ -21,7 +21,7 @@ export class FlorfrescaService {
   	) {
       // this.Url = window.location.origin+'/api';
       // this.Url = "http://localhost:5000/api";
-      this.Url = "https://florfresca.herokuapp.com/api";
+      this.Url = "http://www.florfresca.com.co/api";
     }
 
   Auth0 (query: any): Observable<any>{
