@@ -40,9 +40,9 @@ export class FlorfrescaService {
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
     return this.http.post<any>(this.Url+"/auth/reboot", query, {headers: this.headers});
   }
-  reset(query):Observable<any>{
+  activate(query):Observable<any>{
     this.headers =  new HttpHeaders({ 'Content-Type': 'application/json' })
-    return this.http.post<any>(this.Url+"/", query, {headers: this.headers});
+    return this.http.post<any>(this.Url+"/auth/activate", query, {headers: this.headers});
   }
   plans(query:any): Observable<Plan[]> {
     this.headers = new HttpHeaders({'Content-Type': 'application/json'});

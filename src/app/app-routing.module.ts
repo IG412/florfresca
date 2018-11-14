@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './account/login/login.component';
 import {PlanComponent} from './subscription/plan/plan.component';
 import { RecoveryComponent } from './account/recovery/recovery.component';
+import { ActivateComponent } from './account/activate/activate.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { FaqComponent } from './page/faq/faq.component';
 import { WhyComponent } from './page/why/why.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'recovery', component: RecoveryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset/:id', component: ResetComponent },
-  { path: 'activate/:id', component: ResetComponent },
+  { path: 'activate/:id', component: ActivateComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'Por_que_flor_fresca', component: WhyComponent },
   { path: 'cuidados', component: CareComponent },

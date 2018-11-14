@@ -25,13 +25,16 @@ module.exports  = {
                 console.log("Ya existe")
                 res.status(401).json({message:'El email '+req.body.correo+ ' ya se encuentra registrado.'});
               }else{
+                  var t = crypto.randomBytes(25).toString('hex');
+                  var expires = Date.now() + 3600000; // 1 hour
                   user.setPass(req.body.pass);
+                  user.reset = t;
+                  user.expires = expires;
                   user.save(function (e,d) {
                       if(e){
                         res.status(500).json({message:'Error, 500 insterno del servidor. contactar con el grupo de soporte'});
                       }else{
-                        var t = crypto.randomBytes(25).toString('hex');
-                        var expires = Date.now() + 3600000; // 1 hour
+                        
                         var link_ = 'http://' + req.headers.host + '/activate/' + t +'';
                         const msg = {
                             to: req.body.correo,
@@ -116,13 +119,32 @@ module.exports  = {
       }
     })
   },
-  reset : function(req,res){
-    User.findOne({reset:req.params.token, expires: {$gt:Date.now()}}).exec(function (error,user){
-      if(!user){
-        res.status(401).json({message:'Lo sentimos el link no es válido'});
-      }
-      else{
-        res.stats(200).json({message:'se ha actualizado la nueva contraseña'});  
+  activate : function(req,res){
+    console.log(req.body.token, Date.now());
+    User.findOne({reset:req.body.token}, function (error,user){
+      if(error){
+        res.status(500).json({message:'Lo sentimos, Error 500 Interno del servidor contactar con soporte'});
+      }else{
+        if(user){
+          if(Date.now() < user.expires ){
+            token = tokener.generateJwt(user);
+            user.reset= null;
+            user.expires = null;
+            user.activo = true;
+            user.save(function (e,d) {
+              if(e){
+                console.log("error");
+              }else{
+                console.log("ok");
+              }
+            })
+            res.status(200).json({token : token, id:user._id,message:'Redireccionando...'}); 
+          }else{
+            res.status(401).json({message:'Lo sentimos el link no es válido'});
+          }
+        }else{
+          res.status(401).json({message:'Lo sentimos el link no es válido'});
+        }
       }
     })
   },

@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { FaqComponent } from './page/faq/faq.component';
 import { WhyComponent } from './page/why/why.component';
 import { CareComponent } from './page/care/care.component';
+import { ActivateComponent } from './account/activate/activate.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CareComponent } from './page/care/care.component';
     FaqComponent,
     WhyComponent,
     CareComponent,
+    ActivateComponent,
   ],
   imports: [
     BrowserModule,

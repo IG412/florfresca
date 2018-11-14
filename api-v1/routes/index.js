@@ -17,6 +17,7 @@ router.route('/auth/admin/tokens').post(auth.admin);
 router.route('/auth/register').post(auth.register);
 router.route('/auth/recovery').post(auth.recovery);
 router.route('/auth/reboot').post(auth.reboot);
+router.route('/auth/activate').post(auth.activate);
 
 router.route('/subscriptions').get(subs.all).post(subs.post);
 router.route('/subscription/:id').get(subs.get).put(subs.put);
