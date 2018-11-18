@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 //importar librey de Swiper js
 import * as Swiper from "src/assets/js/idangerous.swiper.min.js";
 declare var $: any;
@@ -12,12 +13,19 @@ export class SlideComponent implements OnInit {
 	//declaracion de variables para Swiper
   private swipers:any;
  
-  constructor() { 
+  constructor(
+  	private route: ActivatedRoute,
+    private router: Router
+    ) { 
   	
   }
 
   ngOnInit() {
     this.initSwiper();
+    $('.bg-florfresca').on('click',e=>{
+			console.log('entro')
+			this.router.navigate(['subscription/summary']);
+		});
   }
 
   prueba(){
@@ -68,7 +76,7 @@ export class SlideComponent implements OnInit {
 				speed: speedVar,
 				pagination: '.pagination-'+index,
 				loop: loopVar,
-				paginationClickable: true,
+				// paginationClickable: true,
 				autoplay: autoPlayVar,
 				slidesPerView: slidesPerViewVar,
 				slidesPerGroup: slidesPerGroup,
@@ -126,11 +134,12 @@ export class SlideComponent implements OnInit {
 		});
 		//swiper arrows
 		$('.swiper-arrow-left').on('click',function(){
-			// this.swipers['swiper-'+$(this).closest('.arrows').find('.swiper-container').attr('id')].swipePrev();
+			console.log("entro")
 		});
 		$('.swiper-arrow-right').on('click',function(){
 			// this.swipers['swiper-'+$(this).closest('.arrows').find('.swiper-container').attr('id')].swipeNext();
 		});
+		
 	}
 
 }

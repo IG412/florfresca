@@ -32,6 +32,7 @@ router.route('/users').get(user.all).post(user.post);
 router.route('/user/:id').get(user.get).put(user.put);
 router.route('/user/:id/creditCards').get(user.cards);
 router.route('/user/:id/subscriptions').get(user.subscriptions);
+router.route('/subscriptions/send').post(subs.send);
 // router.route('/user/:id/subscription/:oid').get(user.subscription).delete(user.deleteSubscription);
 // router.route('/slides').get(slides.all).post(slides.post);/rest/v4.9/customers/{customerID}/creditCards
 // router.route('/slides/:id').get(slides.get).put(slides.put).delete(slides.delete);
