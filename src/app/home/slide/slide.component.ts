@@ -11,42 +11,39 @@ declare var $: any;
 export class SlideComponent implements OnInit {
 	//declaracion de variables para Swiper
   private swipers:any;
-  private winW:any;
-  private xsPoint:Number; 
-  private smPoint:Number;
-  private mdPoint:Number;
-  private lgPoint:Number; 
-  private addPoint:Number;
  
   constructor() { 
-  	this.winW = $(window).width();
-  	this.addPoint = 1600;
-  	this.xsPoint = 451;
-  	this.smPoint = 768;
-  	this.mdPoint = 992;
-  	this.lgPoint = 1200;
+  	
   }
 
   ngOnInit() {
-  	this.initSwiper();
-  	//swiper arrows
-	$('.swiper-arrow-left').on('click',function(){
-		this.swipers['swiper-'+$(this).closest('.arrows').find('.swiper-container').attr('id')].swipePrev();
-	});
-	$('.swiper-arrow-right').on('click',function(){
-		this.swipers['swiper-'+$(this).closest('.arrows').find('.swiper-container').attr('id')].swipeNext();
-	});
+    this.initSwiper();
   }
+
   prueba(){
   	console.log("prueba");
   }
   //Función de inicio de Slide con Swiper 
   	initSwiper(){
 		var initIterator = 0;
-		$('.swiper-container').each(function(){								  
+		let winW:any = $(window).width();
+	  	let addPoint:number = 1600;
+	  	let xsPoint:number = 451;
+	  	let smPoint:number = 768;
+	  	let mdPoint:number = 992;
+	  	let lgPoint:number = 1200;
+		$('.swiper-container').each(function(){	
+			function updateSlidesPerView (swiperContainer) {
+				if(winW>=addPoint) return parseInt(swiperContainer.attr('data-add-slides'),10);
+				else if(winW>=lgPoint) return parseInt(swiperContainer.attr('data-lg-slides'),10);
+				else if(winW>=mdPoint) return parseInt(swiperContainer.attr('data-md-slides'),10);
+				else if(winW>=smPoint) return parseInt(swiperContainer.attr('data-sm-slides'),10);
+				else if(winW>=xsPoint) return parseInt(swiperContainer.attr('data-xs-slides'),10);
+				else return parseInt(swiperContainer.attr('data-mob-slides'),10);
+			}
 			var $t = $(this);								  
 
-			var index = 'swiper-unique-id-'+initIterator;
+			var index = 'unique-id-'+initIterator;
 
 			$t.addClass('swiper-'+index + ' initialized').attr('id', index);
 			$t.find('.pagination').addClass('pagination-'+index);
@@ -57,7 +54,7 @@ export class SlideComponent implements OnInit {
 
 			var slidesPerViewVar = $t.attr('data-slides-per-view');
 			if(slidesPerViewVar == 'responsive'){
-				slidesPerViewVar = this.updateSlidesPerView($t);
+				slidesPerViewVar = updateSlidesPerView($t);
 			}
 			else slidesPerViewVar = parseInt(slidesPerViewVar,10);
 
@@ -67,11 +64,11 @@ export class SlideComponent implements OnInit {
 			var slidesPerGroup = parseInt($t.attr('data-slides-per-group'),10);
 			if(!slidesPerGroup){slidesPerGroup=1;}			
 
-			this.swipers['swiper-'+index] = new Swiper('.swiper-'+index,{
+			this.swipers = new Swiper('.swiper-'+index,{
 				speed: speedVar,
 				pagination: '.pagination-'+index,
 				loop: loopVar,
-				// paginationClickable: true,
+				paginationClickable: true,
 				autoplay: autoPlayVar,
 				slidesPerView: slidesPerViewVar,
 				slidesPerGroup: slidesPerGroup,
@@ -117,7 +114,7 @@ export class SlideComponent implements OnInit {
 					}
 				}
 			});
-			this.swipers['swiper-'+index].reInit();
+			this.swipers.reInit();
 			if($t.attr('data-slides-per-view')=='responsive'){
 				var paginationSpan = $t.find('.pagination span');
 				var paginationSlice = paginationSpan.hide().slice(0,(paginationSpan.length+1-slidesPerViewVar));
@@ -127,15 +124,13 @@ export class SlideComponent implements OnInit {
 			}
 			initIterator++;
 		});
-
-	}
-	updateSlidesPerView(swiperContainer){
-		if(this.winW>=this.addPoint) return parseInt(swiperContainer.attr('data-add-slides'),10);
-		else if(this.winW>=this.lgPoint) return parseInt(swiperContainer.attr('data-lg-slides'),10);
-		else if(this.winW>=this.mdPoint) return parseInt(swiperContainer.attr('data-md-slides'),10);
-		else if(this.winW>=this.smPoint) return parseInt(swiperContainer.attr('data-sm-slides'),10);
-		else if(this.winW>=this.xsPoint) return parseInt(swiperContainer.attr('data-xs-slides'),10);
-		else return parseInt(swiperContainer.attr('data-mob-slides'),10);
+		//swiper arrows
+		$('.swiper-arrow-left').on('click',function(){
+			// this.swipers['swiper-'+$(this).closest('.arrows').find('.swiper-container').attr('id')].swipePrev();
+		});
+		$('.swiper-arrow-right').on('click',function(){
+			// this.swipers['swiper-'+$(this).closest('.arrows').find('.swiper-container').attr('id')].swipeNext();
+		});
 	}
 
 }
