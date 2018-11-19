@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    mongodbUri = 'mongodb://fresca:Flor12345*.@ds243212.mlab.com:43212/florfresca',
+    mongodbUri = 'mongodb://fresca:Flor12345*.@ds211724.mlab.com:11724/heroku_fbd3fmfr',
     gracefulShutdownm;
 if (process.env.NODE_ENV === 'production') {dbURI = process.env.MONGOLAB_URI;}
 mongoose.set('useCreateIndex', true)
