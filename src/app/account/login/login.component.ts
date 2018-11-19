@@ -62,4 +62,8 @@ export class LoginComponent implements OnInit {
       }, 1000);  
     }
   }
+
+  register():void{
+      this.router.navigateByUrl("/register"+(this.from)?"?from="+this.from:"");  
+  }
 }

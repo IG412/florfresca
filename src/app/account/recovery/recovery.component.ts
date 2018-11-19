@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute  }  from "@angular/router";
 import { FlorfrescaService } from '../../services/florfresca.service';
 import { Message } from '../../models/message';
 
@@ -12,23 +13,28 @@ export class RecoveryComponent implements OnInit {
   correo: string;
   boton:boolean;
   messages:Message;
-
+  from:string;
   constructor(
-    private service:FlorfrescaService
+    private service:FlorfrescaService,
+    private router:Router,
+    private active: ActivatedRoute
   ) {
     this.correo = '';
     this.boton = false;
     this.messages = new Message();
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.from = this.active.snapshot.queryParamMap.get("from");
+  }
 
   onSubmit() {
     this.service.recovery({correo: this.correo}).subscribe(
         d=>{
           this.messages = d;
           this.messages.class = "bg-success";
-          this.messages.status = true;   
+          this.messages.status = true;  
+          this.goBack();
         },
         e=>{
           let er:any = e
@@ -37,6 +43,16 @@ export class RecoveryComponent implements OnInit {
           this.messages.status = true;
         }
       );
+  }
+  goBack():void{
+    if(this.from){
+      this.router.navigateByUrl("/subscription/"+this.from);  
+    }else{
+      setTimeout(() => {
+        console.log('Success!!')
+        this.router.navigateByUrl("/login"); 
+      }, 1000);  
+    }
   }
 
 }
