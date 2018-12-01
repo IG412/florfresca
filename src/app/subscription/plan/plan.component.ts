@@ -94,11 +94,16 @@ export class PlanComponent implements OnInit {
     });
     this.registerForm = this.formBuilder.group({
             nombre: ['', Validators.required],
-            rela_paren: ['', Validators.required],
-            catego: ['', [Validators.required]],
-            direccion: [ '', [Validators.required, Validators.minLength(6)]],
-            ciudad: ['', Validators.required],
-            tel: ['', Validators.required],
+            apellidos: ['', Validators.required],
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+            cpassword: ['', Validators.required],
+
+            // rela_paren: ['', Validators.required],
+            // catego: ['', [Validators.required]],
+            // direccion: [ '', [Validators.required, Validators.minLength(6)]],
+            // ciudad: ['', Validators.required],
+            // tel: ['', Validators.required],
             gatos:[]
         });
     let d = new Date();
@@ -110,13 +115,14 @@ export class PlanComponent implements OnInit {
   }
   addSuscriptor(){
     this.submitted = true;
-    if(!this.registerForm.invalid){
+    //console.log(this.registerForm)
+    // if(!this.registerForm.invalid){
       this.subscription.suscriptor = this.suscriptor;
       localStorage.setItem('subscription', JSON.stringify(this.subscription));
       this.showForm = false;
-    }else{
-      console.log('error')
-    }
+    // }else{
+    //   console.log('error')
+    // }
   }
   addPlan(f:Flower){
      let el = document.getElementById("size");
@@ -140,20 +146,37 @@ export class PlanComponent implements OnInit {
   }
 
   goToSummary(){
+    //this.addSuscriptor();
+    
     if(!this.acept_entrega && !this.acept_term){
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";
     }else{
-      if($("#fecha_entrega").val() != ''){
-        this.subscription.f_entrega = $("#fecha_entrega").val();
-        if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
-          this.alert = "";
-          this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
-        }else{
-          this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
-        }
+      console.log($("#fecha_entrega").val() )
+
+      if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
+        this.alert = "";
+        this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
       }else{
-        this.alert = "Debe Ingresar el día que desea la entrega";
-      } 
+        this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
+      }
+
+
+      // if($("#fecha_entrega").val() != ''){
+      //   this.subscription.f_entrega = $("#fecha_entrega").val();
+      //   console.log(this.showForm)
+      //   console.log(this.select_frecuencia)
+      //   console.log(this.select_tamano)
+      //   console.log(this.select_flower)
+      //   if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
+      //     this.alert = "";
+      //     this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
+      //   }else{
+      //     this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
+      //   }
+      // }
+      // else{
+      //   this.alert = "Debe Ingresar el día que desea la entrega";
+      // } 
     }
   }
 
