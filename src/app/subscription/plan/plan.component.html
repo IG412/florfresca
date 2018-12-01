@@ -29,7 +29,7 @@
                     <form [formGroup]="registerForm" (ngSubmit)="addSuscriptor()" class="simple-from">
                         <div class="simple-group">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-4">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Nombres</div>
                                         <div class="input-style-1 b-50 brd-0 type-2 color-3">
@@ -37,14 +37,53 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Apellidos</div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                            <input type="text" formControlName="nombre" [(ngModel)]="suscriptor.apellidos" placeholder="" name="apellidos" [ngStyle]="{ 'border': (submitted && registerForm.controls.apellidos.errors ) ? '1px solid red' : 'none' }">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Correo electrónico</div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                            <input type="email" formControlName="email" [(ngModel)]="suscriptor.email" placeholder="" name="email" [ngStyle]="{ 'border': (submitted && registerForm.controls.email.errors ) ? '1px solid red' : 'none' }">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Contraseña</div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                            <input type="password" formControlName="password" [(ngModel)]="suscriptor.password" placeholder="" name="password" [ngStyle]="{ 'border': (submitted && registerForm.controls.password.errors ) ? '1px solid red' : 'none' }">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-block type-2 clearfix">
+                                        <div class="form-label color-dark-2">Confirmar contraseña</div>
+                                        <div class="input-style-1 b-50 brd-0 type-2 color-3">
+                                            <input type="password" formControlName="cpassword" [(ngModel)]="suscriptor.cpassword" placeholder="" name="cpassword" [ngStyle]="{ 'border': (submitted && registerForm.controls.cpassword.errors ) ? '1px solid red' : 'none' }">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2" >Relación y/o parentesco</div>
                                         <select [(ngModel)]="suscriptor.rela_paren" formControlName="rela_paren" class="drop-wrap drop-wrap-s-4 color-5" name="rela_paren" [ngStyle]="{ 'border': (submitted && registerForm.controls.rela_paren.errors ) ? '1px solid red' : 'none' }" style="padding-left: 20px;">
                                             <option *ngFor='let p of parentesco'>{{p}}</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Categorización dirección</div>
@@ -69,7 +108,7 @@
                                             <input type="text" [(ngModel)]="suscriptor.ciudad" formControlName="ciudad" name="ciudad"  disabled>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-block type-2 clearfix">
                                         <div class="form-label color-dark-2">Teléfono</div>
@@ -78,6 +117,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            -->
                                 <div class="col-xs-12 col-sm-12 padd-40">
                                     <div class="input-entry color-7">
                                         <input class="checkbox-form" id="lirios" formControlName="gatos" [(ngModel)]="suscriptor.gatos" type="checkbox" name="lirios" >
@@ -139,7 +179,8 @@
                 <div class="col-xs-12 col-sm-8 col-md-8">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6" [ngStyle]="{'margin-bottom':(i == 0)?'':'30px'}" *ngFor="let p of Flowers;index as i" >
-                            <div class="tour-item style-2 delay-1" [ngStyle]="{'border': (p.nombre === select_flower) ? '3px solid red':'none'}" >
+                            <div class="tour-item style-2 delay-1"  >
+                                    <!-- [ngStyle]="{'border': (p.nombre === select_flower) ? '3px solid red':'none'}" -->
                                 <div class="radius-top">
                                     <div class="vertical-align text-center">
                                         <a class="c-button bg-florfresca hv-transparent" (click)="addPlan(p, size)"><span class="color-white">QUIERO SUSCRIBIRME</span></a>
@@ -150,6 +191,7 @@
                                     <h4><a class="tour-title color-dark-2 link-green" href="#">{{p.nombre}}</a></h4>
                                     <div class="tour-text color-dark-2">{{p.desc}}</div>
                                 </div>
+                                <i class="mdi mdi-check-circle button-selected " *ngIf="p.nombre === select_flower"></i>
                             </div>
                         </div>
                     </div>                    
@@ -158,6 +200,10 @@
             <div class="row" >
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                     <div class="second-title" style="padding-top: 5px;">
+                        
+                        
+
+
                         <h2 style="color: rgba(0,0,0,0.51);">¿QUÉ TAMAÑO QUIERES PARA TU PLAN?</h2>
                         <div class="form-label color-dark-2">Seleccionamos las flores mas líndas y frescas de nuestro cultivo, pensando en tí</div>
                     </div>
@@ -165,7 +211,8 @@
             </div>
             <div class="row" style="margin-bottom: 50px" *ngFor="let t of Sizes" id="size">
                 <div class="col-sm-2"></div>
-                <div class="col-xs-12 col-sm-8 bg-white" [ngStyle]="{'border': (t.nombre == select_tamano) ? '3px solid red':'none'}">
+                <div class="col-xs-12 col-sm-8 bg-white" >
+                        <!-- [ngStyle]="{'border': (t.nombre == select_tamano) ? '3px solid red':'none'}" -->
                     <div class="col-xs-4 col-sm-4 text-center">
                         <img class="radius-img" [src]="t.icon" alt="" >
                     </div>
@@ -180,7 +227,11 @@
                     </div>
                     <div class="col-sm-12"></div>
                 </div>
-                <div class="col-sm-2"></div>
+                <div class="col-sm-2">
+                        <i class="mdi mdi-check-circle button-selected " *ngIf="t.nombre == select_tamano"  style="line-height: 20vh;"></i>
+                </div>
+                
+                
             </div>
             <div class="row" >
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -193,7 +244,8 @@
 
             <div class="row" style="margin-bottom: 25px" *ngFor="let s of period" id="periodo">
                 <div class="col-sm-2"></div>
-                <div class="col-xs-12 col-sm-8 bg-white" [ngStyle]="{'border': (s.nombre == select_frecuencia) ? '3px solid red':'none'}">
+                <div class="col-xs-12 col-sm-8 bg-white" >
+                        <!-- [ngStyle]="{'border': (s.nombre == select_frecuencia) ? '3px solid red':'none'}" -->
                     <div [innerHTML]="s.class"></div>
                     <div class="col-xs-12 col-sm-5 text-center">
                         <div class="title hotel-middle clearfix cell-view c-v">
@@ -210,7 +262,9 @@
                     </div>
                     <div class="col-sm-12"></div>
                 </div>
-                <div class="col-sm-2"></div>
+                <div class="col-sm-2">
+                        <i class="mdi mdi-check-circle button-selected " *ngIf="s.nombre == select_frecuencia"  style="line-height: 12vh;"></i>
+                </div>
             </div>
             <div class="row padd-40">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -233,9 +287,9 @@
                 <div class="col-sm-4 col-sm-offset-4">
                     <div class="text-center">
                         <div class="input-entry color-7">
-                            <input class="checkbox-form" id="text-1" type="checkbox"  [(ngModel)]="acept_entrega"  name="acept_entrega" value="true">
+                            <input class="checkbox-form " id="text-1" type="checkbox"  [(ngModel)]="acept_entrega"  name="acept_entrega" value="true">
                             <label class="clearfix" for="text-1">
-                                <span class="sp-check"><i class="fa fa-check"></i></span>
+                                <span class="sp-check check-custom"><i class="fa fa-check"></i></span>
                                 <p class=" color-dark-2">Acepto que la entrega se realizará el <b>primer martes</b> despues de realizada mi suscripción</p>
                             </label>
                         </div>
@@ -245,10 +299,10 @@
                 <div class="col-sm-4 col-sm-offset-4 padd-40">
                     <div class="text-center">
                         <div class="input-entry color-7">
-                            <input class="checkbox-form" id="text-2" type="checkbox" name="acept_term" [(ngModel)]="acept_term" value="true">
+                            <input class="checkbox-form " id="text-2" type="checkbox" name="acept_term" [(ngModel)]="acept_term" value="true">
                             <label class="clearfix" for="text-2">
-                                <span class="sp-check"><i class="fa fa-check"></i></span>
-                                <p class=" color-dark-2">Acepto los <a href="">terminos y condiciones</a></p>
+                                <span class="sp-check check-custom"><i class="fa fa-check"></i></span>
+                                <p class=" color-dark-2 ">Acepto los <a href="">terminos y condiciones</a></p>
                             </label>
                         </div>
                     </div>

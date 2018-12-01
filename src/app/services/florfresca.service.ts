@@ -20,6 +20,7 @@ export class FlorfrescaService {
   		private http: HttpClient
   	) {
       this.Url = '/api';
+      //this.Url = 'http://www.florfresca.com.co/api';
       // this.Url = "http://localhost:5000/api";
     }
 

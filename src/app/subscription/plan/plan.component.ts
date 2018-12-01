@@ -81,6 +81,8 @@ export class PlanComponent implements OnInit {
         this.fecha_entrega = this.subscription.f_entrega;
         this.select_tamano = (this.subscription.plan.tamano)? this.subscription.plan.tamano : '';
         this.select_frecuencia = (this.subscription.plan.periodo)? this.subscription.plan.periodo : '';
+
+        
         this.showForm = false;
         this.load = false;
       }

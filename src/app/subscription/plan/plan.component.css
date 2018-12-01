@@ -25,3 +25,13 @@ input[type=checkbox], input[type=radio]{
 		height: 40px !important;
 	}
 }
+
+.button-selected{
+	position: absolute;
+	top:0px;
+	font-size: 5vh;
+}
+
+.check-custom{
+	background: #ccc !important; 
+}
