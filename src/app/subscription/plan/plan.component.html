@@ -120,7 +120,7 @@
             <!--  tiempo plan -->
 
             <!-- formulario de registro -->
-            <div class="row">
+            <div class="row" style="display:none">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                         <div class="second-title" style="padding-top: 0px;">
                             <img src="assets/imgs/logo.png" alt="Flor florfresca">
@@ -131,7 +131,7 @@
                     </div>
                 </div>
     
-                <div class="row">
+                <div class="row" style="display:none">
                     <div class="col-sm-2"></div>
                     <div class="col-xs-12 col-sm-8 bg-white" style="padding: 50px" *ngIf="showForm">
                         <form [formGroup]="registerForm" (ngSubmit)="addSuscriptor()" class="simple-from">
@@ -260,7 +260,7 @@
                         <div class="col-xs-1 col-sm-2"></div>
                     </div>
                 </div>
-                <div class="row" *ngIf="!showForm">
+                <div class="row" *ngIf="!showForm" style="display:none">
                     <div class="col-sm-2"></div>
                     <div class="col-xs-12 col-sm-8">
                         <div class="detail-content-block">
