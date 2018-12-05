@@ -26,12 +26,36 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/bootstrap-datepicker.min.css",
               "src/assets/css/style.css",
-              "src/assets/css/spinner.css"
+              "src/assets/css/spinner.css",
+              "src/assets/home/web/assets/mobirise-icons/mobirise-icons.css",
+              "src/assets/home/tether/tether.min.css",
+              "src/assets/home/bootstrap/css/bootstrap.min.css",
+              "src/assets/home/bootstrap/css/bootstrap-grid.min.css",
+              "src/assets/home/bootstrap/css/bootstrap-reboot.min.css",
+              "src/assets/home/bootstrap-datepicker/css/bootstrap-datepicker3.css",              
+              "src/assets/home/dropdown/css/style.css",
+              "src/assets/home/socicon/css/styles.css",
+              "src/assets/home/theme/css/style.css",
+              "src/assets/home/mobirise/css/mbr-additional.css"
             ],
             "scripts": [
               "src/assets/js/jquery-2.1.4.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/bootstrap-datepicker.min.js"
+              "src/assets/js/bootstrap-datepicker.min.js",
+              "src/assets/home/web/assets/jquery/jquery.min.js",
+              "src/assets/home/popper/popper.min.js",
+              "src/assets/home/tether/tether.min.js",
+              "src/assets/home/bootstrap/js/bootstrap.min.js",
+              "src/assets/home/bootstrap-datepicker/js/bootstrap-datepicker.js",
+              "src/assets/home/dropdown/js/script.min.js",
+              "src/assets/home/touchswipe/jquery.touch-swipe.min.js",
+              "src/assets/home/smoothscroll/smooth-scroll.js",
+              "src/assets/home/mbr-booking-datepicker/mbr-booking-datepicker.min.js",
+              "src/assets/home/mbr-popup-btns/mbr-popup-btns.js",
+              "src/assets/home/parallax/jarallax.min.js",
+              "src/assets/home/viewportchecker/jquery.viewportchecker.js",
+              "src/assets/home/theme/js/script.js",
+              "src/assets/home/formoid/formoid.min.js"             
             ]
           },
           "configurations": {
