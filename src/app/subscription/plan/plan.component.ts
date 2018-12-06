@@ -55,7 +55,7 @@ export class PlanComponent implements OnInit {
   	this.suscriptor = new Suscriptor();
   	this.parentesco = ["Seleccione","Para mi","Primo", "Prima", "Cliente", "Amiga" , "Amigo", "Novio", "Novia", "Abuela", "Abuelo", "Mamá", "Papá", "Hermana", "Hermano", "Hijo", "Hija", "Tío", "Tía", "Esposa", "Esposo"];
   	this.cat = ["Seleccione","Casa", "Oficina", "Otro"];
-  	this.showForm=true;
+  	this.showForm=false;
     this.subscription = new Subscripcion();
   	this.Sizes = new Array();
     this.load = false;
