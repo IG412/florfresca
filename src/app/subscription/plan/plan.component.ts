@@ -26,7 +26,7 @@ export class PlanComponent implements OnInit {
   parentesco: Array<String>;
   cat:Array<String>;
   suscriptor:Suscriptor;
-  showForm:boolean;
+  showForm:boolean=false;
   Flowers: Array<Flower>;
   Sizes:Array<Size>;
   period:Array<Period>;
@@ -41,6 +41,7 @@ export class PlanComponent implements OnInit {
   acept_term:Boolean;
   acept_entrega:Boolean;
   alert:String;
+  showFormComplete=false;
 
   constructor(
   	private route: ActivatedRoute,
@@ -103,7 +104,7 @@ export class PlanComponent implements OnInit {
             // catego: ['', [Validators.required]],
             // direccion: [ '', [Validators.required, Validators.minLength(6)]],
             // ciudad: ['', Validators.required],
-            // tel: ['', Validators.required],
+            telefono: ['', Validators.required],
             gatos:[]
         });
     let d = new Date();
@@ -113,16 +114,19 @@ export class PlanComponent implements OnInit {
   ficon(n:number){
     return new Array(n);
   }
+
   addSuscriptor(){
     this.submitted = true;
     //console.log(this.registerForm)
-    // if(!this.registerForm.invalid){
+    if(!this.registerForm.invalid){
       this.subscription.suscriptor = this.suscriptor;
       localStorage.setItem('subscription', JSON.stringify(this.subscription));
       this.showForm = false;
-    // }else{
-    //   console.log('error')
-    // }
+      this.showFormComplete = true;
+      this.router.navigate(['subscription/summary']);
+    }else{
+      console.log('error')
+    }
   }
   addPlan(f:Flower){
      let el = document.getElementById("size");
@@ -150,36 +154,24 @@ export class PlanComponent implements OnInit {
     
     if(!this.acept_entrega && !this.acept_term){
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";
-    }else{
-      console.log($("#fecha_entrega").val() )
+    }else{  
 
-      if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
-        this.alert = "";
-        this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
-      }else{
-        this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
+      if($("#fecha_entrega").val() != ''){
+        this.subscription.f_entrega = $("#fecha_entrega").val();
+        //!this.showForm && 
+        if(this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
+          this.alert = "";
+          this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
+        }else{
+          this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
+        }
       }
-
-
-      // if($("#fecha_entrega").val() != ''){
-      //   this.subscription.f_entrega = $("#fecha_entrega").val();
-      //   console.log(this.showForm)
-      //   console.log(this.select_frecuencia)
-      //   console.log(this.select_tamano)
-      //   console.log(this.select_flower)
-      //   if(!this.showForm && this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
-      //     this.alert = "";
-      //     this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
-      //   }else{
-      //     this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
-      //   }
-      // }
-      // else{
-      //   this.alert = "Debe Ingresar el día que desea la entrega";
-      // } 
+      else{
+        this.alert = "Debe Ingresar el día que desea la entrega";
+      } 
     }
   }
-
+  
   find(query:any):void{
     this.service.plans(query).subscribe(d=>{
       let p:Plan[] = d;
@@ -188,7 +180,8 @@ export class PlanComponent implements OnInit {
         this.subscription.plan.precio = p[0].values;
         this.subscription.plan.payuId = (p[0].payuId)? p[0].payuId: null;
         localStorage.setItem('subscription', JSON.stringify(this.subscription));
-         this.router.navigate(['subscription/summary']);
+        this.showForm = true;
+         //this.router.navigate(['subscription/summary']);
       }else{
         alert("No hay plan");
       }
