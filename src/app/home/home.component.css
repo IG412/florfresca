@@ -45,4 +45,8 @@
     .display-2{
         font-size: 2.8rem !important;
     }
+
+    .nav-movil{
+        height: 15vh;
+    }
 }

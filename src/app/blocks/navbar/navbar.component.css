@@ -1,0 +1,9 @@
+@media (max-width: 768px){
+    .movil-menu{
+        line-height: 16vh;    
+    }
+
+    .nav-movil{
+        height: 20vh
+    }
+}
