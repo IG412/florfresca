@@ -44,6 +44,7 @@ export class SummaryComponent implements OnInit {
     window.scrollTo(0,0);
     if(localStorage.getItem('subscription')) {
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
+      console.log(this.subscripcion);
     }else{
       this.router.navigate(['subscription/plan'], {});
     }

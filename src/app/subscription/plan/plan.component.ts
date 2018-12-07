@@ -104,7 +104,7 @@ export class PlanComponent implements OnInit {
             // catego: ['', [Validators.required]],
             // direccion: [ '', [Validators.required, Validators.minLength(6)]],
             // ciudad: ['', Validators.required],
-            telefono: ['', Validators.required],
+            tel: ['', Validators.required],
             gatos:[]
         });
     let d = new Date();

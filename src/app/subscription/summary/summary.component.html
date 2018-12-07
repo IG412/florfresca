@@ -32,7 +32,7 @@
                                         </ng-template>
                                     </td>
                                 </tr>
-                                <!-- <tr>
+                                <tr>
                                     <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
                                     <td class="table-label color-dark-2">
                                         <ng-container *ngIf="show; else rela_parenTemplate">
@@ -47,15 +47,13 @@
                                         </ng-template>
 
                                     </td>
-                                </tr> -->
+                                </tr>
                                 <tr>
                                     <td class="table-label color-grey">Apellidos:</td>
                                     <td class="table-label color-dark-2">
                                         <ng-container *ngIf="show; else apellidos">
-                                            <div class="form-block type-2">
-                                                <select [(ngModel)]="subscripcion.suscriptor.rela_paren" class="drop-wrap drop-wrap-s-4 color-4 b-0 brd-0 type-2" name="rela_paren"  style="padding-left: 20px;">
-                                                    <option *ngFor='let p of parentesco'>{{p}}</option>
-                                                </select>
+                                            <div class="input-style-1 b-0 brd-0 type-2 color-3">
+                                                <input type="text" value="{{subscripcion.suscriptor.apellidos}}" [(ngModel)]="subscripcion.suscriptor.apellidos">
                                             </div>
                                         </ng-container>
                                         <ng-template #apellidos>
@@ -68,19 +66,16 @@
                                 <tr>
                                     <td class="table-label color-grey">Correo:</td>
                                     <td class="table-label color-dark-2">
-                                        <ng-container *ngIf="show; else rela_parenTemplate">
-                                            <div class="form-block type-2">
-                                                <select [(ngModel)]="subscripcion.suscriptor.rela_paren" class="drop-wrap drop-wrap-s-4 color-4 b-0 brd-0 type-2" name="rela_paren"  style="padding-left: 20px;">
-                                                    <option *ngFor='let p of parentesco'>{{p}}</option>
-                                                </select>
+                                        <ng-container *ngIf="show; else email">
+                                            <div class="input-style-1 b-0 brd-0 type-2 color-3">
+                                                <input type="text" value="{{subscripcion.suscriptor.email}}" [(ngModel)]="subscripcion.suscriptor.email">
                                             </div>
                                         </ng-container>
-                                        <ng-template #rela_parenTemplate>
+                                        <ng-template #email>
                                             <strong>{{subscripcion.suscriptor.email}}</strong>
                                         </ng-template>
                                     </td>
                                 </tr>
-
 
                                 <!-- <tr>
                                     <td class="table-label color-grey">CATEGORIZACION DIRECCIÓN:</td>
@@ -96,7 +91,7 @@
                                             <strong>{{subscripcion.suscriptor.catego}}</strong>
                                         </ng-template>
                                     </td>
-                                </tr>
+                                </tr>-->
                                 <tr>
                                     <td class="table-label color-grey">DIRECCIÓN:</td>
                                     <td class="table-label color-dark-2">
@@ -141,7 +136,7 @@
                                             <strong>{{subscripcion.suscriptor.tel}}</strong>
                                         </ng-template>
                                     </td>
-                                </tr> -->
+                                </tr>
                             </tbody>
                         </table>
                     </div>

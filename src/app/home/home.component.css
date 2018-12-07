@@ -9,3 +9,32 @@
 .size-text{
     font-size: 3.5rem !important;
 }
+
+.line-custom{
+    width: 2rem;
+    height: 1px;
+    background: #fff;
+    display: inline-block;
+}
+
+.lineCustom{
+    width: 2rem;
+    height: 1px;
+    background: #ccc;
+    display: inline-block;
+}
+
+.card-custom{
+    background: #fff
+}
+
+@media (max-width: 768px){
+    .size-text {
+        font-size: 2.8rem !important;
+    }
+
+    .custom-padding{
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+}

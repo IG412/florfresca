@@ -23,10 +23,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              
               "src/assets/css/bootstrap-datepicker.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/spinner.css",
+              
               "src/assets/home/web/assets/mobirise-icons/mobirise-icons.css",
               "src/assets/home/tether/tether.min.css",
               "src/assets/home/bootstrap/css/bootstrap.min.css",
@@ -40,7 +39,8 @@
             ],
             "scripts": [
               "src/assets/js/jquery-2.1.4.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              
+              
               "src/assets/js/bootstrap-datepicker.min.js",
               "src/assets/home/web/assets/jquery/jquery.min.js",
               "src/assets/home/popper/popper.min.js",
