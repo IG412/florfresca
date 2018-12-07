@@ -34,4 +34,5 @@ input[type=checkbox], input[type=radio]{
 
 .check-custom{
 	background: #ccc !important; 
+	border: 1px solid #ccc;
 }
