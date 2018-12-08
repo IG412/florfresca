@@ -43,13 +43,14 @@ export class PlanComponent implements OnInit {
   acept_entrega:Boolean;
   alert:String;
   showFormComplete=false;
-
+  validSession = false;
   constructor(
   	private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private service: FlorfrescaService
     ) { 
+      this.validSession = (localStorage.getItem('token'))? true: false;
     this.Flowers = new Array();
     this.message = new Message();
     this.submitted = false;
@@ -72,6 +73,7 @@ export class PlanComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('inicnio sesion',this.validSession)
     window.scrollTo(0,0);
     this.service.flowers().subscribe(d=>{
       this.Flowers = d;
@@ -126,12 +128,19 @@ export class PlanComponent implements OnInit {
     console.log(this.tempData);
     this.submitted = true;
     //console.log(this.registerForm)
+    if(this.validSession){
+      this.router.navigate(['subscription/summary']);
+      return false;
+    }
+
     if(!this.registerForm.invalid){
       this.subscription.suscriptor = this.suscriptor;
       localStorage.setItem('subscription', JSON.stringify(this.subscription));
+      
       this.showForm = true;
       this.showFormComplete = true;
-      //this.router.navigate(['subscription/summary']);
+      
+      
     }else{
       console.log('error')
     }
@@ -189,7 +198,12 @@ export class PlanComponent implements OnInit {
         this.subscription.plan.precio = p[0].values;
         this.subscription.plan.payuId = (p[0].payuId)? p[0].payuId: null;
         localStorage.setItem('subscription', JSON.stringify(this.subscription));
-        this.showForm = true;
+        if(this.validSession){
+          this.addSuscriptor();
+        }else{
+          this.showForm = true;
+        }
+        
          //this.router.navigate(['subscription/summary']);
       }else{
         alert("No hay plan");
@@ -210,7 +224,6 @@ export class PlanComponent implements OnInit {
 
   tempData;
   registrar() {
-    
     
     if(this.usuario.nombre == undefined || this.usuario.apellido == undefined || this.usuario.telefono == undefined || this.usuario.correo == undefined || this.usuario.pass == undefined ||this.usuario.passConfi == undefined){
       this.formErrors = true ;
