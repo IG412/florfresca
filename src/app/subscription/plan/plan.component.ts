@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlorfrescaService } from '../../services/florfresca.service';
 
 import { Message } from '../../models/message';
+import { Usuario } from '../../models/usuario';
 import { Suscriptor } from '../../models/suscriptor';
 import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
@@ -95,39 +96,47 @@ export class PlanComponent implements OnInit {
     });
     this.registerForm = this.formBuilder.group({
             nombre: ['', Validators.required],
-            apellidos: ['', Validators.required],
-            email: ['', Validators.required],
-            password: ['', Validators.required],
-            cpassword: ['', Validators.required],
+            apellido: ['', Validators.required],
+            correo: ['', Validators.required],
+            pass: ['', Validators.required],
+            passConfi: ['', Validators.required],
 
             // rela_paren: ['', Validators.required],
             // catego: ['', [Validators.required]],
             // direccion: [ '', [Validators.required, Validators.minLength(6)]],
             // ciudad: ['', Validators.required],
-            tel: ['', Validators.required],
+            telefono: ['', Validators.required],
             gatos:[]
         });
     let d = new Date();
     $( ".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6"});
     this.suscriptor.ciudad = "Bogotá";
+
+    this.usuario = new Usuario();
+    this.checkPasswords = false;
+    this.passConfi = "";
+    this.messages = new Message();
+
   }
   ficon(n:number){
     return new Array(n);
   }
 
   addSuscriptor(){
+    console.log(this.tempData);
     this.submitted = true;
     //console.log(this.registerForm)
     if(!this.registerForm.invalid){
       this.subscription.suscriptor = this.suscriptor;
       localStorage.setItem('subscription', JSON.stringify(this.subscription));
-      this.showForm = false;
+      this.showForm = true;
       this.showFormComplete = true;
-      this.router.navigate(['subscription/summary']);
+      //this.router.navigate(['subscription/summary']);
     }else{
       console.log('error')
     }
   }
+
   addPlan(f:Flower){
      let el = document.getElementById("size");
     this.subscription.plan.flor = f.nombre;
@@ -186,5 +195,106 @@ export class PlanComponent implements OnInit {
         alert("No hay plan");
       }
     },e=>{console.log(e)});
+  }
+
+  // registro 
+  messages: Message;
+  usuario:Usuario;
+  usuarioNuevo: any;
+  checkPasswords: boolean;
+  passConfi: string;
+  formErrors=false;
+  FormularioError=false;
+  chPasswords = false;
+  registerExist=false;
+
+  tempData;
+  registrar() {
+    
+    
+    if(this.usuario.nombre == undefined || this.usuario.apellido == undefined || this.usuario.telefono == undefined || this.usuario.correo == undefined || this.usuario.pass == undefined ||this.usuario.passConfi == undefined){
+      this.formErrors = true ;
+      this.FormularioError = true;
+      return false;  
+    }else{
+      this.FormularioError = false;
+    this.messages = new Message();
+
+    if(this.usuario.pass != this.usuario.passConfi){
+      this.formErrors = true
+      this.chPasswords = true;
+      return false;
+    }
+    console.log('paso reg')
+    this.tempData ={
+      correo: this.usuario.correo,
+      pass: this.usuario.pass
+    }
+      this.service.create_user(this.usuario).subscribe(
+        d=>{
+          this.messages = d;
+          this.messages.class = "bg-success";
+          this.messages.status = true;
+          setTimeout(() => {
+            console.log('Success!!');
+            this.usuario = new Usuario();
+            // setTimeout(()=>{ this.login();},1500)
+            this.showFormComplete = true;
+            this.showForm = true;
+            this.addSuscriptor();
+            //this.router.navigateByUrl("/login"); 
+          }, 1000); 
+        },
+        e=>{
+          
+          let er:any = e
+          this.messages.message = (er.error.message)? er.error.message: "Lo sentimos error 500 interno del servidor, contactar con Soporte de Flor fresca";
+          this.messages.class = "bg-danger";
+          this.messages.status = true;
+        }
+      );
+    
+    }    
+  }
+
+  compararContra(contra1, contra2) {
+    return contra1 === contra2;
+  }
+
+  cambiaLado($event) {
+    this.checkPasswords = this.compararContra(this.usuario.pass, this.passConfi);
+  }
+
+  //  Login 
+
+  login(){
+    
+    this.messages = new Message();
+    this.usuario = new Usuario();
+
+    this.usuario.correo = this.tempData.correo;
+    this.usuario.pass = this.tempData.pass;
+
+    this.service.Auth0(this.usuario).subscribe(
+      d=>{
+        console.log('entro al exito')
+        this.messages = d;
+        this.messages.class = "bg-success";
+        this.messages.status = true;
+        let msg:any = d;
+        localStorage.setItem('token', msg.token);
+        localStorage.setItem('id', msg.id);
+        this.router.navigate(['subscription/summary']);
+        // this.usuario = { correo: '',pass: ''};
+        
+      },
+      e=>{
+        
+          let er:any = e
+          this.messages.message = (er.error.message)?er.error.message:"Lo sentimos ocurrió un error, no se pudo conectar con el servidor";
+          this.messages.class = "bg-danger";
+          this.messages.status = true;
+      }
+    );
   }
 }

@@ -10,6 +10,7 @@ export class Usuario {
     tipo_doc?: string;
     documento?:  number;
     pass?:string;
+    passConfi?:string;
     dir?:string;
     payuId?:string;
     tarjeta: Array<CreditCards>;

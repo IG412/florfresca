@@ -179,6 +179,7 @@
 
 <!-- formulario de registro -->
 <div *ngIf="showForm">
+<!-- <div > -->
     <div class="row" >
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
             <div class="second-title" style="padding-top: 0px;">
@@ -190,17 +191,17 @@
         </div>
     </div>
 
-    <div class="row" >
+    <div class="row" *ngIf="!showFormComplete">
         <div class="col-sm-2"></div>
         <div class="col-xs-12 col-sm-8 bg-white" style="padding: 50px" >
-            <form [formGroup]="registerForm" (ngSubmit)="addSuscriptor()" class="simple-from">
+            <form [formGroup]="registerForm"  class="simple-from" >
                 <div class="simple-group">
                     <div class="row">
                         <div class="col-xs-12 col-sm-4">
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Nombres</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" formControlName="nombre" [(ngModel)]="suscriptor.nombre" placeholder="" name="nombre" [ngStyle]="{ 'border': (submitted && registerForm.controls.nombre.errors ) ? '1px solid red' : 'none' }">
+                                    <input type="text" formControlName="nombre" [(ngModel)]="usuario.nombre" placeholder="" name="nombre" >
                                 </div>
                             </div>
                         </div>
@@ -209,7 +210,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Apellidos</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" formControlName="apellidos" [(ngModel)]="suscriptor.apellidos" placeholder="" name="apellidos" [ngStyle]="{ 'border': (submitted && registerForm.controls.apellidos.errors ) ? '1px solid red' : 'none' }">
+                                    <input type="text" formControlName="apellido" [(ngModel)]="usuario.apellido" placeholder="" name="apellido" >
                                 </div>
                             </div>
                         </div>
@@ -218,7 +219,7 @@
                                 <div class="form-block type-2 clearfix">
                                     <div class="form-label color-dark-2">Teléfono</div>
                                     <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                        <input type="text" formControlName="tel" [(ngModel)]="suscriptor.tel" placeholder="" name="tel" [ngStyle]="{ 'border': (submitted && registerForm.controls.tel.errors ) ? '1px solid red' : 'none' }">
+                                        <input type="text" formControlName="telefono" [(ngModel)]="usuario.telefono" placeholder="" name="telefono" >
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +228,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Correo electrónico</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="email" formControlName="email" [(ngModel)]="suscriptor.email" placeholder="" name="email" [ngStyle]="{ 'border': (submitted && registerForm.controls.email.errors ) ? '1px solid red' : 'none' }">
+                                    <input type="email" formControlName="correo" [(ngModel)]="usuario.correo" placeholder="" name="correo" >
                                 </div>
                             </div>
                         </div>
@@ -237,7 +238,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Contraseña</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="password" formControlName="password" [(ngModel)]="suscriptor.password" placeholder="" name="password" [ngStyle]="{ 'border': (submitted && registerForm.controls.password.errors ) ? '1px solid red' : 'none' }">
+                                    <input type="password" formControlName="pass" [(ngModel)]="usuario.pass" placeholder="" name="pass" >
                                 </div>
                             </div>
                         </div>
@@ -247,53 +248,11 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Confirmar contraseña</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="password" formControlName="cpassword" [(ngModel)]="suscriptor.cpassword" placeholder="" name="cpassword" [ngStyle]="{ 'border': (submitted && registerForm.controls.cpassword.errors ) ? '1px solid red' : 'none' }">
+                                    <input type="password" formControlName="passConfi" [(ngModel)]="usuario.passConfi" placeholder="" name="passConfi" >
                                 </div>
                             </div>
                         </div>
 
-                        <!-- <div class="col-xs-12 col-sm-6">
-                            <div class="form-block type-2 clearfix">
-                                <div class="form-label color-dark-2" >Relación y/o parentesco</div>
-                                <select [(ngModel)]="suscriptor.rela_paren" formControlName="rela_paren" class="drop-wrap drop-wrap-s-4 color-5" name="rela_paren" [ngStyle]="{ 'border': (submitted && registerForm.controls.rela_paren.errors ) ? '1px solid red' : 'none' }" style="padding-left: 20px;">
-                                    <option *ngFor='let p of parentesco'>{{p}}</option>
-                                </select>
-                            </div>
-                        </div> 
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="form-block type-2 clearfix">
-                                <div class="form-label color-dark-2">Categorización dirección</div>
-                                <select [(ngModel)]="suscriptor.catego" formControlName="catego"  class="drop-wrap drop-wrap-s-4 color-5" name="cdir" [ngStyle]="{ 'border': (submitted && registerForm.controls.catego.errors ) ? '1px solid red' : 'none' }" style="padding-left: 20px;">
-                                  <option *ngFor='let c of cat' [disabled]="c == 'Seleccione'">{{c}}</option>
-                                </select>
-
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="form-block type-2 clearfix">
-                                <div class="form-label color-dark-2">Dirección</div>
-                                <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" [(ngModel)]="suscriptor.direccion" formControlName="direccion" placeholder="" name="dir"  [ngStyle]="{ 'border': (submitted && registerForm.controls.direccion.errors ) ? '1px solid red' : 'none' }">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="form-block type-2 clearfix">
-                                <div class="form-label color-dark-2">Ciudad</div>
-                                <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" [(ngModel)]="suscriptor.ciudad" formControlName="ciudad" name="ciudad"  disabled>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="form-block type-2 clearfix">
-                                <div class="form-label color-dark-2">Teléfono</div>
-                                <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" [(ngModel)]="suscriptor.tel" formControlName="tel" placeholder="" name="tel" [ngStyle]="{ 'border': (submitted && registerForm.controls.tel.errors ) ? '1px solid red' : 'none' }">
-                                </div>
-                            </div>
-                        </div>
-                    -->
                         <div class="col-xs-12 col-sm-12 padd-40">
                             <div class="input-entry color-7">
                                 <input class="checkbox-form" id="lirios" formControlName="gatos" [(ngModel)]="suscriptor.gatos" type="checkbox" name="lirios" >
@@ -310,24 +269,23 @@
                         <div class="col-sm-4"></div>
                     </div>
                 </div>
+                <!-- mensaje error -->
+                <div *ngIf="formErrors" class="col-sm-6 col-sm-offset-3 text-center padd-40 alert alert-danger">
+                        <div  *ngIf="FormularioError" class="text-center">Todos los datos son requeridos</div>
+                    
+                        <div  *ngIf="chPasswords" class="text-center">
+                            <span>Las contraseñas deben ser iguales</span>
+                        </div>
+
+                        <div  *ngIf="registerExist" class="text-center">Este correo ya se encuentra registrado </div>
+                </div>
+                <!-- mensaje error -->
+                
                 <div class="col-sm-4 col-sm-offset-4 text-center padd-40">
-                    <a class="c-button bg-dr-blue hv-white full" (click)="addSuscriptor()"><span style="color:#fff">Siguiente</span></a>
+                    <a class="c-button bg-dr-blue hv-white full" (click)="registrar()"><span style="color:#fff">Siguiente</span></a>
                 </div>
             </form>
-            <!-- <div class="col-xs-12 col-sm-6 s_news-text color-dark-2">
-                <div class="text-center">
-                    <img src="assets/imgs/icons/icon-alert.png">
-                    <p>Importante</p>
-                </div>
-                <p>Una vez procesado el pago nos pondremos en contacto contigo (via email) para que nos verifiques la dirección del envío y un teléfono de contacto el receptor de la suscripcion</p>
-            </div>
-            <div class="col-xs-12 col-sm-6 s_news-text color-dark-2">
-                <div class="text-center">
-                    <img src="assets/imgs/icons/icon-pay.png">
-                    <p>Pagos</p>
-                </div>
-                <p>Recibiras cobro de cada mes directamente en la tarjeta que tú nos facilites, ¡Recuerda que si caduca la tarjeta deberas actualizarla en Paylatam para seguir recibiendo ordenes!</p>
-            </div> -->
+          
             <div class="col-xs-1 col-sm-2"></div>
         </div>
     </div>
@@ -337,9 +295,9 @@
             <div class="detail-content-block">
                 <div class="confirm-label bg-dr-blue radius-5">
                     <img class="confirm-img" src="assets/img/thx_icon.png" alt="">
-                    <div class="confirm-title color-white">GRACIAS POR LOS DATOS DEL RECEPTOR DE LA SUSCRIPCIÓN</div>
-                    <div class="confirm-text color-white-light">Estos "datos de llegada" ya estan en nuestra base de datos.</div>
-                    <!-- <a href="#" class="confirm-print c-button b-40 bg-white hv-white-o">INICIAR SESIÓN</a> -->
+                    <div class="confirm-title color-white">Gracias por suscribirse</div>
+                    <div class="confirm-text color-white-light">Un correo electrónico ha llegado a tu bandeja de entrada.</div>
+                    <a  class="confirm-print c-button b-40 bg-white hv-white-o" (click)="login()"> Siguiente </a>
                 </div>
             </div>
             <div class="col-sm-2"></div>

@@ -17,6 +17,7 @@ module.exports  = {
         user.email  = req.body.correo;
         user.nombre = req.body.nombre;
         user.apellido= req.body.apellido;
+        user.telefono= req.body.tel;
         
         if(req.body.correo && req.body.pass){
           User.findOne({correo:req.body.correo}, function (e, d){
