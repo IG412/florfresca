@@ -6,6 +6,7 @@ import { Subscripcion } from '../../models/suscripcion';
 import { Plan } from '../../models/plan';
 import { Size } from '../../models/size';
 import { Period } from '../../models/period';
+import { FlorfrescaService } from 'src/app/services/florfresca.service';
 
 @Component({
   selector: 'app-summary',
@@ -25,8 +26,9 @@ export class SummaryComponent implements OnInit {
   parentesco: Array<string>;
   cat: Array<any>;
   precio:Number;
+  id;
 
-  constructor( private route: ActivatedRoute, private router: Router) {
+  constructor( private route: ActivatedRoute, private router: Router, private servFlor: FlorfrescaService) {
     this.subscripcion = new Subscripcion();
     this.textoBoton = 'Editar';
     this.show = false;
@@ -41,10 +43,11 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getDataUser();
     window.scrollTo(0,0);
     if(localStorage.getItem('subscription')) {
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
-      console.log(this.subscripcion);
+      
     }else{
       this.router.navigate(['subscription/plan'], {});
     }
@@ -67,6 +70,21 @@ export class SummaryComponent implements OnInit {
 
   isLogin():boolean{
     return (localStorage.getItem('id'))? true:false;
+  }
+
+  getDataUser(){
+    this.servFlor.user(localStorage.getItem('id')).subscribe(d=>{
+      console.log(d);
+      
+      this.subscripcion.suscriptor.nombre = d.nombre;
+      this.subscripcion.suscriptor.apellidos = d.apellido;
+      this.subscripcion.suscriptor.correo = d.correo;
+      //this.subscripcion.suscriptor.direccion = d
+    },e=>{
+      console.log(e);
+    });
+
+    
   }
 
 }

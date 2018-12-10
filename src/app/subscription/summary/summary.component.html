@@ -55,23 +55,7 @@
                                                 <strong>{{subscripcion.suscriptor.nombre}}</strong>
                                             </ng-template>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
-                                        <td class="table-label color-dark-2">
-                                            <ng-container *ngIf="show; else rela_parenTemplate">
-                                                <div class="form-block type-2">
-                                                    <select [(ngModel)]="subscripcion.suscriptor.rela_paren" class="drop-wrap drop-wrap-s-4 color-4 b-0 brd-0 type-2" name="rela_paren"  style="padding-left: 20px;" >
-                                                      <option *ngFor='let p of parentesco'>{{p}}</option>
-                                                    </select>
-                                                </div>
-                                            </ng-container>
-                                            <ng-template #rela_parenTemplate>
-                                                <strong>{{subscripcion.suscriptor.rela_paren}}</strong>
-                                            </ng-template>
-    
-                                        </td>
-                                    </tr>
+                                    </tr>                                    
                                     <tr>
                                         <td class="table-label color-grey">Apellidos:</td>
                                         <td class="table-label color-dark-2">
@@ -86,17 +70,32 @@
     
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
+                                        <td class="table-label color-dark-2">
+                                            <ng-container *ngIf="show; else rela_parenTemplate">
+                                                <div class="form-block type-2">
+                                                    <select [(ngModel)]="subscripcion.suscriptor.rela_paren" class="drop-wrap drop-wrap-s-4 color-4 b-0 brd-0 type-2" name="rela_paren"  style="padding-left: 20px;" >
+                                                        <option *ngFor='let p of parentesco'>{{p}}</option>
+                                                    </select>
+                                                </div>
+                                            </ng-container>
+                                            <ng-template #rela_parenTemplate>
+                                                <strong>{{subscripcion.suscriptor.rela_paren}}</strong>
+                                            </ng-template>
     
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="table-label color-grey">Correo:</td>
                                         <td class="table-label color-dark-2">
                                             <ng-container *ngIf="show; else email">
                                                 <div class="input-style-1 b-0 brd-0 type-2 color-3">
-                                                    <input type="text" value="{{subscripcion.suscriptor.email}}" [(ngModel)]="subscripcion.suscriptor.email" class="check-custom" style="background:#fff">
+                                                    <input type="text" value="{{subscripcion.suscriptor.correo}}" [(ngModel)]="subscripcion.suscriptor.correo" class="check-custom" style="background:#fff">
                                                 </div>
                                             </ng-container>
                                             <ng-template #email>
-                                                <strong>{{subscripcion.suscriptor.email}}</strong>
+                                                <strong>{{subscripcion.suscriptor.correo}}</strong>
                                             </ng-template>
                                         </td>
                                     </tr>

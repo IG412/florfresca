@@ -14,6 +14,9 @@ class Plan  {
 
 export class Subscripcion {
 	_id:string;
+	nombre:string;
+	apellidos:string;
+	email:string;
 	estado:String;
 	f_entrega:string;
 	f_creacion:string;
