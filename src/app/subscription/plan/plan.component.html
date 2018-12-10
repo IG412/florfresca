@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-4 text-center padd-40">
-                <a class="c-button bg-dr-blue hv-white full" (click)="goToSummary()"><span style="color:#fff">Siguiente</span></a>
+                <a class="btn custom-btn" (click)="goToSummary()"><span style="color:#fff">Siguiente</span></a>
             </div>
         </div>
     </div>
@@ -183,9 +183,9 @@
     <div class="row" >
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
             <div class="second-title" style="padding-top: 0px;">
-                <img src="assets/imgs/logo.png" alt="Flor florfresca">
+                <img src="assets/imgs/Logo_P_Web.png" alt="Flor florfresca" style="width: 50vh; margin-bottom: 20px">
                 <br>            
-                <h2 style="color: rgba(0,0,0,0.51);">¿PARA QUIEN ES LA SUSCRIPCIÓN?</h2>
+                <h2 style="color: rgba(0,0,0,0.51);">Diligencia la siguiente información</h2>
                 <div class="form-label color-dark-2">Regala tu suscripción a alguien especial</div>
             </div>
         </div>
@@ -201,7 +201,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Nombres</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" formControlName="nombre" [(ngModel)]="usuario.nombre" placeholder="" name="nombre" >
+                                    <input type="text" formControlName="nombre" [(ngModel)]="usuario.nombre" placeholder="" name="nombre" class="inputCustom" >
                                 </div>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Apellidos</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" formControlName="apellido" [(ngModel)]="usuario.apellido" placeholder="" name="apellido" >
+                                    <input type="text" formControlName="apellido" [(ngModel)]="usuario.apellido" placeholder="" name="apellido" class="inputCustom" >
                                 </div>
                             </div>
                         </div>
@@ -219,7 +219,7 @@
                                 <div class="form-block type-2 clearfix">
                                     <div class="form-label color-dark-2">Teléfono</div>
                                     <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                        <input type="text" formControlName="telefono" [(ngModel)]="usuario.telefono" placeholder="" name="telefono" >
+                                        <input type="text" formControlName="telefono" [(ngModel)]="usuario.telefono" placeholder="" name="telefono" class="inputCustom" >
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Correo electrónico</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="email" formControlName="correo" [(ngModel)]="usuario.correo" placeholder="" name="correo" >
+                                    <input type="email" formControlName="correo" [(ngModel)]="usuario.correo" placeholder="" name="correo" class="inputCustom" >
                                 </div>
                             </div>
                         </div>
@@ -238,7 +238,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Contraseña</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="password" formControlName="pass" [(ngModel)]="usuario.pass" placeholder="" name="pass" >
+                                    <input type="password" formControlName="pass" [(ngModel)]="usuario.pass" placeholder="" name="pass" class="inputCustom" >
                                 </div>
                             </div>
                         </div>
@@ -248,7 +248,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Confirmar contraseña</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="password" formControlName="passConfi" [(ngModel)]="usuario.passConfi" placeholder="" name="passConfi" >
+                                    <input type="password" formControlName="passConfi" [(ngModel)]="usuario.passConfi" placeholder="" name="passConfi" class="inputCustom" >
                                 </div>
                             </div>
                         </div>
@@ -282,7 +282,7 @@
                 <!-- mensaje error -->
                 
                 <div class="col-sm-4 col-sm-offset-4 text-center padd-40">
-                    <a class="c-button bg-dr-blue hv-white full" (click)="registrar()"><span style="color:#fff">Siguiente</span></a>
+                    <a class="btn custom-btn" (click)="registrar()"><span style="color:#fff">Siguiente</span></a>
                 </div>
             </form>
           

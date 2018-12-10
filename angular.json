@@ -38,9 +38,7 @@
               "src/assets/home/mobirise/css/mbr-additional.css"
             ],
             "scripts": [
-              "src/assets/js/jquery-2.1.4.min.js",
-              
-              
+              "src/assets/js/jquery-2.1.4.min.js",              
               "src/assets/js/bootstrap-datepicker.min.js",
               "src/assets/home/web/assets/jquery/jquery.min.js",
               "src/assets/home/popper/popper.min.js",

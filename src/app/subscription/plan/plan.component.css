@@ -36,3 +36,8 @@ input[type=checkbox], input[type=radio]{
 	background: #ccc !important; 
 	border: 1px solid #ccc;
 }
+
+.inputCustom{
+	background: #ccc !important;
+    color: #fff !important;
+}

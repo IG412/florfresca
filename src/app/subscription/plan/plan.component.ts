@@ -73,7 +73,9 @@ export class PlanComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('inicnio sesion',this.validSession)
+    console.log('debio ejecutar picker')
+    let d = new Date();
+    $( ".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6"});
     window.scrollTo(0,0);
     this.service.flowers().subscribe(d=>{
       this.Flowers = d;
@@ -110,8 +112,7 @@ export class PlanComponent implements OnInit {
             telefono: ['', Validators.required],
             gatos:[]
         });
-    let d = new Date();
-    $( ".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6"});
+    
     this.suscriptor.ciudad = "Bogotá";
 
     this.usuario = new Usuario();

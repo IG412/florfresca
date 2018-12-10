@@ -7209,3 +7209,10 @@ body[data-color="theme-8"] .accordeon-entry h5:after {background: #d73240;}
 .noborder .count a {border-radius: 0px;}
 .noborder img.img-responsiv {border-radius: 0px;}
 
+.custom-btn{
+  background: #00778C;
+  padding: 10px;
+  color:#fff;
+  border-radius: 50px !important;
+  width: 300px;
+}
