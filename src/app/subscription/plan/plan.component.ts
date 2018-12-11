@@ -13,6 +13,7 @@ import { Flower } from '../../models/flower';
 import { Size } from '../../models/size';
 import { Period } from '../../models/period';
 
+
 declare var $: any;
 
 @Component({
@@ -75,7 +76,10 @@ export class PlanComponent implements OnInit {
   ngOnInit() {
     console.log('debio ejecutar picker')
     let d = new Date();
-    $( ".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6"});
+    setTimeout(() => {
+      $(".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6"});
+    },1000);
+    
     window.scrollTo(0,0);
     this.service.flowers().subscribe(d=>{
       this.Flowers = d;
