@@ -74,7 +74,7 @@ export class PlanComponent implements OnInit {
   }
 
   abrePicker(){
-    let d = new Date();
+    
     $(".datepicker" ).datepicker('show');
     $(".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6", }); 
   }
@@ -192,13 +192,19 @@ export class PlanComponent implements OnInit {
         if(this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
           this.alert = "";
           this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
+          setTimeout(()=>{
+            let el = document.getElementById("registro");    
+            el.scrollIntoView(true);
+
+            document.getElementById("nombre").focus();
+
+          }, 500);
         }else{
           this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
         }
 
-        let el = document.getElementById("registro");
-    
-        el.scrollIntoView();
+
+        
       }
       else{
         this.alert = "Debe Ingresar el día que desea la entrega";

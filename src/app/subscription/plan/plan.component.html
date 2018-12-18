@@ -97,14 +97,18 @@
             <div class="row" style="margin-bottom: 25px" *ngFor="let s of period" id="periodo">
                 <div class="col-sm-2"></div>
                 <div class="col-xs-12 col-sm-8 bg-white" >
-                        <!-- [ngStyle]="{'border': (s.nombre == select_frecuencia) ? '3px solid red':'none'}" -->
+                        <!-- [ngStyle]="{'border': (s.nombre == select_frecuencia) ? '3px solid red':'none'}" -->                        
                     <div [innerHTML]="s.class"></div>
                     <div class="col-xs-12 col-sm-5 text-center">
-                        <div class="title hotel-middle clearfix cell-view c-v">
-                            <h3><b>{{s.nombre}}</b></h3>
-                            <p class="f-14 grid-hidden" [innerHTML]="s.desc"></p>
+                        
+                        <div class="row">
+                            <div class="title hotel-middle clearfix cell-view c-v">
+                                <h3><b>{{s.nombre}}</b></h3>
+                                <p class="f-14 grid-hidden" [innerHTML]="s.desc"></p>
+                            </div>
                         </div>
                     </div>
+
                     <div class="col-xs-12 col-sm-3 text-center">
                         <div class="title hotel-middle clearfix cell-view c-v">
                             <div class="rate-wrap">
@@ -200,7 +204,7 @@
                             <div class="form-block type-2 clearfix">
                                 <div class="form-label color-dark-2">Nombres</div>
                                 <div class="input-style-1 b-50 brd-0 type-2 color-3">
-                                    <input type="text" formControlName="nombre" [(ngModel)]="usuario.nombre" placeholder="" name="nombre" class="inputCustom" >
+                                    <input type="text" formControlName="nombre" [(ngModel)]="usuario.nombre" placeholder="" name="nombre" class="inputCustom" id="nombre" >
                                 </div>
                             </div>
                         </div>
