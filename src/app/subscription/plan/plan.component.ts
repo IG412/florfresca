@@ -177,6 +177,7 @@ export class PlanComponent implements OnInit {
     
     if(!this.acept_entrega && !this.acept_term){
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";
+      return;
     }else{  
 
       if($("#fecha_entrega").val() != ''){
