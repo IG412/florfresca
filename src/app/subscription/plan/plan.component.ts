@@ -73,11 +73,16 @@ export class PlanComponent implements OnInit {
     this.alert = "";
   }
 
+  abrePicker(){
+    $(".datepicker" ).datepicker('show');
+    $(".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6", }); 
+  }
+  
   ngOnInit() {
     console.log('debio ejecutar picker')
     let d = new Date();
     setTimeout(() => {
-      $(".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6"});
+      $(".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6", });
     },1000);
     
     window.scrollTo(0,0);
@@ -175,7 +180,7 @@ export class PlanComponent implements OnInit {
   goToSummary(){
     //this.addSuscriptor();
     
-    if(!this.acept_entrega && !this.acept_term){
+    if(!this.acept_entrega || !this.acept_term){
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";
       return;
     }else{  
@@ -216,6 +221,8 @@ export class PlanComponent implements OnInit {
       }
     },e=>{console.log(e)});
   }
+
+
 
   // registro 
   messages: Message;
@@ -315,5 +322,7 @@ export class PlanComponent implements OnInit {
           this.messages.status = true;
       }
     );
+
+
   }
 }
