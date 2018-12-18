@@ -74,6 +74,7 @@ export class PlanComponent implements OnInit {
   }
 
   abrePicker(){
+    let d = new Date();
     $(".datepicker" ).datepicker('show');
     $(".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6", }); 
   }
@@ -194,6 +195,10 @@ export class PlanComponent implements OnInit {
         }else{
           this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
         }
+
+        let el = document.getElementById("registro");
+    
+        el.scrollIntoView();
       }
       else{
         this.alert = "Debe Ingresar el día que desea la entrega";
