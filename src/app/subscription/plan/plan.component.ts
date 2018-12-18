@@ -136,7 +136,7 @@ export class PlanComponent implements OnInit {
   }
 
   addSuscriptor(){
-    console.log(this.tempData);
+    
     this.submitted = true;
     //console.log(this.registerForm)
     if(this.validSession){
@@ -149,8 +149,8 @@ export class PlanComponent implements OnInit {
       localStorage.setItem('subscription', JSON.stringify(this.subscription));
       
       this.showForm = true;
-      this.showFormComplete = true;
-      
+      //this.showFormComplete = true;
+      setTimeout(()=>{ this.login();},1000)
       
     }else{
       console.log('error')
@@ -276,7 +276,7 @@ export class PlanComponent implements OnInit {
             console.log('Success!!');
             this.usuario = new Usuario();
             // setTimeout(()=>{ this.login();},1500)
-            this.showFormComplete = true;
+            //this.showFormComplete = true;
             this.showForm = true;
             this.addSuscriptor();
             //this.router.navigateByUrl("/login"); 
