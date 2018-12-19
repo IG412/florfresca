@@ -38,6 +38,8 @@ input[type=checkbox], input[type=radio]{
 }
 
 .inputCustom{
-	background: #ccc !important;
-    color: #fff !important;
+	background: #fff !important;
+	color: #000 !important;
+	border: 1px solid #000 !important;
+	border-radius: 20px;
 }

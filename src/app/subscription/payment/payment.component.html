@@ -58,6 +58,61 @@
             <div class="row">
 
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2" style="background-color: #F6F6F6; padding: 50px">
+                        <div class="col-xs-1 col-sm-12">
+                                <h2 style="margin:10px">INFORMACIÓN DE TARJETA</h2>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6">
+
+                                <div class="form-block type-2 clearfix">
+
+                                    <div class="form-label color-dark-2">Tarjeta de crédito<span style='color:red'>*</span> </div>
+                                    <div class="drop-wrap drop-wrap-s-4 color-5" [ngStyle]="{'border':(submitted&&(usuario.tipo_doc == undefined ))?'1px solid red':''}">
+                                        <div class="drop"  >
+                                            <b>-Tipo-</b>
+                                                <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
+                                                <span style="display: none;">
+                                                    <a href="#" *ngFor='let d of tarjetas' (click)="addCard(d.nombre)">{{d.nombre}}</a>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-block type-2 clearfix">
+                                    <div class="form-label color-dark-2">Tarjeta de Crédito <span style='color:red'>*</span> </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-center" (click)="addCard(tarjetas[0].nombre)"  [ngStyle]="{'border': (tarjetas[0].nombre == card.type) ? '1px solid red':'none'}">
+                                            <img  src="assets/imgs/payment/visa100x50.png" >
+                                        </div>
+                                        <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[1].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[1].nombre)">
+                                            <img  src="assets/imgs/payment/masterCard100x50.png" >
+                                        </div>
+                                        <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[2].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[2].nombre)">
+                                            <img  src="assets/imgs/payment/dinersClub100x50.png" >
+                                        </div>
+                                        <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[3].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[3].nombre)">
+                                            <img  src="assets/imgs/payment/americanExpress100x50.png" >
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="col-xs-12 col-sm-12">
+                                <div class="form-block type-2 clearfix">
+                                    <div class="form-label color-dark-2">Nombre en la Tarjeta<span style='color:red'>*</span> </div>
+                                    <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                        <input type="text" [(ngModel)]="card.name" class="customStyleInput" #nombreTarjeta="ngModel" name="nombreTarjeta" required [ngStyle]="{'border':(submitted &&  nombreTarjeta.invalid) ?  '1px solid red' : ''}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12">
+                                <div class="form-block type-2 clearfix">
+                                    <div class="form-label color-dark-2">Número de la Tarjeta <span style='color:red'>*</span></div>
+                                    <div class="input-style-1 b-50 brd-0 type-2 color-5">
+                                        <input type="text" [(ngModel)]="card.number" class="customStyleInput"  #nombreTarjeta="ngModel" name="numeroTarjeta" required [ngStyle]="{'border':(submitted &&!validarNumber(card.number))?'1px solid red':''}">
+                                    </div>
+                                </div>
+                            </div>
+                            
                     <div class="col-xs-12 col-sm-12">
                         <h2 style="margin:10px">INFORMACIÓN DE PAGO</h2>
                     </div>
@@ -69,7 +124,7 @@
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2">Tu nombre<span style='color:red'>*</span> </div>
                                             <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel"  required [ngStyle]="{'border':(submitted &&  nombre.invalid) ?  '1px solid red' : ''}">
+                                                <input type="text" [(ngModel)]="usuario.nombre"  class="customStyleInput" name="nombre" #nombre="ngModel"  required [ngStyle]="{'border':(submitted &&  nombre.invalid) ?  '1px solid red' : ''}">
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +132,7 @@
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2">Tus apellidos<span style='color:red'>*</span></div>
                                             <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="usuario.apellido" #apellidos="ngModel" name="apellidos" required [ngStyle]="{'border':(submitted &&  apellidos.invalid) ?  '1px solid red' : ''}">
+                                                <input type="text" [(ngModel)]="usuario.apellido" class="customStyleInput" #apellidos="ngModel" name="apellidos" required [ngStyle]="{'border':(submitted &&  apellidos.invalid) ?  '1px solid red' : ''}">
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +140,7 @@
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2">Tu Email <span style='color:red'>*</span> </div>
                                             <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="usuario.correo" #correo="ngModel" name="email" required [ngStyle]="{'border':(submitted &&  correo.invalid) ?  '1px solid red' : ''}">
+                                                <input type="text" [(ngModel)]="usuario.correo" class="customStyleInput" #correo="ngModel" name="email" required [ngStyle]="{'border':(submitted &&  correo.invalid) ?  '1px solid red' : ''}">
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +148,7 @@
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2">Dirección<span style='color:red'>*</span></div>
                                             <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="usuario.dir" #direccion="ngModel" name="direccion" required [ngStyle]="{'border':(submitted &&  direccion.invalid) ?  '1px solid red' : ''}">
+                                                <input type="text" [(ngModel)]="usuario.dir" class="customStyleInput" #direccion="ngModel" name="direccion" required [ngStyle]="{'border':(submitted &&  direccion.invalid) ?  '1px solid red' : ''}">
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +156,7 @@
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2">Tu Teléfono<span style='color:red'>*</span> </div>
                                             <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="usuario.telefono" #telefono="ngModel" name="telefono" required [ngStyle]="{'border':(submitted &&!validarNumber(usuario.telefono))?'1px solid red':''}">
+                                                <input type="text" [(ngModel)]="usuario.telefono" class="customStyleInput" #telefono="ngModel" name="telefono" required [ngStyle]="{'border':(submitted &&!validarNumber(usuario.telefono))?'1px solid red':''}">
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +165,7 @@
 
                                             <div class="form-label color-dark-2">Tus Celular<span style='color:red'>*</span></div>
                                             <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="usuario.celular" #celular="ngModel" name="celular" required [ngStyle]="{'border':(submitted&&!validarNumber(usuario.celular))?'1px solid red':''}">
+                                                <input type="text" [(ngModel)]="usuario.celular" class="customStyleInput" #celular="ngModel" name="celular" required [ngStyle]="{'border':(submitted&&!validarNumber(usuario.celular))?'1px solid red':''}">
                                             </div>
                                         </div>
                                     </div>
@@ -132,50 +187,12 @@
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2"># Documento<span style='color:red'>*</span></div>
                                             <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="usuario.documento" name="documento" #documento="ngModel"required [ngStyle]="{'border':(submitted&&!validarNumber(usuario.documento))?'1px solid red':''}">
+                                                <input type="text" class="customStyleInput" [(ngModel)]="usuario.documento" name="documento" #documento="ngModel"required [ngStyle]="{'border':(submitted&&!validarNumber(usuario.documento))?'1px solid red':''}">
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Informacion de la  tarjeta de credito -->
-                                    <div class="col-xs-1 col-sm-12">
-                                        <h2 style="margin:10px">INFORMACIÓN DE TARJETA</h2>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12">
-                                        <div class="form-block type-2 clearfix">
-                                            <div class="form-label color-dark-2">Tarjeta de Crédito <span style='color:red'>*</span> </div>
-                                            <div class="row">
-                                                <div class="col-sm-3 text-center" (click)="addCard(tarjetas[0].nombre)"  [ngStyle]="{'border': (tarjetas[0].nombre == card.type) ? '1px solid red':'none'}">
-                                                    <img  src="assets/imgs/payment/visa100x50.png" >
-                                                </div>
-                                                <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[1].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[1].nombre)">
-                                                    <img  src="assets/imgs/payment/masterCard100x50.png" >
-                                                </div>
-                                                <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[2].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[2].nombre)">
-                                                    <img  src="assets/imgs/payment/dinersClub100x50.png" >
-                                                </div>
-                                                <div class="col-sm-3 text-center" [ngStyle]="{'border': (tarjetas[3].nombre == card.type) ? '1px solid red':'none'}" (click)="addCard(tarjetas[3].nombre)">
-                                                    <img  src="assets/imgs/payment/americanExpress100x50.png" >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12">
-                                        <div class="form-block type-2 clearfix">
-                                            <div class="form-label color-dark-2">Nombre en la Tarjeta<span style='color:red'>*</span> </div>
-                                            <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="card.name" #nombreTarjeta="ngModel" name="nombreTarjeta" required [ngStyle]="{'border':(submitted &&  nombreTarjeta.invalid) ?  '1px solid red' : ''}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12">
-                                        <div class="form-block type-2 clearfix">
-                                            <div class="form-label color-dark-2">Número de la Tarjeta <span style='color:red'>*</span></div>
-                                            <div class="input-style-1 b-50 brd-0 type-2 color-5">
-                                                <input type="text" [(ngModel)]="card.number"  #nombreTarjeta="ngModel" name="numeroTarjeta" required [ngStyle]="{'border':(submitted &&!validarNumber(card.number))?'1px solid red':''}">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2">
@@ -183,7 +200,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <div class="drop-wrap drop-wrap-s-4 color-4 list-sort" [ngStyle]="{'border':(submitted &&  (month == '-Mes-' )) ?  '1px solid red' : ''}" >
+                                                    <div class="drop-wrap drop-wrap-s-4 color-5 list-sort" [ngStyle]="{'border':(submitted &&  (month == '-Mes-' )) ?  '1px solid red' : ''}" >
                                                         <div class="drop">
                                                         <b>{{month}}</b>
                                                             <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
@@ -194,7 +211,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <div class="drop-wrap drop-wrap-s-4 color-4 list-sort" [ngStyle]="{'border':(submitted &&  (year == '-Año-' )) ?  '1px solid red' : ''}">
+                                                    <div class="drop-wrap drop-wrap-s-4 color-5 list-sort" [ngStyle]="{'border':(submitted &&  (year == '-Año-' )) ?  '1px solid red' : ''}">
                                                         <div class="drop">
                                                         <b>{{year}}</b>
                                                             <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
@@ -210,7 +227,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="form-block type-2 clearfix">
                                             <div class="form-label color-dark-2">Numero de Cuotas <span style='color:red'>*</span> </div>
-                                            <div class="drop-wrap drop-wrap-s-4 color-4 list-sort"  [ngStyle]="{'border':(submitted &&  (transaction.installments == undefined )) ?  '1px solid red' : ''}">
+                                            <div class="drop-wrap drop-wrap-s-4 color-5 list-sort"  [ngStyle]="{'border':(submitted &&  (transaction.installments == undefined )) ?  '1px solid red' : ''}">
                                                 <div class="drop">
                                                 <b>Cuotas</b>
                                                     <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>

@@ -74,7 +74,7 @@ export class PlanComponent implements OnInit {
   }
 
   abrePicker(){
-    
+    let d = new Date();
     $(".datepicker" ).datepicker('show');
     $(".datepicker" ).datepicker({ startDate: ""+d.getDay() , daysOfWeekDisabled: "0,1,3,5,6", }); 
   }
@@ -150,7 +150,7 @@ export class PlanComponent implements OnInit {
       
       this.showForm = true;
       //this.showFormComplete = true;
-      setTimeout(()=>{ this.login();},1000)
+      //setTimeout(()=>{ this.login();},1000)
       
     }else{
       console.log('error')
@@ -222,6 +222,7 @@ export class PlanComponent implements OnInit {
         localStorage.setItem('subscription', JSON.stringify(this.subscription));
         if(this.validSession){
           this.addSuscriptor();
+          //this.showForm = true;
         }else{
           this.showForm = true;
         }
@@ -246,94 +247,5 @@ export class PlanComponent implements OnInit {
   chPasswords = false;
   registerExist=false;
 
-  tempData;
-  registrar() {
-    
-    if(this.usuario.nombre == undefined || this.usuario.apellido == undefined || this.usuario.telefono == undefined || this.usuario.correo == undefined || this.usuario.pass == undefined ||this.usuario.passConfi == undefined){
-      this.formErrors = true ;
-      this.FormularioError = true;
-      return false;  
-    }else{
-      this.FormularioError = false;
-    this.messages = new Message();
-
-    if(this.usuario.pass != this.usuario.passConfi){
-      this.formErrors = true
-      this.chPasswords = true;
-      return false;
-    }
-    console.log('paso reg')
-    this.tempData ={
-      correo: this.usuario.correo,
-      pass: this.usuario.pass
-    }
-      this.service.create_user(this.usuario).subscribe(
-        d=>{
-          this.messages = d;
-          this.messages.class = "bg-success";
-          this.messages.status = true;
-          setTimeout(() => {
-            console.log('Success!!');
-            this.usuario = new Usuario();
-            // setTimeout(()=>{ this.login();},1500)
-            //this.showFormComplete = true;
-            this.showForm = true;
-            this.addSuscriptor();
-            //this.router.navigateByUrl("/login"); 
-          }, 1000); 
-        },
-        e=>{
-          
-          let er:any = e
-          this.messages.message = (er.error.message)? er.error.message: "Lo sentimos error 500 interno del servidor, contactar con Soporte de Flor fresca";
-          this.messages.class = "bg-danger";
-          this.messages.status = true;
-        }
-      );
-    
-    }    
-  }
-
-  compararContra(contra1, contra2) {
-    return contra1 === contra2;
-  }
-
-  cambiaLado($event) {
-    this.checkPasswords = this.compararContra(this.usuario.pass, this.passConfi);
-  }
-
-  //  Login 
-
-  login(){
-    
-    this.messages = new Message();
-    this.usuario = new Usuario();
-
-    this.usuario.correo = this.tempData.correo;
-    this.usuario.pass = this.tempData.pass;
-
-    this.service.Auth0(this.usuario).subscribe(
-      d=>{
-        console.log('entro al exito')
-        this.messages = d;
-        this.messages.class = "bg-success";
-        this.messages.status = true;
-        let msg:any = d;
-        localStorage.setItem('token', msg.token);
-        localStorage.setItem('id', msg.id);
-        this.router.navigate(['subscription/summary']);
-        // this.usuario = { correo: '',pass: ''};
-        
-      },
-      e=>{
-        
-          let er:any = e
-          this.messages.message = (er.error.message)?er.error.message:"Lo sentimos ocurrió un error, no se pudo conectar con el servidor";
-          this.messages.class = "bg-danger";
-          this.messages.status = true;
-      }
-    );
-
-
-  }
+  
 }

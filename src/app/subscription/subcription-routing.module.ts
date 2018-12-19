@@ -4,6 +4,7 @@ import {PlanComponent} from './plan/plan.component';
 import {SubscriptionComponent} from './subscription.component';
 import {SummaryComponent} from './summary/summary.component';
 import {PaymentComponent} from './payment/payment.component';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   {
@@ -13,8 +14,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'plan' },
       { path: 'plan', component: PlanComponent },
-      { path: 'summary', component: SummaryComponent },
-      { path: 'payment', component: PaymentComponent }
+      // { path: 'summary', component: SummaryComponent },
+      { path: 'payment', component: PaymentComponent },
+      { path: 'registro', component: RegistroComponent }
     ]
   }
 ];
