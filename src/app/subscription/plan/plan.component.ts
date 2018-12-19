@@ -138,18 +138,18 @@ export class PlanComponent implements OnInit {
   addSuscriptor(){
     
     this.submitted = true;
+    this.subscription.suscriptor = this.suscriptor;
+    localStorage.setItem('subscription', JSON.stringify(this.subscription));
     //console.log(this.registerForm)
     if(this.validSession){
       this.router.navigate(['subscription/payment']);
       return false;
     }else{
-      this.subscription.suscriptor = this.suscriptor;
-      localStorage.setItem('subscription', JSON.stringify(this.subscription));
+      
       this.router.navigate(['subscription/registro']);
       return false;
     }
 
-    
   }
 
   addPlan(f:Flower){
