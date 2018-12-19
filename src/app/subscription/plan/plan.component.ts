@@ -139,6 +139,9 @@ export class PlanComponent implements OnInit {
     
     this.submitted = true;
     this.subscription.suscriptor = this.suscriptor;
+    console.log(this.subscription);
+    return ;
+
     localStorage.setItem('subscription', JSON.stringify(this.subscription));
     //console.log(this.registerForm)
     if(this.validSession){
@@ -158,6 +161,7 @@ export class PlanComponent implements OnInit {
     this.subscription.plan.img_flor = f.img;
     this.select_flower = f.nombre;
     el.scrollIntoView();
+    console.log(this.subscription);
     // this.tamanos = plan.tamano;
   }
   addTamano(t:Size){
@@ -165,16 +169,18 @@ export class PlanComponent implements OnInit {
     this.subscription.plan.tamano = t.nombre;
   	this.select_tamano = t.nombre;
     el.scrollIntoView();
+    console.log(this.subscription);
   }
   addTipo(f:Period){
     
     this.subscription.plan.periodo = f.nombre;
-  	this.select_frecuencia = f.nombre;
+    this.select_frecuencia = f.nombre;
+    console.log(this.subscription);
     
   }
 
   goToSummary(){
-    //this.addSuscriptor();
+    
     
     if(!this.acept_entrega || !this.acept_term){
       this.alert = "Debe Aceptar los terminos y condiciones y/o entrega de la suscripción";

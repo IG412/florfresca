@@ -12,6 +12,8 @@ import { CreditCards } from '../../models/creditcards';
 import { Address } from '../../models/address';
 import { Transaction } from './../../models/transaction';
 import { Alert } from '../../models/alert';
+import { Size } from '../../models/size';
+import { Period } from '../../models/period';
 
 declare var $: any;
 declare interface Month { name:string; number:number; };
@@ -44,11 +46,25 @@ export class PaymentComponent implements OnInit {
   alert:Alert;
   pay:boolean
 
+  plan: Plan;
+  tamano: Size;
+  frecuencia: Period;
+
+  show: boolean;
+  textoBoton: string;
+  showDir: boolean;
+
+  parentesco: Array<string>;
+  cat: Array<any>;
+  precio:Number;
+  id;
+
   constructor(
     private service: FlorfrescaService,
     private Api: ApiPayuService,
     private route: ActivatedRoute, 
-    private router: Router
+    private router: Router,
+    private servFlor: FlorfrescaService
   ) {
     this.load = false;
     this.pay = false;
@@ -71,11 +87,26 @@ export class PaymentComponent implements OnInit {
     this.address = new Address();
     this.loading = false;
     this.alert = {status :false , message:'', class:''};
+
+    this.subscripcion = new Subscripcion();
+    this.textoBoton = 'Editar';
+    this.show = true;
+    this.parentesco = ['Primo', 'Prima',
+    'Cliente', 'Amiga' , 'Amigo', 'Novio',
+    'Novia', 'Abuela', 'Abuelo', 'Mamá', 'Papá',
+    'Hermana', 'Hermano', 'Hijo', 'Hija', 'Tío', 'Tía',
+    'Esposa', 'Esposo'];
+    this.cat = ['Casa', 'Oficina', 'Otro'];
+    this.showDir = false;
+    this.precio = 0;
   }
   ngOnInit() {
     window.scrollTo(0,0);
+    this.getDataUser();
     if (localStorage.getItem('subscription')) {
+      let params = this.subscripcion;
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));  
+      console.log(params);
       if(localStorage.getItem('id')){
         this.service.user(localStorage.getItem('id')).subscribe(d=>{
           this.usuario = d;
@@ -89,6 +120,9 @@ export class PaymentComponent implements OnInit {
     } else {
       this.router.navigate(['subscription/plan'], {});
     }
+
+    
+    
   }
 
   goToSummary(valid:boolean) {
@@ -296,6 +330,41 @@ export class PaymentComponent implements OnInit {
         this.load = false;
         this.alert = {status :true , message:e, class:'alert alert-warning'};
       });
+  }
+
+
+  editSuscriptor() {
+    this.show = !this.show;
+    if ( this.textoBoton === 'Editar') {
+      this.textoBoton = 'Guardar';
+    } else {
+      this.textoBoton = 'Editar';
+    }
+
+  }
+
+  showDireccion() {
+    this.showDir = !this.showDir;
+  }
+
+
+  isLogin():boolean{
+    return (localStorage.getItem('id'))? true:false;
+  }
+
+  getDataUser(){
+    this.servFlor.user(localStorage.getItem('id')).subscribe(d=>{
+      console.log(d);
+      
+      this.subscripcion.suscriptor.nombre = d.nombre;
+      this.subscripcion.suscriptor.apellidos = d.apellido;
+      this.subscripcion.suscriptor.correo = d.correo;
+      //this.subscripcion.suscriptor.direccion = d
+    },e=>{
+      console.log(e);
+    });
+
+    
   }
 
 }
