@@ -85,7 +85,8 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    let dataInfo = JSON.parse(localStorage.getItem('subscription'));
+    console.log( dataInfo);
     this.registerForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],

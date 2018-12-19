@@ -138,11 +138,7 @@ export class PlanComponent implements OnInit {
   addSuscriptor(){
     
     this.submitted = true;
-    this.subscription.suscriptor = this.suscriptor;
-    console.log(this.subscription);
-    return ;
-
-    localStorage.setItem('subscription', JSON.stringify(this.subscription));
+    
     //console.log(this.registerForm)
     if(this.validSession){
       this.router.navigate(['subscription/payment']);
@@ -190,17 +186,25 @@ export class PlanComponent implements OnInit {
       if($("#fecha_entrega").val() != ''){
         this.subscription.f_entrega = $("#fecha_entrega").val();
         //!this.showForm && 
+        // this.subscription.suscriptor = this.suscriptor;
+        // localStorage.setItem('subscription', JSON.stringify(this.subscription));
+
+        console.log(this.suscriptor);
+
         if(this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
           this.alert = "";
           this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
-          // setTimeout(()=>{
+          setTimeout(()=>{
+            this.subscription.suscriptor = this.suscriptor;
+            localStorage.setItem('subscription', JSON.stringify(this.subscription));
           //   let el = document.getElementById("registro");    
           //   el.scrollIntoView(true);
 
           //   document.getElementById("nombre").focus();
-          this.addSuscriptor();
-
-          // }, 500);
+          
+          }, 500);
+          setTimeout(()=>{ this.addSuscriptor(); }, 1000);
+          
         }else{
           this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
         }
@@ -223,7 +227,7 @@ export class PlanComponent implements OnInit {
         this.subscription.plan.payuId = (p[0].payuId)? p[0].payuId: null;
         localStorage.setItem('subscription', JSON.stringify(this.subscription));
         if(this.validSession){
-          this.addSuscriptor();
+          //this.addSuscriptor();
           //this.showForm = true;
         }else{
           this.showForm = true;
