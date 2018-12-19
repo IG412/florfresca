@@ -149,17 +149,7 @@ export class PlanComponent implements OnInit {
       return false;
     }
 
-    if(!this.registerForm.invalid){
-      // this.subscription.suscriptor = this.suscriptor;
-      // localStorage.setItem('subscription', JSON.stringify(this.subscription));
-      
-      // this.showForm = true;
-      //this.showFormComplete = true;
-      //setTimeout(()=>{ this.login();},1000)
-      
-    }else{
-      console.log('error')
-    }
+    
   }
 
   addPlan(f:Flower){
