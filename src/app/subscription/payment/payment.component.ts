@@ -100,6 +100,7 @@ export class PaymentComponent implements OnInit {
     this.showDir = false;
     this.precio = 0;
   }
+  plan_info;
   ngOnInit() {
     window.scrollTo(0,0);
     let dataInfo = JSON.parse(localStorage.getItem('subscription'));
@@ -110,8 +111,15 @@ export class PaymentComponent implements OnInit {
       
       this.subscripcion = JSON.parse(localStorage.getItem('subscription'));
       
-    
+      setTimeout(()=>{
+
+        this.plan_info = this.subscripcion.suscriptor;
+        console.log(this.plan_info.plan)
+
+        this.subscripcion.plan = this.plan_info.plan;
+      },1000)
       console.log(this.subscripcion);
+
       if(localStorage.getItem('id')){
         this.service.user(localStorage.getItem('id')).subscribe(d=>{
           this.usuario = d;

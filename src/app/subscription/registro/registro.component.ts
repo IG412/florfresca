@@ -85,8 +85,8 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
-    let dataInfo = JSON.parse(localStorage.getItem('subscription'));
-    console.log( dataInfo);
+    this.suscriptor = JSON.parse(localStorage.getItem('subscription'));
+    
     this.registerForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
@@ -128,7 +128,12 @@ export class RegistroComponent implements OnInit {
       this.chPasswords = true;
       return false;
     }
-    console.log('paso reg')
+    
+    this.subscription.suscriptor.nombre =  this.usuario.nombre ;
+    this.subscription.suscriptor.apellidos =  this.usuario.nombre ;
+    this.subscription.suscriptor.tel =  parseInt(this.usuario.telefono) ;
+    this.subscription.suscriptor.correo =  this.usuario.correo ;
+
     this.tempData ={
       correo: this.usuario.correo,
       pass: this.usuario.pass
