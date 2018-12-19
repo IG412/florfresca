@@ -85,6 +85,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.registerForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
@@ -106,6 +107,8 @@ export class RegistroComponent implements OnInit {
     this.checkPasswords = false;
     this.passConfi = "";
     this.messages = new Message();
+
+    setTimeout(() =>{document.getElementById("nombre").focus();}, 500)
   }
 
   tempData;
@@ -183,7 +186,7 @@ export class RegistroComponent implements OnInit {
         let msg:any = d;
         localStorage.setItem('token', msg.token);
         localStorage.setItem('id', msg.id);
-        this.router.navigate(['subscription/summary']);
+        this.router.navigate(['subscription/payment']);
         // this.usuario = { correo: '',pass: ''};
         
       },
@@ -204,7 +207,7 @@ export class RegistroComponent implements OnInit {
     this.submitted = true;
     //console.log(this.registerForm)
     if(this.validSession){
-      this.router.navigate(['subscription/summary']);
+      this.router.navigate(['subscription/payment']);
       return false;
     }
 

@@ -140,15 +140,20 @@ export class PlanComponent implements OnInit {
     this.submitted = true;
     //console.log(this.registerForm)
     if(this.validSession){
-      this.router.navigate(['subscription/summary']);
+      this.router.navigate(['subscription/payment']);
+      return false;
+    }else{
+      this.subscription.suscriptor = this.suscriptor;
+      localStorage.setItem('subscription', JSON.stringify(this.subscription));
+      this.router.navigate(['subscription/registro']);
       return false;
     }
 
     if(!this.registerForm.invalid){
-      this.subscription.suscriptor = this.suscriptor;
-      localStorage.setItem('subscription', JSON.stringify(this.subscription));
+      // this.subscription.suscriptor = this.suscriptor;
+      // localStorage.setItem('subscription', JSON.stringify(this.subscription));
       
-      this.showForm = true;
+      // this.showForm = true;
       //this.showFormComplete = true;
       //setTimeout(()=>{ this.login();},1000)
       
@@ -192,13 +197,14 @@ export class PlanComponent implements OnInit {
         if(this.select_frecuencia != undefined && this.select_tamano != undefined && this.select_flower != undefined){
           this.alert = "";
           this.find({"flower.nombre":this.select_flower,"size.nombre":this.select_tamano,period:this.select_frecuencia});
-          setTimeout(()=>{
-            let el = document.getElementById("registro");    
-            el.scrollIntoView(true);
+          // setTimeout(()=>{
+          //   let el = document.getElementById("registro");    
+          //   el.scrollIntoView(true);
 
-            document.getElementById("nombre").focus();
+          //   document.getElementById("nombre").focus();
+          this.addSuscriptor();
 
-          }, 500);
+          // }, 500);
         }else{
           this.alert = "Debe completar los datos del suscriptor y seleccionar el plan";
         }
