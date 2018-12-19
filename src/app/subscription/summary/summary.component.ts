@@ -27,7 +27,7 @@ export class SummaryComponent implements OnInit {
   cat: Array<any>;
   precio:Number;
   id;
-
+  showFormComplete=false;
   constructor( private route: ActivatedRoute, private router: Router, private servFlor: FlorfrescaService) {
     this.subscripcion = new Subscripcion();
     this.textoBoton = 'Editar';
