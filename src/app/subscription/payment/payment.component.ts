@@ -102,9 +102,10 @@ export class PaymentComponent implements OnInit {
   }
   plan_info;
   ngOnInit() {
+    this.textoBoton = 'Editar';
     window.scrollTo(0,0);
     let dataInfo = JSON.parse(localStorage.getItem('subscription'));
-    console.log( dataInfo.plan);
+    
     this.getDataUser();
     
     if (localStorage.getItem('subscription')) {
@@ -113,10 +114,21 @@ export class PaymentComponent implements OnInit {
       
       setTimeout(()=>{
 
-        this.plan_info = this.subscripcion.suscriptor;
-        console.log(this.plan_info.plan)
-
+        this.plan_info = this.subscripcion.suscriptor;        
         this.subscripcion.plan = this.plan_info.plan;
+
+        this.subscripcion.suscriptor.nombre = this.plan_info.nombre;
+        this.subscripcion.suscriptor.apellidos = this.plan_info.apellidos;
+        this.subscripcion.suscriptor.ciudad = this.plan_info.ciudad;
+        this.subscripcion.suscriptor.correo = this.plan_info.correo;
+
+        this.subscripcion.suscriptor.direccion = '';
+        this.subscripcion.suscriptor.rela_paren = null;
+        this.subscripcion.suscriptor.tel ;
+        this.subscripcion.suscriptor.gatos ; 
+
+        console.log('------', this.subscripcion);
+        
       },1000)
       console.log(this.subscripcion);
 
@@ -367,7 +379,6 @@ export class PaymentComponent implements OnInit {
 
   getDataUser(){
     this.servFlor.user(localStorage.getItem('id')).subscribe(d=>{
-      console.log(d);
       
       this.subscripcion.suscriptor.nombre = d.nombre;
       this.subscripcion.suscriptor.apellidos = d.apellido;

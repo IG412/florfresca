@@ -55,7 +55,93 @@
                 </div>
             </div>
 <!-- resumen edición -->
-            
+<div class="row " >
+    <div class="col-xs-1 col-sm-2"></div>
+    <div class="col-xs-12 col-md-8">
+        
+        <div class="detail-content-block bg-white" style="padding: 30px;">
+            <h3 class="small-title">RESUMEN DE DATOS</h3>
+            <div class="table-responsive">
+                <table class="table style-1 type-2 striped">
+                    <tbody>
+                        <tr>
+                            <td class="table-label color-grey">NOMBRE</td>
+                            <td class="table-label color-dark-2">
+                                <strong *ngIf="show">{{subscripcion.suscriptor.nombre}}</strong>
+                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                [(ngModel)]="subscripcion.suscriptor.nombre" >
+                            </td>
+                        </tr>   
+
+                        <tr>
+                            <td class="table-label color-grey">Apellidos:</td>
+                            <td class="table-label color-dark-2">
+                                <strong *ngIf="show">{{subscripcion.suscriptor.apellidos}}</strong>
+                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                [(ngModel)]="subscripcion.suscriptor.apellidos" >
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
+                            <td class="table-label color-dark-2">
+                                <strong *ngIf="show">{{subscripcion.suscriptor.rela_paren}}</strong>
+                                <select [(ngModel)]="subscripcion.suscriptor.rela_paren" *ngIf="!show"
+                                class="inputCustom" name="rela_paren"  style="padding-left: 20px;" >
+                                    <option *ngFor='let p of parentesco'>{{p}}</option>
+                                </select>                                
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="table-label color-grey">Correo:</td>
+                            <td class="table-label color-dark-2">
+                               <strong *ngIf="show">{{subscripcion.suscriptor.correo}}</strong>
+                               <input type="text"   *ngIf="!show" class="inputCustom"
+                               [(ngModel)]="subscripcion.suscriptor.correo" >
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="table-label color-grey">DIRECCIÓN:</td>
+                            <td class="table-label color-dark-2">
+                               <strong *ngIf="show">{{subscripcion.suscriptor.direccion}}</strong>
+                               <input type="text"   *ngIf="!show" class="inputCustom"
+                               [(ngModel)]="subscripcion.suscriptor.direccion" >
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="table-label color-grey">CIUDAD:</td>
+                            <td class="table-label color-dark-2">
+                                <strong *ngIf="show">{{subscripcion.suscriptor.ciudad}}</strong>
+                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                [(ngModel)]="subscripcion.suscriptor.ciudad" >
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="table-label color-grey">TELEFONO:</td>
+                            <td class="table-label color-dark-2">
+                                <strong *ngIf="show">{{subscripcion.suscriptor.tel}}</strong>
+                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                [(ngModel)]="subscripcion.suscriptor.tel" >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+<div class="row padd-40" >
+<div class="col-sm-2"></div>
+<div class="col-xs-12 col-sm-3" >
+    <button class="c-button bg-florfresca  " style="color: #FFFFFF; width: 100%;" (click)='editSuscriptor()'><span >{{textoBoton}}</span></button>
+</div>
+</div>
 <!-- tarjeta -->
             <div class="row">
 
