@@ -132,7 +132,7 @@ export class PaymentComponent implements OnInit {
 
       if(localStorage.getItem('id')){
         this.service.user(localStorage.getItem('id')).subscribe(d=>{
-          this.usuario = d;
+          //this.usuario = d;
           this.drop();
         },e=>{
           console.log(e);
@@ -385,8 +385,18 @@ export class PaymentComponent implements OnInit {
     },e=>{
       console.log(e);
     });
+  }
 
-    
+
+  copyPaste(){
+    this.card.name = this.subscripcion.suscriptor.nombre+' ' +this.subscripcion.suscriptor.apellidos;
+
+    this.usuario.nombre =   String(this.subscripcion.suscriptor.nombre);
+    this.usuario.apellido=  String(this.subscripcion.suscriptor.apellidos);
+    this.usuario.correo =   String(this.subscripcion.suscriptor.correo);
+    this.usuario.dir =      String(this.subscripcion.suscriptor.direccion);
+    this.usuario.telefono = String(this.subscripcion.suscriptor.tel);
+
   }
 
 }
