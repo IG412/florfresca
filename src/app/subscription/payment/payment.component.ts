@@ -91,7 +91,7 @@ export class PaymentComponent implements OnInit {
     this.subscripcion = new Subscripcion();
     this.textoBoton = 'Editar';
     this.show = true;
-    this.parentesco = ['Primo', 'Prima',
+    this.parentesco = ['Para mi','Primo', 'Prima',
     'Cliente', 'Amiga' , 'Amigo', 'Novio',
     'Novia', 'Abuela', 'Abuelo', 'Mamá', 'Papá',
     'Hermana', 'Hermano', 'Hijo', 'Hija', 'Tío', 'Tía',
@@ -123,14 +123,12 @@ export class PaymentComponent implements OnInit {
         this.subscripcion.suscriptor.correo = this.plan_info.correo;
 
         this.subscripcion.suscriptor.direccion = '';
-        this.subscripcion.suscriptor.rela_paren = null;
+        this.subscripcion.suscriptor.rela_paren = 'Para mi';
         this.subscripcion.suscriptor.tel ;
         this.subscripcion.suscriptor.gatos ; 
-
-        console.log('------', this.subscripcion);
         
       },1000)
-      console.log(this.subscripcion);
+      
 
       if(localStorage.getItem('id')){
         this.service.user(localStorage.getItem('id')).subscribe(d=>{

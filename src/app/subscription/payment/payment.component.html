@@ -47,7 +47,8 @@
                             <div class="date grid-hidden"><strong>Tamaño</strong> Tamaño {{subscripcion.plan.tamano}}</div>
                             <div class="date grid-hidden"><strong>Frecuencia</strong> {{subscripcion.plan.periodo}}</div>
                             <div class="date grid-hidden"><strong>Tu primera orden</strong> </div>
-                            <h4><b>TOTAL: {{subscripcion.plan.precio}}</b></h4>
+                            <h4><b>TOTAL: {{subscripcion.plan.precio |  currency : 0  }}</b></h4>
+                            <!-- amount | currency : 'USD' : 'symbol' : '1.0'  -->
                         </div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@
                             <td class="table-label color-grey">NOMBRE</td>
                             <td class="table-label color-dark-2">
                                 <strong *ngIf="show">{{subscripcion.suscriptor.nombre}}</strong>
-                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                <input type="text"   *ngIf="!show" class="inputCustom" style="padding-left: 10px; width: 100%;"
                                 [(ngModel)]="subscripcion.suscriptor.nombre" >
                             </td>
                         </tr>   
@@ -77,7 +78,7 @@
                             <td class="table-label color-grey">Apellidos:</td>
                             <td class="table-label color-dark-2">
                                 <strong *ngIf="show">{{subscripcion.suscriptor.apellidos}}</strong>
-                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                <input type="text"   *ngIf="!show" class="inputCustom" style="padding-left: 10px; width: 100%;"
                                 [(ngModel)]="subscripcion.suscriptor.apellidos" >
                             </td>
                         </tr>
@@ -87,7 +88,7 @@
                             <td class="table-label color-dark-2">
                                 <strong *ngIf="show">{{subscripcion.suscriptor.rela_paren}}</strong>
                                 <select [(ngModel)]="subscripcion.suscriptor.rela_paren" *ngIf="!show"
-                                class="inputCustom" name="rela_paren"  style="padding-left: 20px;" >
+                                class="inputCustom" name="rela_paren"  style="padding-left: 20px; width: 100%; width: 100%;" >
                                     <option *ngFor='let p of parentesco'>{{p}}</option>
                                 </select>                                
                             </td>
@@ -97,7 +98,7 @@
                             <td class="table-label color-grey">Correo:</td>
                             <td class="table-label color-dark-2">
                                <strong *ngIf="show">{{subscripcion.suscriptor.correo}}</strong>
-                               <input type="text"   *ngIf="!show" class="inputCustom"
+                               <input type="text"   *ngIf="!show" class="inputCustom" style="padding-left: 10px; width: 100%;"
                                [(ngModel)]="subscripcion.suscriptor.correo" >
                             </td>
                         </tr>
@@ -106,7 +107,7 @@
                             <td class="table-label color-grey">DIRECCIÓN:</td>
                             <td class="table-label color-dark-2">
                                <strong *ngIf="show">{{subscripcion.suscriptor.direccion}}</strong>
-                               <input type="text"   *ngIf="!show" class="inputCustom"
+                               <input type="text"   *ngIf="!show" class="inputCustom" style="padding-left: 10px; width: 100%;"
                                [(ngModel)]="subscripcion.suscriptor.direccion" >
                             </td>
                         </tr>
@@ -115,7 +116,7 @@
                             <td class="table-label color-grey">CIUDAD:</td>
                             <td class="table-label color-dark-2">
                                 <strong *ngIf="show">{{subscripcion.suscriptor.ciudad}}</strong>
-                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                <input type="text"   *ngIf="!show" class="inputCustom" style="padding-left: 10px; width: 100%;"
                                 [(ngModel)]="subscripcion.suscriptor.ciudad" >
                                 
                             </td>
@@ -125,7 +126,7 @@
                             <td class="table-label color-grey">TELEFONO:</td>
                             <td class="table-label color-dark-2">
                                 <strong *ngIf="show">{{subscripcion.suscriptor.tel}}</strong>
-                                <input type="text"   *ngIf="!show" class="inputCustom"
+                                <input type="text"   *ngIf="!show" class="inputCustom" style="padding-left: 10px; width: 100%;"
                                 [(ngModel)]="subscripcion.suscriptor.tel" >
                             </td>
                         </tr>

@@ -135,11 +135,14 @@
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4 ">
                     <div class="tabs-block">
-                        <div class="input-style">
-                            <img src="assets/imgs/calendar_icon_black.png" alt="" style="margin-top: 6px; margin-left: 4px" (click)="abrePicker()">
+                            <!-- (click)="abrePicker()" -->
+                        <div class="input-style" >
+                            
+                            <img src="assets/imgs/calendar_icon_black.png" alt="" (click)="abrePicker()"
+                            style="margin-top: 6px; margin-left: 4px" >
                             <input type="text" placeholder="Selecciona tu día" 
                             [(ngModel)]="fecha_entrega" name="fecha_entrega" id="fecha_entrega" class="datepicker" 
-                            style="color:#000; border: 1px solid #ccc">
+                            style="color:#000; border: 1px solid #ccc; z-index: 99;">
                         </div>
                     </div>
                 </div>
