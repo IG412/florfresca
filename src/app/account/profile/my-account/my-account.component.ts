@@ -22,6 +22,7 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit() {
   	this.service.user(localStorage.getItem('id')).subscribe(u=>{
+      
   		this.usuario = u;
   	},e=>{
   		console.log(e);

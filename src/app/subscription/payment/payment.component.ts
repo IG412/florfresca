@@ -101,6 +101,9 @@ export class PaymentComponent implements OnInit {
     this.precio = 0;
   }
   plan_info;
+  
+  copiar;
+
   ngOnInit() {
     this.textoBoton = 'Editar';
     window.scrollTo(0,0);
@@ -143,9 +146,6 @@ export class PaymentComponent implements OnInit {
     } else {
       this.router.navigate(['subscription/plan'], {});
     }
-
-    
-    
   }
 
   goToSummary(valid:boolean) {
@@ -396,7 +396,22 @@ export class PaymentComponent implements OnInit {
     this.usuario.correo =   String(this.subscripcion.suscriptor.correo);
     this.usuario.dir =      String(this.subscripcion.suscriptor.direccion);
     this.usuario.telefono = String(this.subscripcion.suscriptor.tel);
+  }
 
+  uncopyPaste(){
+    this.card.name = "";
+
+    this.usuario.nombre =   "";
+    this.usuario.apellido=  "";
+    this.usuario.correo =   "";
+    this.usuario.dir =      "";
+    this.usuario.telefono = "";
+
+  }
+
+  copyPasteInput(){
+
+    if(this.copiar){ this.copyPaste(); }else{ this.uncopyPaste();}
   }
 
 }

@@ -151,9 +151,7 @@
                         <div class="col-xs-12 col-sm-8">
                                 <h2 style="margin:10px">INFORMACIÓN DE TARJETA</h2>
                         </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <button class="c-button b-50 bg-dr-blue-2 hv-dr-blue-2-o" (click)="copyPaste()" > Copiar información </button>
-                        </div> 
+                        
                     </div>
 
                             <div class="col-xs-6 col-sm-6">
@@ -210,6 +208,17 @@
                     <div class="col-xs-12 col-sm-12">
                         <h2 style="margin:10px">INFORMACIÓN DE PAGO</h2>
                     </div>
+                    <div class="col-xs-12 col-sm-12" >
+                             
+                             <div class="input-entry color-7">
+                                <input class="checkbox-form " id="text-2" type="checkbox" name="acept_term" 
+                                (change) = 'copyPasteInput()' [(ngModel)]="copiar" value="true">
+                                <label class="clearfix" for="text-2">
+                                    <span class="sp-check check-custom"><i class="fa fa-check"></i></span>
+                                    <p class=" color-dark-2 ">Selecciona si es la misma información de suscriptor</p>
+                                </label>
+                            </div>
+                    </div> 
                     <div class="col-xs-12 col-sm-12">
                         <form class="simple-from"  #f="ngForm">
                             <div class="simple-group">

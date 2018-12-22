@@ -30,6 +30,7 @@ export class MySubsComponent implements OnInit {
 
   ngOnInit() {
   	this.service.userSubs(localStorage.getItem('id')).subscribe(u=>{
+      console.log(u)
   		this.subscriptions = u;
   	},e=>{
       this.messages.message = 'Lo sentimos, No se pudo conectar con la base de datos, Contactar a soporte';

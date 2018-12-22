@@ -5,6 +5,7 @@ import {FlorfrescaService} from '../../../../services/florfresca.service';
 import {ApiPayuService} from '../../../../services/api-payu.service';
 import { Message } from '../../../../models/message';
 import { CreditCards } from '../../../../models/creditcards';
+//import { ConsoleReporter } from 'jasmine';
 
 declare var $: any;
 
@@ -38,7 +39,8 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.service.subs(this.route.snapshot.paramMap.get('id')).subscribe(u=>{
+  	this.service.subs(localStorage.getItem('id')).subscribe(u=>{
+      console.log(u)
   		this.subscription = u;
       this.apiPayuService.card(this.subscription.creditCardToken).subscribe(t=>{
         this.card = t;
