@@ -43,10 +43,3 @@ input[type=checkbox], input[type=radio]{
 	border: 1px solid #000 !important;
 	border-radius: 20px;
 }
-
-
-@media screen and (max-width:767px){
-	.col-xs-3 {
-	    width: 25% !important;
-	}
-}
