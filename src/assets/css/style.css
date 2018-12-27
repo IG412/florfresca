@@ -3688,9 +3688,9 @@ ul.dot-blue-2 li:before { color: #022c54; }
 
 .accordion.style-4 p { color: #b9b9b9; }
 
-.accordion.style-5 .acc-title { color: #fff; background: #022c54; }
+.accordion.style-5 .acc-title { color: #fff; background: #000000; }
 
-.accordion.style-5 .acc-icon { background: #022c54; }
+.accordion.style-5 .acc-icon { background: #000000; }
 
 .accordion.style-5 .acc-icon:before { color: #fff; }
 
@@ -3752,9 +3752,9 @@ ul.dot-blue-2 li:before { color: #022c54; }
 
 .table.type-2 { border-top: 1px solid #f2f2f2; }
 
-.table.type-2 td:nth-child(1) { width: 50%; }
+.table.type-2 td:nth-child(1) {  }
 
-.table.type-2 td:nth-child(2) { width: 50%; }
+.table.type-2 td:nth-child(2) {  }
 
 .table.type-2 .table-label { font-family: 'Cabin', sans-serif; font-size: 14px; line-height: 18px; font-weight: 400; }
 
