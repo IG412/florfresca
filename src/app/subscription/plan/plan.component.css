@@ -44,14 +44,8 @@ input[type=checkbox], input[type=radio]{
 	border-radius: 20px;
 }
 
-.col-sm-1 {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-@media(max-width:767px){
+
+@media screen and (max-width:767px){
 	.col-xs-3 {
 	    width: 25% !important;
 	}
