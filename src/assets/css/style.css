@@ -5019,6 +5019,13 @@ footer.bg-white .form-input input {color: #222;}
 .florerito {
     max-width: 25%;
 }
+@media (max-width: 576px){
+  .florerito2 {
+      width: 50vw;
+      text-align: center;
+      position: relative;
+  }
+}
 .tour-item.no-padd {padding-left: 0px; padding-right: 0px;}
 
 
