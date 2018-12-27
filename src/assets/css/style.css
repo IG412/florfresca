@@ -5021,7 +5021,7 @@ footer.bg-white .form-input input {color: #222;}
 }
 @media (max-width: 576px){
   .florerito2 {
-      width: 50vw;
+      width: 50vw !important;
       text-align: center;
       position: relative;
   }
