@@ -47,7 +47,7 @@
                             <div class="date grid-hidden"><strong>Tamaño</strong> Tamaño {{subscripcion.plan.tamano}}</div>
                             <div class="date grid-hidden"><strong>Frecuencia</strong> {{subscripcion.plan.periodo}}</div>
                             <div class="date grid-hidden"><strong>Tu primera orden</strong> </div>
-                            <h4><b>TOTAL: {{subscripcion.plan.precio |  currency : 0  }}</b></h4>
+                            <h4><b>TOTAL: {{subscripcion.plan.precio |  number  }}</b></h4>
                             <!-- amount | currency : 'USD' : 'symbol' : '1.0'  -->
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         </tr>
 
                         <tr>
-                            <td class="table-label color-grey">RELACION Y/O PARENTESCO:</td>
+                            <td class="table-label color-grey">RELACION Y/O<br>PARENTESCO:</td>
                             <td class="table-label color-dark-2">
                                 <strong *ngIf="show">{{subscripcion.suscriptor.rela_paren}}</strong>
                                 <select [(ngModel)]="subscripcion.suscriptor.rela_paren" *ngIf="!show"
