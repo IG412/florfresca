@@ -78,7 +78,7 @@ footer { position: relative; width: 100%; padding-top: 70px; overflow: hidden;}
 
 .footer-link ul { position: relative; float: left; }
 
-.footer-link ul li { position: relative; float: left; font-size: 13px; font-weight: 400; color: #fff; margin-right: 17px; text-transform: uppercase; letter-spacing: 1px; line-height: 13px; }
+.footer-link ul li { position: relative;     display: inline-block; font-size: 13px; font-weight: 400; color: #fff; margin-right: 17px; text-transform: uppercase; letter-spacing: 1px; line-height: 13px; }
 
 .copyright { position: relative; float: right; }
 
