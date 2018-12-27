@@ -5017,8 +5017,7 @@ footer.bg-white .form-input input {color: #222;}
 .cars-item {margin-bottom: 30px;}
 .title {padding: 20px 0px;}
 .florerito {
-    flex: 0 0 8.333333%;
-    max-width: 8.333333%;
+    max-width: 25%;
 }
 .tour-item.no-padd {padding-left: 0px; padding-right: 0px;}
 
