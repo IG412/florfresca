@@ -25,3 +25,16 @@
 app-spinner .treasure-overlay-spinner-active-remove {
   transition:  all 750ms ease-in;
 }
+
+#periodo .col-sm-1{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+@media(max-width:767px){
+#periodo .col-xs-3{
+      width: 25% !important;
+  }
+}
