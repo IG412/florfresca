@@ -19,6 +19,7 @@ import { FaqComponent } from './page/faq/faq.component';
 import { WhyComponent } from './page/why/why.component';
 import { CareComponent } from './page/care/care.component';
 import { ActivateComponent } from './account/activate/activate.component';
+import { httpInterceptorProviders } from './http-interceptors/index';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { ActivateComponent } from './account/activate/activate.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
