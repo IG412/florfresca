@@ -20,6 +20,7 @@ import { WhyComponent } from './page/why/why.component';
 import { CareComponent } from './page/care/care.component';
 import { ActivateComponent } from './account/activate/activate.component';
 import { httpInterceptorProviders } from './http-interceptors/index';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { httpInterceptorProviders } from './http-interceptors/index';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

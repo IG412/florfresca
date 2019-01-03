@@ -1,11 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Router  }  from "@angular/router";
+import {trigger,state,style,animate,transition} from '@angular/animations';
 declare var $: any;
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  animations: [
+               trigger('slideInOut', [
+                 state('in', style({
+                   transform: 'translate3d(0, 0, 0)'
+                 })),
+                 state('out', style({
+                   transform: 'translate3d(100%, 0, 0)'
+                 })),
+                 transition('in => out', animate('400ms ease-in-out')),
+                 transition('out => in', animate('400ms ease-in-out'))
+               ]),
+             ]
 })
 export class NavbarComponent implements OnInit {
 

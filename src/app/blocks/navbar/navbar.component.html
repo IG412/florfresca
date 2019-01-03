@@ -1,4 +1,4 @@
-<header class="type-4 hovered menu-3">
+<header class="type-4 hovered menu-3" [@slideInOut]="menuState">
 		<!-- <div class="top-header-bar bg-dr-blue">	 
 				 <div class="container">
 							 <div class="row">
@@ -57,25 +57,25 @@
 								<nav class="menu" style="text-transform: uppercase;">
 								<ul>
 									<li class="type-1">
-											<a routerLink="/home" (click)="document.getElementsByClassName('nav-menu-icon')[0].childNodes[0].click()">Inicio</a>
+											<a (click)="toggleMenu()" routerLink="/home">Inicio</a>
 									</li>
 									<li class="type-1">
-											<a routerLink="subscription" (click)="document.getElementsByClassName('nav-menu-icon')[0].childNodes[0].click()">Suscríbete</a>
+											<a (click)="toggleMenu()" routerLink="subscription">Suscríbete</a>
 									</li>
 									<li class="type-1">
-											<a routerLink="/Por_que_flor_fresca" (click)="document.getElementsByClassName('nav-menu-icon')[0].childNodes[0].click()">¿Por qué flor Fresca?</a>
+											<a (click)="toggleMenu()" routerLink="/Por_que_flor_fresca">¿Por qué flor Fresca?</a>
 									</li>
 									<li class="type-1">
-											<a routerLink="/faq" (click)="document.getElementsByClassName('nav-menu-icon')[0].childNodes[0].click()">Centro de ayuda</a>
+											<a (click)="toggleMenu()" routerLink="/faq">Centro de ayuda</a>
 									</li>
 									<li class="type-1">
-										<a  href="mailto:florfresca@florfresca.com" (click)="document.getElementsByClassName('nav-menu-icon')[0].childNodes[0].click()">
+										<a (click)="toggleMenu()" href="mailto:florfresca@florfresca.com" >
 											Contactenos
 										</a>
 									</li>
 
 									<li class="type-1">
-										<a routerLink="/login" class="btn btn-danger" (click)="document.getElementsByClassName('nav-menu-icon')[0].childNodes[0].click()" style="line-height: 2px;">Ingresar</a>
+										<a routerLink="/login" (click)="toggleMenu()" class="btn btn-danger" style="line-height: 2px;">Ingresar</a>
 									</li>
 
 									<!-- <li class="type-1" style="padding-top: 20px;padding-bottom: 0;padding-bottom: 0;">
