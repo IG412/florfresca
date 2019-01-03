@@ -21,7 +21,7 @@ declare var $: any;
              ]
 })
 export class NavbarComponent implements OnInit {
-  private menuState:any;
+  public menuState:any;
   constructor(
     private router:Router
     ) { }
