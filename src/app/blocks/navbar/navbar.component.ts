@@ -25,6 +25,10 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router:Router
     ) { }
+  
+  toggleMenu() {
+      this.toggleMenu();
+  }
 
   ngOnInit() {
     this.menuResponsive();
