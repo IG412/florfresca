@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from '../../../models/usuario';
 import {FlorfrescaService} from '../../../services/florfresca.service';
+import {Subscripcion} from '../../../models/suscripcion';
 import { Message } from '../../../models/message';
 
 @Component({
@@ -12,12 +13,14 @@ export class MyAccountComponent implements OnInit {
 	usuario : Usuario;
   show:boolean;
   messages:Message;
+  subscriptions:Array<Subscripcion>;
   constructor(
   	private service: FlorfrescaService
   	) {
     this.show = false;
     this.messages = new Message();
   	this.usuario = new Usuario();
+    this.subscriptions = new Array(0);
   }
 
   ngOnInit() {
@@ -27,6 +30,16 @@ export class MyAccountComponent implements OnInit {
   	},e=>{
   		console.log(e);
   	});
+
+    this.service.userSubs(localStorage.getItem('id')).subscribe(u=>{
+    console.warn(u);
+      this.subscriptions = u;
+    },e=>{
+      this.messages.message = 'Lo sentimos, No se pudo conectar con la base de datos, Contactar a soporte';
+      this.messages.class = "bg-danger";
+      this.messages.status = true;
+    });
+
   }
   editar(){
     this.show = true;
