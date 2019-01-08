@@ -16,15 +16,15 @@ import { IsSecureGuard } from './http-interceptors/ensure-https-interceptor';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'recovery', component: RecoveryComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'reset/:id', component: ResetComponent },
-  { path: 'activate/:id', component: ActivateComponent },
-  { path: 'faq', component: FaqComponent },
-  { path: 'Por_que_flor_fresca', component: WhyComponent },
-  { path: 'cuidados', component: CareComponent },
+  { path: 'home', component: HomeComponent , canActivate: [IsSecureGuard]},
+  { path: 'login', component: LoginComponent , canActivate: [IsSecureGuard]},
+  { path: 'recovery', component: RecoveryComponent , canActivate: [IsSecureGuard]},
+  { path: 'register', component: RegisterComponent , canActivate: [IsSecureGuard]},
+  { path: 'reset/:id', component: ResetComponent , canActivate: [IsSecureGuard]},
+  { path: 'activate/:id', component: ActivateComponent , canActivate: [IsSecureGuard]},
+  { path: 'faq', component: FaqComponent, canActivate: [IsSecureGuard] },
+  { path: 'Por_que_flor_fresca', component: WhyComponent , canActivate: [IsSecureGuard]},
+  { path: 'cuidados', component: CareComponent , canActivate: [IsSecureGuard]},
   { path: 'subscription', loadChildren: './subscription/subscription.module#SubscriptionModule'},
   { path: 'account', loadChildren: './account/profile/profile.module#ProfileModule'}
 ];
