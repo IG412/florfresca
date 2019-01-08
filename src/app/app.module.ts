@@ -19,7 +19,6 @@ import { FaqComponent } from './page/faq/faq.component';
 import { WhyComponent } from './page/why/why.component';
 import { CareComponent } from './page/care/care.component';
 import { ActivateComponent } from './account/activate/activate.component';
-import { httpInterceptorProviders } from './http-interceptors/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -46,7 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
