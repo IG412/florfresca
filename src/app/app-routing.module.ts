@@ -12,7 +12,7 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { FaqComponent } from './page/faq/faq.component';
 import { WhyComponent } from './page/why/why.component';
 import { CareComponent } from './page/care/care.component';
-import { IsSecureGuard } from './http-interceptors/index';
+import { IsSecureGuard } from './http-interceptors/ensure-https-interceptor';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
