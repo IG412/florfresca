@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HttpClient }    from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -19,7 +20,6 @@ import { FaqComponent } from './page/faq/faq.component';
 import { WhyComponent } from './page/why/why.component';
 import { CareComponent } from './page/care/care.component';
 import { ActivateComponent } from './account/activate/activate.component';
-import { httpInterceptorProviders } from './http-interceptors/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -42,11 +42,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
