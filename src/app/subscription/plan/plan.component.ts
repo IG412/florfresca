@@ -144,8 +144,9 @@ export class PlanComponent implements OnInit {
       this.router.navigate(['subscription/payment']);
       return false;
     }else{
-      
-      this.router.navigate(['subscription/registro']);
+
+      //this.router.navigate(['subscription/registro']);
+      this.router.navigate(['subscription/payment']);
       return false;
     }
 

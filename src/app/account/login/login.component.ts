@@ -64,6 +64,11 @@ export class LoginComponent implements OnInit {
   }
 
   register():void{
-      this.router.navigateByUrl("/register"+(this.from)?"?from="+this.from:"");  
+    if(this.from=='payment'){
+      this.router.navigateByUrl("subscription/registro");  
+    }else{
+      //this.router.navigateByUrl("/register"+(this.from)?"?from="+this.from:"");  
+      this.router.navigateByUrl("/register"); 
+    }      
   }
 }
